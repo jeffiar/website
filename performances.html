@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>Jeffrey Chang</title>
+    <meta name="description" content="Personal webpage of Jeffrey Chang">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+
+<div id="header">
+<h2><a href="index.html">Jeffrey Chang's Webpage</a></h2>
+</div>
+
+<div id="menu">
+<script src="menu.js"></script>
+</div>
+
+<div class="content">
+<h2>My Upcoming Performances</h2>
+<hr/>
+<ul class="performances">
+    <b>SCOr Winter Concert</b><br/>
+    <em>sometime in February...</em><br/>
+    <ul><li> Enjoy some music with your favorite chamber orchestra!</ul><br/>
+
+    Under construction...<br/>
+    <img src="img/under_construction.gif" height=50px>
+</ul>
+</div>
+
+<div class="content">
+<h3>
+    My Past Performances
+    <button id="past_button" onclick="toggle_past()">Click to show</button>
+</h3>
+<hr/>
+<script>
+function toggle_past() {
+    var text = document.getElementById("past_performances");
+    var button = document.getElementById("past_button");
+    if (text.style.display !== "block") {
+        text.style.display = "block";
+        button.innerHTML = "Click to hide";
+    } else {
+        text.style.display = "none";
+        button.innerHTML = "Click to show";
+    }
+}
+</script>
+
+<div id="past_performances">
+<ul class="performances">
+<b>SCOr Pop-up Admit Weekend Concert</b><br/>
+    <em>Fri Apr 27, 3pm; next to the Claw</em><br/>
+    <ul><li> Your favorite chamber musicians play Rossini's William Tell outdoors on the grass! Featuring real timpani.</ul><br/>
+
+    <b>SImps improvise Musicals</b><br/>
+    <em>Fri Apr 27, 9pm; d. school studio 1</em><br/>
+    <ul><li> The Stanford Improv team improvises a full 1-act musical, with yours truly on piano.</ul><br/>
+
+    <b>Hillsdale High School Improv presents: The long and short of it</b><br/>
+    <em>Sat May 5, 7pm; Hillsdale High School</em><br/>
+    <ul><li> Musical accompaniment for a local high school improv team. </ul><br/>
+
+    <b>Melodica and Guitar, Friday vibes</b><br/>
+    <em>Fri May 11, 12pm; Engineering Quad Outdoors</em><br/>
+    <ul><li> It's a Friday before physics class -- why not play a little music with Tony outside? </ul><br/>
+
+    <b>SLOCo presents: Phantom of the Opera</b><br/>
+    <em>Thu May 10, Fri May 11, Sat May 12, 8pm; Sun May 13, 2pm; Dinkelspiel Auditorium</em><br/>
+    <ul><li> I've still got no clue what happens on stage, since we never got to see it in the pit.</ul><br/>
+
+    <b>Grand Opening of Hermes </b><br/>
+    <em>Thu May 17; Stanford Shopping Center</em><br/>
+    <ul><li> We played a little fanfare for thirty seconds in front of some very wealthy French people...</ul><br/>
+
+    <b>Stanford Symphony Orchestra Spring Concert</b><br/>
+    <em>Fri May 18, 7:30pm; Sun May 20, 2:30pm; Bing Concert Hall</em><br/>
+    <ul><li> In this episode of "jeffjar plays in a big orchestra" -- does he hit 70% note accuracy this time? Come find out! </ul><br/>
+
+    <b>Jake Gold Senior Recital</b><br/>
+    <em>Fri May 25, 7:30pm; Campbell Recital Hall</em><br/>
+    <ul> <li> Join in for some fun horn quartets!</ul><br/>
+
+    <b>Stanford Improv presents: Two shows at once</b><br/>
+    <em>Fri May 25, 9pm; Sat May 26, 7pm and 9pm; d. school studio 1</em><br/>
+    <ul> <li> Enjoy some laughs and improvised stories, with musical accompaniment by yours truly. </ul><br/>
+
+    <b>Schubert Octet! at Chamber Music Showcase</b><br/>
+    <em>Wed May 30, ~9pm; Campbell Recital Hall</em><br/>
+    <ul> <li> Come hear some derpy chamber music, featuring 7 truly impressive musicians and a silly horn player. </ul><br/>
+
+    <b>Stanford Collaborative Orchestra (SCOr) Spring Concert! </b>(<a href="https://www.facebook.com/events/548157435585965/">Facebook Event</a>)<br/>
+    <em>Sun Jun 3, 2:30pm; Toyon Hall</em><br/>
+    <ul> <li> Spend a pleasant afternoon with your favorite chamber musician friends. We're playing some gorgeous American music, surreal and otherworldly French music, and Carnival of the Animals.</ul><br/>
+
+    <b>Schubert Octet! </b>(<a href="https://www.facebook.com/events/548157435585965/">Facebook Event</a>)<br/>
+    <em>Sun Jun 3, 7pm; CCRMA</em><br/>
+    <ul> <li> In case you haven't had enough Schubert, enjoy our cozy company again!</ul><br/>
+
+    <b>Casual Business plays jazz at CoHo</b><br/>
+    <em>Mon Jun 4, ~9pm; Stanford Coffee House "coho"</em><br/>
+    <ul> <li> Jazz in a cafe on a Monday night -- what else can you ask for? Yours truly on piano. </ul><br/>
+
+    <b>Improv gig with BATS</b><br/>
+    <em>Mon Jun 12, 7:30pm; Cubberly Community Center in Palo Alto</em><br/>
+    <ul> <li> Who ever imagined jeffjar would be playing music at an improv show in Palo Alto?</ul><br/>
+
+</ul>
+</div>
+</div>
+</body>
