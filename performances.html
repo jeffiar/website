@@ -30,11 +30,12 @@
 <div class="content">
 <h3>
     My Past Performances
-    <button id="past_button" onclick="toggle_past()">Click to show</button>
+    <button id="past_button">Click to show</button>
 </h3>
 <hr/>
+
 <script>
-function toggle_past() {
+document.getElementById("past_button").onclick = function() {
     var text = document.getElementById("past_performances");
     var button = document.getElementById("past_button");
     if (text.style.display !== "block") {

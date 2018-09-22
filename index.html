@@ -17,7 +17,7 @@
 <div class="content">
 <h2>About me</h2>
 <hr/>
-<div id="me_image"><img src="img/me.jpg" height="150px"></div>
+<div id="me_image"><img class="lightboxable" src="img/me.jpg" height="150px"></div>
 I am an undergraduate studying physics at Stanford University. Broadly, I am intrigued by the physics of the biochemical world -- the thermodynamics of life, the quantum chemistry of vision, the dynamical landscape of macromolecules, and more. Currently, I'm doing research about the photophysics of fluorescent proteins in the <a href='http://web.stanford.edu/group/boxer/'>Boxer lab</a>.<br/><br/>
 
 I play horn in the <a href="http://scor.stanford.edu"> Stanford Collaborative Orchestra</a>, and I improvise music on the <a href="http://stanfordimprovisors.com">Stanford Improv team</a>. I also play piano in a jazz combo called Casual Business.<br/><br/>
@@ -32,33 +32,54 @@ You can contact me at <code>jeffjar (snail) stanford.edu</code> .
 <hr/>
 <div class="gallery">
     <div class="gallery_image">
-        <a target="_blank" href="img/box.jpg"><img src="img/box.jpg" title="Box"></a>
+        <img class="lightboxable" src="img/box.jpg" title="Box">
         a box
     </div>
     <div class="gallery_image">
-        <a target="_blank" href="img/fluorescence.jpg"><img src="img/fluorescence.jpg" title="Fluorescence"></a>
+        <img class="lightboxable" src="img/tube.jpg" title="Tube">
         a tube
     </div>
     <div class="gallery_image">
-        <a target="_blank" href="img/piano.jpg"><img src="img/piano.jpg" title="Piano"></a>
+        <img class="lightboxable" src="img/piano.jpg" title="Piano">
         a piano
     </div>
-</div>
-<div class="gallery">
     <div class="gallery_image">
-        <a target="_blank" href="img/chair.jpg"><img src="img/chair.jpg" title="Chair"></a>
+        <img class="lightboxable" src="img/chair.jpg" title="Chair">
         a chair
     </div>
     <div class="gallery_image">
-        <a target="_blank" href="img/road.jpg"><img src="img/road.jpg" title="Road"></a>
+        <img class="lightboxable" src="img/road.jpg" title="Road">
         a road
     </div>
     <div class="gallery_image">
-        <a target="_blank" href="img/forest.jpg"><img src="img/forest.jpg" title="Forest"></a>
+        <img class="lightboxable" src="img/forest.jpg" title="Forest">
         a forest
     </div>
 </div>
 </div>
+
+<div id="lightbox">
+    <button id="xbutton">X</button>
+    <img id="lightbox-picture" src="#" />
+</div>
+
+<script>
+var imgs = document.getElementsByClassName('lightboxable')
+for (var i = 0; i < imgs.length; i++) {
+        (function() {
+            var img = imgs[i];
+            img.onclick = function() {
+                document.getElementById("lightbox-picture").src = img.src;
+                document.getElementById("lightbox").style.display = 'block';
+            };
+            img.style.cursor = "pointer";
+        })(); // Silly scoping rules...
+}
+
+document.getElementById("xbutton").onclick = function() {
+    document.getElementById("lightbox").style.display = 'none';
+};
+</script>
 
 <div class="content">
 <small>This website was made from scratch with simple html, css, and javascript -- much simpler (and faster!) than trying to use a big fancy web framework. If you have any suggestions on how to make the website look prettier, please let me know.</small>
