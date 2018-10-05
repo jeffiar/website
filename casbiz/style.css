@@ -27,17 +27,8 @@ h2, h3, h4 {
     color : black;
 }
 
-#menu {
-    float:left;
-    width:105px;
-    padding:15px;
-    background-color:#eee;
-    border: #999 1px dashed;
-} 
-
 .content{
     margin-top: 15px;
-    margin-left: 150px;
     padding: 15px;
     border:black 1px solid
 }
@@ -61,7 +52,7 @@ h2, h3, h4 {
     display: inline-block;
 }
 
-img {
+.gallery_image img {
     max-height: 100%;
     max-width: 100%;
 }
@@ -80,6 +71,8 @@ img {
     position: fixed;
     margin: auto;
     top:0; left:0; right:0; bottom:0;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 #xbutton {
@@ -115,19 +108,4 @@ ul.performances{
 
 #navtable td {
     padding-right: 6px;
-}
-
-#cvtable {
-    border-spacing: 15px;
-    line-height: 1.5;
-}
-
-#cvtable th {
-    vertical-align: top;
-    text-align: right;
-}
-
-#cvtable td {
-    padding-top: 7px;
-    font-size: smaller;
 }
