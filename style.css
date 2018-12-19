@@ -7,8 +7,9 @@ body {
      line-height : 1.6;
      font-size   : 18px;
      font-family : Arial,sans-serif;
-     color       : #444;
+     color       : #333;
      padding     : 0;
+     background-image: url("img/background.gif");
 }
 
 h2, h3, h4 {
@@ -16,34 +17,25 @@ h2, h3, h4 {
 }
 
 #header {
+    text-align: center;
+    color: black;
     margin:15px 0 15px 0;
     padding:15px;
+    background-image: url("img/background2.gif");
     border:black 1px solid;
-    background-color:#ccc;
-    color: black;
+    border-radius: 10px;
 }
-
-#header a {
-    color : black;
-}
-
-#menu {
-    float:left;
-    width:105px;
-    padding:15px;
-    background-color:#eee;
-    border: #999 1px dashed;
-} 
 
 .content{
     margin-top: 15px;
-    margin-left: 150px;
     padding: 15px;
-    border:black 1px solid
+    background-color: white;
+    border:black 1px solid;
+    border-radius: 10px;
 }
 
 #me_image {
-    float: right;
+    float: left;
     margin: 15px;
     border: black 1px solid
 }
@@ -106,7 +98,6 @@ ul.performances{
 }
 
 #navtable {
-    font-size: 18px;
     line-height: 1.6;
     white-space: nowrap;
     overflow: hidden;
@@ -114,7 +105,7 @@ ul.performances{
 }
 
 #navtable td {
-    padding-right: 6px;
+    padding-right: 15px;
 }
 
 #cvtable {
