@@ -1,0 +1,22 @@
+body {
+     margin      : 15px auto;
+     max-width   : 750px;
+     line-height : 1.4;
+     font-size   : 20px;
+     padding     : 0;
+     background-image: url("img/background.gif");
+}
+
+table.navtable {
+    width: 100%;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    font-size: 14px;
+}
+
+ul {
+    list-style-image: url("img/ball.gif");
+}
