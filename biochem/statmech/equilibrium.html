@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Equilibrium</title>
+    <link rel="stylesheet" href="../style.css" type="text/css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+
+<body>
+<div class="content">
+<h1>Equilibrium</h1>
+It seems odd<sup><a href="#footnote-1" id="footnote-1-ref">1</a></sup> to begin the study of life -- of dynamic processes and energy flows -- with the study of equilibrium, where observables do not change over time. A system in equilibrium cannot be alive. So why should we study equilibrium?<sup><a href="#footnote-2" id="footnote-2-ref">2</a></sup>
+<br/><br/>
+Equilibrium is relevant to biochemistry because <b>macroscopic systems evolve towards equilibrium</b>. In other words, if we sit and watch any macroscopic system for long enough, it will tend towards an equilibrium state<sup><a href="#footnote-3" id="footnote-3-ref">3</a></sup>. This powerful fact tells us that even though a cell is <i>not</i> in equilibrium, its behavior is still governed by the approach to equilibrium. Hence, by studying equilibrium processes, we gain some insight into the factors that <i>drive</i> cellular processes.
+<br/><br/>
+The time evolution of macroscopic systems is explained by <b>entropy</b>, a pretty subtle and confusing concept -- so we will need to be careful with how we define terms and state assumptions.
+
+<h2>Microstates and Macrostates</h2>
+Statistical mechanics studies the physics of macroscopic systems which consist of very many particles, typically on the order of \(N \gtrapprox 10^{20}\). Since there are so many particles, we will need to distinguish between the microscopic details of individual particles and the overall observables of the macroscopic system.
+<br/><br/>
+The exact description of system's state is called the <b>microstate</b>, and it contains every detail you could ever need to know. For instance, in classical mechanics, to fully describe a box of N particles, we would need to know where every particle is and how fast it is going. Mathematically, the microstate would be a collection of 6N numbers -- the three components of position and three components of momentum for each of the N particles. In principle, once we know the microstate of a system, we can determine exactly how it evolves in time by following the microscopic physics of the individual particles. However, it is very unweildy to keep track of all the 6x10<sup>20</sup> numbers of the microstate!
+<br/><br/>
+Thankfully, most of the microscopic details of a thermodynamic system are irrelevant for physics. For instance, if I wished to purchase a bottle of rubbing alcohol from the pharmacy, I would not need to specify the location of every single atom within the bottle -- it's sufficient to tell the pharmacist how much isopropanol I'd like, and maybe the temperature of the bottle (which as we'll see, is related to the average energy per molecule). Additionally, since all the possible microstates corresponding to my description will "look the same" when you zoom out, there's very little <i>physical</i> consequence about what exact microstate the bottle is in.
+<br/><br/>
+In statistical mechanics, we say that the overall <b>macrostate</b> of a thermodynamic system can be specified by just a few <b>macroscopic variables</b> such as the total energy \(E\), the volume \(V\), and the number of particles \(N\).<sup><a href="#footnote-sym" id="footnote-sym-ref">4</a></sup> ...
+<br/><br/>
+<img src="../img/construction.gif">
+
+<h2>The Fundamental Assumption</h2>
+<ul>
+    <li>Over long enough time, all microstates corresponding to a given macrostate will be equally likely</li>
+    <li>Suggests that "counting microstates" is useful!</li>
+</ul>
+
+<h2>Entropy</h2>
+<ul>
+    <li>Phase space picture of microstates -- can either justify by drawing boxes in the classical Hamiltonian picture, or just by discretizing and drawing a graph. Note that Louiville's theorem (or unitarity in QM!) means that the number of ways to get to a node is the number of ways out -- you can't "bunch up"!</li>
+    <li>Think of microscopic time evolution as transitions between the microstates. The trajectory just wanders through phase space pretty much randomly...</li>
+    <li>Suppose we color different parts of phase space different colors. Evidently the fraction of time we see each color depends on the "hypervolume" of that phase space region. This is in line with fundamental assumption.</li>
+    <li>Extend argument, but paint different colors for different values of macroscopic observables. It's clear that volume of phase space region is what determines what we observe macroscopically.</li>
+    <li>Now, what is distro of phase space region (ie, exp(entropy)!) for different macroscopic observables? We will consider toy example of left/right side of box. State the counterintuitive result that the distro is bunched <i>very tightly</i> around its maximum value</li>
+    <li>The region of phase space where the trajectory ends up is called "equilibrium" -- it's just the biggest portion of phase space whose microstates are not <i>macroscopically</i> distinguishable.</li>
+    <li>Summary of section: "entropy is maximized" sounds profound and confusing but is really a consequence of (1) random enough time evolution (ergodicity??) and (2) the statistics of many many things. A system will evolve towards states of maximum multiplicity because why not? You'd really need a conspiracy to stay away from something that's so probable. (probable in what sense??)</li>
+</ul>
+
+</div>
+
+<hr/>
+
+<table class="navtable">
+    <td><a href="../../index.html"><img src="../img/home.gif"> Home</a></td>
+    <td><a href="index.html"><img src="../img/left.gif"> Previous Page</a></td>
+    <td><a href="../index.html"><img src="../img/up.gif"> Up</a></td>
+    <td><a href="boltzmann.html">Next Page <img src="../img/right.gif"></a></td>
+</table>
+<hr/>
+
+<div class="footnotes">
+<ol>
+	<li id="footnote-1">Many aspects of life are quite odd and deserve a more thorough and careful treatment. Unfortunately, I tend to ramble on and on when I treat things thoroughly and carefully, so I'll ramble in footnotes instead, and I'll try keep the main text ramble-free. Hopefully I don't end up with <i>more</i> footnotes than actual text... <a href="#footnote-1-ref">&hookleftarrow;</a></li>
+	<li id="footnote-2">Why not? <a href="#footnote-2-ref">&hookleftarrow;</a></li>
+    <li id="footnote-3">This statement is a bit vacuous and circular. Say we are watching an isolated system evolve in time. There might be some transients at first, but if we wait for long enough, eventually the macroscopic observables will stop changing, and we then we say that the system is in equilibrium (on the timescale of our observation!). But if equilibrium is defined by the state where "things are no longer changing," of course the system reaches equilibrium once we wait long enough for "things to stop changing." The substance behind the statement, I think, is the assertion that <i>thermodynamic systems have a unique equilibrium state determined by their macroscopic variables.</i> <a href="#footnote-3-ref">&hookleftarrow;</a></li>
+    <li id="footnote-sym">This is a surprising (and fortunate) statement! We're claiming that the relevant physics of all the \(10^{20}\) numbers that describing a microstate can be summarized with <i>just 3 or 4 numbers</i>: the thermodynamic (a.k.a. macroscopic) variables. There is a conspiracy going on here. The thermodynamic variables are very special functions of the 10<sup>20</sup> microscopic variables corresponding to <i>conserved quantities or symmetries</i> of the system. This means that the values of thermodynamic variables are measurable quantities that do not change over the timescale of observation. For instance, energy does not change under time evolution (or if you prefer, the phase space trajectory is constrained to a constant-energy hypersurface).<a href="#footnote-sym-ref">&hookleftarrow;</a></li>
+</ol>
+</div>
+
+<hr/>
+
+<div class="footer">
+<img src="../img/counter.gif"> Last updated on Dec 23, 2018.
+</div>
+
+</body>
+</html>

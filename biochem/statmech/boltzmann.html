@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>The Boltzmann Factor and Free Energy</title>
+    <link rel="stylesheet" href="../style.css" type="text/css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+
+<body>
+<div class="content">
+<h1>The Boltzmann Factor and Free Energy</h1>
+<img src="../img/construction.gif">
+<ul>
+    <li>Motivation: Now that we know closed systems evolve towards equilibrium states that maximize entropy, we want to make more concrete predictions. An interesting question is how <i>sub</i>systems of a thermodynamic system behave<sup><a href="#footnote-subsys" id="footnote-subsys-ref">1</a></sup>
+    <li>Examples of subsystems: a particular protein flopping around over time inside a cell. A particular chemical species in a reaction. An ion on inside vs outside of a membrane.</li>
+    <li>Main idea: maximizing entropy is equivalent to minimizing free energy and the boltzmann distribution.</li>
+</ul>
+<h2>Heat Baths</h2>
+<ul>
+    <li>We idealize the surroundings of the subsystem as a "heat bath"</li>
+    <li>Philosophical points about the subsystem/surroundings split</li>
+</ul>
+<h2>Deriving the Boltzmann Factor</h2>
+<ul>
+    <li>Subsystems immersed in heat baths can exchange energy with their environment, so sometimes they will have more energy and sometimes less.</li>
+    <li>We know the distribution over the whole system, but what if we "condition" and restrict to the subsystem?</li>
+    <li>Qusestion: If we watch this subsystem over long time, what fraction of the time will it be in a particular microstate?</li>
+    <li>Answer: \(Pr[\textrm{Microstate with energy }E] \propto e^{-E/kT}\), where kT is the temperature.</li>
+    <li>Experimental evidence...hot bands in vibrational spectra? Simulations?</li>
+</ul>
+<h2>The Free Energy</h2>
+<ul>
+    <li>Natural generalization of Boltzmann factor that takes multiplicity into account</li>
+    <li>Two terms, energetic and entropic. Interpret properly and give intuition. Example of biased coin flips?</li>
+    <li>Minimizing free energy of a subsystem is same as maximizing entropy of the whole system (with diagram)</li>
+    <li>Aside: free energy landscapes and transition state theory of chemical reactions. Def'n of "states" in the free energy landscape.</li>
+</ul>
+</div>
+
+<hr/>
+
+<table class="navtable">
+    <td><a href="../../index.html"><img src="../img/home.gif"> Home</a></td>
+    <td><a href="equilibrium.html"><img src="../img/left.gif"> Previous Page</a></td>
+    <td><a href="../index.html"><img src="../img/up.gif"> Up</a></td>
+    <td>Next Page <img src="../img/right.gif"></td>
+</table>
+<hr/>
+
+<div class="footnotes">
+<ol>
+    <li id="footnote-subsys">Goodness, I'm writing a footnote even before the main text. I'm trying out an interesting pedagogical approach here by introducing every ensemble other than the microcanonical ensemble in the context of "reasoning about subsystems." With this "subsystems" approach, I think it's more apparent that minimizing different thermodynamic potentials in different ensembles is a "cute mathematical trick" for maximizing the entropy of the larger system (that is, the subsystem + the bath of the rest of the system). I also find it's a more natural motivation for the Boltzmann factor than abstractly considering "exchanging energy with an external heat bath". We'll see how it plays out.</li>
+</ol>
+</div>
+
+<hr/>
+
+<div class="footer">
+<img src="../img/counter.gif"> Last updated on Dec 23, 2018.
+</div>
+
+</body>
+</html>
