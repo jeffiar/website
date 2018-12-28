@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <title>Protein Experimental Techniques</title>
+    <link rel="stylesheet" href="../style.css" type="text/css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+
+<body>
+<div class="content">
+
+<h1>X-ray Crystallography</h1>
+X-ray crystallography is the "bread and butter" of structural biology. It's our primary way to figure out the 3D arrangement of the tangle of atoms in a protein. People care quite a bit about crystal structures since, as biologists like to say, "structure determines function."  It's honestly quite magical that crystallography can probe at the structure of life on an atom-by-atom scale.
+<br/><br/>
+In crystallography, protein units are coerced to pack neatly into a crystal, and then x-rays are diffracted off its periodic lattice. Since the diffraction pattern provides information of the <i>electron density</i> within the crystals, it lets us model in the location of the atoms within the protein crystal.
+<br/><br/>
+Crystallography is often called a "dark art" or "black magic," since all the steps are so unpredictable. The experimenter needs to be quite lucky (and persistent!) since so many things can go wrong along the way -- and when things do go right, it's often without rhyme or reason. Just to give an example, the very first step of finding suitable <i>conditions</i> to grow crystals is a complete crapshoot. There are way too many factors that affect growth (temperature, pH, salt concentrations, co-crystallization agents, etc...) and the "chemical space" of additives is ridiculously diverse. We're lost in a nightmare of combinatorial possibilities, and even if we find a suitable combination to grow crystals, there's no way to scientifically justify <i>why</i> a certain cocktail works. Other steps beyond crystal growth are also quite finnicky -- for instance, even if crystals look nice to the eye, there is no guarantee that they actually <i>diffract</i> x-rays well. The quality of diffraction can vary from crystal to crystal even if they are harvested from the same growth solution and treated identically.
+<br/><br/>
+<img src="../img/construction.gif">
+<h2>An Overview of Crystallography</h2>
+<ul>
+    <li>Obtain and purify proteins</li>
+	<li>Grow protein crystals</li>
+	<li>Cryoprotect and flash-freeze crystals to prevent radiation damage</li>
+	<li>Collect X-ray diffraction patterns</li>
+	<li>Solve the "phase problem"</li>
+	<li>Build a model</li>
+	<li>Refine the structure</li>
+</ul>
+
+<h2>Protein Expression and Purification</h2>
+
+<h2>Protein Crystal Growth</h2>
+
+<h2>Harvesting and Cryoprotection</h2>
+
+<h2>Interlude: Diffraction and Fourier Transforms</h2>
+Before delving into the experimental details of collecting x-ray diffraction patterns, I want to explain why shooting x-rays at a crystal can help us figure out its structure.
+<br/><br/>
+As I've said earlier, the way x-rays bounce off the crystal provides information about the <i>electron density</i> within the crystal. We will use this information later to model in the atomic positions in. More precisely, the the diffraction pattern is a <i>Fourier transform</i> of the electron density, where each spot is a Fourier coefficient, and its intensity is the magnitude of that coefficient. By performing the appropriate inverse Fourier transform to "undo" the operation, we can back out the density of electrons in the crystal.
+<br/><br/>
+The whole reason that crystals are so useful for determining structure is that they have a <i>periodic structure</i> -- its atoms are organized neatly to repeat over and over again in the same way. It turns out that this periodic structure is intimitely related to the mathematics of Fourier Transforms and the physics of diffraction. So before we dive into the actual x-ray diffraction, it is well worth our time to develop the proper language to talk about repeating, symmetric lattices of atoms.
+<h3>Structure of a crystal</h3>
+Crystals have a very regular structure. If we zoom into a crystal, we will see that the atoms form a wallpaper-like pattern, where the same chunk repeats itself over and over again. Since there are so many repeating chunks, we like to take a mathematical trick and pretend that there's <i>infinitely many</i>.<br/><br/>
+<img src="img/wallpaper.gif"><br/><br/>
+This repeating chunk is known as a <b>unit cell</b>. So a crystal is made up of infinitely many regular copies of a unit cell. Notice that the unit cell of a crystal is not uniquely defined -- if we just slide over and carve out a different part of the wallpaper pattern, we still end up with the same crystal. <br/><br/>
+Just knowing the basic repeating chunk (the unit cell) is not enough to describe the full contents of a crystal. We also need to know <i>how</i> the unit cell is copied over and over again. If we draw a dot for each unit cell, we end up with a huge grid of discrete points called a <b>Bravais lattice</b>. The Bravais lattice tells us the way to translate (slide over) the unit cells to fully form the crystal; it forms a scaffold or a schematic of the shape of the crystal.<br/><br/>
+<img src="img/lattice-vec.gif"><br/><br/>
+To mathematically describe the Bravais lattice, we draw <b>lattice vectors</b> between different points in the grid. This seems like a formidable task, since there are <i>infinitely</i> many lattice vectors, but the regular structure of the Bravais lattice helps us out here...<br/><br/>
+Motivate the basis vectors<br/>
+Define a,b,c and the alpha beta gamma angles<br/>
+Transformation between u,v,w and the real coordinates x,y,z<br/>
+Classification of Bravais Lattices<br/>
+<h4>Lattice Planes and Miller Indices</h4>
+<h4>The Reciprocal Lattice</h4>
+<h4>Symmetry and space groups</h4>
+<h4>Atoms and electron density maps</h4>
+Now that we have a good understanding of lattices of repeating points, let's fill in the lattices with the contents of unit cells.<br/><br/>
+In a protein crystal, the unit cells are composed one (or more!) copies of a protein, which are made of many individual atoms linked together. In addition to the protein itself there may be other co-factors or ligands, as well as any other gunk from the crystallization cocktail that sticks to the protein or snuggles itself neatly between neighboring protein units. For the most part, these components are all <i>well-ordered</i> in the sense that their atoms consistently appear in the same location in all the unit cells in the crystal.<br/><br/>
+The other main component of a protein crystal is the <i>bulk solvent</i> in the "empty space" surrounding the protein units. In contrast to well-defined atomic positions of the ordered part of a unit cell, bulk solvent is often disordered. The water molecules in these solvent channels can flow around freely, in a quasi-liquid manner, and there is no reason for solvent atoms to be in the same position in different unit cells. (This begs a funny philosophical question of whether a crystalline protein is really in a <i>crystal</i> phase if a significant portion of the unit cell does not actually repeat!)<br/><br/>
+Why electron density<br/>
+Electron density as sum of Gaussians<br/>
+Visualizing electron density<br/>
+<h4>Wiggly and Jiggly B-factors</h4>
+A real protein crystal is far from the ideal infinite array of perfectly repeating unit cells. We need to account for these realities to properly model a real crystal...<br/><br/>
+Static disorder<br/>
+Dynamic disorder<br/>
+<h3>The Fourier Transform</h3>
+Why care about reciprocal space<br/>
+1D series expansion of function<br/>
+Generalize to 3D<br/>
+Convolution theorem and why spots instead of spread<br/>
+What does FT of a protein crystal look like?<br/>
+Examples for intuition<br/>
+<h3>Diffraction and the Bragg condition</h3>
+Motivation: probe periodic structures w/ waves. Interference!<br/>
+X-rays are EnM waves with atom-size wavelength.<br/>
+Scattering off spherical center<br/>
+Interference between multiple scatttering centers<br/>
+Why FT of crystal (Born approx?)<br/>
+Geometry of reflected wave; implication for experiment<br/>
+<h3>The Phase Problem</h3>
+
+<h2>X-ray diffraction</h2>
+
+<h2>Interlude: Structure Refinement</h2>
+Before going into the details of <i>how</i> a crystallographer refines a structure, I want to explain <i>why</i> we refine crystal structures.
+<br/><br/>
+The whole refinement process is a game of statistics and optimization. We are given a set of experimental observations -- a set of reflection intensities from x-ray diffraction -- and we wish to use that data to build our best model -- a set of atomic positions, B-factors, etc.
+<h3>Fitting Models to Data</h3>
+Bayesian Statistics<br/>
+Log likelihood as objective function<br/>
+Regularization as setting priors<br/>
+Cross-validation to tune parameters<br/>
+
+<h2>Structure Refinement</h2>
+
+
+</div>
+
+<hr/>
+<table class="navtable">
+    <td><a href="../../index.html"><img src="../img/home.gif"> Home</a></td>
+    <td><img src="../img/left.gif"> Previous Page</td>
+    <td><a href="index.html"><img src="../img/up.gif"> Up</a></td>
+    <td>Next Page <img src="../img/right.gif"></td>
+</table>
+<hr/>
+
+<div class=footer>
+<img src="../img/counter.gif"> Last updated on Dec 27, 2018.
+</div>
+
+</body>
+</html>
