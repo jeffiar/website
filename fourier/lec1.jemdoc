@@ -55,4 +55,36 @@ We made a few remarks at this point:
 - Mathematicians call $f$ a function; engineers call it a signal. It's the same concept, just different lingo. (Physicists call it a function too...)
 - This is a rather strict requirement on a function! It has to hold for /all/ $t$, and the period $T$ must be quite special...
 
-To be continued...
+We also made a few comments about how a periodic function necessarily has /many/ different periods; that is, if $T$ is a period, then $2T$, $3T$, etc. are all periods of the function. We can intuitively see this, since if the pattern repeats every $T$ units of time, it must repeat again after $2T$ units; mathematically,
+\(
+    f(t + 2T) = f(t + T + T) = f(t + T) = f(t).
+\)
+A similar argument holds for /negative/ values of the period; that is, if $T$ is a period, then $-T$ is also a period as well, since
+\(
+    f(t - T) = f(t - T + T) = f(t).
+\)
+Combining these facts, we end up with the result that for /any/ integer $N$, a function periodic with period $T$ is also periodic with period $NT$; that is, $f(t + NT) = f(t)$.
+
+We made one final point about the many possible periods. Normally, we when talk about ``the period'' of a function, we mean the smallest possible period, and it's sort of implied that the pattern also repeats after any integer multiple of that period. But the fact that the function also has periods $..., -3T, -2T, -T, 0, T, 2T, 3T, ...$ will become another theme of the course; who knows, maybe this can motivate the Fourier series a bit too...
+
+== Sine and Cosine
+
+Well, we've been talking about periodic functions for a bit now, but we really should make sure these mathematical objects actually /do exist/. Miraculously, they do -- we have the nice model functions of $\sin t$ and $\cos t$, which, as we all know and love, are periodic functions with a fundamental period of $T = 2\pi$. 
+
+Again, the professor remarked that of course we're all intimately familiar with our sines and cosines. But there's nothing more satisfying than reflecting on what we already know to feel better about ourselves, so we spent a bit of time doing that.
+
+There are a few ways to ``define'' the sine and cosine; some of which are more enlightening than others:
+
+- Our first exposition was likely in trigonometry class, where we learned the ratio-of-sides-of-a-triangle definition. However, this picture only made sense for acute angles $\theta$ where $0 < \theta < \pi/2$, so it wasn't the full picture.
+- In calculus class, we learned about Taylor series, and then sine and cosine could be represented as the sum of an infinite power series as
+\(
+    \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} + ...
+\)
+\(
+    \cos x = 1 - \frac{x^2}{2!} + \frac{x^6}{6!} + ...
+\)
+- Or perhaps even later, in the study of differential equations, the sines and cosines proved to be a nice basis for the solution set of the differential equation $\frac{d^2y}{dx^2} = - y$, which is true, but doesn't help us really understand the nature of these functions...
+
+None of these definitions, however, helps us understand why these glorious functions are periodic; that is, why $\sin(x) = \sin(x + 2\pi)$. For this insight, we need use the definition of sines and cosines as /coordinates on the unit circle/. Here, it's painfully clear that the (very nontrivial!) property of periodicity comes from ``wrapping around''. When you increase the angle by $2\pi$, you return to the same point on the unit circle; and for this reason, the function repeats every $2\pi$ radians.
+
+On this note, class was dismissed.

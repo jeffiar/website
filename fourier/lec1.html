@@ -73,10 +73,37 @@
 <li><p>This is a rather strict requirement on a function! It has to hold for <i>all</i> <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, and the period <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> must be quite special&hellip;</p>
 </li>
 </ul>
-<p>To be continued&hellip;</p>
+<p>We also made a few comments about how a periodic function necessarily has <i>many</i> different periods; that is, if <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> is a period, then <img class="eq" src="eqs/6400038450057792-130.png" alt="2T" style="vertical-align: -0px" />, <img class="eq" src="eqs/6528039219058831-130.png" alt="3T" style="vertical-align: -1px" />, etc. are all periods of the function. We can intuitively see this, since if the pattern repeats every <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> units of time, it must repeat again after <img class="eq" src="eqs/6400038450057792-130.png" alt="2T" style="vertical-align: -0px" /> units; mathematically,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6620713457321489958-130.png" alt="     f(t + 2T) = f(t + T + T) = f(t + T) = f(t). " />
+<br /></div><p>A similar argument holds for <i>negative</i> values of the period; that is, if <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> is a period, then <img class="eq" src="eqs/5760034605051921-130.png" alt="-T" style="vertical-align: -0px" /> is also a period as well, since</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2382792046332479993-130.png" alt="     f(t - T) = f(t - T + T) = f(t). " />
+<br /></div><p>Combining these facts, we end up with the result that for <i>any</i> integer <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />, a function periodic with period <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> is also periodic with period <img class="eq" src="eqs/9984059982090044-130.png" alt="NT" style="vertical-align: -0px" />; that is, <img class="eq" src="eqs/8554003665859757810-130.png" alt="f(t + NT) = f(t)" style="vertical-align: -5px" />.</p>
+<p>We made one final point about the many possible periods. Normally, we when talk about &lsquo;&lsquo;the period&rsquo;&rsquo; of a function, we mean the smallest possible period, and it's sort of implied that the pattern also repeats after any integer multiple of that period. But the fact that the function also has periods <img class="eq" src="eqs/1796318433784242999-130.png" alt="..., -3T, -2T, -T, 0, T, 2T, 3T, ..." style="vertical-align: -4px" /> will become another theme of the course; who knows, maybe this can motivate the Fourier series a bit too&hellip;</p>
+<h2>Sine and Cosine</h2>
+<p>Well, we've been talking about periodic functions for a bit now, but we really should make sure these mathematical objects actually <i>do exist</i>. Miraculously, they do &ndash; we have the nice model functions of <img class="eq" src="eqs/7347881844175465640-130.png" alt="sin t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/7773816956290595577-130.png" alt="cos t" style="vertical-align: -1px" />, which, as we all know and love, are periodic functions with a fundamental period of <img class="eq" src="eqs/1342477813241441004-130.png" alt="T = 2pi" style="vertical-align: -1px" />. </p>
+<p>Again, the professor remarked that of course we're all intimately familiar with our sines and cosines. But there's nothing more satisfying than reflecting on what we already know to feel better about ourselves, so we spent a bit of time doing that.</p>
+<p>There are a few ways to &lsquo;&lsquo;define&rsquo;&rsquo; the sine and cosine; some of which are more enlightening than others:</p>
+<ul>
+<li><p>Our first exposition was likely in trigonometry class, where we learned the ratio-of-sides-of-a-triangle definition. However, this picture only made sense for acute angles <img class="eq" src="eqs/5179806648303708846-130.png" alt="theta" style="vertical-align: -1px" /> where <img class="eq" src="eqs/6005783064330826960-130.png" alt="0 &lt; theta &lt; pi/2" style="vertical-align: -5px" />, so it wasn't the full picture.</p>
+</li>
+<li><p>In calculus class, we learned about Taylor series, and then sine and cosine could be represented as the sum of an infinite power series as</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1954218304010510732-130.png" alt="     sin x = x - frac{x^3}{3!} + frac{x^5}{5!} + ... " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/6892666656136670034-130.png" alt="     cos x = 1 - frac{x^2}{2!} + frac{x^6}{6!} + ... " />
+<br /></div><ul>
+<li><p>Or perhaps even later, in the study of differential equations, the sines and cosines proved to be a nice basis for the solution set of the differential equation <img class="eq" src="eqs/4193764009328284037-130.png" alt="frac{d^2y}{dx^2} = - y" style="vertical-align: -9px" />, which is true, but doesn't help us really understand the nature of these functions&hellip;</p>
+</li>
+</ul>
+<p>None of these definitions, however, helps us understand why these glorious functions are periodic; that is, why <img class="eq" src="eqs/2813060258781948301-130.png" alt="sin(x) = sin(x + 2pi)" style="vertical-align: -5px" />. For this insight, we need use the definition of sines and cosines as <i>coordinates on the unit circle</i>. Here, it's painfully clear that the (very nontrivial!) property of periodicity comes from &lsquo;&lsquo;wrapping around&rsquo;&rsquo;. When you increase the angle by <img class="eq" src="eqs/4814073714822610791-130.png" alt="2pi" style="vertical-align: -1px" />, you return to the same point on the unit circle; and for this reason, the function repeats every <img class="eq" src="eqs/4814073714822610791-130.png" alt="2pi" style="vertical-align: -1px" /> radians.</p>
+<p>On this note, class was dismissed.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-08 01:02:21 STD, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-01-08 12:20:33 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec1.jemdoc">source</a>)
 </div>
 </div>
