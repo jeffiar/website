@@ -1,0 +1,58 @@
+# jemdoc: menu{MENU}{lec1.html}, showsource
+= Periodicity
+
+Fourier Series is the study of periodic phenomena (but the techniques we learn from it will generalize to thinking about many other non-periodic things as well).  Note that even though we often think of periodic things in terms of a graph, we don't always have to; there's many other ways to think about them; in fact, sometimes they can be less misleading and more enlightening than a graph. 
+
+We all know periodic behavior when we see it:
+
+~~~
+{Definition}
+A *periodic phenomenon* is one with a regularly repeating pattern.
+~~~
+
+There are /two flavors/ of periodicity that are conceptually a bit different:
+
+- Periodicity in *time*, where you sit at a fixed point in space and wait for the signal to wash over you
+- Periodicity in *space*, where you take a snapshot at some instant, freeze the wave, and look at the entire pattern at once.
+
+The two concepts of spatial and temporal periodicity naturally come together when we talk about *wave motion*. In class, we went through a very fun and vivid demonstration by doing a ``stadium wave'' where our hands went up and down and a wave swept across the lecture hall! We also made it a periodic signal by starting the wave over again once it hit the end of the classroom. With this example it became very clear the difference between a pattern in time and a pattern in space: The former describes what a particular individual (say Mary) sitting in the crowd experiences over time, while the latter describes /the entire crowd/ at a given frozen instant in time, where some people have their hands up and others have their hands down.
+
+~~~
+{Remark}
+Mathematically, I interpreted the professor's statements as follows: if we have some function of both position and space $u(x,t)$, and we wish to consider just some one-dimensional `slice' of it, we can either fix a particular /position/ $x_0$ and see the behavior along the time coordinate by looking at $u(x_0,t) = f(t)$, or alternatively, we can freeze at a particular /time/ $t_0$ and see the behavior along the spatial coordinate $u(x,t_0) = g(x)$. Both $f(t)$ and\/or $g(x)$ can be periodic, but the physical /interpretation/ is different in the two cases.
+~~~
+
+== Dispersion relation
+
+We then defined more basic terminology of how to talk about repeating patterns in time or in space:
+
+- Periodicity in time is described by the *frequency*, denoted $\lambda$ (lambda). It is the number of times the pattern repeats every second, and has units of 1\/time. Typically it's 1\/second or Hz.
+- Periodicity in space is described by the *wavelength*, denoted $\nu$ (nu). It is the (spatial) distance between repeating patterns, and it has units of length.
+
+For a travelling wave, the frequency and wavelength are related by the *dispersion relation* $\nu = v / \lambda$, where v is the speed of the travelling wave. Note that this statement is the only dimensionally possible answer (since speed has units of length \/ time); it's just a restatement of the classic statement ``distance equals rate times time''.
+
+Of course, this stuff was not new to anyone in the class. The professor recognized this and remarked that even though the material was hardly challenging, it was well worth going over just to standardize the notation. Moreover, the dispersion relation was the first example in our class of a *reciprocal relationship* between two fundamental physical quantities. That is, the wavelength and the frequency are inversely related -- if one went up, the other would go down. Again, this concept is not terribly hard, but it turns out to be a /deep organizational principle/ in the course, and it'll be a common theme in Fourier analysis.
+
+Now that we had the basics out of the way, it was time to be a bit more precise about ``pattern'' and ``periodic''.
+
+== Periodic Functions
+
+So far we've just talked about periodic patterns; to be more specific, let's say that the pattern is in the value of a function. When we say that the pattern ``repeats,'' we just mean that the function takes on the same value after some period. This leads to the definition
+
+~~~
+{Definition}
+A function $f$ is *periodic* if its values repeat. In other words, if we can find some *period* $T > 0$ such that 
+\(
+    f(t) = f(t + T)
+\)
+for all $t$, then we say that $f$ is periodic with period $T$. The smallest value of $T$ for which this holds is called the /fundamental period/ or more commonly just ``/the period/.''
+~~~
+
+We made a few remarks at this point:
+
+- Earlier we were talking generally about patterns, now we're talking about the /value of a function/.
+- We called the argument of the function $t$, but there's no reason for it to necessarily represent /time/; we just need to put /something/ there, so might as well call it $t$.
+- Mathematicians call $f$ a function; engineers call it a signal. It's the same concept, just different lingo. (Physicists call it a function too...)
+- This is a rather strict requirement on a function! It has to hold for /all/ $t$, and the period $T$ must be quite special...
+
+To be continued...

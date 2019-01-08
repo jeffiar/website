@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Periodicity</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html" class="current">Periodicity</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Periodicity</h1>
+</div>
+<p>Fourier Series is the study of periodic phenomena (but the techniques we learn from it will generalize to thinking about many other non-periodic things as well).  Note that even though we often think of periodic things in terms of a graph, we don't always have to; there's many other ways to think about them; in fact, sometimes they can be less misleading and more enlightening than a graph. </p>
+<p>We all know periodic behavior when we see it:</p>
+<div class="infoblock">
+<div class="blocktitle">Definition</div>
+<div class="blockcontent">
+<p>A <b>periodic phenomenon</b> is one with a regularly repeating pattern.</p>
+</div></div>
+<p>There are <i>two flavors</i> of periodicity that are conceptually a bit different:</p>
+<ul>
+<li><p>Periodicity in <b>time</b>, where you sit at a fixed point in space and wait for the signal to wash over you</p>
+</li>
+<li><p>Periodicity in <b>space</b>, where you take a snapshot at some instant, freeze the wave, and look at the entire pattern at once.</p>
+</li>
+</ul>
+<p>The two concepts of spatial and temporal periodicity naturally come together when we talk about <b>wave motion</b>. In class, we went through a very fun and vivid demonstration by doing a &lsquo;&lsquo;stadium wave&rsquo;&rsquo; where our hands went up and down and a wave swept across the lecture hall! We also made it a periodic signal by starting the wave over again once it hit the end of the classroom. With this example it became very clear the difference between a pattern in time and a pattern in space: The former describes what a particular individual (say Mary) sitting in the crowd experiences over time, while the latter describes <i>the entire crowd</i> at a given frozen instant in time, where some people have their hands up and others have their hands down.</p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>Mathematically, I interpreted the professor's statements as follows: if we have some function of both position and space <img class="eq" src="eqs/4593340594708071136-130.png" alt="u(x,t)" style="vertical-align: -5px" />, and we wish to consider just some one-dimensional &lsquo;slice&rsquo; of it, we can either fix a particular <i>position</i> <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" /> and see the behavior along the time coordinate by looking at <img class="eq" src="eqs/2761528630237527140-130.png" alt="u(x_0,t) = f(t)" style="vertical-align: -5px" />, or alternatively, we can freeze at a particular <i>time</i> <img class="eq" src="eqs/1495230934685649158-130.png" alt="t_0" style="vertical-align: -4px" /> and see the behavior along the spatial coordinate <img class="eq" src="eqs/7938973999819013327-130.png" alt="u(x,t_0) = g(x)" style="vertical-align: -5px" />. Both <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> and/or <img class="eq" src="eqs/3644967746745489504-130.png" alt="g(x)" style="vertical-align: -5px" /> can be periodic, but the physical <i>interpretation</i> is different in the two cases.</p>
+</div></div>
+<h2>Dispersion relation</h2>
+<p>We then defined more basic terminology of how to talk about repeating patterns in time or in space:</p>
+<ul>
+<li><p>Periodicity in time is described by the <b>frequency</b>, denoted <img class="eq" src="eqs/9213219682577124982-130.png" alt="lambda" style="vertical-align: -1px" /> (lambda). It is the number of times the pattern repeats every second, and has units of 1/time. Typically it's 1/second or Hz.</p>
+</li>
+<li><p>Periodicity in space is described by the <b>wavelength</b>, denoted <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> (nu). It is the (spatial) distance between repeating patterns, and it has units of length.</p>
+</li>
+</ul>
+<p>For a travelling wave, the frequency and wavelength are related by the <b>dispersion relation</b> <img class="eq" src="eqs/5582193720319369267-130.png" alt="nu = v / lambda" style="vertical-align: -5px" />, where v is the speed of the travelling wave. Note that this statement is the only dimensionally possible answer (since speed has units of length / time); it's just a restatement of the classic statement &lsquo;&lsquo;distance equals rate times time&rsquo;&rsquo;.</p>
+<p>Of course, this stuff was not new to anyone in the class. The professor recognized this and remarked that even though the material was hardly challenging, it was well worth going over just to standardize the notation. Moreover, the dispersion relation was the first example in our class of a <b>reciprocal relationship</b> between two fundamental physical quantities. That is, the wavelength and the frequency are inversely related &ndash; if one went up, the other would go down. Again, this concept is not terribly hard, but it turns out to be a <i>deep organizational principle</i> in the course, and it'll be a common theme in Fourier analysis.</p>
+<p>Now that we had the basics out of the way, it was time to be a bit more precise about &lsquo;&lsquo;pattern&rsquo;&rsquo; and &lsquo;&lsquo;periodic&rsquo;&rsquo;.</p>
+<h2>Periodic Functions</h2>
+<p>So far we've just talked about periodic patterns; to be more specific, let's say that the pattern is in the value of a function. When we say that the pattern &lsquo;&lsquo;repeats,&rsquo;&rsquo; we just mean that the function takes on the same value after some period. This leads to the definition</p>
+<div class="infoblock">
+<div class="blocktitle">Definition</div>
+<div class="blockcontent">
+<p>A function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is <b>periodic</b> if its values repeat. In other words, if we can find some <b>period</b> <img class="eq" src="eqs/6195425040885570223-130.png" alt="T &gt; 0" style="vertical-align: -1px" /> such that </p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2068754630106144847-130.png" alt="     f(t) = f(t + T) " />
+<br /></div><p>for all <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, then we say that <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is periodic with period <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" />. The smallest value of <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> for which this holds is called the <i>fundamental period</i> or more commonly just &lsquo;&lsquo;<i>the period</i>.&rsquo;&rsquo;</p>
+</div></div>
+<p>We made a few remarks at this point:</p>
+<ul>
+<li><p>Earlier we were talking generally about patterns, now we're talking about the <i>value of a function</i>.</p>
+</li>
+<li><p>We called the argument of the function <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, but there's no reason for it to necessarily represent <i>time</i>; we just need to put <i>something</i> there, so might as well call it <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>Mathematicians call <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> a function; engineers call it a signal. It's the same concept, just different lingo. (Physicists call it a function too&hellip;)</p>
+</li>
+<li><p>This is a rather strict requirement on a function! It has to hold for <i>all</i> <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, and the period <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> must be quite special&hellip;</p>
+</li>
+</ul>
+<p>To be continued&hellip;</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-08 01:02:21 STD, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec1.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

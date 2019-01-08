@@ -1,0 +1,15 @@
+# jemdoc: menu{MENU}{index.html}, showsource
+= Notes on Fourier Analysis
+
+Welcome! Here are some notes I'm taking for [https://see.stanford.edu/Course/EE261 EE 261] at Stanford in Winter of 2018-19. This course is about the Fourier Transform, which we all know and love as a beautiful topic with countless applications in mathematics, science, and engineering.
+
+I'll be writing up point-by-point what's covered in the class, sprinkled with a few of my own interjections and interpretations. From what I hear, Prof. Osgood presents a very clear and enlightening exposition. I think that digesting and regurgitating the content in these notes will help solidify my own understanding, since I've always had a somewhat shaky and piecemeal grasp of Fourier Transforms. 
+
+My notes might also be a useful resource for anyone hoping to better understand Fourier Analysis. (Of course, there's plenty of resrouces out there already, but why not add my own!) One particularly nice one is the course reader for this course (TODO add the link) -- it's a brilliant, clear, and entertaining read, but it's also a few hundred pages long. My notes will be an order of magnitude shorter (!) and I'll just aim to summarize what Prof. Osgood says in class.
+
+I hope you will find my notes interesting and useful.
+
+~~~
+{Warning}
+There will be many typos since I will be typing up these notes rather quickly!
+~~~

@@ -1,0 +1,23 @@
+# jemdoc: menu{MENU}{intro.html}, showsource
+= Introduction and Motivation
+
+== Diverse Backgrounds!
+
+Class opened with a rather informal and friendly approach; the professor really wanted to help us out, be friendly, and reasonable. After going over course logistics (as usual) we dived into introducing fourier analysis. The professor kept on emphasizing how far-reaching the topic was, with a wide range of applications in many fields, ranging from signal processing to crystallography to acoustics. 
+
+He asked for a show of hands for what disciplines the students came from. Most of the people were electrical engineers; there were a number of mechanical engineers, some chemical and structural engineers...only a handful of physicists (quite a shame!) and no mathematicians (to a sigh of relief and laughter for the class). Huh! Well, as he said, we would all come to this topic from our own angle. His own background was from mathematics; most of the audience was engineers; I'll find it interesting to view it all through a physicist's lens...
+
+== Why Begin with Fourier Series?
+
+We then began to ponder the best way to introduce and begin learning the subject material. Different people and different textbooks all have their own approaches; some of them hopped directly into the full thicket with the Fourier Transform, but in this class we began with Fourier series for a number of reasons:
+    - The main goal of studying Fourier Series is to build useful *analogies* for when we cover the full Fourier transform; the concepts and ways of thinking will carry over once we generalize.
+    - Fourier series are more *familiar* to us; we probably have seen them before, such as EE students in their signals and systems class.
+    - Fourier series are more *intuitive* and concrete; so they're easier to understand and visualize.
+
+Moreover, Fourier Transforms can be thought of as a /limiting case/ of Fourier Series, as the period of the pattern we're analyzing increases to infinity. We briefly foreshadowed how Fourier Series could analyze periodic phenomena the same way the Fourier Transform would analyze non-periodic phenomena. (This makes sense, since a non-periodic signal is really just one where the period grows larger and larger to infinity). Note that we haven't exactly said what a *period* is yet (even though we've thrown around the word already); we have some intuitive sense of what this means, but we'll be more precise soon.
+
+~~~
+{Comment on mathematical rigor}
+This treatment of Fourier Analysis is not the fully rigorous ``theorem-proof-theorem-proof'' teeming with delta's and epsilon's everywhere. Some people might like this, some might not; as the professor said, ``deal with it.'' That being said, there will be still be some serious math about convergence and distributions and normed vector spaces, so it will get serious when it needs to be. (I, personally, would greatly appreciate knowing better what sorts of mathematical objects are the weird things like sawtooth functions and delta `functions'...hopefully the math will be clear and motivated and not a soup of meaningless jargon.)
+~~~
+
