@@ -17,31 +17,29 @@
 <div class="content">
 
 <h1>X-ray Crystallography</h1>
-X-ray crystallography is the "bread and butter" of structural biology. It's our primary way to figure out the 3D arrangement of the tangle of atoms in a protein. People care quite a bit about crystal structures since, as biologists like to say, "structure determines function."  It's honestly quite magical that crystallography can probe at the structure of life on an atom-by-atom scale.
+X-ray crystallography is the "bread and butter" of structural biology. It's our primary way to figure out the 3D arrangement of the tangle of atoms in a protein, and since (as biologists like to say) structure determines function, crystal structures are incredibly valuable for explaining biology.
 <br/><br/>
-In crystallography, protein units are coerced to pack neatly into a crystal, and then x-rays are diffracted off its periodic lattice. Since the diffraction pattern provides information of the <i>electron density</i> within the crystals, it lets us model in the location of the atoms within the protein crystal.
-<br/><br/>
-Crystallography is often called a "dark art" or "black magic," since all the steps are so unpredictable. The experimenter needs to be quite lucky (and persistent!) since so many things can go wrong along the way -- and when things do go right, it's often without rhyme or reason. Just to give an example, the very first step of finding suitable <i>conditions</i> to grow crystals is a complete crapshoot. There are way too many factors that affect growth (temperature, pH, salt concentrations, co-crystallization agents, etc...) and the "chemical space" of additives is ridiculously diverse. We're lost in a nightmare of combinatorial possibilities, and even if we find a suitable combination to grow crystals, there's no way to scientifically justify <i>why</i> a certain cocktail works. Other steps beyond crystal growth are also quite finnicky -- for instance, even if crystals look nice to the eye, there is no guarantee that they actually <i>diffract</i> x-rays well. The quality of diffraction can vary from crystal to crystal even if they are harvested from the same growth solution and treated identically.
-<br/><br/>
+To properly interpret crystal structures, I think it's important to understand the process of crystallography; at the very least, we ought to know its stregths, weaknesses, and caveats. On this page, I'll give an overview of the dark art of crystallography.
+<h2>An Overview</h2>
+In x-ray crystallography, protein units are coerced to pack neatly into a crystal, and then x-rays are diffracted off its periodic lattice. Since the diffraction pattern provides information of the <i>electron density</i> within the crystals, it lets us model in the location of the atoms within the protein crystal. There's a number of steps in the process:
+<ol>
+    <li><a href="#purify">Obtain a purified solution of protein.</a> Back in the day, people used to get protein directly from the native organism -- sperm whale myoglobin, for instance, used to be isolated from the skeletal muscles of dead whales. Nowadays with recombinant DNA, we can get the protein we want from specially engineered strains of bacteria. From the raw extract, we do some chromatography to separate out impurities to end up with a purified protein solution.</li>
+    <li><a href="#grow">Grow protein crystals.</a> Once we have a pure enough protein sample, we put the protein in a crystal growth solution, and wait weeks to months for crystals to grow. Finding suitable conditions for crystal growth can be a gruesome trial-end-error process, and the crystallographer often needs to tweak different ingredients in the buffer or modify the protein itself to successfully grow crystals.</li>
+    <li><a href="#cryo">Cryoprotect and cryocool the crystals.</a> To slow down radiation damage from X-rays, protein crystals are typically cooled to liquid nitrogen temperatures (77 Kelvin). Before cryocooling, we normally dip the crystals in a <i>cryoprotectant</i> (aka antifreeze) to prevent the formation of ice, which can damage the protein crystal structure and create unwanted "ice rings" in the diffraction pattern.</li>
+    <li><a href="#diffract">Collect X-ray diffraction patterns.</a> In this step, we mount the cryocooled crystal onto a device called a goniometer, and then we shoot an x-ray beam at the crystal; on the other side, a detector measures the intensity of the diffracted x-rays in different directions. By using the goniometer to rotate the crystal in various angles, we can collect a full dataset of diffraction patterns. </li>
+    <li><a href="#phase">Solve the "phase problem."</a> At this point, we know the the intensities of spots on a diffraction pattern, but this is only part of the information needed to reconstruct the electron density inside the crystal. We still need the <i>phases</i> of each of the spots. If a similar crystal structure has been solved before, the phase problem can be solved on a computer using <i>molecular replacement</i>; if not, we need to perform a phasing experiments. There are a few ways to solve the phase problem; most of them rely on the <i>anomalous scattering</i> of heavier atoms that shifts the intensities of diffraction spots in a phase-dependent manner. These technqiues have amusing names such as MAD and SAD (for <u>M</u>ultiple/<u>S</u>ingle wavelength <u>A</u>nomalous <u>D</u>ispersion).</li>
+    <li><a href="#model">Build a model.</a> </li>
+    <li><a href="#refine">Refine the structure.</a></li>
+</ol>
+
 <img src="../img/construction.gif">
-<h2>An Overview of Crystallography</h2>
-<ul>
-    <li>Obtain and purify proteins</li>
-	<li>Grow protein crystals</li>
-	<li>Cryoprotect and flash-freeze crystals to prevent radiation damage</li>
-	<li>Collect X-ray diffraction patterns</li>
-	<li>Solve the "phase problem"</li>
-	<li>Build a model</li>
-	<li>Refine the structure</li>
-</ul>
+<h2 id="purify">Protein Expression and Purification</h2>
 
-<h2>Protein Expression and Purification</h2>
+<h2 id="grow">Protein Crystal Growth</h2>
 
-<h2>Protein Crystal Growth</h2>
+<h2 id="cryo">Cryoprotection</h2>
 
-<h2>Harvesting and Cryoprotection</h2>
-
-<h2>Interlude: Diffraction and Fourier Transforms</h2>
+<h2 id="fourier">Interlude: Diffraction and Fourier Transforms</h2>
 Before delving into the experimental details of collecting x-ray diffraction patterns, I want to explain why shooting x-rays at a crystal can help us figure out its structure.
 <br/><br/>
 As I've said earlier, the way x-rays bounce off the crystal provides information about the <i>electron density</i> within the crystal. We will use this information later to model in the atomic positions in. More precisely, the the diffraction pattern is a <i>Fourier transform</i> of the electron density, where each spot is a Fourier coefficient, and its intensity is the magnitude of that coefficient. By performing the appropriate inverse Fourier transform to "undo" the operation, we can back out the density of electrons in the crystal.
@@ -62,16 +60,17 @@ Classification of Bravais Lattices<br/>
 <h4>The Reciprocal Lattice</h4>
 <h4>Symmetry and space groups</h4>
 <h4>Atoms and electron density maps</h4>
-Now that we have a good understanding of lattices of repeating points, let's fill in the lattices with the contents of unit cells.<br/><br/>
+Now that we understand lattices of repeating points, we can fill in the lattices with the contents of unit cells.<br/><br/>
 In a protein crystal, the unit cells are composed one (or more!) copies of a protein, which are made of many individual atoms linked together. In addition to the protein itself there may be other co-factors or ligands, as well as any other gunk from the crystallization cocktail that sticks to the protein or snuggles itself neatly between neighboring protein units. For the most part, these components are all <i>well-ordered</i> in the sense that their atoms consistently appear in the same location in all the unit cells in the crystal.<br/><br/>
 The other main component of a protein crystal is the <i>bulk solvent</i> in the "empty space" surrounding the protein units. In contrast to well-defined atomic positions of the ordered part of a unit cell, bulk solvent is often disordered. The water molecules in these solvent channels can flow around freely, in a quasi-liquid manner, and there is no reason for solvent atoms to be in the same position in different unit cells. (This begs a funny philosophical question of whether a crystalline protein is really in a <i>crystal</i> phase if a significant portion of the unit cell does not actually repeat!)<br/><br/>
-Why electron density<br/>
+The quantity measured by x-ray diffraction experiments is the <b>electron density</b> \(\rho(\vec{r})\), where \(\vec{r}\) is position within the unit cell. <br/><br/>
 Electron density as sum of Gaussians<br/>
 Visualizing electron density<br/>
 <h4>Wiggly and Jiggly B-factors</h4>
 A real protein crystal is far from the ideal infinite array of perfectly repeating unit cells. We need to account for these realities to properly model a real crystal...<br/><br/>
 Static disorder<br/>
 Dynamic disorder<br/>
+The net result of these different effects is that the position of an atomic nucleus varies over time and over different units within the crystal.
 <h3>The Fourier Transform</h3>
 Why care about reciprocal space<br/>
 1D series expansion of function<br/>
@@ -88,9 +87,10 @@ Why FT of crystal (Born approx?)<br/>
 Geometry of reflected wave; implication for experiment<br/>
 <h3>The Phase Problem</h3>
 
-<h2>X-ray diffraction</h2>
+<h2 id="diffract">X-ray diffraction</h2>
+<h3 id="phase">The Phase Problem</h3>
 
-<h2>Interlude: Structure Refinement</h2>
+<h2 id="stats">Interlude: Structure Refinement</h2>
 Before going into the details of <i>how</i> a crystallographer refines a structure, I want to explain <i>why</i> we refine crystal structures.
 <br/><br/>
 The whole refinement process is a game of statistics and optimization. We are given a set of experimental observations -- a set of reflection intensities from x-ray diffraction -- and we wish to use that data to build our best model -- a set of atomic positions, B-factors, etc.
@@ -100,7 +100,7 @@ Log likelihood as objective function<br/>
 Regularization as setting priors<br/>
 Cross-validation to tune parameters<br/>
 
-<h2>Structure Refinement</h2>
+<h2 id="refine">Structure Refinement</h2>
 
 
 </div>
@@ -115,7 +115,7 @@ Cross-validation to tune parameters<br/>
 <hr/>
 
 <div class=footer>
-<img src="../img/counter.gif"> Last updated on Dec 27, 2018.
+<img src="../img/counter.gif"> Last updated on Dec 30, 2018.
 </div>
 
 </body>
