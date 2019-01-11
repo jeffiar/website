@@ -85,6 +85,6 @@ There are a few ways to ``define'' the sine and cosine; some of which are more e
 \)
 - Or perhaps even later, in the study of differential equations, the sines and cosines proved to be a nice basis for the solution set of the differential equation $\frac{d^2y}{dx^2} = - y$, which is true, but doesn't help us really understand the nature of these functions...
 
-None of these definitions, however, helps us understand why these glorious functions are periodic; that is, why $\sin(x) = \sin(x + 2\pi)$. For this insight, we need use the definition of sines and cosines as /coordinates on the unit circle/. Here, it's painfully clear that the (very nontrivial!) property of periodicity comes from ``wrapping around''. When you increase the angle by $2\pi$, you return to the same point on the unit circle; and for this reason, the function repeats every $2\pi$ radians.
+None of these definitions, however, helps us understand why these glorious functions are /periodic/; that is, why $\sin(x) = \sin(x + 2\pi)$. For this insight, we need use the definition of sines and cosines as /coordinates on the unit circle/. If we do this, it becomes quite clear that the (very nontrivial!) property of periodicity comes from ``wrapping around'': when you increase the angle by $2\pi$, you return to the same point on the unit circle, and for this reason, the function repeats every $2\pi$ radians.
 
 On this note, class was dismissed.

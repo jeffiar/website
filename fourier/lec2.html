@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Monsieur Fourier and his scandal</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html" class="current">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Monsieur Fourier and his scandal</h1>
+</div>
+<p>Prof. Osgood opened the class today began with a great quote: &lsquo;&lsquo;Wednesdays are always tough for me since I play in a band on Tuesday nights.&rsquo;&rsquo; It turns out he plays the trombone, which he claims is the most romantic instrument in the world. As a horn player, I politely disagree. But that's beyond the point; we're here to talk about fourier series today.</p>
+<p>At the end of last class we started talking about sines and cosines as the &lsquo;model&rsquo; periodic functions that we all know and love. Now by this point we all were a bit tired of reviewing this silly material &ndash; this is a grad course after all &ndash; but as Prof. Osgood said, we've got to start <i>somewhere</i>, and it's really worth getting the basics &lsquo;&lsquo;in your gut&rsquo;&rsquo;.</p>
+<p>So we put our guts aside and started talking about how to <i>modify and play with</i> sines and cosines.</p>
+<h2>Tweaking Sines and Cosines</h2>
+<p>One of the first things we can do is to tweak the base period of the function to be <img class="eq" src="eqs/6272018864-130.png" alt="1" style="vertical-align: -0px" /> (unity) rather than <img class="eq" src="eqs/4814073714822610791-130.png" alt="2pi" style="vertical-align: -1px" />. This turns out to be pretty convenient and makes things pretty conceptually clear. If we do this, our friends become <img class="eq" src="eqs/2058208881431151101-130.png" alt="sin 2 pi t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/3773792512972709130-130.png" alt="cos 2 pi t" style="vertical-align: -1px" />, and our picture of the unit circle is as follows:</p>
+<p><img src="img/freq1circle.jpg"></p>
+<p>In particular, a revolution of the unit circle is now <img class="eq" src="eqs/8654563665964732100-130.png" alt="0 &lt; t &lt; 1" style="vertical-align: -1px" />, and as <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> increases from zero to one, it traces out the unit circle one time counterclockwise. Notice there is one revolution per second, so the frequency is one. (The period is also one.)</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Again, of course we all know this material&hellip;there's nothing new here, but we need to review it to ground ourselves!</p>
+</div></div>
+<h3>Frequency</h3>
+<p>A natural generalization is to tweak the <b>frequency</b> <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> by using <img class="eq" src="eqs/1856228477976131858-130.png" alt="sin 2 pi nu t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/7662167724074525797-130.png" alt="cos 2 pi nu t" style="vertical-align: -1px" />. We interpret these functions by saying that <i>you go <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> times around the circle in one second</i> (after all, that's the definition of frequency). So for instance, if the frequency is <img class="eq" src="eqs/1514774435714277366-130.png" alt="nu = 3" style="vertical-align: -1px" />, you go around the circle three times in a second; if it's <img class="eq" src="eqs/344423110262302048-130.png" alt="nu = frac{1}{2}" style="vertical-align: -7px" />, you go halfway around a circle in a second, et cetera.</p>
+<p>If we make this modification, the period is becomes <img class="eq" src="eqs/7633453522005550659-130.png" alt="T = 1 / nu" style="vertical-align: -5px" />, because it takes <img class="eq" src="eqs/3425961487783635118-130.png" alt="1 / nu" style="vertical-align: -5px" /> seconds to complete one revolution. Notice that this yet another example of a reciprocal relationship &ndash; if the frequency goes up, the period goes down, and vice versa.</p>
+<p>We also made a comment about <b>negative frequencies</b> <img class="eq" src="eqs/1514773435708277264-130.png" alt="nu &lt; 0" style="vertical-align: -1px" />. Thankfully, in this going-around-the-unit-circle picture, it's pretty easy to interpret these functions &ndash; you just go around the circles <i>clockwise</i> rather than counterclockwise. No need to debate philosophical questions!</p>
+<h3>Phase</h3>
+<p>Another natural question about going around these circles is <i>where to start</i> on the circle when <img class="eq" src="eqs/6567617269575498820-130.png" alt="t = 0" style="vertical-align: -1px" />. The answer is given by the <b>phase</b> <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" />, pronounced &lsquo;&lsquo;phi.&rsquo;&rsquo; When we include the phase, the form of the functions becomes <img class="eq" src="eqs/450197020961882846-130.png" alt="cos ( 2 pi nu t + phi)" style="vertical-align: -5px" /> and <img class="eq" src="eqs/2681550650190761835-130.png" alt="sin ( 2 pi nu t + phi)" style="vertical-align: -5px" />. As <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> increases from 0 to 1, you go around the unit circle <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> times, but <i>starting from an angle of <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /></i>. We call this a &lsquo;&lsquo;phase shift.&rsquo;&rsquo;</p>
+<p>Notice that sines and cosines are really just phase-shifted versions of each other; they're offset by a quarter of a cycle (<img class="eq" src="eqs/3779422073031366569-130.png" alt="pi/2" style="vertical-align: -5px" /> radians).</p>
+<h3>Amplitude</h3>
+<p>The final way we can tweak sinusoids is by adjusting their <b>amplitude</b> <img class="eq" src="eqs/8320025024-130.png" alt="A" style="vertical-align: -0px" />. In our picture of going around circles, the amplitude <i>scales the radius</i> of the circle that we're going around. Our final expression for the most general periodically varying sinusoid function is <img class="eq" src="eqs/6169423914012904544-130.png" alt="A cos (2 pi nu t + phi)" style="vertical-align: -5px" />.</p>
+<p>So to summarize:</p>
+<ul>
+<li><p>The <b>frequency</b> <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> tells you how many times around the circle you go in one second;</p>
+</li>
+<li><p>The <b>phase</b> <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /> tells you what angle you start off at when <img class="eq" src="eqs/6567617269575498820-130.png" alt="t = 0" style="vertical-align: -1px" />;</p>
+</li>
+<li><p>The <b>amplitude</b> <img class="eq" src="eqs/8320025024-130.png" alt="A" style="vertical-align: -0px" /> tells you the size of the circle or how &lsquo;&lsquo;strong&rsquo;&rsquo; your disturbace is.</p>
+</li>
+</ul>
+<p>These three parameters capture any change that you can do to a sinusoid, and they're all independent of each other.</p>
+<h2>Summing up sinusoids</h2>
+<p>The way we'll use these tweaked sinusoids is by <i>adding them up in a sum</i>. The main idea behind Fourier synthesis is that even though individual sinusoids behave like simple functions, when <i>combine</i> multiple sinusoides, each with their own frequencies, phases, and amplitudes, we can end up with richer behavior.</p>
+<p>We then went through a simple physical example of <i>why</i> you might want to add up a number of terms, again using the example of a stadium wave. Say Mary is a spectator in the crowd, and we want to model the movement of her arms as she's subjected to the whims of the crowd. Any particular wave might be well modeled by a single sinusoid <img class="eq" src="eqs/1525034850997108436-130.png" alt="A sin ( 2 pi nu t + phi)" style="vertical-align: -5px" />, but in reality, she is likely experiencing multiple waves at the same time. If that's the case, it's reasonable to guess that the <i>total</i> displacement or disturbance can be modeled by a <i>sum</i>, which we can write as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/9056127973283325134-130.png" alt="     sum_n A_n sin (2 pi nu_n t + phi_n), " />
+<br /></div><p>where each term in the sum has its own set of coefficients <img class="eq" src="eqs/8931774307465068177-130.png" alt="A_n, nu_n," style="vertical-align: -4px" /> and <img class="eq" src="eqs/8301435321821192504-130.png" alt="phi_n" style="vertical-align: -4px" />.</p>
+<p>We'll be spending a while talking about combinations of sinusoids, so hopefully this is enough motivation to justify <i>why</i> we ought to care about these sorts of sums.</p>
+<h2>Fourier's scandal</h2>
+<p>Now we moved on to Fourier's bold claim about such sums:</p>
+<div class="infoblock">
+<div class="blocktitle">Fourier's scandal</div>
+<div class="blockcontent">
+<p><i>Any</i> periodic function can be represented by a sum of sinusoids; that is, given some (known) periodic <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />, we can always express <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6753545754582239045-130.png" alt="     f(t) = sum_n A_n sin (2 pi nu_n t + phi_n), " />
+<br /></div><p>where the <img class="eq" src="eqs/8931774307465068177-130.png" alt="A_n, nu_n," style="vertical-align: -4px" /> and <img class="eq" src="eqs/8301435321821192504-130.png" alt="phi_n" style="vertical-align: -4px" /> are unknown parameters that we have to find.</p>
+</div></div>
+<p>As Prof. Osgood puts it, &lsquo;&lsquo;<i>Quelle horreur! Mon dieu! Oh là là!</i> What a scandal!&rsquo;&rsquo; To be honest, I don't know if his story was a true historical fact or a mere apocryphal tale, but the message is pretty clear: the claim is pretty bold and pithy. There's no reason to believe why <i>every</i> periodic function should be expressible as a sum of this form.</p>
+<p>A few comments:</p>
+<ul>
+<li><p>It's not clear yet what we mean by &lsquo;&lsquo;any periodic function.&rsquo;&rsquo; As I remember from Math 61CM, there are different <i>classes</i> of functions. Some are nicer than others. There are smooth functions (which can be differentiated as many times as you want); there are continuous functions (which are not necessarily differentiable); there are discontinuous functions, and there are even more poorly behaved things which I don't even think count as functions. Maybe he means &lsquo;&lsquo;any sufficiently non-pathological periodic function.&rsquo;&rsquo; But I'm guessing we'll be more precise about this later.</p>
+</li>
+<li><p>There's a catch, since we haven't shown yet that the sum of two periodic functions is necessarily periodic! I think the condition is that the ratio between the two periods has to be <i>rational</i> number such as <img class="eq" src="eqs/3008991115469782607-130.png" alt="p/q" style="vertical-align: -5px" />; if that's the case, when one of the functions undergoes <img class="eq" src="eqs/14464043504-130.png" alt="q" style="vertical-align: -4px" /> revolutions and the other one <img class="eq" src="eqs/14336043121-130.png" alt="p" style="vertical-align: -4px" /> revolutions, then they &lsquo;line up&rsquo; again.</p>
+</li>
+<li><p>For simplicity in our upcoming derivation, we will assume that <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> has <i>a period of 1</i>. This is not too hard to do; we just have to rescale the time coordinate by <img class="eq" src="eqs/1193379265229324334-130.png" alt="t mapsto t / T" style="vertical-align: -5px" />. (Scaling the period to <img class="eq" src="eqs/2354942681919301199-130.png" alt="T=1" style="vertical-align: -0px" /> for now makes the math easier.)</p>
+</li>
+<li><p>As a consequence of the unit period, <i>all the frequencies <img class="eq" src="eqs/226076146750918527-130.png" alt="nu_n" style="vertical-align: -4px" /> must be integers</i>. In the homework, we'll think more about why the frequencies have to be integers and can't be arbitrary. (I think the argument is that only integer-frequency-sinusoids have a period of 1, and if we want the final sum to have a period of 1, we need to ensure that each individual term has a period of 1 as well.)</p>
+</li>
+</ul>
+<p>If we make the simplification of rescaling <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> to so that <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> has period 1, then our formula can be written more simply as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1096316359153232117-130.png" alt="     f(t) = sum_{n=1}^{N} A_n sin (2 pi n t + phi_n). " />
+<br /></div><p>Now, the frequencies are <i>fixed</i> to be positive integers less than some maximum frequency <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />; only the amplitudes and phases are unknown. Each of the individual terms is called a <b>harmonic</b>, in analogy to music, and the frequency of each harmonic is an <i>integer multiple</i> of the base frequency 1.</p>
+<p>There's one final degree of freedom we can introduce into the problem: we can allow a global vertical shift of <img class="eq" src="eqs/593367982111446695-130.png" alt="A_0" style="vertical-align: -4px" />, because a constant term won't affect the periodicity of <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />. (Electrical Engineers like to call the constant term the &lsquo;&lsquo;DC component&rsquo;&rsquo;)</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-10 12:21:35 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec2.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,4 +1,4 @@
-DOCS=index intro lec1
+DOCS=index intro lec1 lec2 lec2b
 
 HDOCS=$(addsuffix .html, $(DOCS))
 PHDOCS=$(HDOCS)

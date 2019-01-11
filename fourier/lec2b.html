@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Finding Fourier coefficients</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html" class="current">Finding&nbsp;Coefficients</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Finding Fourier coefficients</h1>
+</div>
+<p>Rather than proving Fourier's scandal for any arbitrary <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> &ndash; and again, we don't know what &lsquo;&lsquo;any&rsquo;&rsquo; means yet &ndash; it's easier to start off with a simpler question:</p>
+<div class="infoblock">
+<div class="blocktitle">Problem Statement</div>
+<div class="blockcontent">
+<p>If we <i>know</i> that <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> <i>can</i> be written as a sum</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6953512092193898858-130.png" alt="     f(t) = A_0 + sum_{n=1}^{N} A_n sin (2 pi n t + phi_n), " />
+<br /></div><p>then how do we find the values of the coefficients <img class="eq" src="eqs/593367982111446777-130.png" alt="A_n" style="vertical-align: -4px" /> and <img class="eq" src="eqs/8301435321821192504-130.png" alt="phi_n" style="vertical-align: -4px" /> so that the RHS sums up to the LHS?</p>
+</div></div>
+<p>Notice the subtle difference: we're not trying to show that <i>any</i> <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> is expressible as a fourier sum; we are <i>given</i> one that is, and we merely want to find the right coefficients to properly give us <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />.</p>
+<h2>Massaging into a better form</h2>
+<p>There are many ways to express a sum of sinusoids. The one we wrote above &ndash; a sum of sines with of differing amplitudes and phases &ndash; is the easiest to intuitively understand, but it's the hardest to work with algebraically. That is, the expressions for the coefficients are going to be pretty messy and unenlightening. So it's well worth our time to massage the expression into other equivalent forms.</p>
+<h3>Sines and cosines</h3>
+<p>The first thing we can do is to use the sum and difference formulas to rewrite a sine with a phase shift as a sum of a sine and a cosine:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3258171260039680144-130.png" alt="     A_n sin (2 pi n t + phi_n) rightarrow a_n cos (2 pi n t) + b_n sin (2 pi n t) " />
+<br /></div><p>This form is a wee bit nicer, partly because we don't have the phases floating around in the arguments of our sinusoids anymore.The information about amplitude and phase is contained in the coefficients <img class="eq" src="eqs/1453079729247098457-130.png" alt="a_n" style="vertical-align: -4px" /> and <img class="eq" src="eqs/327024216864240966-130.png" alt="b_n" style="vertical-align: -4px" />. Note that We haven't lost any information; we're free to go back and forth between the two forms. </p>
+<p>Making this change, our sum becomes</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/739023592245049708-130.png" alt="     f(t) = frac{a_0}{2} + sum_{n=1}^{N} big[a_n cos (2 pi n t) + b_n sin (2 pi n t) big] " />
+<br /></div><p>With the benefit of hindsight, we've renamed the constant term <img class="eq" src="eqs/7134245890494572246-130.png" alt="a_0 / 2" style="vertical-align: -5px" /> so that things work out nicer later.</p>
+<h3>Imaginary Exponentials</h3>
+<p>We can do better than this. By far (mathematically), the best way to work with sinusoids is in terms of <b>imaginary exponentials</b>.</p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>Using complex exponentials is a common &lsquo;cute&rsquo; trick in math and physics. I remember when I first encountered them in solving for E'n'M waves, it felt pretty awkward and uncomfortable; I didn't really know what I was writing. I never really grew out of the awkwardness; like many things in life, I guess once you see it enough, you just get used to it.</p>
+<p>Now that I think about it, there's a few places where it's actually quite enlightening and helpful to think in terms of complex exponentials. When you're talking about damped harmonic motion (such as a spring-and-mass system in a bowl of syrup), the motion looks like a sinusoid inside a decaying exponential envelope; it's a bit nicer to just think in terms of an exponential with a complex exponent, where the real part is the decaying envelope and the imaginary part is the frequency. Or when you're talking about electromagnetic waves propagating in a dialectric (aka light travelling through a material), the real and imaginary parts of the dialectric constant correspond to absorptive losses that cause the light intensity to decay exponentially, or a phase shift (ie, light speeding up or slowing down) inside the material.</p>
+<p>Okay enough of a tangent, back to the class.</p>
+</div></div>
+<p>Remember that Euler's formula relates imaginary exponentials to sinusoids:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1802024767988901783-130.png" alt="     e^{i theta} = cos theta + i sin theta. " />
+<br /></div><p>We can visualize this fact on a complex plane by observing how the real and imaginary components of the complex phase <img class="eq" src="eqs/5348994760394824064-130.png" alt="e^{i theta}" style="vertical-align: -1px" /> oscillate as it rotates around the origin. It's a rather remarkable and beautiful fact that imaginary exponentials relate to sinusoids; the ordinary growing or decaying exponentials have <i>nothing</i> to do with periodicity!</p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>I should say a bit more about how to interpret complex numbers like <img class="eq" src="eqs/5348994760394824064-130.png" alt="e^{i theta}" style="vertical-align: -1px" />. The cleanest way to think about complex numbers is as points on the complex plane, where &lsquo;&lsquo;pure phases&rsquo;&rsquo; such as <img class="eq" src="eqs/5348994760394824064-130.png" alt="e^{i theta}" style="vertical-align: -1px" /> all fall on the unit circle, an angle of <img class="eq" src="eqs/5179806648303708846-130.png" alt="theta" style="vertical-align: -1px" /> radians from the x-axis. Since a rotation by <img class="eq" src="eqs/2909343699959053426-130.png" alt="2 pi" style="vertical-align: -1px" /> radians goes one time around the unit circle, it's clear that <img class="eq" src="eqs/991735638266977137-130.png" alt="e^{i (theta + 2 pi)} = e^{i theta}" style="vertical-align: -1px" />, because you wind up at the same point.</p>
+<p>Functions such as <img class="eq" src="eqs/7793249215520007807-130.png" alt="g(t) = e^{2 pi i nu t}" style="vertical-align: -5px" /> represent a point that starts off on the x-axis and then goes around the unit circle <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> times per second. From this picture, it's pretty clear why we defined sines and cosines in terms of unit circles &ndash; the real component of the complex number is the sine of the angle, the imaginary component is the cosine, which is quite precisely what Euler's formula tells us.</p>
+<p>One other thing to note about functions of the form <img class="eq" src="eqs/7793249215520007807-130.png" alt="g(t) = e^{2 pi i nu t}" style="vertical-align: -5px" /> is that if the frequency <img class="eq" src="eqs/7083357291912387992-130.png" alt="nu" style="vertical-align: -0px" /> is an integer, then every whole number of seconds, we wind around the circle an exact integer number of times and end up at the point <img class="eq" src="eqs/7010914888566232976-130.png" alt="(x,y) = (1,0)" style="vertical-align: -5px" /> again; in other words, if <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" /> is an integer, then <img class="eq" src="eqs/723851045850073240-130.png" alt="e^{2 pi i n} = 1" style="vertical-align: -1px" />.</p>
+</div></div>
+<p>If we flip the sign of the exponent in Euler's formula, we get a expression for <img class="eq" src="eqs/7653254942236456395-130.png" alt="e^{- i theta} = cos theta - i sin theta" style="vertical-align: -1px" />. (This represents a complex number revolving <i>clockwise</i> around the origin as theta increases, corresponding to negative frequency!). If we take the appropriate linear combinations of these two expressions, we can solve for sine and cosine in terms of the imaginary exponentials:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6889045481579442520-130.png" alt="     cos theta = frac{e^{i theta} + e^{-i theta}}{2}; quad     sin theta = frac{e^{i theta} - e^{-i theta}}{2i}. " />
+<br /></div><p>Notice that the functions of positive theta turned into functions of positive and <i>negative</i> theta. As a result, the range of the frequencies <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" /> in our Fourier sum is expanded. Rather than being restricted to positive frequencies <img class="eq" src="eqs/3143898929798082663-130.png" alt="0 &lt; n &lt; N" style="vertical-align: -1px" />, we are now summing over positive and <i>negative</i> frequencies <img class="eq" src="eqs/5876735335941258787-130.png" alt="-N &lt; n &lt; N" style="vertical-align: -1px" />. The <img class="eq" src="eqs/1204088470260307662-130.png" alt="n = 0" style="vertical-align: -1px" /> term corresponds to the constant offset term that we introduced.</p>
+<p>After doing a bit of algebraic tickling, we can now express our periodic <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/824229458732312427-130.png" alt="     f(t) = sum_{n=-N}^{+N} c_n e^{2pi int}, " />
+<br /></div><p>where the new (complex!) coefficients <img class="eq" src="eqs/799031295774617265-130.png" alt="c_n" style="vertical-align: -4px" /> are given in terms of our old real coefficients <img class="eq" src="eqs/1453079729247098457-130.png" alt="a_n" style="vertical-align: -4px" /> and <img class="eq" src="eqs/327024216864240966-130.png" alt="b_n" style="vertical-align: -4px" /> by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6762316932782932297-130.png" alt="     c_n = frac{b_n - i a_n}{2} quad (n &gt; 0); qquad c_{n} = frac{b_n + i a_n}{2} = overline{c_{-n}} quad (n &lt; 0); qquad c_0 = frac{a_0}{2}. " />
+<br /></div><p>Notice that we are now expressing our real function <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> in terms of complex quantities, which might feel a bit queasy, but Prof. Osgood soothed us by saying that there's really no &lsquo;&lsquo;existential difficulty&rsquo;&rsquo; to this affair. What we've discovered is something more like this: <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> might in general be a complex function, but as long as the coefficients satisfy the <b>symmetry property</b> <img class="eq" src="eqs/8728104028502632013-130.png" alt="c_{-n} = overline{c_n}" style="vertical-align: -4px" /> (where the overbar signifies the complex conjugate), then <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> is guaranteed to be real.</p>
+<h2>Solving for the coefficients</h2>
+<p>After all this massaging, our problem can be phrased in a much more tractable and concise way:</p>
+<div class="infoblock">
+<div class="blocktitle">Problem statement</div>
+<div class="blockcontent">
+<p>Suppose we are given a periodic function <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> that can be expressed as a weighted sum of exponentials as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3193748215356701669-130.png" alt="     f(t) = sum_{n=-N}^{+N} c_n e^{2pi int}. " />
+<br /></div><p>How do we find the complex coefficients <img class="eq" src="eqs/799031295774617265-130.png" alt="c_n" style="vertical-align: -4px" />?</p>
+</div></div>
+<p>It's time to perform the classic derivation of the Fourier coefficients.</p>
+<p>Our goal is to solve for a particular coefficient&#8201;&mdash;&#8201;let's say the <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />'th coefficient <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" />. To isolate the <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" />, the first thing we might try to do is to separate the sum on the RHS into two parts, the term with <img class="eq" src="eqs/5261102140477498317-130.png" alt="n=k" style="vertical-align: -1px" /> and all the other terms with <img class="eq" src="eqs/359008785316420213-130.png" alt="n neq k" style="vertical-align: -4px" />:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5458346177765051053-130.png" alt="   f(t) = c_k e^{2pi ikt} + sum_{n neq k} c_n e^{2pi int}. " />
+<br /></div><p>If we shuffle around the terms so that the <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" /> term is alone on the LHS, we end up with</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8354479188123770197-130.png" alt="   c_k e^{2pi ikt} = f(t) - sum_{n neq k} c_n e^{2pi int}. " />
+<br /></div><p>To get <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" /> by itself, we divide both sides by <img class="eq" src="eqs/8453226011021676592-130.png" alt="e^{2pi ikt}" style="vertical-align: -1px" />, or equivalently, multiply by <img class="eq" src="eqs/5341685535393510166-130.png" alt="e^{-2pi ikt}" style="vertical-align: -1px" /> (with a minus sign in the exponent), and end up with the expression</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2271767620645549026-130.png" alt="   c_k = e^{-2pi ikt} f(t) - sum_{n neq k} c_n e^{2pi i(n - k)t}. " />
+<br /></div><p>However, this expression isn't particularly useful for us, because all we've done by this point is express the <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />'th coefficient in terms of all the other coefficients! If we don't know any of the coefficients, we can't get anywhere.</p>
+<h3>Fourier's Trick</h3>
+<p>To proceed further, we'll pull a little rabit out of a hat, and do a little bit of calculus to make the the second term on the RHS disappear. David Griffiths likes to call this step &lsquo;&lsquo;Fourier's Trick&rsquo;&rsquo; because it's pretty clever and kind of magical. Later on in the course, I'm guessing we'll justify it in terms of the orthogonality of the basis functions, but for now, it's just a magic trick.</p>
+<p>The trick is to integrate both sides of the equation from 0 to 1. There's no real motivation for <i>why</i> we want to do this quite yet (until we learn about orthogonality!), but at the least, we can justify the limits of integration 0 and 1 by appealing to the periodicity of <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />. Since <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> has period 1, all its information is contained in the range from 0 to 1;  if we integrate over less than that, we'll miss some details, and if we integrate over more, we'll including redundant information because <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> will repeat.</p>
+<p>Anyways, we have three terms to integrate, and we'll consider them one-by-one.</p>
+<p>The term on the LHS, <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" />, is just a constant that we can pull out of the integral; when we integrate it from 0 to 1, nothing happens because <img class="eq" src="eqs/742965878945443476-130.png" alt="int_0^1 dt = 1" style="vertical-align: -8px" />. So the LHS stays <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" />.</p>
+<p>The first term on the RHS will look like <img class="eq" src="eqs/1820943819951409183-130.png" alt="int_0^1 e^{-2pi ikt} f(t) dt" style="vertical-align: -8px" />, which, in principle, is a <i>known value</i> that we can compute. We know <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />, we know what <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> we're considering, so we just need to do the integral to figure out the value.</p>
+<p>The last term on the RHS is where the magic happens: every single term in the sum becomes zero when you integrate from 0 to 1! To see why, consider what happens when you integrate any one of the terms. We can pull out the constant <img class="eq" src="eqs/799031295774617265-130.png" alt="c_n" style="vertical-align: -4px" /> from the integral, and we're left with something of the form</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2546053142250094579-130.png" alt=" int_0^1 e^{2 pi i (n - k) t} dt, " />
+<br /></div><p>which we can evaluate like any other exponential integral:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/791441603332613651-130.png" alt=" int_0^1 e^{2 pi i (n - k) t} dt = frac{1}{2 pi i (n - k)} bigg[ e^{2 pi i (n - k) t} bigg]_{t=0}^{t=1} = frac{1}{2 pi i (n - k)} bigg[ e^{2 pi i (n-k) (1)} - e^ {2 pi i (n-k) (0)} bigg] " />
+<br /></div><p>Now the crucial insight: Since <img class="eq" src="eqs/5261102140461498141-130.png" alt="n-k" style="vertical-align: -1px" /> is an integer, both of the exponentials on the RHS are just the exponentials of an integer multiple <img class="eq" src="eqs/7775142229074293215-130.png" alt="2 pi i" style="vertical-align: -1px" />; in other words, they both evaluate to 1. One minus one is zero, so the integral vanishes. So the entire sum over <img class="eq" src="eqs/359008785316420213-130.png" alt="n neq k" style="vertical-align: -4px" /> vanishes when we integrate from 0 to 1!</p>
+<p>So to summarize: when we integrate both sides of the expression for <img class="eq" src="eqs/799031295774617270-130.png" alt="c_k" style="vertical-align: -4px" />, the LHS stays the same, the first term on the RHS doesn't simplify, and the second term on the RHS vanishes. Our final result is the formula for Fourier coefficients:</p>
+<div class="infoblock">
+<div class="blocktitle">Result</div>
+<div class="blockcontent">
+<p>If a periodic function <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> can be expressed by a weighted sum of exponentials as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/824229458732312427-130.png" alt="     f(t) = sum_{n=-N}^{+N} c_n e^{2pi int}, " />
+<br /></div><p>then the Fourier coefficients <img class="eq" src="eqs/799031295774617265-130.png" alt="c_n" style="vertical-align: -4px" /> are given by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2812617056876229251-130.png" alt="     c_n = int_0^1 f(t) e^{-2 pi int} dt. " />
+<br /></div></div></div>
+<p>There's a lot of things to be said about this statement, but classtime was over, so we'll have to hear them next time around.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-11 00:05:59 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec2b.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
