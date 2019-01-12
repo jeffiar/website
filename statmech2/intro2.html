@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Phase Transitions</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Intro Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html" class="current">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model</a></div>
+<div class="menu-item"><a href="intro5.html">Correlations</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Phase Transitions</h1>
+</div>
+<h2>Motivation</h2>
+<p>As we know, statistical mechanics is the study of the <i>macroscopic properties</i> of matter. When we put together lots of microscopic things, the resulting material often has <i>emergent</i> behavior of a completely different nature. Liquids flow, solids are rigid; metals conduct electricity, insulators don't; ferromagnets hold a permanent magnetic dipole moment, paramagnets don't.</p>
+<p>In this course, we'll develop the language to describe these emergent properties of matter. These properties result of the interaction of many many degrees of freedom, but since there are so many variables, we have to take a different approach from previous physics classes. If we only had a few particles, it wouldn't be different to write down the classical equations of motion, or the quantum mechanical Hamiltonian, and solve for the behavior of the system. But a cup of water has ~<img class="eq" src="eqs/3526378314053432731-130.png" alt="10^{23}" style="vertical-align: -1px" /> water molecules, and it would be impossible to understand its behavior by explicitly computing the motion of zillions of molecules. Rather than listing the details of all the microscopic motions, we describe water in terms of <i>thermodynamic variables</i> like its temperature and pressure.</p>
+<h2>Phase Diagrams and Phase Transitions</h2>
+<p>Under different conditions, a macroscopic sample of water has qualitatively different properties, which we call different <b>phases of matter</b>. We can imagine an experiment where we had a sample of water, and we could twiddle some knobs controlling the temperature and the pressure of that sample of water. Under some conditions, the water flows around freely as a liquid; under others, it stops flowing and becomes a rigid, crystalline solid; under still other conditions, its density drops a thousandfold and it becomes a compressible gas. When the water changes from one of these phases to another, we call it a <b>phase transion</b>. In this class, we will spend a lot of time thinking about and explaining phase transitions.</p>
+<p>All this information on the phases of water can be summarized on a <b>phase diagram</b> such as the one shown below.</p>
+<p><img src="img/phase_diagram.jpg"></p>
+<p>At this point the professor moved beyond a &lsquo;&lsquo;cocktail party&rsquo;&rsquo; definition to a more precise definition of what he meant by phases and phase transitions.</p>
+<p>As a concrete example, say Alice the experimentalist twiddles the knobs on the water system, and moves the system state along the red path A in the diagram. As the <i>control variables</i> of pressure and temperature vary, her system remains in the same liquid phase, and all the macroscopic observables (such as the density) change continuously. On the other hand, if she twiddled the knobs to change the system state along path B, when she crosses the liquid-gas phase transition boundary, the density will change discontinuously to a much lower value. </p>
+<p>This behavior is really quite surprising and unusual &ndash; even though she is changing the control parameters <i>continuously</i>, there is a discontinuous, sudden change in a macroscopic experimental observable!</p>
+<h2>Defining phase transition more precisely</h2>
+<p>We then tried to state this fact more formally. As we learned in the previous statistical mechanics class, the large-scale behavior of any thermodynamic system is captures by the <i>partition function</i> and its derivatives. So in this problem, it's natural to consider the partition function as a function of the control variables by writing <img class="eq" src="eqs/5154961972164424996-130.png" alt="Z(P, T)" style="vertical-align: -5px" />. Then the professor made a baffling claim using some fancy words that I didn't understand:</p>
+<div class="infoblock">
+<div class="blocktitle">Claim</div>
+<div class="blockcontent">
+<p>Within a phase of matter, the partition function <img class="eq" src="eqs/2556033685830330673-130.png" alt="Z(P,T)" style="vertical-align: -5px" /> is an analytic function of its arguments, but along phase boundaries, it experiences &lsquo;&lsquo;non-analyticities&rsquo;&rsquo;.</p>
+</div></div>
+<p>I remember from math class that (for real functions), analytic means &lsquo;&lsquo;smooth&rsquo;&rsquo;, but I had no clue what a non-analyticity was, so I asked the professor. It turns out that he just meant that the partition function experiences <i>sharp, abrupt changes at phase transitions</i>. The word &lsquo;&lsquo;non-analyticity&rsquo;&rsquo; encompasses all the fun things we learned about in the first few weeks of calculus class: jump discontinuities, cusps (aka kinks), poles (aka divergences or &lsquo;blowing up&rsquo;), etc&hellip;</p>
+<p>So the essence is that the partition function (which, again, encapsulates the system's thermodynamic behavior) typically changes smoothly when you twiddle the knobs, but when you cross a &lsquo;&lsquo;phase transition&rsquo;&rsquo;, it has some abrupt changes.</p>
+<h2>The Critical Point</h2>
+<p>Now if we go back to the phase diagram and look the liquid-gas boundary, we notice that something funny happens at the end &ndash; the line peters out and disappears past a &lsquo;critical point&rsquo;. That is, liquid and gas become the same phase on the right side of the boundary. So if you follow path C, and you &lsquo;&lsquo;go around&rsquo;&rsquo; the boundary between liquid and gas, you actually never encounter the liquid-gas phase transition, and the density <i>smoothly</i> decreases between the start and end point. How bizarre! </p>
+<p>This point on the phase diagram is known as the <b>critical point</b>. We'll spend lots of time in class discussing the interesting things that happen near critical points. In fact, a different type of phase transition occurs at a critical point, called a &lsquo;&lsquo;higher-order transition&rsquo;&rsquo; or &lsquo;&lsquo;continuous transition.&rsquo;&rsquo; This sort of phase transition is different than the one that happens across the liquid-gas phase boundary.</p>
+<h2>Classifying phase transitions</h2>
+<p>There's two types of phase transitions: first-order or higher-order. In this class we'll focus on the second type of phase transition.</p>
+<ul>
+<li><p>A <b>first-order transition</b> is exemplified by the liquid-gas phase transition. It involves a discontinuous change in some macroscopic quantity such as the density. As the transition occurs, both phases can coexist, and they separate into little dropleets or puddles.</p>
+</li>
+</ul>
+<ul>
+<li><p>A <b>higher-order transition</b> or a <b>continuous transition</b> is exemplified by the critical point that we just discussed. In contrast to the first-order transition, there is just <i>one homogenous phase</i> during the transition. (I was honestly a bit confused at this point, but I guess it'll make more sense later).</p>
+</li>
+</ul>
+<p>Next we started talking about <a href="intro3.html">symmetry</a>.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-12 15:48:13 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="intro2.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

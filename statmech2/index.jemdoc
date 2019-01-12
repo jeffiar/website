@@ -1,0 +1,27 @@
+# jemdoc: menu{MENU}{index.html}, showsource
+= Notes on Statistical Mechanics II
+
+Welcome! Here are some notes I'm taking for Physics 171 at Stanford in Winter of 2018-19.
+
+This course covers phase transitions and critical phenomena, and I think it'll touch on the renormalization group as well. I find the content pretty philosophically stimulating: it explains how surprising emergent properties like phase transitions arise from the interactions of many many microscopic things. Through writing these notes, I hope to spread this beautiful knowledge, and also to deepen my own understanding.
+
+[intro.html Click me to start reading the first lecture]!
+
+~~~
+{Warning}
+There will be many typos since I will be typing up these notes rather quickly!
+~~~
+
+=== A comment
+
+I would also like to make a comment about this particular course offering in Winter of 2019.
+
+On a cloudy Monday afternoon, a flock of undergrads shuffled into a dinky little room next to the X-ray shared facilities. We huddled together and chatted about the broken clock hanging up in the corner.
+
+There is a tragic undertone to this course. A month before the start of the term, the original instructor, the incredible and well-respected Professor Shoucheng Zhang, had taken his own life. As an undergrad, I'm quite far removed, but still, I can't even imagine what sort of grief, pain, and shock this sudden loss caused to his family, friends, and colleagues. It must have been a distressing turmoil within the department trying to manage all the roles he played, one of which was teaching this class that we're taking. Very fortunately and very bravely, Prof. Steve Kivelson, former advisor and collaborator of Prof. Zhang, has chosen to the role of teaching this class, and we are all incredibly grateful and respectful that he has taken on what must be a very emotionally trying course to teach.
+
+As a consequence of this devestating situation, there hasn't been any time to tidy up and prepare the course material. Prof. Kivelson seemed pretty disheveled, surprised, and ``discombobulated'' (in his own words), and at the first actual course meeting, we hadn't even settled on a syllabus yet. This will be one of the strangest and disorganized classes I'll ever take, and I find it a bit of a shame, because I've wanted to properly learn this material for so long...
+
+I hope that by writing up some notes in an organized manner, I can clarify some ideas and spread the beauty of the content.
+
+/Jeffrey, January 2019./

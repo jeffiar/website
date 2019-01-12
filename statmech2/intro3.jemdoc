@@ -1,0 +1,59 @@
+# jemdoc: menu{MENU}{intro3.html}, showsource
+= Symmetry in Phase Transitions
+
+At this point we switched gears a bit and started talking about symmetry.
+
+As we've probably heard by now, symmetry plays a key role in ``fancy'' physicist thinking, and serves as a helpful guiding principle to think about different phases of matter. The main idea behind symmetry is:
+
+~~~
+Different phases of matter are characterized by different sorts of symmetry. At higher temperatures, matter takes on a ``higher symmetry'' phase; at lower temperatures, the phases are of lower symmetry or ``broken symmetry.''
+~~~
+
+Now honestly, this just sounds like a bunch of fancy words, and it all seems pretty abstract and opaque. I'm not sure how much we'll cover this concept in the class, but from my impression of Prof. Kivelson so far, I think he'll be emphasizing it over and over again, so I think it's well worth getting a better understanding of what these words mean.
+
+The formal mathematical treatment of symmetry groups can also be intimidating and unenlightening, so I think the best way to get at the concept is through a few examples to help build our intuition. In the intro lecture, Prof. Raghu gave an example of symmetry-breaking between solids.
+
+Let's say we have a system of $N$ particles which undergoes a solid-gas phase transition at some temperature $T_c$. 
+
+- At high temperatures, in the gaseous phase, the particles are flying around everywhere, and have equal probability of being anywhere inside the box. 
+- At lower temperatures, the particles have crystallized into a solid lattice, and they're trapped within the crystal lattice and can only vibrate around their equilibrium lattice positions.
+
+{{<img src="img/gas_vs_crystal.jpg">}}
+
+The key idea is that the /symmetry of these two phases is different/ -- the gas phase is of higher symmetry, while the solid phase is of lower symmetry. To illustrate this, let's consider the /density of particles/ in a little region centered around a position $\vec{r}$ in the box. 
+
+- In the gaseous phase, the density of particles is /homogenous/ -- it doesn't matter /where/ in the box you look, there's the same chance you'll find a particle -- so $n(\vec{r})$ is independent of $r_i$ (i.e., it's a constant). We say the gas has the property of being *translationally invariant* -- if you ``translate'' a gas (slide around all the particles), the system is ``invariant'' (nothing changes).
+- In the solid (crystal) phase, the density of particles is no longer homogenous! If you look near a crystal lattice site, then the density of particles is very different than if you look somewhere between the atoms of the crystal. In other words, $n(\vec{r})$ is no longer independent of $\vec{r}$. We say that a crystal have *broken translational invariance*. Sounds impressive!
+
+Here are a few more remarks that might either be more enlightening or more confusing, depending on your tastes:
+
+~~~
+{Remark on symmetry groups}
+Even though $n(\vec{r})$ in a crystal is no longer constant, it's still clearly symmetric, by some notion of the word symmetric. For instance, if we translate the whole crystal over so that the unit cells all line up and the atoms lie on top of their brothers and sisters, then the crystal still looks the same! More formally, if we translate the system by a *lattice vector* $\vec{R}$, then the density remains invariant; i.e., $n(\vec{r} + \vec{R}) = n(\vec{r})$.
+
+You might argue that this statement held true for the gas as well -- but they key difference is that /only a subgroup of translations/ works for the crystal. In a gas, /every/ single possible translation by $\vec{R}$ preserved the density, but in a crystal, only certain special $\vec{R}$s -- the lattice vectors of the crystal -- work for preserving the density $n(\vec{r}) = n(\vec{r} + \vec{R})$. In other words, after the gas-solid phase transition, we go from every possible $\vec{R}$ to $\vec{R}$s of the form $\vec{R} = h \vec{a} + k \vec{b} + l \vec{c}$, where $\vec{a}, \vec{b},$ and $\vec{c}$ are the basis vectors of the crystal's [https://en.wikipedia.org/wiki/Bravais_lattice Bravais lattice]. To use more technical language, we say that the continuous symmetry group of the gas has been reduced to a discrete subgroup in the crystal.
+~~~
+
+~~~
+{Remark on ergodicity}
+Here's silly (but important!) philosophical comment about the argument above.
+
+We ought to be a bit more careful about /what exactly/ we mean when we say ``the density $n(\vec{r})$''. Clearly, we're not considering a frozen ``snapshot'' of the system, but rather, some sort of average -- and the questions about /what/ sort of average we're taking is quite subtle and important! For instance, if we take the typical ensemble average and sum over all the states of the system, then $n(\vec{r})$ will actually be homogenous in the solid phase, because we'll be summing over all the translations and orientations of the crystal as well. What we really want to do here is to take a /time/ average of the system; that is, we only consider the portion of phase space that's actually /accessible/ by the system in the symmetry-broken phase. This way, we only sum over the jigglings of the /particular/ orientation and location assumed by the crystal.
+~~~
+
+~~~
+{Remark on the symmetry of the Hamiltonian}
+(The following paragraph is incredibly vague and unclear, and I need to rewrite it once I understand the concept better!) There still remains a confusing, mysterious, and deep question about this whole affair of broken symmetry: /The Hamiltonian of the crystal is still translationally invariant,/ even though the crystal phase has /broken/ that translational invariance! In other words, the Hamiltonian -- which tells you the /energy/ of the system and consequently how it behaves -- doesn't /care/ about how you slide around the system, but somehow, the crystal /does/. This is pretty weird. The laws governing system behavior don't specify the location of the crystal, but somehow, the crystal lattice has decided for itself which particular $\vec{r}$ to anchor itself too. 
+~~~
+
+== Another example of broken symmetry
+
+Here's another (strange!) example of a phase transition, courtesy of my dear friend Scott Reid. We didn't cover it in class, but I personally find it quite enlightening. It comes from the dark art of crystallography (oooh) and it has an equally dark name of an *orthorhombic-tetragonal structural phase transition*. It's the name of a funny process that crystals undergo when they /change shape/ at a certain temperature. Crazy, isn't it? You'd think that shape-shifting crystals have nothing to do with this funny business about phase transitions or symmetry breaking, but the fact that they /do/ emphasizes how broad, far-reaching, and universal the principles of statistical mechanics can be.
+
+Anyways, what happens with these sorts of materials is that at high temperatures, two of their axes are the same length (orthorhombic), but at low temperatures, they're different lengths (tetragonal). So somehow, as you cool down this magical substance, it somehow decides which axis becomes the long one, and which becomes the short one. Now the funny thing is that at high temperatures, the two axes are /equivalent/; that is, there's a symmetry between the a-axis and the b-axis. It doesn't matter which one you call which. But at low temperatures, this symmetry is /broken/ -- one of them has decided to become long, the other has become short. Neat, eh?
+
+{{<img src="img/structural_PT.jpg"}}
+
+The whole affair of symmetry breaking in phase transitions can be pretty opaque and confusing, but I hope that these examples can somewhat add to the intuition. Honestly, I think the best way to get a better grasp of these abstract concepts is by seeing how it comes up different /particular examples/. We've seen two examples so far -- the solid-gas phase transition, and the orthorhombic-tetragonal structural transition -- and hopefully we'll get to see more examples as the course goes on.
+
+Up next, we'll be spending a while on one particular example, called the Ising model, and we'll try to use it to get a better intuition about all the funny business that's going on here.

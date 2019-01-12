@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Symmetry in Phase Transitions</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Intro Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html" class="current">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model</a></div>
+<div class="menu-item"><a href="intro5.html">Correlations</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Symmetry in Phase Transitions</h1>
+</div>
+<p>At this point we switched gears a bit and started talking about symmetry.</p>
+<p>As we've probably heard by now, symmetry plays a key role in &lsquo;&lsquo;fancy&rsquo;&rsquo; physicist thinking, and serves as a helpful guiding principle to think about different phases of matter. The main idea behind symmetry is:</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Different phases of matter are characterized by different sorts of symmetry. At higher temperatures, matter takes on a &lsquo;&lsquo;higher symmetry&rsquo;&rsquo; phase; at lower temperatures, the phases are of lower symmetry or &lsquo;&lsquo;broken symmetry.&rsquo;&rsquo;</p>
+</div></div>
+<p>Now honestly, this just sounds like a bunch of fancy words, and it all seems pretty abstract and opaque. I'm not sure how much we'll cover this concept in the class, but from my impression of Prof. Kivelson so far, I think he'll be emphasizing it over and over again, so I think it's well worth getting a better understanding of what these words mean.</p>
+<p>The formal mathematical treatment of symmetry groups can also be intimidating and unenlightening, so I think the best way to get at the concept is through a few examples to help build our intuition. In the intro lecture, Prof. Raghu gave an example of symmetry-breaking between solids.</p>
+<p>Let's say we have a system of <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles which undergoes a solid-gas phase transition at some temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />. </p>
+<ul>
+<li><p>At high temperatures, in the gaseous phase, the particles are flying around everywhere, and have equal probability of being anywhere inside the box. </p>
+</li>
+<li><p>At lower temperatures, the particles have crystallized into a solid lattice, and they're trapped within the crystal lattice and can only vibrate around their equilibrium lattice positions.</p>
+</li>
+</ul>
+<p><img src="img/gas_vs_crystal.jpg"></p>
+<p>The key idea is that the <i>symmetry of these two phases is different</i> &ndash; the gas phase is of higher symmetry, while the solid phase is of lower symmetry. To illustrate this, let's consider the <i>density of particles</i> in a little region centered around a position <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> in the box. </p>
+<ul>
+<li><p>In the gaseous phase, the density of particles is <i>homogenous</i> &ndash; it doesn't matter <i>where</i> in the box you look, there's the same chance you'll find a particle &ndash; so <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> is independent of <img class="eq" src="eqs/756880090336066481-130.png" alt="r_i" style="vertical-align: -4px" /> (i.e., it's a constant). We say the gas has the property of being <b>translationally invariant</b> &ndash; if you &lsquo;&lsquo;translate&rsquo;&rsquo; a gas (slide around all the particles), the system is &lsquo;&lsquo;invariant&rsquo;&rsquo; (nothing changes).</p>
+</li>
+<li><p>In the solid (crystal) phase, the density of particles is no longer homogenous! If you look near a crystal lattice site, then the density of particles is very different than if you look somewhere between the atoms of the crystal. In other words, <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> is no longer independent of <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" />. We say that a crystal have <b>broken translational invariance</b>. Sounds impressive!</p>
+</li>
+</ul>
+<p>Here are a few more remarks that might either be more enlightening or more confusing, depending on your tastes:</p>
+<div class="infoblock">
+<div class="blocktitle">Remark on symmetry groups</div>
+<div class="blockcontent">
+<p>Even though <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> in a crystal is no longer constant, it's still clearly symmetric, by some notion of the word symmetric. For instance, if we translate the whole crystal over so that the unit cells all line up and the atoms lie on top of their brothers and sisters, then the crystal still looks the same! More formally, if we translate the system by a <b>lattice vector</b> <img class="eq" src="eqs/6235765355787146323-130.png" alt="vec{R}" style="vertical-align: -1px" />, then the density remains invariant; i.e., <img class="eq" src="eqs/7401783605189578645-130.png" alt="n(vec{r} + vec{R}) = n(vec{r})" style="vertical-align: -5px" />.</p>
+<p>You might argue that this statement held true for the gas as well &ndash; but they key difference is that <i>only a subgroup of translations</i> works for the crystal. In a gas, <i>every</i> single possible translation by <img class="eq" src="eqs/6235765355787146323-130.png" alt="vec{R}" style="vertical-align: -1px" /> preserved the density, but in a crystal, only certain special <img class="eq" src="eqs/6235765355787146323-130.png" alt="vec{R}" style="vertical-align: -1px" />s &ndash; the lattice vectors of the crystal &ndash; work for preserving the density <img class="eq" src="eqs/3848586826872213323-130.png" alt="n(vec{r}) = n(vec{r} + vec{R})" style="vertical-align: -5px" />. In other words, after the gas-solid phase transition, we go from every possible <img class="eq" src="eqs/6235765355787146323-130.png" alt="vec{R}" style="vertical-align: -1px" /> to <img class="eq" src="eqs/6235765355787146323-130.png" alt="vec{R}" style="vertical-align: -1px" />s of the form <img class="eq" src="eqs/9131537764527540325-130.png" alt="vec{R} = h vec{a} + k vec{b} + l vec{c}" style="vertical-align: -2px" />, where <img class="eq" src="eqs/6803232668169092012-130.png" alt="vec{a}, vec{b}," style="vertical-align: -4px" /> and <img class="eq" src="eqs/6235765355772146242-130.png" alt="vec{c}" style="vertical-align: -1px" /> are the basis vectors of the crystal's <a href="https://en.wikipedia.org/wiki/Bravais_lattice">Bravais lattice</a>. To use more technical language, we say that the continuous symmetry group of the gas has been reduced to a discrete subgroup in the crystal.</p>
+</div></div>
+<div class="infoblock">
+<div class="blocktitle">Remark on ergodicity</div>
+<div class="blockcontent">
+<p>Here's silly (but important!) philosophical comment about the argument above.</p>
+<p>We ought to be a bit more careful about <i>what exactly</i> we mean when we say &lsquo;&lsquo;the density <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" />&rsquo;&rsquo;. Clearly, we're not considering a frozen &lsquo;&lsquo;snapshot&rsquo;&rsquo; of the system, but rather, some sort of average &ndash; and the questions about <i>what</i> sort of average we're taking is quite subtle and important! For instance, if we take the typical ensemble average and sum over all the states of the system, then <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> will actually be homogenous in the solid phase, because we'll be summing over all the translations and orientations of the crystal as well. What we really want to do here is to take a <i>time</i> average of the system; that is, we only consider the portion of phase space that's actually <i>accessible</i> by the system in the symmetry-broken phase. This way, we only sum over the jigglings of the <i>particular</i> orientation and location assumed by the crystal.</p>
+</div></div>
+<div class="infoblock">
+<div class="blocktitle">Remark on the symmetry of the Hamiltonian</div>
+<div class="blockcontent">
+<p>(The following paragraph is incredibly vague and unclear, and I need to rewrite it once I understand the concept better!) There still remains a confusing, mysterious, and deep question about this whole affair of broken symmetry: <i>The Hamiltonian of the crystal is still translationally invariant,</i> even though the crystal phase has <i>broken</i> that translational invariance! In other words, the Hamiltonian &ndash; which tells you the <i>energy</i> of the system and consequently how it behaves &ndash; doesn't <i>care</i> about how you slide around the system, but somehow, the crystal <i>does</i>. This is pretty weird. The laws governing system behavior don't specify the location of the crystal, but somehow, the crystal lattice has decided for itself which particular <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> to anchor itself too. </p>
+</div></div>
+<h2>Another example of broken symmetry</h2>
+<p>Here's another (strange!) example of a phase transition, courtesy of my dear friend Scott Reid. We didn't cover it in class, but I personally find it quite enlightening. It comes from the dark art of crystallography (oooh) and it has an equally dark name of an <b>orthorhombic-tetragonal structural phase transition</b>. It's the name of a funny process that crystals undergo when they <i>change shape</i> at a certain temperature. Crazy, isn't it? You'd think that shape-shifting crystals have nothing to do with this funny business about phase transitions or symmetry breaking, but the fact that they <i>do</i> emphasizes how broad, far-reaching, and universal the principles of statistical mechanics can be.</p>
+<p>Anyways, what happens with these sorts of materials is that at high temperatures, two of their axes are the same length (orthorhombic), but at low temperatures, they're different lengths (tetragonal). So somehow, as you cool down this magical substance, it somehow decides which axis becomes the long one, and which becomes the short one. Now the funny thing is that at high temperatures, the two axes are <i>equivalent</i>; that is, there's a symmetry between the a-axis and the b-axis. It doesn't matter which one you call which. But at low temperatures, this symmetry is <i>broken</i> &ndash; one of them has decided to become long, the other has become short. Neat, eh?</p>
+<p><img src="img/structural_PT.jpg"</p>
+<p>The whole affair of symmetry breaking in phase transitions can be pretty opaque and confusing, but I hope that these examples can somewhat add to the intuition. Honestly, I think the best way to get a better grasp of these abstract concepts is by seeing how it comes up different <i>particular examples</i>. We've seen two examples so far &ndash; the solid-gas phase transition, and the orthorhombic-tetragonal structural transition &ndash; and hopefully we'll get to see more examples as the course goes on.</p>
+<p>Up next, we'll be spending a while on one particular example, called the Ising model, and we'll try to use it to get a better intuition about all the funny business that's going on here.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-12 15:30:38 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="intro3.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
