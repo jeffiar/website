@@ -13,11 +13,9 @@ Under different conditions, a macroscopic sample of water has qualitatively diff
 
 All this information on the phases of water can be summarized on a *phase diagram* such as the one shown below.
 
-{{<img src="img/phase_diagram.jpg">}}
+{{<img src="img/phase_diagram.png" style="width: 50%; height: 50%"/>}}
 
-At this point the professor moved beyond a ``cocktail party'' definition to a more precise definition of what he meant by phases and phase transitions.
-
-As a concrete example, say Alice the experimentalist twiddles the knobs on the water system, and moves the system state along the red path A in the diagram. As the /control variables/ of pressure and temperature vary, her system remains in the same liquid phase, and all the macroscopic observables (such as the density) change continuously. On the other hand, if she twiddled the knobs to change the system state along path B, when she crosses the liquid-gas phase transition boundary, the density will change discontinuously to a much lower value. 
+Say Alice the experimentalist twiddles the knobs on the water system, and moves the system state along the path A in the diagram. As the /control variables/ of pressure and temperature vary, her system remains in the same liquid phase, and all the macroscopic observables (such as the density) change continuously. On the other hand, if she twiddled the knobs to change the system state along path B, when she crosses the liquid-gas phase transition boundary, the density will change discontinuously to a much lower value. 
 
 This behavior is really quite surprising and unusual -- even though she is changing the control parameters /continuously/, there is a discontinuous, sudden change in a macroscopic experimental observable!
 

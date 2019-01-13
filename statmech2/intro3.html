@@ -30,21 +30,20 @@
 <div class="blockcontent">
 <p>Different phases of matter are characterized by different sorts of symmetry. At higher temperatures, matter takes on a &lsquo;&lsquo;higher symmetry&rsquo;&rsquo; phase; at lower temperatures, the phases are of lower symmetry or &lsquo;&lsquo;broken symmetry.&rsquo;&rsquo;</p>
 </div></div>
-<p>Now honestly, this just sounds like a bunch of fancy words, and it all seems pretty abstract and opaque. I'm not sure how much we'll cover this concept in the class, but from my impression of Prof. Kivelson so far, I think he'll be emphasizing it over and over again, so I think it's well worth getting a better understanding of what these words mean.</p>
-<p>The formal mathematical treatment of symmetry groups can also be intimidating and unenlightening, so I think the best way to get at the concept is through a few examples to help build our intuition. In the intro lecture, Prof. Raghu gave an example of symmetry-breaking between solids.</p>
-<p>Let's say we have a system of <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles which undergoes a solid-gas phase transition at some temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />. </p>
+<p>Now honestly, this statement sounds pretty abstract. From my impression of Prof. Kivelson, I think he'll be emphasizing the concept symmetry over and over again, so I think it's well worth getting a better understanding of what these words actually mean. The formal mathematical treatment of symmetry groups can be intimidating and unenlightening, so I think the best way to build our intuition about the concept is through a few concrete examples.</p>
+<p>In the intro lecture, Prof. Raghu gave an example of symmetry-breaking between solids. Let's say we have a system of <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles which undergoes a solid-gas phase transition at some temperature. </p>
 <ul>
 <li><p>At high temperatures, in the gaseous phase, the particles are flying around everywhere, and have equal probability of being anywhere inside the box. </p>
 </li>
 <li><p>At lower temperatures, the particles have crystallized into a solid lattice, and they're trapped within the crystal lattice and can only vibrate around their equilibrium lattice positions.</p>
 </li>
 </ul>
-<p><img src="img/gas_vs_crystal.jpg"></p>
+<p><img src="img/gas_vs_crystal.png"></p>
 <p>The key idea is that the <i>symmetry of these two phases is different</i> &ndash; the gas phase is of higher symmetry, while the solid phase is of lower symmetry. To illustrate this, let's consider the <i>density of particles</i> in a little region centered around a position <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> in the box. </p>
 <ul>
 <li><p>In the gaseous phase, the density of particles is <i>homogenous</i> &ndash; it doesn't matter <i>where</i> in the box you look, there's the same chance you'll find a particle &ndash; so <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> is independent of <img class="eq" src="eqs/756880090336066481-130.png" alt="r_i" style="vertical-align: -4px" /> (i.e., it's a constant). We say the gas has the property of being <b>translationally invariant</b> &ndash; if you &lsquo;&lsquo;translate&rsquo;&rsquo; a gas (slide around all the particles), the system is &lsquo;&lsquo;invariant&rsquo;&rsquo; (nothing changes).</p>
 </li>
-<li><p>In the solid (crystal) phase, the density of particles is no longer homogenous! If you look near a crystal lattice site, then the density of particles is very different than if you look somewhere between the atoms of the crystal. In other words, <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> is no longer independent of <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" />. We say that a crystal have <b>broken translational invariance</b>. Sounds impressive!</p>
+<li><p>In the solid (crystal) phase, the density of particles is no longer homogenous! If you look near a crystal lattice site, then the density of particles is very different than if you look somewhere between the atoms of the crystal. In other words, <img class="eq" src="eqs/8998314172784980011-130.png" alt="n(vec{r})" style="vertical-align: -5px" /> is no longer independent of <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" />. We say that a crystal exhibits <b>broken translational invariance</b>.</p>
 </li>
 </ul>
 <p>Here are a few more remarks that might either be more enlightening or more confusing, depending on your tastes:</p>
@@ -63,17 +62,28 @@
 <div class="infoblock">
 <div class="blocktitle">Remark on the symmetry of the Hamiltonian</div>
 <div class="blockcontent">
-<p>(The following paragraph is incredibly vague and unclear, and I need to rewrite it once I understand the concept better!) There still remains a confusing, mysterious, and deep question about this whole affair of broken symmetry: <i>The Hamiltonian of the crystal is still translationally invariant,</i> even though the crystal phase has <i>broken</i> that translational invariance! In other words, the Hamiltonian &ndash; which tells you the <i>energy</i> of the system and consequently how it behaves &ndash; doesn't <i>care</i> about how you slide around the system, but somehow, the crystal <i>does</i>. This is pretty weird. The laws governing system behavior don't specify the location of the crystal, but somehow, the crystal lattice has decided for itself which particular <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> to anchor itself too. </p>
+<p>There still remains a confusing, mysterious, and deep question about this whole affair of broken symmetry: <i>The Hamiltonian of the crystal is still translationally invariant,</i> even though the crystal phase has <i>broken</i> that translational invariance! In other words, the Hamiltonian &ndash; which tells you the <i>energy</i> of the system and consequently how it behaves &ndash; doesn't <i>care</i> about how you slide around the system, but somehow, the crystal <i>does</i>. This is pretty weird. The laws governing system behavior don't specify the location of the crystal, but somehow, the crystal lattice has decided for itself which particular <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> to anchor itself too. </p>
 </div></div>
-<h2>Another example of broken symmetry</h2>
-<p>Here's another (strange!) example of a phase transition, courtesy of my dear friend Scott Reid. We didn't cover it in class, but I personally find it quite enlightening. It comes from the dark art of crystallography (oooh) and it has an equally dark name of an <b>orthorhombic-tetragonal structural phase transition</b>. It's the name of a funny process that crystals undergo when they <i>change shape</i> at a certain temperature. Crazy, isn't it? You'd think that shape-shifting crystals have nothing to do with this funny business about phase transitions or symmetry breaking, but the fact that they <i>do</i> emphasizes how broad, far-reaching, and universal the principles of statistical mechanics can be.</p>
-<p>Anyways, what happens with these sorts of materials is that at high temperatures, two of their axes are the same length (orthorhombic), but at low temperatures, they're different lengths (tetragonal). So somehow, as you cool down this magical substance, it somehow decides which axis becomes the long one, and which becomes the short one. Now the funny thing is that at high temperatures, the two axes are <i>equivalent</i>; that is, there's a symmetry between the a-axis and the b-axis. It doesn't matter which one you call which. But at low temperatures, this symmetry is <i>broken</i> &ndash; one of them has decided to become long, the other has become short. Neat, eh?</p>
-<p><img src="img/structural_PT.jpg"</p>
+<h2>Another example of symmetry breaking</h2>
+<p>Here's another (strange) example of a phase transition, courtesy of my dear friend Scott Reid. We didn't cover it in class, but I personally find it helpful for understanding how symmetry is broken.</p>
+<p>This peculiar phase transition emerges from the dark art of crystallography, and it involves <b>shape-shifting crystals</b>&#8201;&mdash;&#8201;crystals which take on the shape <i>of a square at high temperatures, but deform into rectangles at low temperatures</i>!</p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>You'd think that the funny business shape-shifting crystals has nothing to do with phase transitions or symmetry breaking, but the fact that they <i>do</i> emphasizes how broad, far-reaching, and universal the principles of statistical mechanics can be&hellip;</p>
+</div></div>
+<p>To be more precise, we need to consider the basic repeating unit in the crystal, called the <b>unit cell</b>. The shape of the unit cell, which is described by the <b>lattice parameters</b>, determines the structure of the crystal lattice. At higher temperatures, two axes of the unit cell have the same length, whereas but below the critical temperature, they become different lengths. This behavior is best illustrated in the schematic below. (Diagram not too scale!)</p>
+<p><img src="img/structural_PT.png"</p>
+<p>This square-to-rectangle phase transition is another example of symmetry breaking. At high temperatures, the two axes are <i>equivalent</i>, so there's a symmetry between the a-axis and the b-axis &ndash; it doesn't matter which one you call which. But at low temperatures, this symmetry is <i>broken</i> &ndash; one of them has decided to become long, the other has become short.</p>
+<p>For good measure, I'll also include a figure from <a href="http://iopscience.iop.org/article/10.1088/0022-3719/21/2/011/pdf">a paper</a> that talks about the structural phase transition of the material <img class="eq" src="eqs/2876613568579425609-130.png" alt="As_2O_5" style="vertical-align: -4px" />. You can clearly see that the two lattice parameters <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" /> and <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> are identical at high temperature, but as you decrease the temperature below <img class="eq" src="eqs/5068072284024976548-130.png" alt="T_c sim 580K" style="vertical-align: -4px" />, the two lattice parameters <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" /> and <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> become different.</p>
+<p><img src="img/structural_PT_figure.png"</p>
+<h2>Summary and moving on</h2>
 <p>The whole affair of symmetry breaking in phase transitions can be pretty opaque and confusing, but I hope that these examples can somewhat add to the intuition. Honestly, I think the best way to get a better grasp of these abstract concepts is by seeing how it comes up different <i>particular examples</i>. We've seen two examples so far &ndash; the solid-gas phase transition, and the orthorhombic-tetragonal structural transition &ndash; and hopefully we'll get to see more examples as the course goes on.</p>
-<p>Up next, we'll be spending a while on one particular example, called the Ising model, and we'll try to use it to get a better intuition about all the funny business that's going on here.</p>
+<p>Up next, we'll be spending a while on one particular example to try getting a better intuition about all the funny business that's going on here. It's called the <a href="intro4.html">Ising Model</a>.</p>
+<p><small>References: S A T Redfern and E Salje 1988 J. Phys. C: Solid State Phys. 21 277</small</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-12 15:30:38 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-01-13 00:32:22 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="intro3.jemdoc">source</a>)
 </div>
 </div>

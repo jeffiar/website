@@ -13,11 +13,12 @@ Why should we spend so much time talking about the Ising model?
     -- the Ising model exhibits symmetry breaking in low-temperature phase (which we just talked about)
     -- it has a special `critical point' at a well-defined temperature (which we alluded to in the phase diagram of water)
     -- other rich features.
-- It's one of few *exactly solvable models* where we can actually compute thermodynamic quantities and interpret them.
-    -- In general, calculating thermodynamic quantities is hard because you have to sum up many terms. Remember from our first thermo class that you can think about an equilibrium system as an /ensemble/ of many states $s$, each weighted with their own probability $P_s$. In this framework, the thermodynamic quantities that you observe correspond to averages over the ensemble. In particular, if you want to find the ensemble average of some observable $A(s)$, you need to find the sum $\langle A \rangle = \sum_s A(s) P_s$, where the sum runs over /all the possible states/. The problem with this, as you remember, is that the number of states of a thermodynamic system scales /exponentially/ with the number of particles! Even for a moderate-sized system, there are just too many states for a computer to explicitly compute the average -- let alone a thermodynamic system where $N$ is on the order of 10^{23}$.
+- It's one of few *exactly solvable models* where we can actually compute thermodynamic quantities. The Ising model has explicit solutions that are enlightening to interpret.
+    -- This is similar to the reason we spend so much time on the harmonic oscillator in quantum mechanics and classical mechanics. 
+    -- Calculating thermodynamic quantities is hard because you have to sum up many things! Remember from our first thermo class that you can think about an equilibrium system as an /ensemble/ of many states $s$, each weighted with their own probability $P_s$. If we want to find the ensemble average of some observable $A(s)$, we'll need to find the sum $\langle A \rangle = \sum_s A(s) P_s$, where you need to sum over /all the possible states/. The problem with this, as you remember, is that the number of states of a thermodynamic system scales /exponentially/ with the number of particles! Even for a moderate-sized system, there's just too many states for a computer to explicitly compute the average -- let alone a thermodynamic system where $N ~ 10^23$.
     -- So we need to ``be clever'' to compute the partition function, and we ought to be thankful for exactly solvable systems!
-- The Ising model is simple, yet it can be applied to a surprising number of different systems.
-    -- This our first taste of *universality* -- a feature of critical phenomena where the same theory applies to all sorts of different phase transitions, whether in liquids and gases or magnets or superconductors or whatever. Physicists love this sort of general behavior because it suggests a sort of deeper order in our chaotic world.
+- Even though Ising model is deceptively simple, it can be applied to a surprising number of different systems.
+    -- It's our first taste of *universality*, where the same theory applies to all sorts of different phase transitions, whether in liquids and gases or magnets or superconductors or whatever. Physicists love this sort of general behavior because it makes them think there's a sort of deeper order in our chaotic world.
 
 == Definition of Ising Model
 
@@ -25,7 +26,7 @@ The Ising Model is a /mathematical/ model that doesn't correspond to an actual p
 
 {{<img src="ising.jpg">}}
 
-Now, this definition is woefully abstract and unphysical, so for us physicsits, it's extremely helpful to have an /actual system/ in mind, so that we can refer to something explicit and build physical intuition. Here are a few physical systems that the Ising model might represent:
+Now, this definition is woefully abstract and unphysical, so it's extremely helpful to have an /actual system/ in mind so that we have something to refer to and build physical intuition about. Here are a few physical systems that the Ising model might represent:
 
 - A magnet. Each site represents a particular `spin' in the material (an unpaired electron??), and it's $-1$ if the spin points down or $+1$ if the spin points up. Each of the spins acts like a mini magnet with its own mini magnetic moment; if all the spins are aligned, then the whole lattice of spins behaves like a big magnet with a net macroscopic magnetic moment.
 - An alloy; say, steel. Each of the sites is an atom in the lattice; $-1$ represents an iron atom at that site; $+1$ represents steel.
@@ -43,17 +44,13 @@ A natural question to ask about this Mickey-mouse model of a magnet is what /ene
     -- Since every individual spin feels the external field, we have to *sum over all sites* to find total contribution to the energy.
 
 - the *interaction* term between neighboring spins -- maybe they want to align with each other and point the same way, maybe they want to anti-align and point in different ways. Physically, this interaction arises because each spin in the magnet is its own mini magnetic dipole that sets up its own magnetic field, and its neighbors can feel that magnetic field. 
-    -- The size of $J$ tells you how /strongly/ neighboring spins are coupled to each other -- how much they want to (anti-)align. Physically, the strength of spin-spin coupling could depend on distance between them in the maget's lattic, for instance.
-    -- The sign of $J$ tells you whether neighbors prefer to align or to anti-align. (The technical term for this is *ferromagnetic* or *anti-ferromagnetic*, respectively). Physically, whether a material is one or the other (or neither) depends on the exact quantum mechanical details of how the spins interact.
+    -- The size of $J$ tells you how /strongly/ neighboring spins are coupled to each other -- how much they want to align (anti-align). Physically, the strength of spin-spin coupling could depend on distance between them in the maget's lattic, for instance.
+    -- The sign of $J$ tells you whether aligned neighbors or anti-aligned neighbors is energetically favorable. The technical term is *ferromagnetic* or *anti-ferromagnetic*, respectively. Physically, whether a material is one or the other (or neither) depends on the exact quantum mechanical details of how the spins interact.
     -- Since the spin-spin interaction arises between two spins, we have to sum over *pairs of sites* to find its total interaction to the energy.
 
 === More about the interaction term
 
-A natural question about the spin-spin interaction term is /which spins are coupled to which spins?/ 
-
-If we turn back again to the physical picture of the magnet, and we zoom in on some particular spin, we would observe that the minature magnetic field set up by that spin is stronger closer to that spin and weaker further away. Consequently, we expect the strength of spin-spin interaction to be stronger for nearby spins and weaker for faraway spins. The exact distance-dependence of spin-spin interactions can be rather complicated for actual magnets.
-
-For the Ising model, we make the simplest possible assumption for the nature of this spin-spin interaction:
+A question about the spin-spin interaction term, naturally, is /which spins are coupled to which spins?/ If we turn back again to the physical picture of the magnet, we can imagine that the minature magnetic field set up by some particular spin is stronger closer to that spin and gets weaker further away. Consequently, we expect the strength of spin-spin interaction to be stronger nearby spins and weaker for faraway spins. For the Ising model, we make the simplest possible assumption for the nature of this spin-spin interaction:
 
 ~~~
 {Nearest-neighbor interaction}
@@ -64,9 +61,8 @@ A few comments:
 - In a square lattice of $d$ dimensions, each site has $2d$ nearest neighbors: left and right in one dimension, up and down once you add the second dimension, etc...
 - We assume the interaction is *isotropic* -- all neighbors are treated equally regardless of direction.
 - We often talk about nearest-neighbor interactions as the energy of a *bond* that joins two lattice sites.
-- When we're summing over adjacent pairs of sites, symbolically, we writelittle angle brackets around the indices to represent ``nearest neighbor''.
 
-A nice consequence of nearest-neighbor interactions is that when we're finding the total energy of some configuration of spins, rather than summing over /all possible pairs/ of sites, we only sum over pairs of sites that are /adjacent/ to each other.
+A nice consequence of nearest-neighbor interactions is that rather than summing over /all possible pairs/ of sites, we only sum over pairs of sites that are /adjacent/ to each other. When we write this out in a sum symbolically, we put little angle brackets around the indices to represent ``nearest neighbor'' -- it doesn't make any sense, but whatever.
 
 ~~~
 {Remark}
@@ -101,7 +97,7 @@ The rest of this page is under construction still.
 - Remark on perturbative high-temperature or low-temperature expansions
 - There must be a phase transition between paramagnetic and ferromagnetic phases!
 
-Somewhere in here, relate to the phase diagram? Transitioning between ideas and motivating them properly will be very hard...
+Somewhere in here, relate to the phase diagram? Transitioning between ideas and motivating them properly will be very hard.
 
 ==  Peierl's argument for the Phase Transition
 - Interpret as a balance between entropy and energy -- the sign of the free energy $F = E - TS$
