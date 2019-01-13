@@ -28,7 +28,7 @@
 <p>So we put our guts aside and started talking about how to <i>modify and play with</i> sines and cosines.</p>
 <h2>Tweaking Sines and Cosines</h2>
 <p>One of the first things we can do is to tweak the base period of the function to be <img class="eq" src="eqs/6272018864-130.png" alt="1" style="vertical-align: -0px" /> (unity) rather than <img class="eq" src="eqs/4814073714822610791-130.png" alt="2pi" style="vertical-align: -1px" />. This turns out to be pretty convenient and makes things pretty conceptually clear. If we do this, our friends become <img class="eq" src="eqs/2058208881431151101-130.png" alt="sin 2 pi t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/3773792512972709130-130.png" alt="cos 2 pi t" style="vertical-align: -1px" />, and our picture of the unit circle is as follows:</p>
-<p><img src="img/freq1circle.jpg"></p>
+<p><img src="img/freq1circle.png"></p>
 <p>In particular, a revolution of the unit circle is now <img class="eq" src="eqs/8654563665964732100-130.png" alt="0 &lt; t &lt; 1" style="vertical-align: -1px" />, and as <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> increases from zero to one, it traces out the unit circle one time counterclockwise. Notice there is one revolution per second, so the frequency is one. (The period is also one.)</p>
 <div class="infoblock">
 <div class="blockcontent">
@@ -53,6 +53,7 @@
 </li>
 </ul>
 <p>These three parameters capture any change that you can do to a sinusoid, and they're all independent of each other.</p>
+<p><img src="img/params.png"></p>
 <h2>Summing up sinusoids</h2>
 <p>The way we'll use these tweaked sinusoids is by <i>adding them up in a sum</i>. The main idea behind Fourier synthesis is that even though individual sinusoids behave like simple functions, when <i>combine</i> multiple sinusoides, each with their own frequencies, phases, and amplitudes, we can end up with richer behavior.</p>
 <p>We then went through a simple physical example of <i>why</i> you might want to add up a number of terms, again using the example of a stadium wave. Say Mary is a spectator in the crowd, and we want to model the movement of her arms as she's subjected to the whims of the crowd. Any particular wave might be well modeled by a single sinusoid <img class="eq" src="eqs/1525034850997108436-130.png" alt="A sin ( 2 pi nu t + phi)" style="vertical-align: -5px" />, but in reality, she is likely experiencing multiple waves at the same time. If that's the case, it's reasonable to guess that the <i>total</i> displacement or disturbance can be modeled by a <i>sum</i>, which we can write as</p>
@@ -89,7 +90,7 @@
 <p>There's one final degree of freedom we can introduce into the problem: we can allow a global vertical shift of <img class="eq" src="eqs/593367982111446695-130.png" alt="A_0" style="vertical-align: -4px" />, because a constant term won't affect the periodicity of <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />. (Electrical Engineers like to call the constant term the &lsquo;&lsquo;DC component&rsquo;&rsquo;)</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-10 12:21:35 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-01-13 00:47:59 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec2.jemdoc">source</a>)
 </div>
 </div>

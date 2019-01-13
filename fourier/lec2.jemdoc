@@ -11,7 +11,7 @@ So we put our guts aside and started talking about how to /modify and play with/
 
 One of the first things we can do is to tweak the base period of the function to be $1$ (unity) rather than $2\pi$. This turns out to be pretty convenient and makes things pretty conceptually clear. If we do this, our friends become $\sin 2 \pi t$ and $\cos 2 \pi t$, and our picture of the unit circle is as follows:
 
-{{<img src="img/freq1circle.jpg">}}
+{{<img src="img/freq1circle.png">}}
 
 In particular, a revolution of the unit circle is now $0 < t < 1$, and as $t$ increases from zero to one, it traces out the unit circle one time counterclockwise. Notice there is one revolution per second, so the frequency is one. (The period is also one.)
 
@@ -44,6 +44,8 @@ So to summarize:
 - The *amplitude* $A$ tells you the size of the circle or how ``strong'' your disturbace is.
 
 These three parameters capture any change that you can do to a sinusoid, and they're all independent of each other.
+
+{{<img src="img/params.png">}}
 
 == Summing up sinusoids
 

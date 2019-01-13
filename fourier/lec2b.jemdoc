@@ -50,6 +50,8 @@ Remember that Euler's formula relates imaginary exponentials to sinusoids:
 \)
 We can visualize this fact on a complex plane by observing how the real and imaginary components of the complex phase $e^{i \theta}$ oscillate as it rotates around the origin. It's a rather remarkable and beautiful fact that imaginary exponentials relate to sinusoids; the ordinary growing or decaying exponentials have /nothing/ to do with periodicity!
 
+{{<img src="img/euler.png">}}
+
 ~~~
 {Remark}
 I should say a bit more about how to interpret complex numbers like $e^{i \theta}$. The cleanest way to think about complex numbers is as points on the complex plane, where ``pure phases'' such as $e^{i \theta}$ all fall on the unit circle, an angle of $\theta$ radians from the x-axis. Since a rotation by $2 \pi$ radians goes one time around the unit circle, it's clear that $e^{i (\theta + 2 \pi)} = e^{i \theta}$, because you wind up at the same point.
