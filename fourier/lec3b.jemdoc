@@ -1,0 +1,89 @@
+# jemdoc: menu{MENU}{lec3b.html}, showsource
+= Applying Fourier Series to Hot Rings
+
+It is now time to pay our scholarly dues. We will discuss Fourier's initial application of Fouirer Series to the problem of *heat transfer on a ring*. As Prof. Osgood said, the hot-ring problem has become an important part of our intellectual heritage, and we will find it useful to go through this famous example.
+
+In Paris, there's lots of big heavy anchor rings that you can find in the city. As the story goes, Fourier stumbled across one of these rings one day, and wanted to figure out the dynamics of heat flow on one of these rings. I really have no idea behind whether this is true or not, but hopefully this story provides some (?) motivation for why hot rings are a problem in the first case.
+
+Anyways, Fourier considered the following problem:
+
+~~~
+{Fourier's problem}
+Suppose we heated up a ring to have a particular temperature distribution at different points along the ring. If we waited for the ring to cool down, how would this temperature distribution evolve over time?
+~~~
+
+To translate this physical question into a mathematical statement, suppose we write down the initial temperature distribution as some function $f(x)$ of the position $x$ along the ring. The quantity we wish to find is the temperature at position $x$ after some time $t$, which we will write as $u(x,t)$. The initial condition of the problem is that at time $t=0$, the temperature distribution is given by $u(x,0) = f(x)$.
+
+The reason why we use Fourier Series to solve this problem is that the function $u(x,t)$ is actually /periodic/ in $x$: the points $x$ and $x+1$ refer to the same physical location on the ring. (We're using units where the ring is one unit around). It follows that $u(x,t)$ must equal $u(x+1,t)$, since they describe the temperature at the same point along the ring.
+
+== The heat equation
+
+The time evolution of temperature on the ring is governed by a partial differential equation known as the *heat equation*. It turns out that the heat equation isn't terribly difficult to derive from simple physical considerations; if I have time later this quarter, I might come back to this page and work out the derivation here. But for our purposes, we can just take the heat equation for what it is: it tells us how /quickly/ the temperature at any particular point changes over time, and relates this to the spatial variation in temperature near that point.
+    
+Mathematically, the heat equation is written as
+\(
+    \frac {\partial u}{\partial t} = k \frac {\partial^2 u}{\partial x^2},
+\)
+where $k$ is a physical constant (the heat diffusivity?) that tells you how well that particular material conducts heat. In this problem, we'll choose units so that $k = \frac 1 2$.
+
+The form of the heat equation actually tells us qualitative behavior about how we expect solutions to behave, but for now we'll just move on to the solution. (Honestly, I might just come back and redo this problem as a physicist, so that we could interpret the units of various variables and use dimensions to help us out...)
+
+The heat equation is a partial differential equation (PDE), which isn't quite as simple to solve as an /ordinary/ differential equation (ODE). In this problem, the main trick is to use Fourier Series to help us reframe the (PDE) in terms of an ODE. (Note that depending on your level of rigor, you might interpret differently /how/ exactly Fourier Series help us here.)
+
+== A Fourier Series Ansatz
+
+Motivated by the periodicity of $u(x,t) = u(x+1,t)$, we may attempt to expand $u(x,t)$ itself in terms of a Fourier Series as
+\(
+    u(x,t) = \sum_n c_n(t) e^{2 \pi inx},
+\)
+where the Fourier coefficients $c_n(t)$ are unknowns that we'll have to solve for. In physics, we call this an ``ansatz'', or a guess about the /shape/ of the solution. If we guess a good ansatz, the problem becomes easier. In this case, with the benefit of hindsight, we know already that using Fourier Series is the right approach.
+
+Notice that I've put in /time-dependence/ into the Fourier coefficients $c_n$ themselves; that is, they are no longer constants, but they vary in time. The reason for this is that we want $u(x,t)$ to vary in time, but since the Fourier sinusoids $e^{2 \pi int}$ don't vary in time (they only vary in space), we need to introduce the time-dependence into their coefficients.
+
+In a sense, we've reduced the problem to finding the set of functions $c_n(t)$ (which, again, represent the time-varying weights of each of the Fourier components.) If we knew what these functions were, we could plug them into our ansatz above and get the form of $u(x,t)$.
+
+== Solving for the Coefficients
+
+To solve for the coefficients $c_n(t)$, we plug in our Fourier ansatz into the heat equation:
+\(
+    \frac {\partial}{\partial t} \sum_n c_n(t) e^{2 \pi inx} = \frac 1 2 \frac {\partial^2} {\partial x^2} \sum_n c_n(t) e^{2 \pi inx}
+\)
+
+Let's consider what happens when these derivatives hit the ansatz. On the LHS, the only time-dependence is in the coefficients $c_n(t)$, so the time-derivative just turns the $c_n(t)$ into $c_n'(t)$. On the RHS, the only spatial-dependence is in the complex exponentials $e^{2 \pi inx}$; since we are hitting it with the spatial derivative twice, we pull down /two/ factors whatever's next to $x$ in the exponent. So our expression simplifies to
+\(
+    \sum_n c_n'(t) e^{2 \pi inx} = \frac 1 2 \sum_n c_n(t) (2 \pi in)^2 e^{2 \pi inx}
+\)
+
+For this equality to hold, each term on the left must equal its corresponding term on the right. (There's a more subtle argument, but thankfully the naive approach works.) If we match the coefficients of the exponentials, we find that
+\(
+    c_n'(t) = \frac 1 2 (2 \pi in)^2 c_n(t),
+\)
+or 
+\(
+    c_n'(t) = -2\pi^2n^2 c_n(t),
+\)
+which is an /ordinary/ differential equation in $t$ for the coefficients $c_n(t)$! The solution to this first-order ODE can be readily written down as
+\(
+    c_n(t) = c_n(0) e^{-2 \pi^2 n^2 t},
+\)
+which says that each of the Fourier components start of with some initial value $c_n(0)$ at time $t=0$, and then decay exponentially in time.
+
+=== Matching Initial Conditions
+
+Our final task is to figure out the initial values of the coefficients $c_n(0)$. We will need to use one final piece of information: the initial temperature distribution $f(x)$ at time $t=0$. Somehow the information about $f(x)$ must be encoded within these coefficients.
+
+Upon a bit of thought, we realize that the initial values of the coefficients $c_n(0)$ are actually the Fourier coefficients $\hat f(0)$ of the initial temperature distribution $f(x)$! Since the coefficients $c_n(t)$ represent the Fourier coefficients of $u(x,t)$ at time $t$, their initial values $c_n(0)$ must be the Fourier coefficients of $u(x,0)$ at time $t=0$. in other words, the $c_n(0)$ are the Fourier coefficients $\hat f(n)$ of the initial temperature distribution $f(x)$.
+
+So $c_n(0) = \hat f(n)$.
+
+== Putting it together
+
+Putting in our solution for the time-dependence of the coefficients $c_n(t)$, we arrive at our final expression for the time-varying heat distribution on the ring:
+\(
+    u(x,t) = \sum_n \hat f(n) e^{-2\pi^2n^2t} e^{2\pi inx},
+\)
+where $\hat f(n)$ are the Fourier coefficients of the initial heat distribution
+\(
+    \hat f(n) = \int_0^1 e^{-2\pi i n x} f(x) dx.
+\)
+This final result is quite magical and beautiful: we have an explicit formula for the solution of the heat equation! There's plenty to be said about this solution, but I'm getting hungry so I'm going to eat some lunch now.
