@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{lec2b.html}, showsource
+# jemdoc: menu{MENU}{lec2b.html}, showsource, analytics{UA-131436916-1}
 = Finding Fourier coefficients
 
 Rather than proving Fourier's scandal for any arbitrary $f(t)$ -- and again, we don't know what ``any'' means yet -- it's easier to start off with a simpler question:

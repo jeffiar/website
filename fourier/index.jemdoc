@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{index.html}, showsource
+# jemdoc: menu{MENU}{index.html}, showsource, analytics{UA-131436916-1}
 = Notes on Fourier Analysis
 
 Welcome! Here are some notes I'm taking for [https://see.stanford.edu/Course/EE261 EE 261] at Stanford in Winter of 2018-19. This course is about the Fourier Transform, which we all know and love as a beautiful topic with countless applications in mathematics, science, and engineering.
