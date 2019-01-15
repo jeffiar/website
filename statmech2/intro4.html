@@ -13,12 +13,17 @@
 <td id="layout-menu">
 <div class="menu-category">Stat Mech II</div>
 <div class="menu-item"><a href="index.html">Home</a></div>
-<div class="menu-category">Intro Lecture</div>
+<div class="menu-category">Week 1 Monday</div>
 <div class="menu-item"><a href="intro.html">Overview</a></div>
 <div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
 <div class="menu-item"><a href="intro3.html">Symmetry</a></div>
-<div class="menu-item"><a href="intro4.html" class="current">Ising&nbsp;Model</a></div>
-<div class="menu-item"><a href="intro5.html">Correlations</a></div>
+<div class="menu-item"><a href="intro4.html" class="current">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">Week 1 Friday</div>
+<div class="menu-item"><a href="lec2.html">Overview</a></div>
+<div class="menu-category">Week 2 Monday</div>
+<div class="menu-item"><a href="lec3.html">Quantum&nbsp;Stat&nbsp;Mech</a></div>
+<div class="menu-item"><a href="lec3b.html">Solving&nbsp;1D&nbsp;Ising</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
@@ -61,6 +66,8 @@
 <li><p>A magnet. Each site represents a particular &lsquo;spin&rsquo; in the material (an unpaired electron??), and it's <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> if the spin points down or <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> if the spin points up. Each of the spins acts like a mini magnet with its own mini magnetic moment; if all the spins are aligned, then the whole lattice of spins behaves like a big magnet with a net macroscopic magnetic moment.</p>
 </li>
 <li><p>An alloy; say, steel. Each of the sites is an atom in the lattice; <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> represents an iron atom at that site; <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> represents steel.</p>
+</li>
+<li><p>A &lsquo;&lsquo;lattice gas&rsquo;&rsquo;. Each of the sites is the possible location of a particle; <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> means that site is empty and <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> means that site is occupied by a particle.</p>
 </li>
 <li><p><a href="https://arxiv.org/abs/1511.05000">Bacterial vortex lattices???</a></p>
 </li>
@@ -122,48 +129,21 @@
 </div></div>
 <p>Now that we've discussed all these things, we're ready to write down the actual expression for the Hamiltonian. (I wanted to explain and interpret the physics <i>before</i> writing down the Hamiltonian so that the symbols made some sort of sense.)</p>
 <h2>Hamiltonian of the Ising Model</h2>
-<p>The Hamiltonian of the Ising Model is</p>
+<p>The Hamiltonian of the Ising Model can be written as</p>
 <div class="infoblock">
 <div class="blockcontent">
 
 <div class="eqwl"><img class="eqwl" src="eqs/7874021539517161399-130.png" alt="     H = - sum_{langle i , j rangle} J sigma_i sigma_j - sum_j h sigma_j, " />
 <br /></div></div></div>
 <p>where <img class="eq" src="eqs/9472028491-130.png" alt="J" style="vertical-align: -1px" /> reprents the spin-spin interaction, <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> represents the external field, and the <img class="eq" src="eqs/1833092850355643430-130.png" alt="sigma_j" style="vertical-align: -6px" /> are the individual spins on each of the lattice sites. The first sum is over all pairs of neighboring lattice sites (a.k.a. bonds); it represents the interactions between spins. The second sum is over all the lattice sites themselves; it represents the external field trying to align all the spins in one direction.</p>
-<p>The rest of this page is under construction still.</p>
+<p>Still need to write up&hellip;</p>
 <ul>
 <li><p>A few more intuitive comments about what states are low energy and high energy</p>
 </li>
 </ul>
-<h2>Thermodynamic Behavior of Ising Model</h2>
-<ul>
-<li><p>Reminder about why we care about sums of states</p>
-</li>
-<li><p>What do thermodynamic averages mean here? Why do we care about this?</p>
-</li>
-<li><p>High temperature behavior: random spins, entropy dominate</p>
-</li>
-<li><p>Low temperature behavior: Mostly all aligned in one direction</p>
-</li>
-<li><p>Remark on the puzzling symmetry breaking of low temperature phase, and the huge kinetic barrier for getting from all-up to all-down state</p>
-</li>
-<li><p>Remark on perturbative high-temperature or low-temperature expansions</p>
-</li>
-<li><p>There must be a phase transition between paramagnetic and ferromagnetic phases!</p>
-</li>
-</ul>
-<p>Somewhere in here, relate to the phase diagram? Transitioning between ideas and motivating them properly will be very hard&hellip;</p>
-<h2>Peierl's argument for the Phase Transition</h2>
-<ul>
-<li><p>Interpret as a balance between entropy and energy &ndash; the sign of the free energy <img class="eq" src="eqs/1291638254472210676-130.png" alt="F = E - TS" style="vertical-align: -1px" /></p>
-</li>
-<li><p>Go through argument of nucleating a droplet with surface length L&hellip;</p>
-</li>
-<li><p>Dimensionality matters, since there's no P.T. in one dimension.</p>
-</li>
-</ul>
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-12 22:20:03 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-01-14 16:24:15 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="intro4.jemdoc">source</a>)
 </div>
 </div>

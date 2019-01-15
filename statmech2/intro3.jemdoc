@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{intro3.html}, showsource
+# jemdoc: menu{MENU}{intro3.html}, showsource, analytics{UA-131436916-1}
 = Symmetry in Phase Transitions
 
 At this point we switched gears a bit and started talking about symmetry.
@@ -9,9 +9,9 @@ As we've probably heard by now, symmetry plays a key role in ``fancy'' physicist
 Different phases of matter are characterized by different sorts of symmetry. At higher temperatures, matter takes on a ``higher symmetry'' phase; at lower temperatures, the phases are of lower symmetry or ``broken symmetry.''
 ~~~
 
-Now honestly, this statement sounds pretty abstract. From my impression of Prof. Kivelson, I think he'll be emphasizing the concept symmetry over and over again, so I think it's well worth getting a better understanding of what these words actually mean. The formal mathematical treatment of symmetry groups can be intimidating and unenlightening, so I think the best way to build our intuition about the concept is through a few concrete examples.
+Now honestly, this statement sounds pretty abstract. From my impression of Prof. Kivelson, I think he'll be emphasizing the concept of symmetry over and over again, so I think it's well worth getting a better understanding of what these words actually mean. Since the formal treatment of symmetry groups can be intimidating and unenlightening, I think the best approach is to build our intuition through a few concrete examples.
 
-In the intro lecture, Prof. Raghu gave an example of symmetry-breaking between solids. Let's say we have a system of $N$ particles which undergoes a solid-gas phase transition at some temperature. 
+In the intro lecture, Prof. Raghu gave an example of symmetry-breaking between solids and gases. Let's say we have a system of $N$ particles which undergoes a solid-gas phase transition at some temperature. 
 
 - At high temperatures, in the gaseous phase, the particles are flying around everywhere, and have equal probability of being anywhere inside the box. 
 - At lower temperatures, the particles have crystallized into a solid lattice, and they're trapped within the crystal lattice and can only vibrate around their equilibrium lattice positions.
@@ -67,7 +67,7 @@ For good measure, I'll also include a figure from [http://iopscience.iop.org/art
 
 == Summary and moving on
 
-The whole affair of symmetry breaking in phase transitions can be pretty opaque and confusing, but I hope that these examples can somewhat add to the intuition. Honestly, I think the best way to get a better grasp of these abstract concepts is by seeing how it comes up different /particular examples/. We've seen two examples so far -- the solid-gas phase transition, and the orthorhombic-tetragonal structural transition -- and hopefully we'll get to see more examples as the course goes on.
+The whole affair of symmetry breaking in phase transitions can be pretty opaque and confusing, but I hope that these examples can somewhat add to the intuition. We've seen two examples so far -- the solid-gas phase transition, and the orthorhombic-tetragonal structural transition -- and hopefully we'll get to see more examples as the course goes on.
 
 Up next, we'll be spending a while on one particular example to try getting a better intuition about all the funny business that's going on here. It's called the [intro4.html Ising Model].
 

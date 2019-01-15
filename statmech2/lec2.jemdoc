@@ -1,0 +1,33 @@
+# jemdoc: menu{MENU}{lec2.html}, showsource, analytics{UA-131436916-1}
+= Prof. Kivelson's first lecture
+
+We had our first lecture with Prof. Steve Kivelson on the Friday of the first week of class. For the first hour, we discussed lots of course logistics ...due to the ``unfortunate change of instructor'' a lot of things were really quite disorganized and ``discombobulated.''
+
+We decided that the class would be a sort of active-learning class (as opposed to whatever the opposite is...passive forgetting?), but personally, I think I'd prefer a traditional lecture-based class, mainbly because Prof. Kivelson has so little time to prepare thorough active-learning worksheets for us. I could be completely wrong, though, since I've never actually taken an active learning class with him before.
+
+Then we started discussing physics.
+
+== The Ising Model
+
+Prof. Kivelson gave some detailed philosophical motivation for why we're studying the Ising Model. Earlier in the week, Prof. Raghu had given a bit of motivation as well, but it was nice to hear even more motivation, especially since (I'm guessing) we'll be spending so much time on the Ising model.
+
+~~~
+{Prof. Kivelson's motivation for Ising Model}
+Thermodynamics is a very abstract discipline -- so abstract that you either understand it entirely or you don't understand it at all. Now on one hand, the abstract nature of thermodynamics is extremely valuable -- it's the reason thermo can describe /any/ system of many interacting parts, regardless of the microscopic details of interaction. Indeed, the beauty of thermodynamics is its generality to all sorts of the physical systems.
+
+On the other hand, though, the abstract nature of thermodyamics makes it very hard for us to wrap our head around the material at all! Rather than figuring out the `grand vision' of thermodynamics from the get-go, we need to start /somewhere/. We need to ground our understanding in a well-defined model before we go off to generalize to different systems. Once we do know how to solve all sorts of different problems, we can keep coming back to our original model system to refer to old concepts and draw analogies.
+
+So before we dive off into all sorts of crazy materials, it's valuable to just try understanding the Ising Model and see how it behaves. Once we do, then we can generalize to other systems.
+~~~
+
+Prof. Kivelson also reminded us that the Ising model does not actually represent a real physical system -- it's just an abstract mathematical problem. Miraculously, though, we can actually draw analogies to real systems, such as magnets, alloys, or lattice gases.
+
+Another crucial feature of the Ising model is that /you can easily simulate it on a computer/. After all, each site of the lattice is just a bit which is in one of two states.
+
+[https://mattbierbaum.github.io/ising.js/ Here is a nice simulation] that comes up when you google ``Ising model simulation''.
+
+== Solving the 1D Ising Model
+
+We then went on to define the 1D Ising model. Since we already defined the Ising Model in the [intro4.html introductory lecture], I'll just refer back to those notes here.
+
+Afterwords, we explicitly /solved/ the model, but, we went a bit too fast for me to really understand. Thankfully, we did come back and re-derive everything again [lec3.html the following day].

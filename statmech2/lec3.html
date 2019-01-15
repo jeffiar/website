@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Quantum Statistical Mechanics</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Week 1 Monday</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">Week 1 Friday</div>
+<div class="menu-item"><a href="lec2.html">Overview</a></div>
+<div class="menu-category">Week 2 Monday</div>
+<div class="menu-item"><a href="lec3.html" class="current">Quantum&nbsp;Stat&nbsp;Mech</a></div>
+<div class="menu-item"><a href="lec3b.html">Solving&nbsp;1D&nbsp;Ising</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Quantum Statistical Mechanics</h1>
+</div>
+<p>Today, we opened class with a bit more logistics, discussing <i>where</i> we'd hold lectures (Mon and Wed in 60-101, Fri in McCollough 122), as well as what textbooks we'd use:</p>
+<ul>
+<li><p><a href="https://books.google.com/books?id=ObsbAAAAQBAJ">Fundamentals of Statistical and Thermal Physics, F. Reif</a> &ndash; Main text, for Boltzmann equation and near-equilibrium dynamics.</p>
+</li>
+<li><p><a href="https://books.google.com/books?id=22dadF5p6gYC">Statistical Physics: Statics, Dynamics and Renormalization</a> &ndash; Suppl. text, for Ising Model and renormalization group.</p>
+</li>
+<li><p><a href="https://books.google.com/books?id=P9YjNjzr9OIC">Principles of Condensed Matter Physics</a> &ndash; Suppl. text, for other stuff.</p>
+</li>
+</ul>
+<p>It sounds like we'll be covering all sorts of topics in this class. I'm curious if we'll manage to tie it all together coherently, or if it's just going to be a &lsquo;&lsquo;taste&rsquo;&rsquo; of many different topics.</p>
+<h2>Summarizing the big picture</h2>
+<p>Last time in class, we sort of dived right away into solving the 1D Ising Model, but we didn't get talk much about the big picture of what exactly we were doing or why we were doing it. </p>
+<p>To help us understand <i>why</i> we wanted to calculate certain quantities, Prof. Kivelson explained to us the general framework of <b>quantum statistical mechanics</b> &ndash; the way to start with the description of a physical system and end with macroscopic observables that we can measure.</p>
+<p>So, what steps are involved in understanding the thermodynamic behavior of a system? First, I'll dryly list out the steps, and then I'll discuss some of the nuances and details that we talked about in class.</p>
+<div class="infoblock">
+<div class="blocktitle">Formal Procedure of Quantum Statistical Mechanics</div>
+<div class="blockcontent">
+<p>Say we have a quantum mechanical system with Hamiltonian <img class="eq" src="eqs/4030995361092090317-130.png" alt="hat H" style="vertical-align: -0px" />, and we wish to find its thermodynamic properties in the canonical ensemble.</p>
+<ol>
+<li><p>Diagonalize the Hamiltonian to find a basis of <b>energy eigenstates</b>. Let's label these states as <img class="eq" src="eqs/7475100863312270929-130.png" alt="| alpha rangle" style="vertical-align: -5px" /> and call their corresponding energies <img class="eq" src="eqs/7387220932791258656-130.png" alt="E_alpha" style="vertical-align: -4px" />.</p>
+</li>
+<li><p>Calculate the canonical <b>partition function</b> <img class="eq" src="eqs/6266593637051332845-130.png" alt=" Z = textrm{Tr} left[e^{-beta hat H}right] = sum_alpha e^{-beta E_alpha}" style="vertical-align: -15px" />, where <img class="eq" src="eqs/4226120147019918905-130.png" alt="beta" style="vertical-align: -4px" /> is the inverse temperature <img class="eq" src="eqs/1170699868164695767-130.png" alt="1/k_B T" style="vertical-align: -5px" />. Note that we can write <img class="eq" src="eqs/11520034651-130.png" alt="Z" style="vertical-align: -0px" /> either abstractly as the trace of the thermal density matrix, or explicitly as a sum over the energy eigenstates.</p>
+</li>
+<li><p>Find the <b>free energy</b> <img class="eq" src="eqs/9059263601311376932-130.png" alt="F = - k_B T log Z" style="vertical-align: -4px" />. Remember that the derivatives of the free energy w.r.t. various parameters tells us thermodynamic quantities; for instance, the derivative w.r.t. the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> tells us the magnetization <img class="eq" src="eqs/2131917608807603808-130.png" alt="M = -frac {partial F}{partial h}" style="vertical-align: -8px" />.</p>
+</li>
+</ol>
+<p>From these quantities, we can also compute the <b>ensemble averages</b> of any quantum mechanical observable <img class="eq" src="eqs/4030995361092090314-130.png" alt="hat O" style="vertical-align: -1px" /> by computing</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8842718241460821886-130.png" alt="     langle hat O rangle = frac 1 Z textrm{Tr} left[ e^{-beta hat H} hat O right] = sum_alpha P(alpha) langle alpha | hat O | alpha rangle, " />
+<br /></div><p>where again we can write <img class="eq" src="eqs/6140368948617126602-130.png" alt="langle hat O rangle" style="vertical-align: -5px" /> either as an abstract trace against the observable or as a concrete sum over energy states.</p>
+<p>Using the same method, we can also calculate <b>correlation functions</b> such as <img class="eq" src="eqs/4263774470665983904-130.png" alt="langle hat O_i hat O_j rangle" style="vertical-align: -6px" />, which could represent a variety of things:</p>
+<ul>
+<li><p>If <img class="eq" src="eqs/3275334880732988348-130.png" alt="O_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/3275334880732988351-130.png" alt="O_j" style="vertical-align: -6px" /> represent local observables at different points in space <img class="eq" src="eqs/756880090336066481-130.png" alt="r_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/756880090336066482-130.png" alt="r_j" style="vertical-align: -6px" />, this would be a <b>spatial correlation function</b> of the form <img class="eq" src="eqs/8445134804204959402-130.png" alt="g(r_i - r_j)" style="vertical-align: -6px" />;</p>
+</li>
+<li><p>If <img class="eq" src="eqs/3275334880732988348-130.png" alt="O_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/3275334880732988351-130.png" alt="O_j" style="vertical-align: -6px" /> represent observables <i>at different times</i> <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/14848089204134009-130.png" alt="t'" style="vertical-align: -1px" />, this would be a <b>dynamical correlation function</b> of the form <img class="eq" src="eqs/5471810203064755234-130.png" alt="f(t-t')" style="vertical-align: -5px" />;</p>
+</li>
+<li><p>If <img class="eq" src="eqs/3275334880732988348-130.png" alt="O_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/3275334880732988351-130.png" alt="O_j" style="vertical-align: -6px" /> were the same, then <img class="eq" src="eqs/2142970352136093602-130.png" alt="langle O^2 rangle" style="vertical-align: -5px" /> would tell you about the <b>equilibrium fluctuations</b> of that observable.</p>
+</li>
+</ul>
+</div></div>
+<h2>Details about the steps</h2>
+<p>Still under construction &ndash; check back soon!</p>
+<p><img src="../img/under_construction.gif" style="height: 50px; width:50px"/></p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-14 23:49:40 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec3.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# jemdoc: menu{MENU}{lec3b.html}, showsource, analytics{UA-131436916-1}
+= Solving the 1D Ising Model
+
+Now that we knew why we wanted to calculate certain things, we went on to explicitly solve the 1D Ising Model.
+
+Remember that the first step is to compute the partition function, which requires us to sum over /all/ the energy states. This is a bit of a hassle for us, since for a 1D Ising Model with $N$ sites, we need to sum over all the $2^N$ possible states. As we take the thermodynamic limit $N \to \infty$, there will just be too many terms to add up, so as Prof. Kivelson says, we'll need to /be clever/.
+
+Here is our game plan:
+
+~~~
+{Solving the 1D Ising Model by Being Clever}
+. Draw a picture to gain some physical intuition (we didn't do this in class!!)
+. Rewrite the Hamiltonian as a sum over *bonds* (rather than sites AND bonds)
+. Zoom in on a particular site $j$ and its neighboring bonds
+. Write down a *transfer matrix* which represents site $j$ (or bond $j$? I haven't fully understood yet...)
+. /Key step/ -- Notice that summing over $\sigma_j = \pm 1$ looks an awful lot like contracting over a shared index, a.k.a. matrix multiplication.
+. Rewrite the entire sum as the trace of a bunch of transfer matrices multiplied together.
+. Profit!?
+~~~
+
+Now let's go through each of these steps in a bit more detail.
+
+Still under construction -- check back soon!
+
+{{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}

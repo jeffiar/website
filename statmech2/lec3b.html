@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Solving the 1D Ising Model</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Week 1 Monday</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">Week 1 Friday</div>
+<div class="menu-item"><a href="lec2.html">Overview</a></div>
+<div class="menu-category">Week 2 Monday</div>
+<div class="menu-item"><a href="lec3.html">Quantum&nbsp;Stat&nbsp;Mech</a></div>
+<div class="menu-item"><a href="lec3b.html" class="current">Solving&nbsp;1D&nbsp;Ising</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Solving the 1D Ising Model</h1>
+</div>
+<p>Now that we knew why we wanted to calculate certain things, we went on to explicitly solve the 1D Ising Model.</p>
+<p>Remember that the first step is to compute the partition function, which requires us to sum over <i>all</i> the energy states. This is a bit of a hassle for us, since for a 1D Ising Model with <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> sites, we need to sum over all the <img class="eq" src="eqs/962543404064237419-130.png" alt="2^N" style="vertical-align: -0px" /> possible states. As we take the thermodynamic limit <img class="eq" src="eqs/6521057346860132603-130.png" alt="N to infty" style="vertical-align: -1px" />, there will just be too many terms to add up, so as Prof. Kivelson says, we'll need to <i>be clever</i>.</p>
+<p>Here is our game plan:</p>
+<div class="infoblock">
+<div class="blocktitle">Solving the 1D Ising Model by Being Clever</div>
+<div class="blockcontent">
+<ol>
+<li><p>Draw a picture to gain some physical intuition (we didn't do this in class!!)</p>
+</li>
+<li><p>Rewrite the Hamiltonian as a sum over <b>bonds</b> (rather than sites AND bonds)</p>
+</li>
+<li><p>Zoom in on a particular site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> and its neighboring bonds</p>
+</li>
+<li><p>Write down a <b>transfer matrix</b> which represents site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> (or bond <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />? I haven't fully understood yet&hellip;)</p>
+</li>
+<li><p><i>Key step</i> &ndash; Notice that summing over <img class="eq" src="eqs/159108376246213937-130.png" alt="sigma_j = pm 1" style="vertical-align: -6px" /> looks an awful lot like contracting over a shared index, a.k.a. matrix multiplication.</p>
+</li>
+<li><p>Rewrite the entire sum as the trace of a bunch of transfer matrices multiplied together.</p>
+</li>
+<li><p>Profit!?</p>
+</li>
+</ol>
+</div></div>
+<p>Now let's go through each of these steps in a bit more detail.</p>
+<p>Still under construction &ndash; check back soon!</p>
+<p><img src="../img/under_construction.gif" style="height: 50px; width:50px"/></p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-14 23:51:42 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec3b.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

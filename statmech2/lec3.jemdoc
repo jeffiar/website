@@ -1,0 +1,45 @@
+# jemdoc: menu{MENU}{lec3.html}, showsource, analytics{UA-131436916-1}
+= Quantum Statistical Mechanics
+
+Today, we opened class with a bit more logistics, discussing /where/ we'd hold lectures (Mon and Wed in 60-101, Fri in McCollough 122), as well as what textbooks we'd use:
+
+- [https://books.google.com/books?id=ObsbAAAAQBAJ Fundamentals of Statistical and Thermal Physics, F. Reif] -- Main text, for Boltzmann equation and near-equilibrium dynamics.
+- [https://books.google.com/books?id=22dadF5p6gYC Statistical Physics: Statics, Dynamics and Renormalization] -- Suppl. text, for Ising Model and renormalization group.
+- [https://books.google.com/books?id=P9YjNjzr9OIC Principles of Condensed Matter Physics] -- Suppl. text, for other stuff.
+
+It sounds like we'll be covering all sorts of topics in this class. I'm curious if we'll manage to tie it all together coherently, or if it's just going to be a ``taste'' of many different topics.
+
+== Summarizing the big picture
+
+Last time in class, we sort of dived right away into solving the 1D Ising Model, but we didn't get talk much about the big picture of what exactly we were doing or why we were doing it. 
+
+To help us understand /why/ we wanted to calculate certain quantities, Prof. Kivelson explained to us the general framework of *quantum statistical mechanics* -- the way to start with the description of a physical system and end with macroscopic observables that we can measure.
+
+So, what steps are involved in understanding the thermodynamic behavior of a system? First, I'll dryly list out the steps, and then I'll discuss some of the nuances and details that we talked about in class.
+
+~~~
+{Formal Procedure of Quantum Statistical Mechanics}
+Say we have a quantum mechanical system with Hamiltonian $\hat H$, and we wish to find its thermodynamic properties in the canonical ensemble.
+
+. Diagonalize the Hamiltonian to find a basis of *energy eigenstates*. Let's label these states as $| \alpha \rangle$ and call their corresponding energies $E_\alpha$.
+. Calculate the canonical *partition function* $ Z = \textrm{Tr} \left[e^{-\beta \hat H}\right] = \sum_\alpha e^{-\beta E_\alpha}$, where $\beta$ is the inverse temperature $1/k_B T$. Note that we can write $Z$ either abstractly as the trace of the thermal density matrix, or explicitly as a sum over the energy eigenstates.
+. Find the *free energy* $F = - k_B T \log Z$. Remember that the derivatives of the free energy w.r.t. various parameters tells us thermodynamic quantities; for instance, the derivative w.r.t. the external field $h$ tells us the magnetization $M = -\frac {\partial F}{\partial h}$.
+
+From these quantities, we can also compute the *ensemble averages* of any quantum mechanical observable $\hat O$ by computing
+\(
+    \langle \hat O \rangle = \frac 1 Z \textrm{Tr} \left[ e^{-\beta \hat H} \hat O \right] = \sum_\alpha P(\alpha) \langle \alpha | \hat O | \alpha \rangle,
+\)
+where again we can write $\langle \hat O \rangle$ either as an abstract trace against the observable or as a concrete sum over energy states.
+
+Using the same method, we can also calculate *correlation functions* such as $\langle \hat O_i \hat O_j \rangle$, which could represent a variety of things:
+
+- If $O_i$ and $O_j$ represent local observables at different points in space $r_i$ and $r_j$, this would be a *spatial correlation function* of the form $g(r_i - r_j)$;
+- If $O_i$ and $O_j$ represent observables /at different times/ $t$ and $t'$, this would be a *dynamical correlation function* of the form $f(t-t')$;
+- If $O_i$ and $O_j$ were the same, then $\langle O^2 \rangle$ would tell you about the *equilibrium fluctuations* of that observable.
+~~~
+
+== Details about the steps
+
+Still under construction -- check back soon!
+
+{{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}

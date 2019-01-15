@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{index.html}, showsource
+# jemdoc: menu{MENU}{index.html}, showsource, analytics{UA-131436916-1}
 = Notes on Statistical Mechanics II
 
 Welcome! Here are some notes I'm taking for Physics 171 at Stanford in Winter of 2018-19.
