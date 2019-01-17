@@ -36,7 +36,9 @@ For now, we'll think of the Ising model as a model for a *magnet*. It's a grossl
 
 === Putting together the Hamiltonian
 
-A natural question to ask about this Mickey-mouse model of a magnet is what /energy/ it has. To be more precise, we want to write down a function that represents the energy of every single possible configuration (a.k.a. microstate) of the spins in the magnet. As we know, this energy function is called the Hamiltonian. For the Ising model, the Hamiltonian includes two types of interactions:
+A natural question to ask about this Mickey-mouse model of a magnet is what /energy/ it has. To be more precise, we want to write down a function that represents the energy of every single possible configuration (a.k.a. microstate) of the spins in the magnet. As we know, this energy function is called the Hamiltonian.
+
+In the Ising model, the Hamiltonian includes two types of interactions:
 
 - the *external field* term. As we remember from quantum mechanics, an external magnetic field $h$ can split the energies of the spin-down and spin-up state, so that one is higher in energy and the other is lower.
     -- The size of $h$ represents how strong the field is, so it tells you how much higher in energy one spin is than the other.

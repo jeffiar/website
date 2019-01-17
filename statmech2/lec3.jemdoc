@@ -15,7 +15,7 @@ Last time in class, we sort of dived right away into solving the 1D Ising Model,
 
 To help us understand /why/ we wanted to calculate certain quantities, Prof. Kivelson explained to us the general framework of *quantum statistical mechanics* -- the way to start with the description of a physical system and end with macroscopic observables that we can measure.
 
-So, what steps are involved in understanding the thermodynamic behavior of a system? First, I'll dryly list out the steps, and then I'll discuss some of the nuances and details that we talked about in class.
+So, what steps are involved in understanding the thermodynamic behavior of a system?
 
 ~~~
 {Formal Procedure of Quantum Statistical Mechanics}
@@ -38,8 +38,4 @@ Using the same method, we can also calculate *correlation functions* such as $\l
 - If $O_i$ and $O_j$ were the same, then $\langle O^2 \rangle$ would tell you about the *equilibrium fluctuations* of that observable.
 ~~~
 
-== Details about the steps
-
-Still under construction -- check back soon!
-
-{{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}
+I realize these explanations are pretty dry and unenlightening; if time allows, I'll come back later and elaborate a bit more.

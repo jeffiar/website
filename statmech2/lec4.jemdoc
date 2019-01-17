@@ -1,0 +1,140 @@
+# jemdoc: menu{MENU}{lec4.html}, showsource, analytics{UA-131436916-1}
+= Solving the 1D Ising Model for real!!
+
+Goodness. Today marks the third time that we've gone over the 1D Ising model, and it's still confusing as hell! To make matters worse, Prof. Kivelson still hasn't given us any definitive resources to learn from.
+
+Thankfully, today's class made things a bit more clear for me. I guess third time's a charm. 
+
+Anyways, here we go.
+
+=== Outline
+- Big Picture
+- [\#solving Solving the 1D Ising Model for real!!]
+- Relation to spin-half quantum system
+- The homework
+
+== Big picture
+
+=== What are we trying to do?
+Our end goal is to find various *thermodynamic properties* of the 1D Ising model. Remember that thermodynamics means that
+
+- the system is in /thermal equilibrum/; where the probability of each configuration\/microstate is $e^{-\beta E} / Z$. (This also called the ``canonical ensemble'')
+- we take the $N \to \infty$ limit -- the system is big,
+
+and we're trying to find various properties of these thermodynamic systems.
+
+=== What sorts of properties?
+
+- we're interested in *expectation values* such as $\langle \sigma_j \rangle$ which tell you the average value of the $j$'th spin when the system reaches thermodynamic equilibrium.
+    -- For instance, you can imagine that if there's a very strong magnetic field that wants to align the spins to face downwards, then $\langle \sigma_j \rangle$ will be close to -1. Or that if you heat everything up to very hot, then all the spins are scrambled to be randomly up or down, so $\langle \sigma_j \rangle$ will be close to 0.
+    -- For the 1D Ising model, $\langle \sigma_j \rangle$ is the same for /all values of $j$/! Since the Hamiltonian is *translationally invariant* (see [intro3.html explanation of symmetry]), all the sites are identical, and the average spin will be the same no matter which site you look at.
+        --- (Maybe for more complicated or realistic models, the sites would be distinct -- as in a /heterogenous/ material -- and then perhaps $\langle \sigma_j \rangle \neq \langle \sigma_i \rangle $ in general)
+- we're also interested in *correlation functions* such as $\langle \sigma_i \sigma_j \rangle$, which tell you how much spin $i$ and spin $j$
+tend to point in the same direction or in opposite directions at equilibrium.
+    -- For instance, you can imagine that nearby spins are more correlated than faraway spins, because they can interact with eachother more strongly. Or you can imagine that as $T \to \infty$, any pairs of spins will become less correlated, since the thermal excitations make all the spins jiggle around more.
+    -- Again, because of translational invariance (see [intro3.html here for explanation]), we expect $\langle \sigma_i \sigma_j \rangle$ to /only depend on the distance between the spins/ $i-j$! For instance, the correlation between spins 2 and 5 is the same as between 100 and 103, since they're the same distance apart.
+
+=== How do we calculate properties?
+Prof. Kivelson [lec3.html outlined the procedure for us] on Monday.
+
+- Our system is defined by a *Hamiltonian* $H$, a function that tells us its energy.
+- From the Hamiltonian, we figure out the *energy eigenstates*, a.k.a. *configurations*, a.k.a. *microstates* (or sometimes even ``states'') of the system. These are the basic states, and we will be /summing over/ these states pretty soon.
+    -- Yes, these concepts are the same thing! They're just called different words because we learn them in different contexts...
+- Our main goal is to calculate the *partition function* $Z$.
+\(
+    Z = \sum_{s} e^{-\beta E(s)}.
+\)
+Here the sum runs over all the states of the system $s$, $E(s)$ means ``the energy of the system when it's in state s'', and $\beta = 1/T$ is the inverse temperature of our system.
+
+We spend most of our effort trying to figure out how to compute the partition function, which begs the question...
+
+=== Why is the partition function useful?
+
+Once we've found the partition function $Z$, we can calculate pretty much everything else! For instance:
+
+- the *free energy* $F$ is given by $F = - T \log Z$
+- the *average spin* $\langle \sigma_j \rangle$ is given by 
+\(
+    \langle \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_j e^{-\beta H(\{\sigma\})}
+\)
+To explain the notation: I'm summing over all states (this time I call the states $\{\sigma\}$ rather than $s$). Inside the sum I have the spin of the $j$'th site (which is $\pm 1$) as well as the Boltzmann weight $e^{-\beta H(\{\sigma\})}$. The number $H(\{\sigma\})$ is the energy of the system when it's in the state $\{\sigma\}$, and we find this by plugging in the $\sigma$'s into the Hamiltonian.
+- the *spin-spin correlation* $\langle \sigma_i \sigma_j \rangle$ is given by 
+\(
+    \langle \sigma_i \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_i \sigma_j e^{-\beta H(\{\sigma\})}
+\)
+
+Hopefully, this serves as a sort of useful roadmap for where we're going. 
+
+{{<a name="solving"></a>}}
+= Solving the 1D Ising Model
+
+~~~
+{Game Plan}
+. Draw a *picture* to gain some physical intuition (we didn't do this in class!!)
+. Rewrite the Hamiltonian as a sum over *bonds* (rather than sites AND bonds)
+. *Zoom in* on a particular bond.
+. Write down a *transfer matrix* which represents the bond from site $j$ to site $j+1$
+. /Key step/ -- Notice that summing over $\sigma_j = \pm 1$ looks an awful lot like contracting over a shared index, a.k.a. *matrix multiplication*.
+. Rewrite $Z$ as the trace of a bunch of transfer matrices multiplied together.
+. Similarly, rewrite the average spin $\langle \sigma_j \rangle$ and the correlation function $\langle \sigma_i \sigma_j \rangle$ in terms of transfer matrices.
+
+Afterwards, we will diagonalize the transfer matrix, and we will use its eigenbasis to calculate a few interesting quantities. Throughout these steps, we'll appeal to Pauli matrices to help us calculate things, and we'll slowly build up an analogy with a quantum mechanical spin-half particle.
+
+. Find the eigenvalues and eigenvectors of the transfer matrix $\underline{t}$
+. Use the eigenbasis of $\underline{t}$ to /explicitly/ compute the *partition function* $Z$ (dificulty: easy)
+. Again, use that basis to calculate the *average spin* $\langle \sigma_j \rangle$ (difficulty: medium)
+. Finally, use that basis to calculate the *correlation function* $\langle \sigma_i \sigma_j \rangle$ (difficulty: Kivelson)
+. Profit!?
+~~~
+
+Under construction...check back soon!
+{{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}
+
+== Relation to spin-half
+
+Under construction...check back soon!
+{{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}
+
+== Our first problem set
+
+To be honest, we pretty much did the problem set during class today.
+
+On the problem set, Prof. Kivelson first asks us to calculate the magnetization density $m$, which we did in class (!). Later he asks us to express the transfer matrix in terms of Pauli matrices (which we also did in class (!?)) and to discuss the correspondence between the 1D Ising Model and a spin-half quantum system (again, we also did this in class!!!).
+
+It looks like the main purpose of the problem set is
+- to review everything from class today,
+- to gain a better intuition by interpreting the various limits of the magnetization density $m$, and
+- to apply our techniques from class to solve other systems like the $J_1 - J_2$ antiferromagnet (with both first and second neighbor interactions) or the X-Y ferromagnet (where each spin takes on an angle $\theta_j$ rather than a discrete $\pm 1$).
+
+Anyways, I'm not sure how much I can discuss here without violating the honor code. But I did have an interesting remark on the definition of magnetization density.
+
+~~~
+{Remark}
+*tl;dr:* $m = \langle \sigma_j \rangle$ is a subtle statement.
+
+On the problem set, the *magnetization density* is defined as
+\(
+    m \equiv N^{-1} \sum_{j = 1}^{N}\langle \sigma_j \rangle,
+\)
+which seems sort of bizarre since we add up $N$ terms and then divide by $N$ again. What's going on here?
+
+The answer has to do with intensive vs extensive quantities, and experimental observables vs mathematical expressions.
+
+To start off, notice that /the average of any particular microscopic spin $\sigma_j$ is impossible to measure/! (Spin $j$ would have a /puny/ magnetic field, and besides, there's a whole bunch of other spins nearby that would mess up the measurement.) Our actual /experimental observable/ is not the magnetization of one particular spin, but rather the magnetization of the /whole magnet/, which is given by
+\(
+    M \equiv \sum_{j=1}^{N} \langle \sigma_j \rangle,
+\)
+That is, when we perform an experiment, we measure the *total magnetization* of the magnet, which we get by adding up the contributions from each of the spins. (Notice this is capital $M$, not lowercase $m$!)
+
+The problem with total magnetization $M$ is that it's an /extensive/ rather than /intensive/ property -- that is, it scales with the system size $N$. If we doubled the size of the magnet, we would also double the total magnetiation $M$. Now, we don't want to use an extensive property that grows with $N$, since it'll blow up when we take the thermodynamic limit $N \to \infty$. Rather, we want an intensive property independent of system size.
+
+To solve this conundrum, just divide the total magnetization by $N$. We define the *magnetization density* $m$ as
+\(
+    m = \frac M N = N^{-1} \sum_{j = 1}^{N}\langle \sigma_j \rangle,
+\)
+and voila, $m$ no longer blows up as $N \to \infty$. So we've achieved our goal of finding an experimental quantity that's intensive.
+
+Finally, just to make this whole affair even more ridiculous, it turns out that $\langle \sigma_j \rangle$ is actually the same value for all $j$! (Remember, the Ising model Hamiltonian is [intro3.html translationally invariant.]) So when we find $m$, we're just adding up the same number $N$ times, and then dividing by $N$...and at the end of the day, the magnetization density is just the same as the average spin $m = \langle \sigma_j \rangle$.
+
+Anyways, that was a long-winded way to arrive at the equation $m = \langle \sigma_j \rangle$, but there's a few subtleties involved in interpreting both sides of the equation.
+~~~
