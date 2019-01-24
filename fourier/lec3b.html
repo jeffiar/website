@@ -29,6 +29,11 @@ try {
 <div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
 <div class="menu-item"><a href="lec3a.html">Interpretation</a></div>
 <div class="menu-item"><a href="lec3b.html" class="current">Hot&nbsp;Rings</a></div>
+<div class="menu-item"><a href="lec4.html">Orthogonality</a></div>
+<div class="menu-category">Fourier Transforms</div>
+<div class="menu-item"><a href="lec5.html">Motivation</a></div>
+<div class="menu-item"><a href="lec6.html">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
+<div class="menu-item"><a href="lec7.html">Lecture&nbsp;8</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
@@ -88,9 +93,36 @@ try {
 
 <div class="eqwl"><img class="eqwl" src="eqs/8434480572609604292-130.png" alt="     hat f(n) = int_0^1 e^{-2pi i n x} f(x) dx. " />
 <br /></div><p>This final result is quite magical and beautiful: we have an explicit formula for the solution of the heat equation! There's plenty to be said about this solution, but I'm getting hungry so I'm going to eat some lunch now.</p>
+<p>Okay back from lunch now. Notice that the Fourier coefficients of the solution</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5580162984807246975-130.png" alt=" c_n(t) =  e^{-2pi^2n^2t}hat f(n) " />
+<br /></div><p>decay exponentially in time, and that the bigger the <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" />, the quicker the coefficient decays to zero. In a sense, we can say that the heat equation &lsquo;&lsquo;smoothes out the wiggles&rsquo;&rsquo; in the temperature around the ring; the shorter the wavelength of the wiggles, the more quickly the wiggles get smoothed out.</p>
+<p>In particular, note that the <img class="eq" src="eqs/5261102140477498262-130.png" alt="n=0" style="vertical-align: -1px" /> coefficient actually remains constant over time, because the exponential term is one. This tells us that the average temperature of the ring <img class="eq" src="eqs/3390133520112374514-130.png" alt="hat f (0) = int_0^1 f(t) dt" style="vertical-align: -8px" /> stays constant over time; in other words, heat is conserved. As <img class="eq" src="eqs/2253346866684938343-130.png" alt="t to infty" style="vertical-align: -1px" />, all of the terms die away except for the <img class="eq" src="eqs/5261102140477498262-130.png" alt="n=0" style="vertical-align: -1px" /> term, and the ring just becomes uniformly hot (or cold) with the average temperature.</p>
+<h2>A Taste of Convolution</h2>
+<p>The next day (Mon Week 2), we made a few more concluding remarks about the heat equation; in particular, the fact the the solution could be written as a <b>convolution</b> integral. We'll be discussing convolutions in their full glory later on, but it's a nice sneak peak into what's to come.</p>
+<p>If we expand the solution to the heat equation by plugging in the formula for the Fourier coefficients <img class="eq" src="eqs/8882096686944252911-130.png" alt="hat f(n)" style="vertical-align: -5px" />, it looks like</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7528030630496518299-130.png" alt="   u(x,t) = sum_n overbrace{left[int_0^1 e^{-2pi iny} f(y) dy right]}^{hat f(n)}e^{-2pi^2n^2t}e^{2pi inx} dx, " />
+<br /></div><p>and by grouping together and combining all the terms that depend on <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" />, we can simplify the expression to</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5289480299866310322-130.png" alt="   u(x,t) = int_0^1 underbrace{left(sum_n e^{-2pi in(x-y)} e^{-2pi^2n^2t}right)}_{g(x-y, t)} f(y) dy. " />
+<br /></div><p>Our solution <img class="eq" src="eqs/4593340594708071136-130.png" alt="u(x,t)" style="vertical-align: -5px" /> can now be written as a <b>convolution integral</b>,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/890433274921944326-130.png" alt=" u(x,t) = int_0^1 g(x-y, t) f(y) dy " />
+<br /></div><p>where the function <img class="eq" src="eqs/7672516679268048170-130.png" alt="g(x,t)" style="vertical-align: -5px" /> is known as the <b>fundamental solution</b> or <b>Green's function</b> of the heat equation, and takes the form</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6684808958816076216-130.png" alt="   g(sum_n e^{-2pi inx} e^{-2pi^2n^t}). " />
+<br /></div><p>We'll discuss these concepts in much more detail later: it turns out that convolving two functions is a very general thing we can do, and the fact that solutions of the heat equation take the form of a <i>convolution</i> with the fundamental solution has deeper consequences and properties. But for now, we will take this as foreshadowing for later.</p>
+<h2>A preview of delta &lsquo;functions&rsquo;</h2>
+<p>Earlier, we figured out already what would happen if we took the <img class="eq" src="eqs/2253346866684938343-130.png" alt="t to infty" style="vertical-align: -1px" /> limit of the heat equation &ndash; everything would die out except for the <img class="eq" src="eqs/5261102140477498262-130.png" alt="n=0" style="vertical-align: -1px" /> component, and the heat distro would apporach a uniform distribution of its average value. Correspondingly, the green's function <img class="eq" src="eqs/7672516679268048170-130.png" alt="g(x,t)" style="vertical-align: -5px" /> approaches unity as <img class="eq" src="eqs/2253346866684938343-130.png" alt="t to infty" style="vertical-align: -1px" />.</p>
+<p>What if we look at the other limit, as <img class="eq" src="eqs/7195186961999796212-130.png" alt="t to 0" style="vertical-align: -1px" />? If we directly plug in <img class="eq" src="eqs/1495230934591648944-130.png" alt="t=0" style="vertical-align: -1px" /> to the greens function, we find that</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6682938494350837582-130.png" alt="     lim_{t to 0} g(x,t) = sum_n e^{2 pi inx}; " />
+<br /></div><p>i.e., it approaches a Fourier Series where all the coefficients are 1.</p>
+<p>There is no way to make sense of this series &lsquo;&lsquo;classically&rsquo;&rsquo; in terms of functions that we know and love; however, the function <i>does</i> converge into another sense to a comb of <img class="eq" src="eqs/3780418731882909920-130.png" alt="delta" style="vertical-align: -1px" />-function spikes. We'll also talk about delta functions in the future and spend good quality time with them. They are pretty cool, but also pretty weird.</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-15 00:04:44 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-01-23 17:03:16 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec3b.jemdoc">source</a>)
 </div>
 </div>

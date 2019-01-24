@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Inversion &amp; Examples</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
+<div class="menu-item"><a href="lec3a.html">Interpretation</a></div>
+<div class="menu-item"><a href="lec3b.html">Hot&nbsp;Rings</a></div>
+<div class="menu-item"><a href="lec4.html">Orthogonality</a></div>
+<div class="menu-category">Fourier Transforms</div>
+<div class="menu-item"><a href="lec5.html">Motivation</a></div>
+<div class="menu-item"><a href="lec6.html" class="current">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
+<div class="menu-item"><a href="lec7.html">Lecture&nbsp;8</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Inversion &amp; Examples</h1>
+</div>
+<p>Today marks the first time I'll be typing up my notes LIVE while watching the lecture! This is exciting, terrifying, and pretty stressful. Apparently this phenomenon is known as live-texing (like LaTeX but live)&hellip;We'll see how I fare in this mother-of-all-multitasking feats.</p>
+<p>Oh, here we go, ready, set, take-off.</p>
+<p><hr/></p>
+<p>Last time we finished up by talking about Fourier Transforms as a limiting case of Fourier Coefficients as the period tended to infinity. It turns out that the analogy extends further, to inverse Fourier transforms reconstructing the original function.</p>
+<p>We began this whole discussion by drawing an analogy to periodic functions and Fourier Series, but as we'll see, the Fourier Transform will turn out to be its own beast, with its own properties and behaviors, that extend beyond Fourier Series. Let's remind ourselves of teh definition:</p>
+<div class="infoblock">
+<div class="blocktitle">Definition</div>
+<div class="blockcontent">
+<p>For a function <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> defined on the real line (not necessarily periodic), its Fourier transform is defined as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1053608910080632769-130.png" alt="     mathcal{F}f(s) = int_{-infty}^{+infty} e^{2pi ist} f(t) dt " />
+<br /></div></div></div>
+<p>A few comments:</p>
+<ul>
+<li><p>Under the integral, we have a function of <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> AND <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, but since we integrate over <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> we're left with a function of <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>The <img class="eq" src="eqs/369175422080791073-130.png" alt="s=0" style="vertical-align: -1px" /> value of the Fourier Transform is the area under the curve, just like how the <img class="eq" src="eqs/5261102140477498262-130.png" alt="n=0" style="vertical-align: -1px" /> Fourier coefficient was the average value of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> in a period.</p>
+</li>
+<li><p>We're implicitly assuming that this integral <i>exists</i>, so we're actually limiting ourselves to a certain class of functions already.</p>
+<ul>
+<li><p>The Fourier transform is really only defined when the integral <i>exists</i>. This is &lsquo;&lsquo;dicey&rsquo;&rsquo; issue &ndash; it's an infinite integral, and sines and cosines will oscillate, so things have to cancel. So it is a legit question whether the integral exists</p>
+</li>
+<li><p>In this calss, we'll assume for now that everything works nicely. Later we'll discuss the subtleties!</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<h2>Fourier Inversion</h2>
+<p>Remember that we could reconstruct a periodic function from its Fourier Coefficients by reassembling it from its component parts (its harmonics). We can do an analogous thing with the Fourier Transform of a function:</p>
+<div class="infoblock">
+<div class="blocktitle">Fourier Inversion</div>
+<div class="blockcontent">
+
+<div class="eqwl"><img class="eqwl" src="eqs/7311245999381781748-130.png" alt="     f(t) = int_{-infty}^{+infty} e^{-2pi ist} mathcal{F}f(s) ds " />
+<br /></div></div></div>
+<p>Comments:</p>
+<ul>
+<li><p>We can recover the original function by performing this complicated integral. Why in the world is this the case?</p>
+</li>
+<li><p>Only difference between F.T. and <i>inverse</i> F.T. is the sign of the exponent in the complex exponential!</p>
+</li>
+<li><p>Motivated by this property, we can introduce Fourier Inversion as its own functional transform.</p>
+</li>
+<li><p>We'll talk more about variable naming later&hellip;</p>
+</li>
+</ul>
+<p>There are different ways to <i>define</i> the Fourier transform and the inverse F.T. For instance, physicists use a negative sign and an <i>angular</i> frequency with a <img class="eq" src="eqs/4814073714822610791-130.png" alt="2pi" style="vertical-align: -1px" /> in the exponent. There's lots of different conventions for normalizations and conventions, but it's a mess, so a lot of formulas look different in different places. Different fields have different standards. But there's no deep difference between them.</p>
+<p>There's a few more mathemtatical issues at this point (which we'll discuss later)&hellip;.but at this point we'll suppress these guilty feelings. &lsquo;&lsquo;The rigor police are off duty&rsquo;&rsquo;. There <i>are</i> serious issues, but we'll return to them later. For now we want a better sense of how things <i>work</i> before seeing to what extent these formulas are valid.</p>
+<h2>Where does Fourier inversion come from?</h2>
+<p>Our game plan here is the same as with defining the Fourier Transform &ndash; we'll start with a function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> that's only nonzero inside some range <img class="eq" src="eqs/932127261272791801-130.png" alt="-a/2 &lt; +a/2" style="vertical-align: -5px" />, and then we periodize it with a <i>big</i> period <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> so that there's repeating &lsquo;&lsquo;islands&rsquo;&rsquo; of the <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> shape with copies at <img class="eq" src="eqs/4910019755481030950-130.png" alt="0, pm T, ldots..." style="vertical-align: -4px" />. </p>
+<p>This periodized function has a nice fourier series,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2539666527838482881-130.png" alt="     f(t) = sum_n hat f(n) e^{2pi i n (t/T)} " />
+<br /></div><p>where its Fourier coefficients are given by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/791297329785478398-130.png" alt="     hat f(n) = frac 1 T int_{-T/2}^{T/2}f(t) e^{-2pi i(n/T)} dt. " />
+<br /></div><p>Now notice that since <img class="eq" src="eqs/509596383673783849-130.png" alt="f(0)" style="vertical-align: -5px" /> is identically 0 outside of the range <img class="eq" src="eqs/8461409392271258578-130.png" alt="[-a/2, a/2]" style="vertical-align: -5px" />, it doesn't matter how far we integrate as long as we completely contain that integral! So we'll just extend the limits of integration here to go from <img class="eq" src="eqs/4285128882264041594-130.png" alt="-infty" style="vertical-align: -1px" /> to <img class="eq" src="eqs/537892019258421722-130.png" alt="infty" style="vertical-align: -1px" />. The reason we want to do this is so that the final form <i>looks like the Fourier Transform</i>.</p>
+<p>Now let's take the limit <img class="eq" src="eqs/6728176591232189689-130.png" alt="T to infty" style="vertical-align: -1px" />. Coefficients go to</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/952781906488046477-130.png" alt="     hat f(n) = frac 1 T mathcal{F}f(n/T) " />
+<br /></div><p>And then plug back into the the expression for f(t) to get the expression</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6372485485465924664-130.png" alt="     f(t) = sum_n hat f(n) = e^{2pi int} = sum_n mathcal{F} f(s_n) e^{2pi s_n t} Delta s_n " />
+<br /></div><p>where we've defined <img class="eq" src="eqs/369175422046790977-130.png" alt="s_n" style="vertical-align: -4px" /> as <img class="eq" src="eqs/5261102140459498168-130.png" alt="n/T" style="vertical-align: -5px" />.</p>
+<div class="infoblock">
+<div class="blocktitle">Key Point</div>
+<div class="blockcontent">
+<p><b>This is an approximation to an integral</b>! It looks like the Reimann sum sort of definition.</p>
+</div></div>
+<p>The point of this argument was to justify Fourier Inversion; it shows that the original function can be reconstructed properly by an integral.</p>
+<h2>Game Plan from now</h2>
+<p>We want to develop properties of the F.T. &ndash; but <i>without any regard to rigor</i>. That is, we'll do our typical tricks of calculus without justifying things, and we have to trust the the integrals convere.</p>
+<p>We'll build our understanding by</p>
+<ol>
+<li><p>studying <i>specific examples</i> &ndash; special functions that society needs in order to function (?)</p>
+</li>
+<li><p>studying <i>general properties</i> of the F.T., such as duality, shifts, stretches, modulation, etc&hellip;</p>
+</li>
+</ol>
+<p>Prof. Osgood thinks of this analogously to calculus, since we first start out with learning the derivatives and integrals of speical functions &ndash; polynomials, logs, etc. &ndash; and then we learn <i>general properties</i> &ndash; product rule, quotient rule, integration by substitution. So we'll do a similar thing here: we'll start by building our intuition with a few examples.</p>
+<p>And remember we won't worry about integrals converging for now. We'll just have to trust Prof. Osgood.</p>
+<h2>Example: the Rectangle function</h2>
+<p>Now for some calculations. Why are we performing calculations in class? Well, we'll inevitably have to do this ourselves at some point, and it's illustrative to watch a &lsquo;&lsquo;seasoned expert&rsquo;&rsquo; perform some calculations to see how they tend to play out. Then we'll know what tricks to apply and what to expect when we do these integrals ourselves.</p>
+<ul>
+<li><p>You should do these calculations <i>at least once in your life</i>, but they should become second nature in your life after them. (Reminds me of my two friends from calculus class&hellip;)</p>
+</li>
+</ul>
+<p>So we'll start off with a silly example: the <b>rectangle function</b> <img class="eq" src="eqs/4759225259921610996-130.png" alt="Pi(t)" style="vertical-align: -5px" /> defined by 1 between <img class="eq" src="eqs/1742317100509464372-130.png" alt="-1/2 and 1/2" style="vertical-align: -5px" /> and then 0 outside. </p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>Some people call this a characteristic function (mathemtics), an indicator function (engineers)&hellip;there's different sorts of names.</p>
+<p>There's also other sorts of conventions for what <img class="eq" src="eqs/4759225259921610996-130.png" alt="Pi(t)" style="vertical-align: -5px" /> takes at its endpoints. A commmon convention is to have <img class="eq" src="eqs/3688873645286936338-130.png" alt="Pi(pm 1/2) = 1/2" style="vertical-align: -5px" /> (and there's some good reason to have this). Part of the reason is that theorem for F.S. about what values the series converges to at jump discontinuities.</p>
+</div></div>
+<p>I won't actually write out the algebra here, but I'll just outline the main points that Prof. Osgood made in lecture. I can't type up math fast enough!</p>
+<p>To calculate the Fourier coefficients, there's no recourse here rather than just to start with the definition. We plug into the integral &ndash; but since <img class="eq" src="eqs/4759225259921610996-130.png" alt="Pi(t)" style="vertical-align: -5px" /> is 0 outside the interval <img class="eq" src="eqs/1682252706543811538-130.png" alt="[-1/2, 1/2]" style="vertical-align: -5px" />, we can shrink our range of integration to that interval. And then since <img class="eq" src="eqs/4759225259921610996-130.png" alt="Pi(t)" style="vertical-align: -5px" /> just takes on 1 in that interval.</p>
+<p>We're left with the integral of a complex exponential, which we can evaluate as we do with any other exponential. We're left with the difference of two exponentials where the sign in the exponent is different&hellip;which simplifies to a sine.</p>
+<ul>
+<li><p>&lsquo;&lsquo;I have a damn Ph.D. in mathematics and I don't skip steps&rsquo;&rsquo;&hellip; we ought to be careful and write everything out, and not be <i>too</i> clever with ourselves.</p>
+</li>
+<li><p>After a while you come up with some tricks for how to rearrange things with the algebra.</p>
+</li>
+</ul>
+<p>Famously, we end up with the result</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2508178190603275583-130.png" alt="     mathcal{F}f(s) = frac{sin{pi s}} {pi s} " />
+<br /></div><p>and this function is common enough that the elders of the world have decided to christen it as &ldquo;sinc&rdquo; of <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />. (Again there's different conventions; physicists don't have the <img class="eq" src="eqs/7083357291890388038-130.png" alt="pi" style="vertical-align: -1px" />.)</p>
+<p>A few comments about the sinc function:</p>
+<ul>
+<li><p>It wiggles around up and down, with zeros at <img class="eq" src="eqs/5019273770136015390-130.png" alt="0, pm 1, pm2, ..." style="vertical-align: -4px" /></p>
+</li>
+<li><p>Famously, the limit at 0 of sinc is 1!</p>
+</li>
+<li><p>This is the logo of the Fry's electronics in Sunnyvale!! I've seen it all my life, and I've never realized it until now&hellip;wow. Different Fry's stores have different themes&hellip;the one in Palo Alto is Western-themed and the Sunnyvale one is sinc-themed.</p>
+<ul>
+<li><p>Prof. Osgood wrote to John Fry himself for permission to put these in the course reader&hellip;</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<h2>Next example: the Triangle function</h2>
+<p>Another fun classic function. It's defined to be 0 outside the interval <img class="eq" src="eqs/7999743447157262861-130.png" alt="(-1, +1)" style="vertical-align: -5px" />, and <img class="eq" src="eqs/4326574044614530945-130.png" alt="1 - |t|" style="vertical-align: -5px" /> inside that interval. Notice that unlike the square function, it's continuous (but its derivative isn't &ndash; there's a kink at 0.)</p>
+<p>We again have no recourse but to plug into the definition.</p>
+<p>Since the function is defined in pieces, we have to split the integral into two parts. For each of the integrals, we have to evaluate them by <i>integrating by parts</i> &ndash; not exactly the nicest thing in the world. So before beginning, we take a step back.</p>
+<p>There are <i>two</i> separate integrals, but they smell sort of similar&hellip;.as it turns out, we can do a <i>little trick</i> to relate the integrals. It's a tricky trick! If we give the first integral a special name like <img class="eq" src="eqs/6654452622445492293-130.png" alt="A(s)" style="vertical-align: -5px" />, and then we try to massage the second integral into a shape like <img class="eq" src="eqs/6654452622445492293-130.png" alt="A(s)" style="vertical-align: -5px" />&hellip;if we do a substitition <img class="eq" src="eqs/1503227278377615979-130.png" alt="u = -t" style="vertical-align: -1px" /> and then massage around some minus signs, you find that the second integral is actually <img class="eq" src="eqs/5871404624318479305-130.png" alt="A(-s)" style="vertical-align: -5px" />.</p>
+<p>The moral of this story is</p>
+<div class="infoblock">
+<div class="blocktitle">Moral</div>
+<div class="blockcontent">
+<p>Before diving into algebra, see if you can do some tricks to make your life easier.</p>
+</div></div>
+<p>A few other morals of this story are</p>
+<ul>
+<li><p>Giving things a name helps you modify them algebraically! i.e. modifying <img class="eq" src="eqs/6654452622445492293-130.png" alt="A(s)" style="vertical-align: -5px" /> to <img class="eq" src="eqs/5871404624318479305-130.png" alt="A(-s)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>integration by parts is your bread and butter (?)</p>
+</li>
+</ul>
+<p>Anyways at the end of the day, with this little trick, we only have to integrate by parts once. We end up with <img class="eq" src="eqs/2803905787049442804-130.png" alt="A(s) + A(-s)" style="vertical-align: -5px" /></p>
+<p>Remarkably, once we work through the weeds, we find that the Fourier Transform of the triangle function is sinc squared!</p>
+<ul>
+<li><p>Now, we could have predicted this by noticing that the triangle function is the convolution of the square function&hellip; ;)</p>
+</li>
+</ul>
+<h2>Final example: the Gaussian</h2>
+<p>So far, we haven't done any real magic. This one is real magic!</p>
+<p>The Gaussian is the famous bell-shaped curve defined by <img class="eq" src="eqs/6415815195816512650-130.png" alt="f(t) = e^{-pi t^2}" style="vertical-align: -5px" />. (Again, there's all sorts of different normalizations; this one is the one we're using.)</p>
+<p>There's a famous formula that the integral of the Gaussian is 1. It's one of the most beautiful and famous tricks in mathematics that goes back to Euler. It's marvelous!</p>
+<p>The trick to calculating the Fourier Transform is to do Feynman's trick of <b>differentiating under the integral sign</b>. </p>
+<ul>
+<li><p>In our expression for the fourier transform, we differentiate <i>with respect to s</i>, so that it only hits the complex exponential and not the real Gaussian exponential. It pulls down a factor of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, as well as some numerical constants.</p>
+</li>
+<li><p>&lsquo;&lsquo;Bless your soul, this thing is perfectly set up for integration by parts!&rsquo;&rsquo; Indeed, we have a <img class="eq" src="eqs/1495230934686649161-130.png" alt="t^2" style="vertical-align: -1px" /> up in the exponent, and since the <img class="eq" src="eqs/8818741644866331344-130.png" alt="d/ds" style="vertical-align: -5px" /> pulled down a factor of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, we now have a its derivative <img class="eq" src="eqs/4210774942181659876-130.png" alt="d(t^2) = 2t dt" style="vertical-align: -5px" /> present as well&hellip;so there's a total derivative present!</p>
+</li>
+<li><p>We let that total derivative be our <img class="eq" src="eqs/12800076900115544-130.png" alt="dv" style="vertical-align: -1px" /> when we integrate by parts. The boundary term at infinity vanishes, and we're left with another integral that looks remarkably like our original integral!</p>
+</li>
+</ul>
+<p>Our we end upw ith an expression that looks like</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4384307749081067489-130.png" alt="     F'(s) = -2pi s F(s) " />
+<br /></div><p>&lsquo;&lsquo;What'd'you know, you son of a &hellip; gun&rsquo;&rsquo; this is an ordinary differential equation for F(s)! We can solve this easily; we know the initial condition <img class="eq" src="eqs/1874744833170645151-130.png" alt="F(0) = 1" style="vertical-align: -5px" /> because the integral of the Gaussian is 1, and then we're left with the beautiful expression <img class="eq" src="eqs/4869902155983866228-130.png" alt="F(s) = e^{-pi s^2}" style="vertical-align: -5px" />.</p>
+<p>So <b>the Fourier Transform of a Gaussian is itself</b>! What magic.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-23 17:03:23 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec6.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

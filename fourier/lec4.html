@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Orthogonality</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
+<div class="menu-item"><a href="lec3a.html">Interpretation</a></div>
+<div class="menu-item"><a href="lec3b.html">Hot&nbsp;Rings</a></div>
+<div class="menu-item"><a href="lec4.html" class="current">Orthogonality</a></div>
+<div class="menu-category">Fourier Transforms</div>
+<div class="menu-item"><a href="lec5.html">Motivation</a></div>
+<div class="menu-item"><a href="lec6.html">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
+<div class="menu-item"><a href="lec7.html">Lecture&nbsp;8</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Orthogonality</h1>
+</div>
+<p>We spent the rest of class (Mon Week 2) discussing the concept of orthogonality. Prof. Osgood presented a beautifully motivated and clean picture for why it was useful to define a notion of &lsquo;&lsquo;orthogonality&rsquo;&rsquo; for functions. I won't go through the whole background of linear algebra again here, but I'll state the main point:</p>
+<div class="infoblock">
+<div class="blocktitle">Main point of class</div>
+<div class="blockcontent">
+<p>You can think of functions as vectors in an infinite-dimensional vector space. Let us consider the set of all complex-valued, square-integrable functions defined on the interval <img class="eq" src="eqs/5113014419904972428-130.png" alt="[0,1]" style="vertical-align: -5px" />. If you add together two such functions, you get another one, and if you scale such a function by a number, you also get another function of the same sort. So these functions form a vector space.</p>
+<p>It turns out that this vector space has a few other nice features. A useful <b>norm</b> for the vector space is</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5135293576177457982-130.png" alt=" | f |^2 equiv int_0^1 | f(t) |^2 dt, " />
+<br /></div><p>and its corresponding <b>inner product</b> is</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8563494816175871966-130.png" alt=" (f,g) equiv int_0^1 f(t) overline{g(t)} dt. " />
+<br /></div><p>We say that two functions <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" /> are orthogonal if <img class="eq" src="eqs/8441514992330456250-130.png" alt="(f,g) = 0" style="vertical-align: -5px" />.</p>
+</div></div>
+<p>We completed the analogy in class the next day (Wed Week 2), but I haven't had time to type that up yet. I'll get around to it someday.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-23 17:03:17 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec4.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

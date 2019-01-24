@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Lecture 8</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
+<div class="menu-item"><a href="lec3a.html">Interpretation</a></div>
+<div class="menu-item"><a href="lec3b.html">Hot&nbsp;Rings</a></div>
+<div class="menu-item"><a href="lec4.html">Orthogonality</a></div>
+<div class="menu-category">Fourier Transforms</div>
+<div class="menu-item"><a href="lec5.html">Motivation</a></div>
+<div class="menu-item"><a href="lec6.html">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
+<div class="menu-item"><a href="lec7.html" class="current">Lecture&nbsp;8</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Lecture 8</h1>
+</div>
+<p>Okay, I lied, last lecture I didn't actually type in real time; I was watching the course video and I paused it a few times to catch up. This time I'll be TeXing live! I promise!</p>
+<h2>Review of last time</h2>
+<p>And&hellip;.we're off!! We started off with a brief reminder of what we learned last time about the Fourier transform of some basic functions:</p>
+<ul>
+<li><p>The <b>rectangle function</b> <img class="eq" src="eqs/4759225259921610996-130.png" alt="Pi(t)" style="vertical-align: -5px" /> has a Fourier transform given by <img class="eq" src="eqs/2834123404867178083-130.png" alt="mathcal{F}Pi(s) = sinc s = sin pi s / pi s" style="vertical-align: -5px" />.</p>
+<ul>
+<li><p>This will come up later in filtering.</p>
+</li></ul>
+</li>
+<li><p>The <b>triangle function</b> <img class="eq" src="eqs/5677498800048595144-130.png" alt="Lambda(t)" style="vertical-align: -5px" /> has a Fourier transform of sinc squared.</p>
+<ul>
+<li><p>We found this by doing integration by parts, but we can also justify this by convolution later as we'll see.</p>
+</li></ul>
+</li>
+<li><p>The <b>Gaussian function</b> has a fourier transform of <b>itself</b> &ndash; remarkable!</p>
+<ul>
+<li><p>We used the normalization</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>But in general, it'll be a tricky business to find Fourier transforms &ndash; integrals of complex exponentials are not simple to compute. You <i>can</i> find tables online; but it's funny to see what you <i>can't</i> do. For instance,</p>
+<ul>
+<li><p>You can't find a Fourier Transform of a cosine. No amount of trickery will let you figure it out &ndash; it can't be done in terms of elementary functions, or even numerically!</p>
+<ul>
+<li><p>We'll need to define delta-functions and generaltzed fourier transforms&hellip;but we'll talk about it later.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>and as we said last time, after going through some examples, we'll go through some general properties of Fourier transforms.</p>
+<h2>General Properties of F.T.</h2>
+<p>First thing, we'll exploit the similarity between the Fourier Transform and the inverse F.T. Remember the formulas:</p>
+<div class="infoblock">
+<div class="blocktitle">Formulas</div>
+<div class="blockcontent">
+
+<div class="eqwl"><img class="eqwl" src="eqs/5188328861802435086-130.png" alt=" mathcal{F} f(s) = int_{-infty}^{+infty} e^{-2pi ist} f(t) dt " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/710393080907135891-130.png" alt=" mathcal{F}^{-1} f(s) = int_{-infty}^{+infty} e^{+2pi ist} f(t) dt " />
+<br /></div></div></div>
+<p>A few comments:</p>
+<ul>
+<li><p>These formulas only differ in a minus sign &ndash; they're remarkably similar!</p>
+</li>
+<li><p>It doesn't matter what you call a variable as long as you know how it functions! It doesn't matter what we call <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> and what we call <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />; it matters where we are in the equation. To be pedantic, we can consider the function (the Fourier-transformed <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />) and evaluate it at a point <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> by evaluating the integral over <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />.</p>
+</li>
+</ul>
+<p>Now we can &lsquo;&lsquo;weaponize&rsquo;&rsquo; this similarity between <img class="eq" src="eqs/2354694502240372968-130.png" alt="mathcal{F}f" style="vertical-align: -4px" /> and<img class="eq" src="eqs/2708179618716595251-130.png" alt="mathcal{F}^{-1}f" style="vertical-align: -4px" /> to find some properties of the Fourier transform. Often we use the word <b>duality</b> to describe these relationships. For instance,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2566830973423489494-130.png" alt="     mathcal{F}f(-s) = mathcal{F}^{-1} f(s) " />
+<br /></div><p>Let's see if we can write this <i>without the variables</i>, because as we said earlier, things get confusing when you explicitly call things by their variable names. So to help this out we define a <b>reversed signal</b> that just flips the sign of the argument,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8366048237962859818-130.png" alt="     f^-(t) equiv f(-t). " />
+<br /></div><p>Using the notation helps us write the duality statement in a less confusing way as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5945556383660424864-130.png" alt="     mathcal{F}^{-1} f = left(mathcal{F}^ fright)^-; " />
+<br /></div><p>i.e., the &lsquo;&lsquo;the inverse transform is just the reversed Fourier transform signal&rsquo;&rsquo;.</p>
+<p>What if we apply these in the other way? That is, what if we want to find the Fourier Transform of the reversed signal, <img class="eq" src="eqs/748414921868909092-130.png" alt="mathcal{F}(f^-)" style="vertical-align: -5px" />? Again, we plug it in to the def'n, we massage the integral by changing integration variables to <img class="eq" src="eqs/1503227278377615979-130.png" alt="u = -t" style="vertical-align: -1px" />; we cancel the minus sign by flipping the limits of integration&hellip; and lo and behold, we end with the inverse Fourier transform of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />. Hence,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6656489556238348815-130.png" alt=" mathcal{F} f^- = mathcal{F}^-1 f;  " />
+<br /></div><p>i.e., the Fourier transform of the revesrsed signal is just the inverse fourier transform of the original signal.</p>
+<h3>Combining things</h3>
+<p>If we combine these last two results that we got, we find that&hellip;</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7689028837203112152-130.png" alt=" mathcal{F} f^- = mathcal{F}^-1 f = left(mathcal{F} fright)^-  " />
+<br /></div><p>which we can say in words as</p>
+<ul>
+<li><p>&lsquo;&lsquo;the Fourier transform of the reversed signal is the same as the reversed Fourier transform&rsquo;&rsquo;</p>
+</li>
+</ul>
+<p>Again, there's a number of such formulas you can derive, and they all fall under the general category of &lsquo;&lsquo;duality formulaas&rsquo;&rsquo;&hellip;you can muddle up your words, so it's important to be careful with your notation and know what you mean&hellip;</p>
+<h3>One more duality formula</h3>
+<p>One more. This one has a different flavor than the others; it considers the Fourier Transform of the Fourier Transform (!). That is, the function we're taking the F.T. <i>of</i> is the F.T.</p>
+<p>We then massaged some integrals on the board again. We plugged into the definition of the F.T., and then we pulled the minus sign in the exponent next to <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />, and then all of a sudden this looks like an <i>inverse</i> Fourier Transform, but evaluated at <img class="eq" src="eqs/5760034605051958-130.png" alt="-s" style="vertical-align: -1px" /> instead of at <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />! So we've just shown that</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/815299138598292097-130.png" alt="     mathcal{F} mathcal{F} f = f^-; " />
+<br /></div><p>i.e., if you take the Fourier Transform <i>twice</i>, you end up with the original signal!</p>
+<h3>Summarizing the duality relations</h3>
+<ul>
+<li><p>Three separate formulas, but all say very similar things</p>
+</li>
+<li><p>Duality is an impressive-sounding word, &lsquo;&lsquo;impress your friends, confound your enemies&rsquo;&rsquo;</p>
+</li>
+</ul>
+<p>Now this seems all kind of silly symbol-pushing, but we can put it to use &ndash; it turns out the duality relations relate to the <i>symmetry</i> of functions.</p>
+<h2>Reversals and Symmetry</h2>
+<p>Remember our definitions for the symmetry of functions:</p>
+<ul>
+<li><p>A function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is even if <img class="eq" src="eqs/4723881533216082928-130.png" alt="f(t) = f(-t)" style="vertical-align: -5px" />; i.e., the graph is symmetric about the y-axis.</p>
+</li>
+<li><p>A function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is odd if <img class="eq" src="eqs/8280201587414591382-130.png" alt="f(t) = -f(-t)" style="vertical-align: -5px" />; i.e., the graph is symmetric about the origin.</p>
+</li>
+</ul>
+<p>Now of course we saw this all in, like, eighth grade, but hold your horses, we'll apply some duality to this soon. Let's first consider how these definitions look if we use our new fancy notation to talk bout time-reversed signals:</p>
+<ul>
+<li><p>A function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is even if <img class="eq" src="eqs/3338936122520107187-130.png" alt="f^- = f" style="vertical-align: -4px" /></p>
+</li>
+<li><p>A function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is odd if <img class="eq" src="eqs/6771733322566932269-130.png" alt="f^- = -f" style="vertical-align: -4px" /></p>
+</li>
+</ul>
+<p>The duality relations allow us to say things about the symmetry of Fourier-transformed functions. To be precise:</p>
+<div class="infoblock">
+<div class="blockcontent">
+<ul>
+<li><p>If <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> is even then its Fourier transform is even</p>
+</li>
+<li><p>If <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> is odd then its Fourier transform is odd</p>
+</li>
+</ul>
+<p>In other words, the <b>Fourier transform inherents the symmetry of the signal</b></p>
+</div></div>
+<p>Now this is all silly and pedantic of course, but the symbol-pushing can get confusing. Prof. Osgoodexplained that historically this has been an issue so he wanted to show how to do these arguments in class&hellip;</p>
+<p>The proofs are a few lines long, but the logic behind this good to remember. Maybe I'll type up something in a box here later to review it.</p>
+<h3>Why care about symm properties?</h3>
+<p>The symmetry properties are nice <i>consistency checks</i> for our work &ndash; we know if we've started with an even function but then ended with an odd one after we F.T.'ed, then we must have messed up somewhere.</p>
+<h3>Finding new F.T.'s with symmetry</h3>
+<p>The symmetry properties can also help us find Fourier transforms of new properties that we didn't know about before! For instance, we can find the F.T. of sinc by applying duality relations and symmetry properties:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1235401211283959867-130.png" alt=" mathcal{F} textrm{sinc} = mathcal{F} (mathcal{F}) = Pi^- = Pi " />
+<br /></div><p>(Again, I might go back and explain the argument later&hellip;)</p>
+<p>Warning! Sometimes people call these properties <b>Fourier pairs</b>. So square and sinc are pairs, and triangle and sinc squared are pairs.</p>
+<p>Another comment on the rigor police:</p>
+<ul>
+<li><p>it's hard to classically talk about whether the integrals converge, where they converge, and <i>what</i> they converge to&hellip;so we'll have to be careful, of couse!</p>
+</li>
+</ul>
+<h3>More on symmetry: the Fourier coefficients</h3>
+<p>Remember that if <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" /> was a real periodic function, then its Fourier coefficients <img class="eq" src="eqs/8882096686944252911-130.png" alt="hat f(n)" style="vertical-align: -5px" /> enjoyed the conjugate symmetry property</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/816931783305746286-130.png" alt="     hat f( -n) = overline{hat f (n)}. " />
+<br /></div><p>It turns out that a similar property also holds for Fourier Transforms.Now if we have a general (non-periodic) <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />, its Fourier transform satisfies the property</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5197533576204423116-130.png" alt="     mathcal{F} f( -s) = overline{mathcal{F} f (s)}. " />
+<br /></div><p>The proof of this property relies on taking the complex conjugate of the definition of the F.T. The realness of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> means that it's equal to oits own complex conjugate</p>
+<p>Again, this is an important consistency check if you're trying to compute the Fourier transform of a real function.</p>
+<h3>Plotting Fourier Transforms</h3>
+<p>There's an important practical consequence of this property for plotting the Fourier transform of a real function: if we take the (complex) magnitude of both sides of the relation, it tells you that that <img class="eq" src="eqs/8230987198700075870-130.png" alt="|mathcal{F} f(-s)| = |mathcal{F} f(s)|" style="vertical-align: -5px" />. In words, it tells you that magnitude of the F.T&gt; of a real function is <i>even</i>.</p>
+<p>Now how do we plot the Fourier Transform? It's a complex number at any point on the line; typically we only plot the <i>magnitude</i> of that number and just throw away the information of the phase. So the fact that <img class="eq" src="eqs/3989091659442710842-130.png" alt="|mathcal{F} f(s)|" style="vertical-align: -5px" /> is <i>even</i> means that its plot is <i>symmetric</i> &ndash; we only need to know the positive-frequency components, since the negative frequency components have the same magnitude.</p>
+<h3>Looking ahead.</h3>
+<p>Shifting, stretching, convolutions&hellip;</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-23 17:03:27 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec7.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

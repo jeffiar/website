@@ -87,3 +87,46 @@ where $\hat f(n)$ are the Fourier coefficients of the initial heat distribution
     \hat f(n) = \int_0^1 e^{-2\pi i n x} f(x) dx.
 \)
 This final result is quite magical and beautiful: we have an explicit formula for the solution of the heat equation! There's plenty to be said about this solution, but I'm getting hungry so I'm going to eat some lunch now.
+
+Okay back from lunch now. Notice that the Fourier coefficients of the solution
+\(
+c_n(t) =  e^{-2\pi^2n^2t}\hat f(n)
+\)
+decay exponentially in time, and that the bigger the $n$, the quicker the coefficient decays to zero. In a sense, we can say that the heat equation ``smoothes out the wiggles'' in the temperature around the ring; the shorter the wavelength of the wiggles, the more quickly the wiggles get smoothed out.
+
+In particular, note that the $n=0$ coefficient actually remains constant over time, because the exponential term is one. This tells us that the average temperature of the ring $\hat f (0) = \int_0^1 f(t) dt$ stays constant over time; in other words, heat is conserved. As $t \to \infty$, all of the terms die away except for the $n=0$ term, and the ring just becomes uniformly hot (or cold) with the average temperature.
+
+== A Taste of Convolution
+
+The next day (Mon Week 2), we made a few more concluding remarks about the heat equation; in particular, the fact the the solution could be written as a *convolution* integral. We'll be discussing convolutions in their full glory later on, but it's a nice sneak peak into what's to come.
+
+If we expand the solution to the heat equation by plugging in the formula for the Fourier coefficients $\hat f(n)$, it looks like
+\(
+  u(x,t) = \sum_n \overbrace{\left[\int_0^1 e^{-2\pi iny} f(y) dy \right]}^{\hat f(n)}e^{-2\pi^2n^2t}e^{2\pi inx} dx,
+\)
+and by grouping together and combining all the terms that depend on $n$, we can simplify the expression to
+\(
+  u(x,t) = \int_0^1 \underbrace{\left(\sum_n e^{-2\pi in(x-y)} e^{-2\pi^2n^2t}\right)}_{g(x-y, t)} f(y) dy.
+\)
+
+Our solution $u(x,t)$ can now be written as a *convolution integral*,
+\(
+u(x,t) = \int_0^1 g(x-y, t) f(y) dy
+\)
+where the function $g(x,t)$ is known as the *fundamental solution* or *Green's function* of the heat equation, and takes the form
+\(
+  g(\sum_n e^{-2\pi inx} e^{-2\pi^2n^t}).
+\)
+We'll discuss these concepts in much more detail later: it turns out that convolving two functions is a very general thing we can do, and the fact that solutions of the heat equation take the form of a /convolution/ with the fundamental solution has deeper consequences and properties. But for now, we will take this as foreshadowing for later.
+
+== A preview of delta `functions'
+
+Earlier, we figured out already what would happen if we took the $t \to \infty$ limit of the heat equation -- everything would die out except for the $n=0$ component, and the heat distro would apporach a uniform distribution of its average value. Correspondingly, the green's function $g(x,t)$ approaches unity as $t \to \infty$.
+
+What if we look at the other limit, as $t \to 0$? If we directly plug in $t=0$ to the greens function, we find that
+\(
+    \lim_{t \to 0} g(x,t) = \sum_n e^{2 \pi inx};
+\)
+i.e., it approaches a Fourier Series where all the coefficients are 1.
+
+There is no way to make sense of this series ``classically'' in terms of functions that we know and love; however, the function /does/ converge into another sense to a comb of $\delta$-function spikes. We'll also talk about delta functions in the future and spend good quality time with them. They are pretty cool, but also pretty weird.
