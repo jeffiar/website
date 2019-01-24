@@ -1,16 +1,16 @@
 # jemdoc: menu{MENU}{lec4.html}, showsource, analytics{UA-131436916-1}
 = Solving the 1D Ising Model for real!!
 
-Goodness. Today marks the third time that we've gone over the 1D Ising model, and it's still confusing as hell! To make matters worse, Prof. Kivelson still hasn't given us any definitive resources to learn from.
-
-Thankfully, today's class made things a bit more clear for me. I guess third time's a charm. 
+Today marks the third time that we've gone over the 1D Ising model, and it's still confusing as hell! Thankfully, today's class made things a bit more clear for me. I guess third time's a charm. 
 
 Anyways, here we go.
 
 === Outline
 - Big Picture
 - [\#solving Solving the 1D Ising Model for real!!]
-- Relation to spin-half quantum system
+    -- [\#solving1 The transfer matrix trick]
+    -- [\#solving2 Expressing things in terms of eigenvalues and eigenvectors of $t$]
+    -- [\#solving3 Diagonalizing $t$ via analogy to spin-half]
 - The homework
 
 == Big picture
@@ -32,7 +32,7 @@ and we're trying to find various properties of these thermodynamic systems.
 - we're also interested in *correlation functions* such as $\langle \sigma_i \sigma_j \rangle$, which tell you how much spin $i$ and spin $j$
 tend to point in the same direction or in opposite directions at equilibrium.
     -- For instance, you can imagine that nearby spins are more correlated than faraway spins, because they can interact with eachother more strongly. Or you can imagine that as $T \to \infty$, any pairs of spins will become less correlated, since the thermal excitations make all the spins jiggle around more.
-    -- Again, because of translational invariance (see [intro3.html here for explanation]), we expect $\langle \sigma_i \sigma_j \rangle$ to /only depend on the distance between the spins/ $i-j$! For instance, the correlation between spins 2 and 5 is the same as between 100 and 103, since they're the same distance apart.
+    -- Again, because of translational invariance (see [intro3.html here for explanation]), we expect $\langle \sigma_i \sigma_j \rangle$ to /only depend on the distance between the spins/ $i-j$! For instance, the correlation between spins 2 and 5 is the same as between 100 and 103, since in both cases, the pairs of sites are separated by three lattice spacings.
 
 === How do we calculate properties?
 Prof. Kivelson [lec3.html outlined the procedure for us] on Monday.
@@ -57,8 +57,8 @@ Once we've found the partition function $Z$, we can calculate pretty much everyt
 \(
     \langle \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_j e^{-\beta H(\{\sigma\})}
 \)
-To explain the notation: I'm summing over all states (this time I call the states $\{\sigma\}$ rather than $s$). Inside the sum I have the spin of the $j$'th site (which is $\pm 1$) as well as the Boltzmann weight $e^{-\beta H(\{\sigma\})}$. The number $H(\{\sigma\})$ is the energy of the system when it's in the state $\{\sigma\}$, and we find this by plugging in the $\sigma$'s into the Hamiltonian.
-- the *spin-spin correlation* $\langle \sigma_i \sigma_j \rangle$ is given by 
+To explain the notation: I'm summing over all states (this time I call the states $\{\sigma\}$ rather than $s$). Inside the sum I have a factor of the spin of the $j$'th site (which is $\pm 1$) as well as the Boltzmann weight $e^{-\beta H(\{\sigma\})}$. The number $H(\{\sigma\})$ is the energy of the system when it's in the state $\{\sigma\}$, and we find this by plugging in the $\sigma$'s into the Hamiltonian.
+- the *spin-spin correlation* $\langle \sigma_i \sigma_j \rangle$, which tells you whether spins $i$ and $j$ tend to align at equilibrium, is given by 
 \(
     \langle \sigma_i \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_i \sigma_j e^{-\beta H(\{\sigma\})}
 \)
@@ -72,27 +72,256 @@ Hopefully, this serves as a sort of useful roadmap for where we're going.
 {Game Plan}
 . Draw a *picture* to gain some physical intuition (we didn't do this in class!!)
 . Rewrite the Hamiltonian as a sum over *bonds* (rather than sites AND bonds)
-. *Zoom in* on a particular bond.
-. Write down a *transfer matrix* which represents the bond from site $j$ to site $j+1$
+. Zoom in on a particular bond and write down a *transfer matrix* which represents the bond from site $j$ to site $j+1$.
 . /Key step/ -- Notice that summing over $\sigma_j = \pm 1$ looks an awful lot like contracting over a shared index, a.k.a. *matrix multiplication*.
 . Rewrite $Z$ as the trace of a bunch of transfer matrices multiplied together.
 . Similarly, rewrite the average spin $\langle \sigma_j \rangle$ and the correlation function $\langle \sigma_i \sigma_j \rangle$ in terms of transfer matrices.
 
-Afterwards, we will diagonalize the transfer matrix, and we will use its eigenbasis to calculate a few interesting quantities. Throughout these steps, we'll appeal to Pauli matrices to help us calculate things, and we'll slowly build up an analogy with a quantum mechanical spin-half particle.
+These quantities are best calculated in the eigenbasis of the transfer matrix. So our next steps are to
 
+. Express the *partition function* $Z$ in terms of eigenvalues and eigenstates of $t$. (dificulty: easy)
+. Express the *average spin* $\langle \sigma_j \rangle$ in terms of eigenvalues and eigenstates of $t$. (difficulty: medium)
+. Express the *correlation function* $\langle \sigma_i \sigma_j \rangle$ in terms of eigenvalues and eigenstates of $t$. (difficulty: Kivelson)
+
+Afterwards, we will diagonalize the transfer matrix and explicitly calculate these quantities. Throughout these steps, we'll appeal to Pauli matrices and our intuition about the quantum mechanics of spin-half to help us calculate things!
 . Find the eigenvalues and eigenvectors of the transfer matrix $\underline{t}$
-. Use the eigenbasis of $\underline{t}$ to /explicitly/ compute the *partition function* $Z$ (dificulty: easy)
-. Again, use that basis to calculate the *average spin* $\langle \sigma_j \rangle$ (difficulty: medium)
-. Finally, use that basis to calculate the *correlation function* $\langle \sigma_i \sigma_j \rangle$ (difficulty: Kivelson)
+. Plug them in to find explicit expressions for $Z$, $\langle \sigma_j \rangle$, and $\langle \sigma_i \sigma_j \rangle$.
 . Profit!?
 ~~~
 
-Under construction...check back soon!
-{{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}
+{{<a name="solving1"></a>}}
+=== Writing the Hamiltonian as a sum over bonds
 
-== Relation to spin-half
+Our first step is to rewrite the Hamiltonian as a single sum over bonds, rather than two separate sums. Later on, we'll see that this form helps us neatly separate the partition function in a nice way.
 
-Under construction...check back soon!
+The Hamiltonian was defined as
+\(
+H = - \sum_{j} J \sigma_j \sigma_{j+1} - \sum_{j} h \sigma_{j}
+\)
+where the first term is the energy of each of the bonds between neighboring sites, and the second is the energy of each of the sites. Since we want to rewrite the Hamiltonian as a sum over /bonds/, we re-assign the energy of $j$'th site to its two neighboring bonds (bond $j-1$ to $j$, and $j$ to $j+1$). (We also introduce a factor one-half to compensate for the fact that each site will now be counted /twice/). Now the Hamiltonian is sum over bonds
+\(
+H = \sum_{j} E(\sigma_j, \sigma_{j+1})
+\)
+where $E(\sigma_j, \sigma_{j+1}) = -J \sigma_j \sigma_{j+1} - \frac h 2 (\sigma_{j} + \sigma_{j+1})$ is the energy of the bond between sites $j$ and $j+1$. (Note that $E(\sigma_j, \sigma_{j+1})$ takes on four possible values, since there's four combinations of what the spins on sites $j$ and $j+1$: \+\+, \+-, -\+, and \-\-.)
+
+=== Defining the transfer matrix
+
+With the Hamiltonian written in this form, we can calculate the partition function more easily.
+
+Remember that the partition function is the sum over all states of the Boltzmann weight $e^{-\beta H}$. Since the Hamiltonian $H$ can be written as a /sum/, the Boltzmann weight $e^{-\beta H}$ can be written as a /product/
+\(
+e^{-\beta H(\sigma_1, \sigma_2, ..., \sigma_N)}
+\)
+\(
+= e^{-\beta E(\sigma_1, \sigma_2) - \beta E(\sigma_2, \sigma 3) - ... - \beta E(\sigma_N, \sigma_1)}
+\)
+\(
+= \underbrace{\left[e^{-\beta E(\sigma_1, \sigma_2)}\right]}_{t_{\sigma_1\sigma_2}} \left[e^{- \beta E(\sigma_2, \sigma_3)}\right]  ... \left[e^{- \beta E(\sigma_N, \sigma_1)}\right]
+\)
+At this point we introduce the transfer matrix $t$ as a notational trick to make the expression much look nicer. If we rename each of the factors in the product by defining
+\(
+t_{\sigma_j \sigma_{j+1}} = e^{-\beta E(\sigma_j, \sigma_{j+1})},
+\)
+then $e^{-\beta H}$ looks like
+\(
+e^{-\beta H} = t_{\sigma_1 \sigma_{2}} t_{\sigma_2 \sigma_3} ... t_{\sigma_{N-1} \sigma_{N}} t_{\sigma_{N} \sigma_1};
+\)
+ie, there's just a factor of $t$ for each of the bonds in the Hamiltonian.
+
+~~~
+{Remark}
+As another notational trick (remember this whole business with transfer matrices is sort of a notational trick anyways!), we can also rewrite the matrix entries of $t_{\sigma \sigma'}$ in a quantum-mechanics-esque manner as $\langle \sigma | t | \sigma' \rangle$. In this picture, we interpret the transfer matrix as an operator in the Hilbert space spanned by $|+1\rangle$ and $|-1\rangle$. Since we're well versed with manipulating bras and kets from quantum mechanics, this alternative notation might be helpful for building our intution.
+
+Using this bra-ket notation, our expression for $e^{-\beta H}$ now looks like
+\(
+    e^{-\beta H(\sigma_1, \sigma_2, ..., \sigma_N)} = \langle \sigma_1 | t | \sigma_2 \rangle \langle \sigma_2 | t | \sigma_3 \rangle \langle \sigma_3 | t | \sigma_4 \rangle ... \langle \sigma_N | t | \sigma_1 \rangle.
+\)
+
+This notation can be more enlightening, or more confusing, depending on your tastes! Personally, I like this bra-ket notation because my eyes are pretty bad and I find it annoying to squint at subscripts.
+~~~
+
+=== Interpreting the transfer matrix
+
+The transfer matrix answers the question, if there's a bond between a spin $\sigma$ and another spin $\sigma'$, then what is the value of $e^{-\beta E(\sigma, \sigma')}$ for that bond? Since there's two possibilities for the first spin $\sigma$ (\+1 or -1) and two possibilities for the second spin $\sigma'$ (\+1 or -1), that means that $t$ is a 2x2 matrix with four entries. (It's a funny sort of matrix where the indices take on values of $\pm 1$.)
+
+To be explicit, we can write the components of $t$ as
+\(
+t = \left[\begin{array}{cc}t_{+1+1} & t_{+1-1} \\ t_{-1+1} & t_{-1-1}\end{array}\right] = \left[\begin{array}{cc}e^{-\beta E(+1,+1)} & e^{-\beta E(+1,-1)} \\ e^{-\beta E(-1,+1)} & e^{-\beta E(-1,-1)}\end{array}\right].
+\)
+
+=== Rewriting the partition function as a trace
+
+Now that we have a nice expression for $e^{-\beta H}$, we turn back to our task of finding the partition function $Z$, which means we need to sum over all the possible configurations of the system. How do we do this?
+
+We need to sum over all possible configurations of the $N$ spins; each spin can either be up or down, so there's a total of $2^N$ configurations. Symbolically, we write this sum as
+\(
+\sum_{\{\sigma\}} = \sum_{\sigma_1=-1}^{+1}\sum_{\sigma_2=-1}^{+1} ...\sum_{\sigma_N=-1}^{+1};
+\)
+that is, the first spin takes on values $\sigma_1 = +1, \sigma_1 = -1$, the second spin takes on values $\sigma_2 = +1, \sigma_2 = -1$, etc., and we're performing this sum for each of the $N$ spins. In class, Prof. Kivelson wrote a confusing expression with a product sign; personally, I'm not a fan. I think that expicitly writing out each of the summations is much more understandable.
+
+Anyways, to find the partition function, we need to calculate
+\(
+Z = \sum_{\{\sigma\}} e^{-\beta H(\{\sigma\})}.
+\)
+When we expand out the sum, we realize the key trick: /the transfer matrices are matrix-multiplied/ with each other, because you sum over the repeated index!
+\(
+Z = \sum_{\sigma_1} \sum_{\sigma_2} ... \sum_{\sigma_N} t_{\sigma_1 \sigma_{2}} t_{\sigma_2 \sigma_3} ... t_{\sigma_{N-1} \sigma_{N}} t_{\sigma_{N} \sigma_1}
+\)
+
+Rememeber that matrix multiplication is defined as $(AB)_{ik} = \sum_j A_{ij}B_{jk}$. If we zoom in on the multiplication between the 1-2 transfer matrix and the 2-3 transfer matrix, we see that indeed, the transfer matrices are being multiplied by each other when we sum over their shared index $\sigma_2$:
+\(
+... = \sum_{\sigma_2}t_{\sigma_1 \sigma_{2}} t_{\sigma_2 \sigma_3}
+    = \left(t\cdot t\right)_{\sigma_1 \sigma_3}
+\)
+So when we sum over spin \#2, those two transfer matrices ``collapse'' together and we're left with a squared transfer matrix between spin \#1 and spin \#3.
+
+If we repeat this process of ``collapsing'' all the transfer matrices together, we end up with 
+\(
+    Z = \sum_{\sigma_1} (\underbrace{t\cdot t \cdot t \cdot ... \cdot t}_{N \textrm{times}})_{\sigma_1 \sigma_1},
+\)
+which we recognize as the formula for the trace of $t^N$,
+\(
+    Z = \textrm{Tr} \left[t^N\right]!
+\)
+
+~~~
+{Remark}
+It's also possible to do this manipulation in the bra-ket notation. (Personally, I find this notation a bit more enlightening.) Remember that a matrix element $M_{ij}$ in bra-ket notation is written as $\langle i | M | j \rangle$. If we use this notation, the partition function looks like
+\(
+Z = \sum_{\sigma_1} \sum_{\sigma_2} ... \sum_{\sigma_N} \langle \sigma_1 | t | \sigma_2 \rangle \langle \sigma_2 | t | \sigma_3 \rangle ... \langle \sigma_N | t | \sigma_1 \rangle.
+\)
+If we suggestively scooch the sum signs next to their respective ket-bras, it looks like
+\(
+Z = \sum_{\sigma_1} \langle \sigma_1 | t \underbrace{\left[\sum_{\sigma_2}  | \sigma_2 \rangle \langle \sigma_2 | \right]}_I t \underbrace{\left[\sum_{\sigma_3} | \sigma_3 \rangle \langle \sigma_3 | \right ]}_I t ...  t \underbrace{\left[ \sum_{\sigma_N}| \sigma_N \rangle \langle \sigma_N | \right]}_I t | \sigma_1 \rangle
+\)
+and we realize that there's just a copy of the identity lying between neighboring transfer matrix operators! (Remember the resolution of the identity $I = \sum_a |a\rangle \langle a|$.)
+
+So $Z$ simplifies to
+\(
+Z = \sum_{\sigma_1} \langle \sigma_1 | t^N | \sigma_1 \rangle = \textrm{Tr} \left[t^N\right]
+\)
+as advertised.
+
+Also, I can't help but to notice how familiar the expression for $Z$ looks! It's reminiscent of the propogator in the path integral formulation of quantum mechanics, where we split up the time evolution operator $e^{-iHt}$ into $N$ chunks, and then sandwich a resolution of the identity between each of the chunks ;)
+~~~
+
+=== Rewriting average spin as a trace
+
+Now that we know how the partition function looks like, let's go on to compute the ensemble average of the spin, $\sigma_j$. I'll be using the bra-ket notation since I find it hard to squint at all the puny subscripts.
+
+As with all expectation values, we can calculate the expectation of $\sigma_j$ by summing up the value of $\sigma_j$ for each microstate, weighted by its probability. This has the form
+\(
+\langle \sigma_j \rangle = \sum_{\{\sigma\}} \sigma_j P(\{\sigma\}),
+\)
+and if we plug in the Boltzmann weights for the probabilities $P(\{\sigma\}) = e^{-\beta H(\{\sigma\})} / Z$, our expression looks like
+\(
+\langle \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_j e^{-\beta H(\{\sigma\})}.
+\)
+
+The sum looks quite similar to our expression for $Z$ earlier, with the exception of an extra factor of $\sigma_j$. To see the effect of what that factor does, let's zoom in on everything that involves $\sigma_j$ inside the expression:
+\(
+... = \sum_{\sigma_j} \sigma_j |\sigma_j \rangle \langle \sigma_j |
+\)
+How do we make sense of this expression? If there /wasn't/ the factor of $\sigma_j$, this would just be the resolution of the identity, $I = \sum_a | a \rangle \langle a |$, but it's not immediately obvious what the factor of $\sigma_j$ does. Let me try explicitly writing out the sum:
+\(
+... = (+1) \bigg[|+1 \rangle \langle +1 |\bigg] + (-1) \bigg[|-1 \rangle \langle -1 |\bigg]
+\)
+This is a matrix with \+1 in the (\+1,\+1) entry and a -1 in the (-1,-1) entry. In other words, it's the *Pauli z matrix* $\tau_z$ defined by
+\(
+\tau_z |\pm1 \rangle = \pm | \pm1 \rangle.
+\)
+
+Now when we write out the transfer matrices in our sum, all the ket-bras resolve to the identity /expect/ for the $j$'th one, which instead becomes a Pauli z matrix! So we end up with a $\tau_z$ trapped between a bunch of $t$'s in our expression.
+\(
+    \langle \sigma_j \rangle = \sum_{\sigma_1} \langle \sigma_1 | \underbrace{t \cdot ... \cdot t}_{j-1} \cdot \tau_z \cdot \underbrace{t \cdot ... \cdot t}_{N-(j-1)} | \sigma_1 \rangle = \textrm{Tr} \left[t^{j-1} \tau_z t^{N-(j-1)}\right]
+\)
+
+=== Rewriting the spin-spin correlation as a trace
+
+When we find the spin-spin correlation function $\langle \sigma_i \sigma_j \rangle$, a very similar trick happens; you can work out the details for yourself. 
+
+The end result is that
+
+~~~
+\(
+\begin{array}{rl}
+Z &= \textrm{Tr} \left[t^N\right], \\
+\langle \sigma_j \rangle &= Z^{-1} \textrm{Tr} \left[t^{j-1} \tau_z t^{N-(j-1)}\right], \\
+\langle \sigma_i \sigma_j \rangle  &= Z^{-1} \textrm{Tr} \left[t^N\right].
+\end{array}
+\)
+~~~
+
+{{<a name="solving2"></a>}}
+== Calculating these traces
+
+We still need to calculate these traces in terms of some basis. Remember from linear algebra that we can calculate traces in terms of /any basis/ we want.
+
+In our case, the best basis to use is the /eigenbasis of the transfer matrix $t$/. Since it's a real symmetric 2x2 matrix, it's going to have two orthogonal eigenvectors that span its whole Hilbert space. We'll write these two eigenvectors and their corresponding eigenvalues as
+\(
+t|\psi_+ \rangle = \lambda_+ | \psi_+ \rangle,
+\)
+\(
+t|\psi_- \rangle = \lambda_- | \psi_- \rangle.
+\)
+
+We won't actually /explicitly/ find these eigenvalues and eigenvectors just yet; I'll leave that for the [\#solving3 next section] because there's some neat tricks you can do with Pauli matrices by drawing an analogy to a spin-half particle. For now I want to pretend we know the eigenstates already, and just focus on the algebraic manipulations.
+
+(Throughout this section I'll slip into quantum mechanics lingo, and say ``operator'' in place of ``matrix'' or ``state'' in place of ``vector'')
+
+=== Simplifying the partition function
+
+What's so nice about the eigenstates of $t$ is that they make it much easier to find $t^N$. When you apply an operator multiple times to an eigenstate, you just pull out an eigenvalue each time:
+\(
+t^N | \psi_+ \rangle = \lambda^N | \psi_+ \rangle.
+\)
+(Remember that $t$ is an operator, but $\lambda_\pm$ are just numbers.) 
+    
+So if we use this basis to evaluate the partition function, it simplifies very nicely:
+\(
+\begin{array}{rl}
+    Z &= \langle \psi_+ | t^N | \psi_+ \rangle + \langle \psi_- | t^N | \psi_- \rangle \\
+         & \\
+    &= \lambda_+^N \langle \psi_+ | \psi_+ \rangle + \lambda_-^N \langle \psi_- | \psi_- \rangle
+\\
+         & \\
+    &= \lambda_+^N + \lambda_-^N.
+\end{array} 
+\)
+Since eventually we'll be taking the thermodynamic limit $N \to \infty$, it's nice to rewrite this expression a bit to understand what happens when we take that limit. We find that
+\(
+    Z = \lambda_+^N \left[1 + \left(\frac {\lambda_-}{\lambda_+}\right)^N \right] \longrightarrow \lambda_+^N \quad \textrm{as}\quad  N \to \infty
+\)
+In the expression above, $(\lambda_- / \lambda_+)$ is less than 1, so when we raise it to a huge power like $N$, it goes to 0.
+
+=== Simplifying the average spin
+
+We can do something quite similar for finding the average spin
+\(
+\langle \sigma_j \rangle = \frac 1 Z \textrm{Tr} \left[t^{j-1} \tau_z t^{N-(j-1)}\right],
+\)
+which can be written explicitly in the eigenbasis of $t$ as
+\(
+\langle \sigma_j \rangle = \frac 1 Z \Bigg[\bigg\langle \psi_+ \bigg| t^{j-1} \tau_z t^{N-(j-1)} \bigg| \psi_+ \bigg\rangle + \bigg\langle \psi_- \bigg| t^{j-1} \tau_z t^{N-(j-1)} \bigg| \psi_- \bigg\rangle\Bigg].
+\)
+I'll describe in words what happens when we sandwich our eigenstates around the operator. The $j-1$ copies of $t$ to the left of the $\tau_z$ can act backwards on the bra-eigenstate to pull out $j-1$ powers of the eigenvalue (no complex conjugate since $t$ is Hermitian with real eigenvalues!); the other $N-(j-1)$ copies of $t$ to the right of $\tau_z$ act forwards on the ket-eigenstate to pull out another $N-(j-1)$ powers of the eigenvalue. We're left with the $\tau_z$ trapped inside the sandwich:
+
+\(
+    \langle \sigma_j \rangle = \frac 1 Z \bigg[\lambda_+^N \langle \psi_+ | \tau_z | \psi_+ \rangle + \lambda_-^N \langle \psi_- | \tau_z | \psi_- \rangle \bigg]
+\)
+Again, when we take $N \to \infty$, only the first term survives, because the ratio of the terms $(\lambda_- / \lambda_+)^N$ goes to 0. So we find that
+\(
+    \lim_{N\to\infty} \langle \sigma_j \rangle = \frac 1 Z \lambda_+^N \langle \psi_+ | \tau_z | \psi_+ \rangle = \langle \psi_+ | \tau_z | \psi_+ \rangle 
+\)
+
+{{<a name="solving3"></a>}}
+== Diagonalizing the Transfer Matrix
+
+Check out [https://piazza.com/class/jr1doe3kcpj3wf?cid=7 my answer on piazza], where I explain how to find the eigenvalues of $t$ by decomposing it in terms of the Pauli matrices as $t = t_0 I + t_x \tau_x + t_y \tau_y + t_z \tau_z$.
+
+Check out the picture [https://piazza.com/class/jr1doe3kcpj3wf?cid=6 here] for a graphical explanation of why $\langle \psi_+ | \tau_z | \psi_+ \rangle = t_z / \sqrt{t_z^2 + t_x^2}$. A picture is worth a thousand words!
+
+Work in progress, check back soon...
 {{<img src="../img/under_construction.gif" style="height: 50px; width:50px"/>}}
 
 == Our first problem set
