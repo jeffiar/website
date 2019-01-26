@@ -1,11 +1,11 @@
 # jemdoc: menu{MENU}{lec4.html}, showsource, analytics{UA-131436916-1}
 = Solving the 1D Ising Model for real!!
 
-Today marks the third time that we've gone over the 1D Ising model, and it's still confusing as hell! Thankfully, today's class made things a bit more clear for me. I guess third time's a charm. 
+Today (Wed Week 2) marks the third time that we've gone over the 1D Ising model, and it's still confusing as hell! Thankfully, today's class made things a bit more clear for me. I guess third time's a charm. 
 
 Anyways, here we go.
 
-=== Outline
+=== Outline of this lecture
 - Big Picture
 - [\#solving Solving the 1D Ising Model for real!!]
     -- [\#solving1 The transfer matrix trick]
@@ -337,6 +337,7 @@ It looks like the main purpose of the problem set is
 
 Anyways, I'm not sure how much I can discuss here without violating the honor code. But I did have an interesting remark on the definition of magnetization density.
 
+{{<a name="remark"></a>}}
 ~~~
 {Remark}
 *tl;dr:* $m = \langle \sigma_j \rangle$ is a subtle statement.

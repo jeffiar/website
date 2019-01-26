@@ -1,19 +1,20 @@
 Stat Mech II
     Home                [index.html]
 
-Week 1 Monday
+First Lecture
     Overview            [intro.html]
     Phase Transitions   [intro2.html]
     Symmetry            [intro3.html]
     Ising Model Def'n         [intro4.html]
     Ising Thermo     [intro5.html]
 
-Week 1 Friday
-    Overview            [lec2.html]
-
-Week 2 Monday
+1D Ising Model
+    Motivation          [lec2.html]
     The Big Picture     [lec3.html]
-    Solving 1D Ising    [lec3b.html]
+    Exact Solution      [lec4.html]
 
-Week 2 Wednesday
-    1D Ising For Real!  [lec4.html]
+Mean Field Theory
+    Overview                [lec5a.html]
+    Variational Principle   [lec5b.html]
+    Warm-up: Paramagnet     [lec5c.html]
+    Mean-Field Ising Sol'n  [lec5d.html]

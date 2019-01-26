@@ -1,0 +1,86 @@
+# jemdoc: menu{MENU}{lec5b.html}, showsource, analytics{UA-131436916-1}
+= The Variational Principle
+
+When Prof. Kivelson walked into class today, he looked a bit taken by surprise. He just kind of stood there for a bit and stared at everyone who stared back at him. There was a funny look on his face, like, ``Oh, you're expecting me to teach you somethign?'' Well, yes, we would like you to teach us some statistical mechanics!
+
+In class, we spent /way/ too much time proving the variational principle, and not enough time explaining what it actually means. Honestly, it's much more important to understand the logic behind a variational argument than to know how to prove it...so of all the sections on this page, the [\#motivation Motivation and Overview] section is most important. (I don't even know if I'll get around to writing the rest of the sections...I have a life too, you know!)
+
+=== Outline
+
+- [\#motivation Motivation and Overview]
+- [\#jenson Jenson's Inequality]
+- [\#variational Proving the Variational Principle]
+- [\#quantum Connection to Quantum Mechanics and trial wavefunctions]
+- [\#discussion Discussion: does ``best'' mean ``good enough''?]
+
+{{<a name="motivation"></a>}}
+== Motivation and Summary
+
+One of the key points today is that interacting systems are /very difficult/ to solve in general. The variational principle is a useful tool to have in our pocket because it lets us leverage the Hamiltonians which we actually /can/ solve to solve Hamiltonians which we /can't/.
+
+~~~
+{Key Point}
+The strategy of the variational principle is to use a problem we /can/ solve to *approximate* a problem we /can't/.
+
+More preciesly, suppose we want to solve a hard system with a Hamiltonian $H$. Our plan of attack is to approximate it with a different ``trial Hamiltonian'' $H_{tr}$ which has the same general ``flavor'' as the actual Hamiltonian, but (in contrast) is /actually solvable/. You could also call $H_{tr}$ a different name such as a ``variational ansatz'' or a ``guess of the solution shape'' or even ``a random shot in the dark''.The main point is that the the trial Hamiltonian should be a solvable problem that's similar to the actual problem at hand.
+
+But we don't care about the trial Hamiltonian -- we care about the actual hamiltornian $H$. So a natural question to ask is, ``what's our best guess for the free energy of the actual system''?
+
+The variational principle tells us that:
+
+1. Our best guess for the actual free energy is given by the *variational free energy* $F_{var}$, which you can find by adding a little correction to the trial Hamiltonian's free energy $F_{tr}$:
+\(
+F_{var} = F_{tr} + \langle H - H_{tr} \rangle_{tr}.
+\)
+2. No matter how good a guess your variational free energy $F_{var}$ is, it will /always/ be greater than or equal to the /actual/ free energy $F$; that is,
+\(
+F_{var} \geq F.
+\)
+3. The /best/ variational solution we can find is the one that gets /as close as possible/ to the actual Hamiltonian.
+~~~
+
+A quick comment about notation: When we write $\langle O \rangle_{tr}$ it means that we're considering the average of some observable O in the trial ensemble; that is, it answers the question ``what would the average of O be if the system were /actually/ the trial Hamiltonian?'' Operationally, $\langle O \rangle_{tr}$ is calculated using the probability weights of the /trial/ Hamiltonian, by calculating
+\(
+    \langle O \rangle_{tr} = \frac 1 {Z_{tr}} \sum_{\textrm{states}} e^{-\beta H_{tr}(\textrm{state})} O({state}).
+\)
+(Notice the subscript ``tr'' on the partition function and Hamiltonian here.)
+
+=== Minimizing the variational free energy
+
+The key point of the variational principle is that *our best guess is the one with the smallest variational free energy* $F_{var}$. Practically speaking, our strategy is to start with a whole /family/ of possible trial Hamiltonians, and then just pick the one whose variational free energy is the smallest.
+    
+For instance, our family of trial Hamiltonians might be /all possible 2D Ising models/
+\(
+    H(K,b) = -K \sum_{\langle ij \rangle} \sigma_i \sigma_j - b\sum_{j} \sigma_j,
+\)
+where /we can pick/ the parameters $K$ and $b$ that enter into the Hamiltonian. We have a lot of choices; picking $K=10$ and $b=50$ gives us one possible trial Hamiltonian; picking $K=0.002$ and $b=3.14$ gives us another possibility, etc., and the variational principle tells us that our /best/ guess for $K$ and $b$ is the choice that minimizes $F_{var}$.
+
+In the picture below, I've illustrated my point. There's a whole bunch of different $b$'s that we can pick, and our best choice is $b^*$ because it minimizes $F_{var}$.
+
+{{<img src="img/variational.png">}}
+
+Here I've plotted how $F_{var}$ depends on the $b$ parameter in the trial Hamiltonian. (I've left out the $K$ parameter for simplicity). Notice that no matter /what/ I choose for the $b$ parameter, the variational free energy $F_{var}$ is always bigger than the actual free energy $F$. And my /best/ guess for $b$ is the one that makes $F_{var}$ as close to $F$ possible.
+
+Okay I think I've nailed the point into the floor enough by now. Operationally, here are the steps to apply the variational principle:
+
+~~~
+{Steps}
+. First, solve the thermodynamics of the trial Hamiltonian $H_{tr}$ by finding $Z_{tr}$, $F_{tr}$, $\langle \ldots \rangle_{tr}$, and whatever else you need.
+. Next, calculate the variational free energy $F_{var} = F_{tr} + \langle H - H_{tr} \rangle_{tr}$.
+. Finally, minimize the variational free energy by setting its derivative w.r.t. the variational parameters equal to zero. So if our trial Hamiltonian $H_{tr}(b_j)$ depends on parameters $b_j$, then we should set $\frac {\partial F_{var}} {\partial b_j} = 0$ and then solve for the parameters $b_j$.
+~~~
+
+Hooray, we've learned the variational principle. I'm not sure if I'll get around to finishing up the rest of this page...for now just go on to the [lec5c.html next page about non-interacting spins].
+
+{{<a name="jenson"></a>}}
+== Jenson's Inequality
+
+{{<a name="variational"></a>}}
+== Proving the Variational Principle
+
+{{<a name="quantum"></a>}}
+== Connection to Quantum Mechanics' Variational Principle
+
+{{<a name="discussion"></a>}}
+== Discussion
+

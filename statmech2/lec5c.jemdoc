@@ -1,0 +1,182 @@
+# jemdoc: menu{MENU}{lec5c.html}, showsource, analytics{UA-131436916-1}
+= Warm-up: Non-Interacting Spins
+
+Before we go on to apply the variational principle to the Ising model, I want to review the statistical mechanics of a /non/-interacting paramagnet. The better we understand what we /already/ know, the more prepared we'll be to tackle what we don't know!
+
+More practically speaking, the non-interacting Ising model will be our /trial Hamiltonian/ for when we tackle the /full/ Ising model. So the results from this page will come into play when we we apply the variational principle to the Ising model in its full interacting glory.
+
+The derivation on this page will also teach us a few other things:
+
+- It presents a /baseline/ level of understanding. In order to pin down the effects of interactions, we have to first know how life is like /without/ interactions!
+- It shows us how partition functions simplify and factorize when the Hamiltonian is just the sum of a lot of independent parts.
+- Our results will be a good sanity check to check our math later, since the full Ising model results should reduce to the expressions on this page if we take $J \to 0$.
+
+Okay, onwards to solving the problem.
+
+== Defining the Non-interacting Ising model
+
+This model is about the simplest model you could imagine for $N$ particles. We pretend they're all independent and don't interact with each other, so that the Hamiltonian is the sum of each of their energies,
+\(
+    H = E_1 + E_2 + \ldots + E_N = \sum_{j=1}^{N} E_j.
+\)
+
+Each of the particles has the simplest energy spectrum you could think of -- a low-energy state and a high-energy state, labeled by +1 and -1, with an energy gap between them of 2b.  If we denote the state of the $j$'th particle by $\sigma_j$, then the energy of the $j$'th particle can be written as
+\(
+    E_j = - b \sigma_j
+\)
+and the total energy of all the particles is given by
+\(
+    H = -b \sum_j \sigma_j.
+\)
+
+Yeah, yeah, super boring, we've all seen this before, it's the Ising model with the coupling constant $J$ set to 0. Let's make things a bit more interesting by pretending /each spin experiences a different external field/ $b_j$. (For instance, maybe spin 1 experiences $b_1 = 56$ but spin 42 experiences $b_{42} = 1.76$.) Later on, when we apply this non-interacting Hamiltonian as a variational ansatz to the full Ising model, it turns out that we'll have a nice physical interpretation for the $b_j$. So we'll keep the $b_j$ distinct for each site for now.
+
+Now the Hamiltonian takes on the form
+\(
+    H = - \sum_j b_j \sigma_j.
+\)
+
+Okay onward to statistical mechanics.
+
+== Statistical Mechanics of N non-interacting spins
+
+As usual, our first task is to calculate the partition function for the whole system, because then we can figure out the probability of different microstates\/configurations\/eigenstates\/complexions\/whatever you want to call it. The key takeaway from here is that
+
+~~~
+{Takeaway}
+If we have a non-interacting system, where the Hamiltonian is just the sum of separate parts
+\(
+    H = E_1 + E_2 + E_3 + ... + E_N,
+\)
+then the partition function factorizes into the partition function of the separate parts as
+\(
+    Z = z_1 \cdot z_2 \cdot z_3 \cdots z_N,
+\)
+where the partition function of each part of the system is given by
+\(
+    z_j = \sum_{\sigma_j} e^{-\beta E(\sigma_j)}
+\)
+as you'd expect.
+~~~
+
+We've probably seen this takeaway before, but it's always useful to review where it comes from. (And depending on how well we learned statistical mechanics, we may or may not remember this principle...) So let's remind ourselves of the argument:
+
+When we calculate the partition function, we're summing up the exponential $e^{-\beta H}$, but since the Hamiltonian $H$ itself is the sum of lots of terms, the /exponential/ $e^{-\beta H}$ factors in to the product of lots of factors:
+\(
+    e^{-\beta H} = e^{[-\beta E_1 - \beta E_2 - \beta E_3 - \ldots - \beta E_N]}
+    = \left[e^{-\beta E_1}\right]\,\left[e^{- \beta E_2}\right]\, \left[e^{- \beta E_3}\right]\, \ldots \, \left[e^{- \beta E_N}\right]\,
+\)
+
+Very similarly, when we sum over the configurations of /all/ the spins, it's the same as summing over the configurations of the first spin, and then over the configurations of the second spin, and so on. Mathematically, this means that
+\(
+    \sum_{\textrm{states}} = \sum_{\{\sigma\}} = \sum_{\sigma_1} \sum_{\sigma_2} \sum_{\sigma_3} \ldots \sum_{\sigma_N}
+\)
+
+Prof. Kivelson uses a really perverse notation to express multiple sums like this, and it's very confusing! I find it much better to write it all out explicitly.
+
+Anyways, if we put these two facts together to calculate the partition function, we find that
+\(
+Z = \sum_{\textrm{states}} e^{-\beta E(\textrm{state})} 
+    = \left[\sum_{\sigma_1}e^{-\beta E(\sigma_1)}\right]\,\left[\sum_{\sigma_2}e^{- \beta E(\sigma_2)}\right]\, \left[\sum_{\sigma_3}e^{- \beta E(\sigma_3)}\right]\, \ldots \, \left[\sum_{\sigma_N}e^{- \beta E(\sigma_N)}\right]\,
+\)
+and if we call the partition function of each of the separate subsystems $z_j$, then we see that $Z$ for the whole system is just $z_j$ for the subsystems multiplied together:
+
+\(
+    Z = z_1 \cdot z_2 \cdot z_3 \cdots z_N = \prod_j z_j.
+\)
+
+=== Spin-up spin-down
+
+In our case of the non-interacting-spin-Ising-model, the energy of the $j$'th spin is given by $E_j = -b_j \sigma_j$, so its partition function is
+\(
+    z_j = \sum_{\sigma_j = \pm1} e^{\beta b_j \sigma_j} = e^{\beta b_j (+1)} + e^{\beta b_j (-1)} = 2 \cosh (\beta b_j),
+\)
+and the partition function for the whole system is given by
+\(
+    Z = \prod_j z_j = \prod_j 2 \cosh (\beta b_j).
+\)
+
+~~~
+{FOod for thought}
+
+Can you see /why/ $Z$ no longer factorizes so easily once you introduce interactions into the Hamiltonian? And can you see why transfer matrices worked so nicely for the 1D Ising Model?
+~~~
+
+== The Free Energy
+
+Onwards to the free energy. It's a simple calculation:
+\(
+    F \equiv - T \log Z = -T \log \left[\prod_j z_j\right] = - T \sum_j \log z_j = - T \sum_j \log (2 \cosh (\beta b_j)).
+\)
+
+Not much to say here, apart from recognizing the log property that the log of a product is the sum of logs; i.e., $\log(z_1 z_2 \ldots z_N) = \log z_1 + \log z_2 + \ldots + \log z_N$.
+
+~~~
+{Fun Fact}
+Did you know that the reason the free energy is defined as $F = - T \log Z$ is so that $e^{-\beta F} = Z = \sum e^{-\beta E}$? This expression says that if you stick the free energy into a Boltzmann factor, it's equal to the sum of the boltzmann factors of /all/ the microstates of your system. It's almost as if the free energy summarized possible energies of the system at a particular temperature! And look, it even takes into account the /number/ of terms that you're adding up on the RHS, a.k.a. the number of microstates, a.k.a. the e to the entropy! Whoa, trippy.
+~~~
+
+== Correlation functions
+
+Okay last step. We still have to calculate $\langle \sigma_j \rangle$ and $\langle \sigma_i \sigma_j \rangle$. Remember that these functions tell you the /thermal average/ of spin $j$, and the /correlation/ between two different spins, respectively. And also remember that $\langle \sigma_j \rangle$ is also known as the *magnetization density*. (Well, technically, that's only true if $b_j$ is the same for all the spins on the lattice...see my remark on the [lec4.html\#remark bottom of this page].)
+
+Now, since all the spins are independent and uncoupled in this model, it's remarkably easy to calculate the thermal averages of particular spins. We only need to consider the $j$'th site, and nothing else in the partition function matters! Just watch:
+\(
+    \langle \sigma_j \rangle = \frac 1 z_j \sum_{\sigma_j} \sigma_j e^{-\beta E(\sigma_j) }= \frac {[(+1) e^{\beta b_j (+1)} + (-1) e^{\beta b_j (-1)}]} {z_j} = \frac {2 \sinh (\beta b_j)} { 2 \cosh (\beta b_j)} = \tanh (\beta b_j).
+\)
+
+To see why this trick works, write out the entire partition function for the whole system:
+\(
+    \langle \sigma_j \rangle = \frac{\sum_{\{\sigma\}} \sigma_j \left[e^{-\beta E_1}\right]\left[e^{-\beta E_2}\right] \ldots \left[e^{-\beta E_N}\right]}{Z}
+   = \frac{\overbrace{\left[\sum_{\sigma_1}e^{-\beta E_1}\right]}^{z_1}\overbrace{\left[\sum_{\sigma_2}e^{-\beta E_2}\right]}^{z_2} \ldots \left[\sum_{\sigma_j}\sigma_j \,e^{-\beta E_j}\right] \ldots \overbrace{\left[\sum_{\sigma_N}e^{-\beta E_N}\right]}^{z_N}} {z_1 \, z_2 \, \ldots z_j \, \ldots z_N}
+\)
+
+Notice that all the factors of $z_i$ on the top and bottom cancel except for $i = j$. And also notice that we had to have a non-interacting Hamiltonian for this trick to work! No wonder non-interacting systems are so nice.
+
+=== Gaining some intuition
+
+{{<img src="img/tanh.png">}}
+
+Shown above is how the magnetization density $m = \langle \sigma_j \rangle$ varies as we adjust the external field $b_j$, at various temperatures $T = 1/\beta$. At zero field ($b_j = 0$), the spin has equal chances of being up and down, so the average magnetization is zero ($m = 0$). As we turn the field up, the spin wants to point up; as we turn it down, the spin wants to point down. Once the field is strong enough, the spin has essentially probability 1 of pointing in the direction of the field, and the magnetization saturates at $\pm 1$ ($\lim_{b_j \to \pm \infty} m(b_j, T) = \pm 1$). If you interpret the average as a time-average, this means that the particle spends pretty much all of its time aligned with the field; if you interpret the average as an average over sites on the lattice, it means that /most of the spins/ on the lattice are aligned with the field if it's strong enough. 
+
+Also, take note of the behavior at different temperatures: as the temperature gets higher and higher ($\beta \to 0$), the tanh gets more and more spread out, and it takes a stronger and stronger field to coerce all the spins to point in its direction. Physically, at higher temperatures, there is more random thermal energy in the spins which tends to /scramble/ and /disorder/ any patterns between them, so it takes a /stronger field/ to orient them. And on the other hand, at lower temperatures ($\beta \to \infty$), there are less thermal fluctuations to jiggle things up, and less of an entropic incentive for the spins to populate the higher-energy-state, so it doesn't take very strong of a field for the spins to want to point in its direction. In particular, notice that at the $T=0$ limit, the /slightest hint/ of a field in one direction is enough to coerce the spins to completely align.
+
+~~~
+{Remark}
+Ah, the entropic bliss of randomness! Ah, the allure of energetic award! Ah, the struggle between yin and yang, between energy and entropy, between order and disorder! What tension, what drama, what thermodynamics!
+~~~
+
+=== Neighboring spins are not correlated
+
+Okay, enough vivid language. There's one more task at hand: we need to find the correlation functions $\langle \sigma_i \sigma_j \rangle$. Again, here we can aply the trick of independence: since the spins are /independent/ in a non-coupled model, they must be /uncorrelated/. In other words, whether some spin $\sigma_i$ points up or down does not depend on /any/ other spin $\sigma_j$! Statistically, this statement of independence is expressed as
+    \(
+    \langle \sigma_i \sigma_j \rangle = \langle \sigma_i \rangle \langle \sigma_j \rangle.
+    \)
+
+~~~
+{Remark}
+As a fun exercise, you might want to expand out both sides of the equation to convince yourself why this statements is true for non-interacting Hamiltonians.
+~~~
+
+Now, it might not be intuitive /why/ this statement means that sites $i$ and $j$ are uncorrelated, but you'll have to take my statistical word for it. I honestly don't have a very good intuitive answer myself.
+
+- Perhaps as justification, you might think back to stats class in high school, where you learned about linear regression between two variables $x$ and $y$, and you learned about a mysterious formula for the correlation coefficient $r$ that had the expression $\langle x y \rangle - \langle x \rangle \langle y \rangle$ in the numerator. Remember that $r \sim 0$ means that $x$ and $y$ are uncorrelated...
+- As another bit of justification, maybe you can think back to the exact 1D Ising model, where neighboring spins /did/ interact with eachother and thus /were/ correlated in the thermal ensembles, and then the correlation function had the form of
+\(
+\langle \sigma_i \sigma_j \rangle = \langle \sigma_i \rangle \langle \sigma_j \rangle + A e ^ {|i - j| / \xi},
+\)
+where the decaying exponential adds a significant contribution if $i$ and $j$ are close to eachother, and then dies out once they're further apart than the *correlation length* $\xi$ (``xi'').
+
+== Summmary
+
+Alright, let's recap what we learned about $N$ non-interacting spins:
+
+~~~
+{Summary}
+- Since the Hamiltonian $H = - \sum_j b_j \sigma_j$ separates into a sum of independent energies, the partition function factorizes into a product of independent mini-partition-functions as $Z = \prod_j 2 \cosh (\beta b_j)$.
+- The free energy is $F = - T \log Z = -T \sum_j \log (2 \ cosh(\beta b_j))$.
+- The average spin is $\langle \sigma_j \rangle = \tanh (\beta b_j)$. We spent a bit of time staring at the graph and interpreting what it meant.
+- The spin-spin correlation function $\langle \sigma_i \sigma_j \rangle = \langle \sigma_i \rangle \langle \sigma_j \rangle$ told us that the spins are /uncorrelated/ with each other, which makes a lot of sense, since there's no spin-spin interaction terms in the Hamiltonian.
+~~~
+
+Wonderful. Next up, we'll apply this non-interacting model as the variational ansatz to the full Ising model. [lec5d.html Onwards!]
