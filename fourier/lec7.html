@@ -33,7 +33,8 @@ try {
 <div class="menu-category">Fourier Transforms</div>
 <div class="menu-item"><a href="lec5.html">Motivation</a></div>
 <div class="menu-item"><a href="lec6.html">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
-<div class="menu-item"><a href="lec7.html" class="current">Lecture&nbsp;8</a></div>
+<div class="menu-item"><a href="lec7.html" class="current">Duality&nbsp;&amp;&nbsp;Symmetry</a></div>
+<div class="menu-item"><a href="lec8.html">Scaling&nbsp;&amp;&nbsp;Derivatives</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
@@ -86,7 +87,7 @@ try {
 <ul>
 <li><p>These formulas only differ in a minus sign &ndash; they're remarkably similar!</p>
 </li>
-<li><p>It doesn't matter what you call a variable as long as you know how it functions! It doesn't matter what we call <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> and what we call <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />; it matters where we are in the equation. To be pedantic, we can consider the function (the Fourier-transformed <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />) and evaluate it at a point <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> by evaluating the integral over <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />.</p>
+<li><p>It doesn't matter what you call a variable as long as you know how it functions! It doesn't matter what we call <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> and what we call <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />; it matters where we are in the equation. To be pedantic, we should be specific about what we mean by the notation <img class="eq" src="eqs/2921497043594650741-130.png" alt="mathcal{F}f(s)" style="vertical-align: -5px" />: it means the function &lsquo;&lsquo;the Fourier-transform of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />&rsquo;&rsquo; evaluated at a point <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> by performing an integral over <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />.</p>
 </li>
 </ul>
 <p>Now we can &lsquo;&lsquo;weaponize&rsquo;&rsquo; this similarity between <img class="eq" src="eqs/2354694502240372968-130.png" alt="mathcal{F}f" style="vertical-align: -4px" /> and<img class="eq" src="eqs/2708179618716595251-130.png" alt="mathcal{F}^{-1}f" style="vertical-align: -4px" /> to find some properties of the Fourier transform. Often we use the word <b>duality</b> to describe these relationships. For instance,</p>
@@ -118,7 +119,7 @@ try {
 <p>We then massaged some integrals on the board again. We plugged into the definition of the F.T., and then we pulled the minus sign in the exponent next to <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />, and then all of a sudden this looks like an <i>inverse</i> Fourier Transform, but evaluated at <img class="eq" src="eqs/5760034605051958-130.png" alt="-s" style="vertical-align: -1px" /> instead of at <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />! So we've just shown that</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/815299138598292097-130.png" alt="     mathcal{F} mathcal{F} f = f^-; " />
-<br /></div><p>i.e., if you take the Fourier Transform <i>twice</i>, you end up with the original signal!</p>
+<br /></div><p>i.e., if you take the Fourier Transform <i>twice</i>, you end up with the original signal reversed!</p>
 <h3>Summarizing the duality relations</h3>
 <ul>
 <li><p>Three separate formulas, but all say very similar things</p>
@@ -126,7 +127,7 @@ try {
 <li><p>Duality is an impressive-sounding word, &lsquo;&lsquo;impress your friends, confound your enemies&rsquo;&rsquo;</p>
 </li>
 </ul>
-<p>Now this seems all kind of silly symbol-pushing, but we can put it to use &ndash; it turns out the duality relations relate to the <i>symmetry</i> of functions.</p>
+<p>Now this seems all kind of silly symbol-pushing, but we can put it to good use. It turns out the duality relations relate to the <i>symmetry</i> of functions.</p>
 <h2>Reversals and Symmetry</h2>
 <p>Remember our definitions for the symmetry of functions:</p>
 <ul>
@@ -153,17 +154,17 @@ try {
 </ul>
 <p>In other words, the <b>Fourier transform inherents the symmetry of the signal</b></p>
 </div></div>
-<p>Now this is all silly and pedantic of course, but the symbol-pushing can get confusing. Prof. Osgoodexplained that historically this has been an issue so he wanted to show how to do these arguments in class&hellip;</p>
+<p>Now this is all silly and pedantic of course, but the symbol-pushing can get confusing. Prof. Osgoodexplained that historically this has been an issue, so he wanted to <i>explicitly</i> do these arguments in class&hellip;</p>
 <p>The proofs are a few lines long, but the logic behind this good to remember. Maybe I'll type up something in a box here later to review it.</p>
 <h3>Why care about symm properties?</h3>
 <p>The symmetry properties are nice <i>consistency checks</i> for our work &ndash; we know if we've started with an even function but then ended with an odd one after we F.T.'ed, then we must have messed up somewhere.</p>
 <h3>Finding new F.T.'s with symmetry</h3>
 <p>The symmetry properties can also help us find Fourier transforms of new properties that we didn't know about before! For instance, we can find the F.T. of sinc by applying duality relations and symmetry properties:</p>
 
-<div class="eqwl"><img class="eqwl" src="eqs/1235401211283959867-130.png" alt=" mathcal{F} textrm{sinc} = mathcal{F} (mathcal{F}) = Pi^- = Pi " />
+<div class="eqwl"><img class="eqwl" src="eqs/8636479311700597028-130.png" alt=" mathcal{F} textrm{sinc} = mathcal{F} (mathcal{F} Pi) = Pi^- = Pi " />
 <br /></div><p>(Again, I might go back and explain the argument later&hellip;)</p>
-<p>Warning! Sometimes people call these properties <b>Fourier pairs</b>. So square and sinc are pairs, and triangle and sinc squared are pairs.</p>
-<p>Another comment on the rigor police:</p>
+<p>Sometimes people call these properties <b>Fourier pairs</b>. So square and sinc are pairs, and triangle and sinc squared are pairs.</p>
+<p>A comment from the rigor police:</p>
 <ul>
 <li><p>it's hard to classically talk about whether the integrals converge, where they converge, and <i>what</i> they converge to&hellip;so we'll have to be careful, of couse!</p>
 </li>
@@ -179,12 +180,13 @@ try {
 <p>Again, this is an important consistency check if you're trying to compute the Fourier transform of a real function.</p>
 <h3>Plotting Fourier Transforms</h3>
 <p>There's an important practical consequence of this property for plotting the Fourier transform of a real function: if we take the (complex) magnitude of both sides of the relation, it tells you that that <img class="eq" src="eqs/8230987198700075870-130.png" alt="|mathcal{F} f(-s)| = |mathcal{F} f(s)|" style="vertical-align: -5px" />. In words, it tells you that magnitude of the F.T&gt; of a real function is <i>even</i>.</p>
-<p>Now how do we plot the Fourier Transform? It's a complex number at any point on the line; typically we only plot the <i>magnitude</i> of that number and just throw away the information of the phase. So the fact that <img class="eq" src="eqs/3989091659442710842-130.png" alt="|mathcal{F} f(s)|" style="vertical-align: -5px" /> is <i>even</i> means that its plot is <i>symmetric</i> &ndash; we only need to know the positive-frequency components, since the negative frequency components have the same magnitude.</p>
+<p>Now how do we plot the Fourier Transform? It's a complex number at any point on the line; typically we only plot the <i>magnitude</i> of that number and just throw away the information of the phase. So the fact that <img class="eq" src="eqs/3989091659442710842-130.png" alt="|mathcal{F} f(s)|" style="vertical-align: -5px" /> is <i>even</i> means that its plot is <i>symmetric</i> &ndash; we only need to plot the positive-frequency components, since the negative frequency components have the same magnitude.</p>
+<p>This is the reason why spectrum analyzers only plot positive frequencies!</p>
 <h3>Looking ahead.</h3>
 <p>Shifting, stretching, convolutions&hellip;</p>
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-23 17:03:27 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-01-25 17:59:20 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec7.jemdoc">source</a>)
 </div>
 </div>

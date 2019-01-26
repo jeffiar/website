@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Scaling &amp; Derivatives</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
+<div class="menu-item"><a href="lec3a.html">Interpretation</a></div>
+<div class="menu-item"><a href="lec3b.html">Hot&nbsp;Rings</a></div>
+<div class="menu-item"><a href="lec4.html">Orthogonality</a></div>
+<div class="menu-category">Fourier Transforms</div>
+<div class="menu-item"><a href="lec5.html">Motivation</a></div>
+<div class="menu-item"><a href="lec6.html">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
+<div class="menu-item"><a href="lec7.html">Duality&nbsp;&amp;&nbsp;Symmetry</a></div>
+<div class="menu-item"><a href="lec8.html" class="current">Scaling&nbsp;&amp;&nbsp;Derivatives</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Scaling &amp; Derivatives</h1>
+</div>
+<p>You know, one of the issues with recorded classes is that people don't bother to show up to class! I swear, on the first day of class, there were a lot more people sitting here than there are today. I don't blame them; it's super convenient to view lectures on your own time&hellip;</p>
+<p>&lsquo;&lsquo;Did I make some comment about not getting paid?&rsquo;&rsquo;</p>
+<p>Today we'll do some more derivations about properties of the Fourier transform. Just like last time, we'll talk about the sort of logic behind these sort of arguments; and again, we'll leave the rigor police off-duty.</p>
+<h2>Properties of F.T.</h2>
+<h3>Linearity</h3>
+<p>The F.T. is a <i>linear</i> transformation; that is, the F.T. of a sum is the sum of the F.T.; and if you multiply a function by a constant, it's that same constant times the F.T&gt;. The whole point of this <b>princple of superposition</b> is that if you can write a system as a sum of different components, you can just sum of the F.T. of each of the parts. Life is really nice when things are linear.</p>
+<p>Now this is a sort of property we take for granted. The more interesting property is the Shift theorem.</p>
+<h3>The Shift therom</h3>
+<p>What happens to the F.T. if the time is delayed by constant <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />?</p>
+<p>We want to find the fourier transfrom of <img class="eq" src="eqs/1484668767850339090-130.png" alt="f(t-b)" style="vertical-align: -5px" />, which is</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7854717936231163470-130.png" alt="     mathcal{F} ( f (t-b)) = int_{-infty}^{+infty} e^{-2pi ist} f(t-b) dt " />
+<br /></div><div class="infoblock">
+<div class="blocktitle">Notational note</div>
+<div class="blockcontent">
+<p>there's a problem with notation here! We mean the &lsquo;&lsquo;fourier transform of the shifted function&rsquo;&rsquo;, but on the LHS we're also evaluating the F.T.'s function at the point <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />&hellip;.. Notation is a genuine problem in the subject! And it can get in the way of understanding things! (On the homework, we'll talk about scaling and shifting operators&hellip;.which is nice, since you don't have to explicitly say the argument of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />&hellip;.but it's also confusing since it introduces extra things). Anyways, we should just remember to be careful about what variables mean so we don't go wrong.</p>
+</div></div>
+<p>To evaluate the integral here, we do a change of variables (as usual) to <img class="eq" src="eqs/6613421859285659306-130.png" alt="u = t-b" style="vertical-align: -1px" />, so that the argument of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> becomes <img class="eq" src="eqs/14976045044-130.png" alt="u" style="vertical-align: -1px" />. And then there's an extra factor of <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> up in the exponent, so we just have a total phase shift of <img class="eq" src="eqs/5341677535409510318-130.png" alt="e^{-2pi ist}" style="vertical-align: -1px" /> which we can pull out of the integral.</p>
+<p>The net result of the shifting operation is that we end up with a <b>phase shift in the spectrum</b>.</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1749888489690224448-130.png" alt="     mathcal{F} (f (t-b)) = e^{-2pi isb} mathcal{F} (f (t)) " />
+<br /></div><p>Often, we'll hear this said as &lsquo;&lsquo;a time shift in time corresponds to a phase shift in spectrum&rsquo;&rsquo;.</p>
+<ul>
+<li><p>Notice that the <i>magnitude</i> of the spectrum doesn't change when you shift the time; only its phase changes.</p>
+</li>
+<li><p>Again, these properties aren't terribly difficult to derive, but they're fundamental and important to know, and highly applicable! The logic we use in them is pretty important to know&hellip;simple things, but we should do them with &lsquo;&lsquo;gusto and confidence&rsquo;&rsquo;!</p>
+</li>
+</ul>
+<h2>Stretch theorem or Similarity theorem</h2>
+<p>Now the question is, &lsquo;&lsquo;what happens when you take the Fourier transform of a stretched sigal&rsquo;&rsquo;, <img class="eq" src="eqs/6642867646803125588-130.png" alt="f(t) to f(at)" style="vertical-align: -5px" />, where <img class="eq" src="eqs/2574647383623712173-130.png" alt="a neq 0" style="vertical-align: -4px" />?</p>
+<p>To figure this out, we do the same thing. Again, we switch our variable of integration to <img class="eq" src="eqs/1503227278325615631-130.png" alt="u = at" style="vertical-align: -1px" /> so that the argument inside <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is a simple <img class="eq" src="eqs/14976045044-130.png" alt="u" style="vertical-align: -1px" />, but this time around, we have to be a bit careful&hellip;.</p>
+<ul>
+<li><p><img class="eq" src="eqs/12800076900115546-130.png" alt="dt" style="vertical-align: -1px" /> goes to <img class="eq" src="eqs/7532438264556186129-130.png" alt="frac 1 a du" style="vertical-align: -8px" />&hellip;</p>
+</li>
+<li><p>the <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> in the exponent goes to <img class="eq" src="eqs/2621286447084506638-130.png" alt="u/a" style="vertical-align: -5px" />, and we can slide the one over <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" /> to the <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />, so that now we just have a <img class="eq" src="eqs/369175422062790976-130.png" alt="s/a" style="vertical-align: -5px" /> in place of <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />.</p>
+</li>
+</ul>
+<p>If we take <img class="eq" src="eqs/630350634371733958-130.png" alt="a &gt; 0" style="vertical-align: -1px" />, we end up with</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/9147328536828198154-130.png" alt="     mathcal{F}(f(at)) = frac 1 a mathcal{F} f (frac s a). " />
+<br /></div><p>The subtle thing here is <i>what happens when <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" /> is negative</i>! Then the limits of integration swap around when we change variables to <img class="eq" src="eqs/1503227278325615631-130.png" alt="u = at" style="vertical-align: -1px" />, and we'll need to introduce an overall minus sign to put them back to <img class="eq" src="eqs/4285128882264041594-130.png" alt="-infty" style="vertical-align: -1px" /> and <img class="eq" src="eqs/537892019258421722-130.png" alt="infty" style="vertical-align: -1px" />. So this time the result looks like</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4084669074683988422-130.png" alt="     mathcal{F}(f(at)) = - frac 1 a mathcal{F} f (frac s a) " />
+<br /></div><p>with a minus sign!</p>
+<p>And to combine the two cases into one equation, we put an absolute value around the a outside the Fourier transform.</p>
+<p>There's a number of comments to make here:</p>
+<ul>
+<li><p>&lsquo;&lsquo;This is a fine example of a reciprocal relationship&rsquo;&rsquo; &ndash; which as you remember, help us organize our understadning and build our intution. In this case, if we scale the time <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> by a factor <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" />, then the <i>frequency</i><img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" /> and the <i>magnitude</i> of the F.T. have both been scaled by <img class="eq" src="eqs/163512108431620374-130.png" alt="1/a" style="vertical-align: -5px" />, the reciprocal of <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" />!</p>
+</li>
+<li><p>One way to interpret this is graphically. (Graphs aren't always our most useful tool, but in this case they can help us!) Remember that when we scale <img class="eq" src="eqs/6642867646803125588-130.png" alt="f(t) to f(at)" style="vertical-align: -5px" />, the graph gets <i>squeezed</i> along the x-axis if <img class="eq" src="eqs/630350634371733957-130.png" alt="a &gt; 1" style="vertical-align: -1px" />, and it's <i>stretched</i> if <img class="eq" src="eqs/630352634319733879-130.png" alt="a &lt; 1" style="vertical-align: -1px" />.</p>
+<ul>
+<li><p>There's a silly way to remember <i>what</i> this scaling operation does to <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />&hellip;does it squeeze it or stretch it?&hellip;.we went through a fun argument in class, and it's also in the course reader&hellip;</p>
+</li></ul>
+</li>
+<li><p>And also, remember that even though the F.T&gt; of a function is generally complex, we can still plot it on a graph by considering its <i>magnitdue</i> <img class="eq" src="eqs/1129214201244690973-130.png" alt="|mathcal{F} f (s)|" style="vertical-align: -5px" />.</p>
+</li>
+</ul>
+<p>This means that&hellip;</p>
+<div class="infoblock">
+<div class="blocktitle">Stretching and squeezing</div>
+<div class="blockcontent">
+<p>If <img class="eq" src="eqs/1453079729280098533-130.png" alt="a&gt;1" style="vertical-align: -1px" />, then:</p>
+<ul>
+<li><p>the time-domain function <img class="eq" src="eqs/6642867646803125588-130.png" alt="f(t) to f(at)" style="vertical-align: -5px" /> is <b>squeezed in time</b></p>
+</li>
+<li><p>the frequency-domain function <img class="eq" src="eqs/5424068248201215901-130.png" alt="mathcal{F}f(s) to frac 1 a mathcal{F} f(s/a)" style="vertical-align: -8px" /> is <b>stretched in time</b>.</p>
+</li>
+</ul>
+<p>If <img class="eq" src="eqs/1453079729282098543-130.png" alt="a&lt;1" style="vertical-align: -1px" />, then:</p>
+<ul>
+<li><p>the time-domain function <img class="eq" src="eqs/6642867646803125588-130.png" alt="f(t) to f(at)" style="vertical-align: -5px" /> is <b>stretched in time</b></p>
+</li>
+<li><p>the frequency-domain function <img class="eq" src="eqs/5424068248201215901-130.png" alt="mathcal{F}f(s) to frac 1 a mathcal{F} f(s/a)" style="vertical-align: -8px" /> is <b>squeezed in time</b>.</p>
+</li>
+</ul>
+</div></div>
+<p>The consequence is that <b>you can't have a function that's concentrated both in time and in frequency</b>! If you try to squeeze it in the time domain, you stretch it in the freq domain, and vice versa if you try the other way.</p>
+<ul>
+<li><p>This is reminiscent of the uncertainty principle in quantum mechanics! Hehehe.</p>
+</li>
+<li><p>The <i>limiting</i> extreme case of this principle is the delta function. It's infinitely concentrated in the time domain, but when you take the fourier transform, it has a flat and <i>uniform</i> frequency for all frequency components.</p>
+</li>
+<li><p>There's different sorts of transforms in signal processing such as <b>wavelet transforms</b> where you <i>can</i> concentrate them in both the frequency and time domains.</p>
+</li>
+</ul>
+<p>Philosophically, the stretching theorem tells us a pretty important property of Fourier Transforms:</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>You can't squeeze a function in both the time domain and the frequency domain.</p>
+</div></div>
+<p>As a side note, in higher dimensions, the <i>generalization</i> of the scaling theorem leads to a more general idea of what a <i>reciprocal</i> means.</p>
+<ul>
+<li><p>Is this related to reciprocal lattice and Miller planes in the field of crystallography? I've always been <i>so</i> confused by the whole <img class="eq" src="eqs/6429308858220906282-130.png" alt="hkl" style="vertical-align: -1px" /> idea&hellip;</p>
+</li>
+</ul>
+<h2>Some examples</h2>
+<p>Then we went through a few examples to gain some intution. These examples look <i>much</i> better with actual graphs to stare at, but the best I can do is to describe in words what we did in calss.</p>
+<h3>The square wave.</h3>
+<p>Remember that the FT of the square wave is the <i>sinc</i> function which was defined as <img class="eq" src="eqs/3466241330920535727-130.png" alt="textrm{sinc}(x) = sin pi x / pi x" style="vertical-align: -5px" />. If we apply the scaling theorem, it says:</p>
+<ul>
+<li><p>The FT of the stretched rectangle function is a squeezed sinc function. It's squeezed both in the x and y axes when you graph it &ndash; </p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5140227035118276086-130.png" alt="     mathcal{F} [Pi (at)] (s) = frac 1 {|a|} textrm{sinc} ^2 (s / a) " />
+<br /></div><p>&lsquo;&lsquo;Not hard, but you've got to get it in your gut!&rsquo;&rsquo;</p>
+<h2>The Derivative Theorem</h2>
+<p>This is true magic! It's not clear <i>at all</i> that the Fourier Transform has <i>anything</i> to do with derivatives!! But remarkably, something magical happens when you mix in differentiation and Fourier transforming.</p>
+<p>Fir'st let's consider what happens when you take the <i>derivative of the FT of a function</i>. What is <img class="eq" src="eqs/4845183546182574120-130.png" alt="(mathcal{F} f)' (s)" style="vertical-align: -5px" />?</p>
+<ul>
+<li><p>We expand out the definition&hellip;</p>
+</li>
+<li><p>We <i>pull the derivative <img class="eq" src="eqs/9202243227856875371-130.png" alt="frac d {ds}" style="vertical-align: -8px" /> inside the integral</i>.</p>
+<ul>
+<li><p>the rigor police are now rolling aroudn in their graves! There's a lot of conditions and religions and such that need to apply for us to do this.</p>
+</li>
+<li><p>physicsits do this all the time with impunity!</p>
+</li></ul>
+</li>
+<li><p>Now the derivative hits the exponential and pulls down a factor of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> as well as some constants in front of it.</p>
+</li>
+<li><p>The end result is that we end up with the FT of something times <img class="eq" src="eqs/6126057567774201637-130.png" alt="t f(t)" style="vertical-align: -5px" />. Wow!</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6507454892788323981-130.png" alt="     left(mathcal{F} fright)' (s) = - 2pi i t mathcal{F} f (s) " />
+<br /></div><div class="infoblock">
+<div class="blockcontent">
+<p><b>Multiplication by time corresponds to differentian in frequency domain</b>!</p>
+</div></div>
+<h3>The dual statement</h3>
+<p>If we ask a similar but related question, we end up with a nice symmetric result as well. Instead of finding the derivative of the Fourier Transfrom, this time we want to find the FT of a <i>derivative</i> <img class="eq" src="eqs/1566587548142108366-130.png" alt="mathcal{F} (f'(t))" style="vertical-align: -5px" />.</p>
+<p>This time, the &lsquo;&lsquo;proof&rsquo;&rsquo; had a sort of different flavor, where we first wrote the derivative in terms of a difference quotient (from the first few weeks of calculus class) and then plugged that into the Fourier transform.</p>
+<ul>
+<li><p>We use linearity to separate out the terms, and we have the FT of two different terms &ndash; one with <img class="eq" src="eqs/1484666767848339174-130.png" alt="f(t+h)" style="vertical-align: -5px" />, the other one with <img class="eq" src="eqs/509596383741784061-130.png" alt="f(t)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>We apply the shift theorem to the first term, so we get an overall phase shift of <img class="eq" src="eqs/6334242059044758217-130.png" alt="e^{2pi i sh}" style="vertical-align: -1px" /> on the first term</p>
+</li>
+<li><p>Both terms have a fourier transfrom of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />, so we factor  it out. We're left with the expression</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/256345753755472927-130.png" alt="     frac {e^{2pi ish} - 1} h mathcal{F} f(s) " />
+<br /></div><ul>
+<li><p>And then we can simplify that fraction in the limit <img class="eq" src="eqs/6021678895398541128-130.png" alt="h to 0" style="vertical-align: -1px" />. In class, we performed the limit by recognizing it as the derivative of a function <img class="eq" src="eqs/8453234011037676600-130.png" alt="e^{2pi ist}" style="vertical-align: -1px" />. Personally, I would do a physicisty-thing and just expand the exponential in terms of a Taylor series, and then drop off all higher-order terms <img class="eq" src="eqs/6173404344203985014-130.png" alt="O(h^2)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>No matter how you do it, the fraction turns into <img class="eq" src="eqs/1308255463773165452-130.png" alt="2 pi i s" style="vertical-align: -1px" /> as <img class="eq" src="eqs/6021678895398541128-130.png" alt="h to 0" style="vertical-align: -1px" />. So our end result is&hellip;</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7284098462306840785-130.png" alt="     mathcal{F} f' (s) = 2pi i s mathcal{F} f(s) " />
+<br /></div><p>Wow! The fourier transform can turn derivatives into multiplication!</p>
+<ul>
+<li><p>This is very useful if we want to solve differential equations; the Fourier xfm lets us turn them into <i>algebraic</i> equations, which can be much easier to solve. Think to the Laplace transform in your ODE eclass.</p>
+</li>
+</ul>
+<p>And remember, there's no reason a priori to expect the Fourier transform &ndash; which isa complicated operation &ndash; to turn multiplication into derivatives &ndash; which are also another complicated operation! This is a quite magical relationship. And we'll put it to good use soon.</p>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-25 17:59:19 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec8.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

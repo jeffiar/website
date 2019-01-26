@@ -38,7 +38,7 @@ First thing, we'll exploit the similarity between the Fourier Transform and the 
 A few comments:
 
 - These formulas only differ in a minus sign -- they're remarkably similar!
-- It doesn't matter what you call a variable as long as you know how it functions! It doesn't matter what we call $s$ and what we call $t$; it matters where we are in the equation. To be pedantic, we can consider the function (the Fourier-transformed $f$) and evaluate it at a point $s$ by evaluating the integral over $t$.
+- It doesn't matter what you call a variable as long as you know how it functions! It doesn't matter what we call $s$ and what we call $t$; it matters where we are in the equation. To be pedantic, we should be specific about what we mean by the notation $\mathcal{F}f(s)$: it means the function ``the Fourier-transform of $f$'' evaluated at a point $s$ by performing an integral over $t$.
 
 Now we can ``weaponize'' this similarity between $\mathcal{F}f$ and$\mathcal{F}^{-1}f$ to find some properties of the Fourier transform. Often we use the word *duality* to describe these relationships. For instance,
 \(
@@ -82,14 +82,14 @@ We then massaged some integrals on the board again. We plugged into the definiti
 \(
     \mathcal{F} \mathcal{F} f = f^-;
 \)
-i.e., if you take the Fourier Transform /twice/, you end up with the original signal!
+i.e., if you take the Fourier Transform /twice/, you end up with the original signal reversed!
 
 === Summarizing the duality relations
 
 - Three separate formulas, but all say very similar things
 - Duality is an impressive-sounding word, ``impress your friends, confound your enemies''
 
-Now this seems all kind of silly symbol-pushing, but we can put it to use -- it turns out the duality relations relate to the /symmetry/ of functions.
+Now this seems all kind of silly symbol-pushing, but we can put it to good use. It turns out the duality relations relate to the /symmetry/ of functions.
 
 == Reversals and Symmetry
 
@@ -112,7 +112,7 @@ The duality relations allow us to say things about the symmetry of Fourier-trans
 In other words, the *Fourier transform inherents the symmetry of the signal*
 ~~~
 
-Now this is all silly and pedantic of course, but the symbol-pushing can get confusing. Prof. Osgoodexplained that historically this has been an issue so he wanted to show how to do these arguments in class...
+Now this is all silly and pedantic of course, but the symbol-pushing can get confusing. Prof. Osgoodexplained that historically this has been an issue, so he wanted to /explicitly/ do these arguments in class...
 
 The proofs are a few lines long, but the logic behind this good to remember. Maybe I'll type up something in a box here later to review it.
 
@@ -124,13 +124,13 @@ The symmetry properties are nice /consistency checks/ for our work -- we know if
 
 The symmetry properties can also help us find Fourier transforms of new properties that we didn't know about before! For instance, we can find the F.T. of sinc by applying duality relations and symmetry properties:
 \(
-\mathcal{F} \textrm{sinc} = \mathcal{F} (\mathcal{F}) = \Pi^- = \Pi
+\mathcal{F} \textrm{sinc} = \mathcal{F} (\mathcal{F} \Pi) = \Pi^- = \Pi
 \)
 (Again, I might go back and explain the argument later...)
 
-Warning! Sometimes people call these properties *Fourier pairs*. So square and sinc are pairs, and triangle and sinc squared are pairs.
+Sometimes people call these properties *Fourier pairs*. So square and sinc are pairs, and triangle and sinc squared are pairs.
 
-Another comment on the rigor police:
+A comment from the rigor police:
 - it's hard to classically talk about whether the integrals converge, where they converge, and /what/ they converge to...so we'll have to be careful, of couse!
 
 === More on symmetry: the Fourier coefficients
@@ -153,7 +153,9 @@ Again, this is an important consistency check if you're trying to compute the Fo
 
 There's an important practical consequence of this property for plotting the Fourier transform of a real function: if we take the (complex) magnitude of both sides of the relation, it tells you that that $|\mathcal{F} f(-s)| = |\mathcal{F} f(s)|$. In words, it tells you that magnitude of the F.T> of a real function is /even/.
 
-Now how do we plot the Fourier Transform? It's a complex number at any point on the line; typically we only plot the /magnitude/ of that number and just throw away the information of the phase. So the fact that $|\mathcal{F} f(s)|$ is /even/ means that its plot is /symmetric/ -- we only need to know the positive-frequency components, since the negative frequency components have the same magnitude.
+Now how do we plot the Fourier Transform? It's a complex number at any point on the line; typically we only plot the /magnitude/ of that number and just throw away the information of the phase. So the fact that $|\mathcal{F} f(s)|$ is /even/ means that its plot is /symmetric/ -- we only need to plot the positive-frequency components, since the negative frequency components have the same magnitude.
+
+This is the reason why spectrum analyzers only plot positive frequencies!
 
 === Looking ahead.
 
