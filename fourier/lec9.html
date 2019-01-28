@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Scaling &amp; Derivatives</title>
+</head>
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-category">Introduction</div>
+<div class="menu-item"><a href="intro.html">Introduction</a></div>
+<div class="menu-category">Fourier Series</div>
+<div class="menu-item"><a href="lec1.html">Periodicity</a></div>
+<div class="menu-item"><a href="lec2.html">Monsieur&nbsp;Fourier</a></div>
+<div class="menu-item"><a href="lec2b.html">Finding&nbsp;Coefficients</a></div>
+<div class="menu-item"><a href="lec3a.html">Interpretation</a></div>
+<div class="menu-item"><a href="lec3b.html">Hot&nbsp;Rings</a></div>
+<div class="menu-item"><a href="lec4.html">Orthogonality</a></div>
+<div class="menu-category">Fourier Transforms</div>
+<div class="menu-item"><a href="lec5.html">Motivation</a></div>
+<div class="menu-item"><a href="lec6.html">Inversion&nbsp;&amp;&nbsp;Examples</a></div>
+<div class="menu-item"><a href="lec7.html">Duality&nbsp;&amp;&nbsp;Symmetry</a></div>
+<div class="menu-item"><a href="lec8.html" class="current">Scaling&nbsp;&amp;&nbsp;Derivatives</a></div>
+<div class="menu-item"><a href="lec9.html">Convolution</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Scaling &amp; Derivatives</h1>
+</div>
+<p>Ready, set, go! There's one last property of Fourier transforms to mention, which we won't prove, but it's important to know. It's the analog of Rayleigh's identiy for Foruier Transforms.</p>
+<div class="infoblock">
+<div class="blocktitle">Parseval's Identity</div>
+<div class="blockcontent">
+
+<div class="eqwl"><img class="eqwl" src="eqs/907754946986688925-130.png" alt=" int_{-infty}^{+infty} | f(x) | ^2 dx = int_{-infty}^{+infty} | F f(s) | ^2 ds  " />
+<br /></div><p>In fact, the inner product is also invariant under a Fouerit trasfmoration!</p>
+</div></div>
+<p>We won't go through the proof in class; you can find it in notes. It involves the inverse Fourier transform. It turns out this property is mportant for linear systems &ndash; it ttells us that the FT is a <b>unitary transformation</b> &ndash; and it also turns out to be important for the famous <b>uncertainty princkiple</b> of quantum mechanics.</p>
+<p>But we don't want to spend too much time on more properties; we want to move on to Convolution for now.</p>
+<h2>Convolution</h2>
+<p>Let's remember the first time we saw convolution was in the context of the heat equation, when we saw that the soultions coulsd be written as a convoultion of the intiial condition with the fundamental solution. </p>
+<p>This time approach it from an electrical engineer's viewpoint. It turns out that convolution is the fundamental operation of <b>signal processing</b> &ndash;which we'll take to mean as using one signal to modify another signal. We can process signals both in the <i>time</i> doamin and in the <i>frequency</i> domain, and often we want to see how they're related &ndash; how an operation in one domain affects the other.</p>
+<h3>Modifying Spectra</h3>
+<p>The most common operation or modification that EE's perform on a signal is to <i>scale</i> the spectrum of one signal by another. Mathematically, this just means that we multiply the Fourier transforms of two functions <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" /> together to create a new signal <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> whose FT is the product <img class="eq" src="eqs/6557694994770982188-130.png" alt="mathcal{F}h(s) = mathcal{F}f(s) times mathcal{F}g(s)" style="vertical-align: -5px" />. So we're scaling each of the frequency components of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> by the corresponding frequency component in <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" />.</p>
+<p>So what operation do we need to do in the time domain so that the spectra end up multiplying together in the frequency domain? As a spoiler alert, the answer is <b>convolution</b> &ndash; but this result is honestly quite surprising and unexpected! Our approach to figuring this out is a classical mathematical sort of argument, where we <i>pretend</i> that we've found the solution, and then work out what form that solution's got to have.</p>
+<p>So we started with the expression for <img class="eq" src="eqs/293469898745122203-130.png" alt="mathcal{F}f times mathcal{F}g" style="vertical-align: -4px" /> and began to massage it.</p>
+<ul>
+<li><p>Expand out each of the FT's in the product. Remember to use a different variable of integration for each one! We called them x and y today.</p>
+</li>
+<li><p>Combine the two separate integrals into one double-integral, and combine the two exponential factors.</p>
+</li>
+<li><p>Take out the <img class="eq" src="eqs/509596383745784049-130.png" alt="f(x)" style="vertical-align: -5px" /> into its own integral, so we're left with an inner integral over <img class="eq" src="eqs/12800076900115543-130.png" alt="dy" style="vertical-align: -4px" /> of <img class="eq" src="eqs/8949591589343213282-130.png" alt="g(y) e^{-2pi i (x+y)}" style="vertical-align: -5px" />, and an outer integral over <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>Motivated by the sum <img class="eq" src="eqs/5999452984653080333-130.png" alt="x+y" style="vertical-align: -4px" /> in the exponent, we make a change of variables in the inner integral to <img class="eq" src="eqs/6613417859191659049-130.png" alt="u = x+y" style="vertical-align: -4px" />, which puts a <img class="eq" src="eqs/14976045044-130.png" alt="u" style="vertical-align: -1px" /> in the exponent and a <img class="eq" src="eqs/2621286447082506643-130.png" alt="u-x" style="vertical-align: -1px" /> the argument of <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" />.</p>
+</li>
+<li><p>Then we switch the order of integration from <img class="eq" src="eqs/7467002039551833891-130.png" alt="du,dx" style="vertical-align: -1px" /> to <img class="eq" src="eqs/8127959453682658163-130.png" alt="dx,du" style="vertical-align: -1px" />&hellip;</p>
+</li>
+<li><p>Notice that the inner integral is really a function of <img class="eq" src="eqs/14976045044-130.png" alt="u" style="vertical-align: -1px" /> (since it starts out as a funciton of <img class="eq" src="eqs/14976045044-130.png" alt="u" style="vertical-align: -1px" /> and <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" /> but then we integrate out the <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" />).</p>
+</li>
+<li><p>And lo and behold, if we define</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7060834098740759277-130.png" alt=" 	h(u) = int_{-infty}^{+infty} f(u) g(u-x) dx " />
+<br /></div><p>then we're just left with  the Fourier transform of <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> on the right hand side! Wow.</p>
+<p>The punchline is that if we combine <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" /> together in the special way given by <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, then their Fourier transforms multiply together to give <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />! So we've solved the problem. And as usual, now that that we've actually <i>solved</i> the problem, we turn everything around and then <i>define</i> the convolution with that completely unmotivated formula. Furthermore, we can also announce to the world the remarkable <b>convolution theorem</b> that the Fourier transform of a convolution is the product of Fourier transforms, wow! (But of course, it's not tooooo terribly remarkable &ndash; we started backwards with the property we wanted, and then figured out what definition we needed&hellip;Really, the problem is just the question of how to combine functions in the time domain so that their FTs <i>multiply</i> in the frequency domain).</p>
+<p>Anyways now that we've defined the convolution, there's a number of things to say:</p>
+<ul>
+<li><p>The <i>dual</i> result also holds, where the Fourier transform of a product is the convolution of the Fourier transforms; i.e., <img class="eq" src="eqs/3241042758824864227-130.png" alt="mathcal{F} (fg) = mathcal{F} f times mathcal{F} g" style="vertical-align: -5px" /></p>
+</li>
+<li><p>As we'll show on the homework, the <i>triangle</i> function <img class="eq" src="eqs/5252633898115416342-130.png" alt="Lambda" style="vertical-align: -0px" /> turns out to be the convolution of the <i>rectangle</i> function <img class="eq" src="eqs/7083357291858387878-130.png" alt="Pi" style="vertical-align: -0px" /> with itself. Since the rectangle function's FT is the sinc function, the FT of the triangle function is the sinc squared &ndash; which we indeed found. A good consistenty check.</p>
+</li>
+</ul>
+<h2>Properties of convolution</h2>
+<p>Convolution is a lot like multiplication. The game is rigged, because convolution is really just multiplication in the frequency domain.</p>
+<ol>
+<li><p>Convolution is <b>commutative</b>; i.e., <img class="eq" src="eqs/7920831647788218300-130.png" alt="f ast g = g ast f" style="vertical-align: -4px" /></p>
+</li>
+</ol>
+<ul>
+<li><p>We can prove this in two ways: we can prove it directly from the definition by making a clever change of variables in the integral, or we can argue that since <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" /> just multiply in the frequency domain, the order doesn't matter.</p>
+</li>
+</ul>
+<ol>
+<li><p>Convolution is also <b>associative</b> &ndash; it doesn't matter what order you perform the convolutions when you have three functions; i.e., <img class="eq" src="eqs/9173547912816578102-130.png" alt="f ast (g ast h) = (f ast g) ast h" style="vertical-align: -5px" /></p>
+</li>
+</ol>
+<ul>
+<li><p>Again, we can prove this in two ways: it's a tedious &lsquo;&lsquo;pain in the ass&rsquo;&rsquo; to do directly show this from the definition, or we can also appeal to the associativity of multiplication in the frequency domain.</p>
+</li>
+<li><p>Bad things might happen, since the integrals might not converge! But the rigor policae are off duty&hellip;&lsquo;&lsquo;If you're attacked by a mathematician, just say, &lsquo;chill, brother&rsquo; &rsquo;&rsquo;</p>
+</li>
+</ul>
+<p>One last property: does convolution have an <i>identity</i>? That is, is there a mystery function <img class="eq" src="eqs/8064024254-130.png" alt="?" style="vertical-align: -0px" /> such that <img class="eq" src="eqs/5466306847624269554-130.png" alt="f ast ? = f" style="vertical-align: -4px" /> for all <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />? Well, if we appeal to the frequency-domain argument, we can write out the definition of what such an identity would be&hellip;but we end up with a nasty integral that doesn't appear to converge in any classical sense!</p>
+<p>As we know, the delta-function will come to the rescue here &ndash; it turns out that it's the appropriate identity for convolution because <img class="eq" src="eqs/7512736130265420910-130.png" alt="f ast delta = f" style="vertical-align: -4px" />. Well really, the delta function isn't really a function in a classical sense. It's pretty cool that we have to &lsquo;&lsquo;leave the realm of classical&rsquo;&rsquo; functions in order to make sense of the identity of the convolution. We'll be spending quality time with this fuzzy little creature soon&hellip;</p>
+<h3>Visualizing and Interpreting the Convolution</h3>
+<p>In Prof. Osgood's opnion, it's <i>not worth your effort</i> to try to visualize the convolution in terms of any integrals or whatever! It's like what he said about visualizing teh orthogaonalizty of functions: &lsquo;&lsquo;don't lie there in bed and stare at the ceiling&hellip;&rsquo;&rsquo;</p>
+<p>On a similar note, there are <i>multiple</i> possible interpretations for the convolution, which come up in different contexts, so you don't do yourself any favor by limiting yoruself to just one interpretation! Nevertheless, we can have an operationally useful bit of intuition. In practice, convolution is typically associtaed with <i>smoothing</i> and <i>averaging</i> a function (in a qualitative sence).</p>
+<p>This leads to the Maxim that &lsquo;&lsquo;<img class="eq" src="eqs/2914219499679037281-130.png" alt="f ast g" style="vertical-align: -4px" /> is at least as good (and sometimes better!) as <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" /> alone&hellip;it inherist the &lsquo;&lsquo;best&rsquo;&rsquo; properties of each ofhem separately, and might even be better. What does this Maxim mean?</p>
+<ul>
+<li><p>As an example, when you convolve the rectangle function with itself, it turns into a triangle function. Now the rectangle function has a <i>jump</i> discontinuity in the zero'th derivative, but the triangle function is continuous, and only has a cusp a.k.a. a discontinuity in its first derivative.</p>
+</li>
+</ul>
+<h3>Derivative Theorem</h3>
+<p>Another example of the &lsquo;&lsquo;smoothing&rsquo;&rsquo; property of convolution comes in the form of the <b>Derivative theorem</b>:</p>
+<div class="infoblock">
+<div class="blocktitle">Derivative theorem</div>
+<div class="blockcontent">
+<p>As long as <img class="eq" src="eqs/509596383745784049-130.png" alt="f(x)" style="vertical-align: -5px" /> is differentiable, even if you convolve it with a really nasty function <img class="eq" src="eqs/3644967746745489504-130.png" alt="g(x)" style="vertical-align: -5px" />, then their convolution is still differentiable, and in fact <img class="eq" src="eqs/8649989721192700609-130.png" alt="(f ast g)' = f' ast g" style="vertical-align: -5px" />! Rather remarkable&hellip;</p>
+</div></div>
+<p>In fact, if both <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13184039654-130.png" alt="g" style="vertical-align: -4px" /> are nice and differentiable, we can put the derivative of their convolution on any of them that we want: <img class="eq" src="eqs/5889686594920693566-130.png" alt="(f ast g)' = f' ast g = f ast g'" style="vertical-align: -5px" />. So in this sense, convolution isn't quite the same as multiplication, because there's no real &lsquo;&lsquo;product rule&rsquo;&rsquo; for convolution.</p>
+<p>Next time around, we'll do a few applications of convolutions:</p>
+<ul>
+<li><p>filters. EE's think of this a lot, high pass and low pass, and so on&hellip;</p>
+</li>
+<li><p>the central limit theorem! When you convolve a lot of distributions together, why do you end up with a Gaussian?</p>
+</li>
+<li><p>also to differential equations. We saw this earlier with the heat equation and it will come up again!</p>
+</li>
+</ul>
+<div id="footer">
+<div id="footer-text">
+Page generated 2019-01-28 12:50:29 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec9.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

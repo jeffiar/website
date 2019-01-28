@@ -26,7 +26,7 @@ This time approach it from an electrical engineer's viewpoint. It turns out that
 
 === Modifying Spectra
 
-The most common operation or modification that EE's perform on a signal is to /scale/ the spectrum of one signal by another. Mathematically, this just means that we multiply the Fourier transforms of two functions $f$ and $g$ together to create a new signal $h$ whose FT is the product $\mathcal{F}h(s) = \mathcal{F}f(s) = \mathcal{F}g(s)$. So we're scaling each of the frequency components of $f$ by the corresponding frequency component in $g$.
+The most common operation or modification that EE's perform on a signal is to /scale/ the spectrum of one signal by another. Mathematically, this just means that we multiply the Fourier transforms of two functions $f$ and $g$ together to create a new signal $h$ whose FT is the product $\mathcal{F}h(s) = \mathcal{F}f(s) \times \mathcal{F}g(s)$. So we're scaling each of the frequency components of $f$ by the corresponding frequency component in $g$.
 
 So what operation do we need to do in the time domain so that the spectra end up multiplying together in the frequency domain? As a spoiler alert, the answer is *convolution* -- but this result is honestly quite surprising and unexpected! Our approach to figuring this out is a classical mathematical sort of argument, where we /pretend/ that we've found the solution, and then work out what form that solution's got to have.
 
@@ -34,16 +34,16 @@ So we started with the expression for $\mathcal{F}f \times \mathcal{F}g$ and beg
 - Expand out each of the FT's in the product. Remember to use a different variable of integration for each one! We called them x and y today.
 - Combine the two separate integrals into one double-integral, and combine the two exponential factors.
 - Take out the $f(x)$ into its own integral, so we're left with an inner integral over $dy$ of $g(y) e^{-2\pi i (x+y)}$, and an outer integral over $x$.
-- Motivated by the sum $x+y$ in the exponent, we make a change of variables in the inner integral, to $u = x+y$, which puts a $u$ in the exponent and a $u-x$ the argument of $g$.
+- Motivated by the sum $x+y$ in the exponent, we make a change of variables in the inner integral to $u = x+y$, which puts a $u$ in the exponent and a $u-x$ the argument of $g$.
 - Then we switch the order of integration from $du\,dx$ to $dx\,du$...
-- Notice that the inner integral is really a function of $u$, since it starts out as a funciton of $u$ and $x$ but then we integrate out the $x$.
+- Notice that the inner integral is really a function of $u$ (since it starts out as a funciton of $u$ and $x$ but then we integrate out the $x$).
 - And lo and behold, if we define
 \(
 	h(u) = \int_{-\infty}^{+\infty} f(u) g(u-x) dx
 \)
 then we're just left with  the Fourier transform of $h$ on the right hand side! Wow.
 
-The punchline is that if we combine $f$ and $g$ together in the special way given by $h$, then their Fourier transforms multiply together to give $h$! So we've solved the problem. And as usual, now that that we've actually /solved/ the problem, we turn everything around and then /define/ the convolution with that completely unmotivated formula. Furthermore, we can also announce to the world the remarkable *convolution theorem*, wow! (But of course, it's not tooooo terribly remarkable -- we started backwards with the property we wanted, and then figured out what definition we needed...Really, the problem is just the question of how to combine functions in the time domain so that their FTs /multiply/ in the frequency domain).
+The punchline is that if we combine $f$ and $g$ together in the special way given by $h$, then their Fourier transforms multiply together to give $h$! So we've solved the problem. And as usual, now that that we've actually /solved/ the problem, we turn everything around and then /define/ the convolution with that completely unmotivated formula. Furthermore, we can also announce to the world the remarkable *convolution theorem* that the Fourier transform of a convolution is the product of Fourier transforms, wow! (But of course, it's not tooooo terribly remarkable -- we started backwards with the property we wanted, and then figured out what definition we needed...Really, the problem is just the question of how to combine functions in the time domain so that their FTs /multiply/ in the frequency domain).
 
 Anyways now that we've defined the convolution, there's a number of things to say:
 
@@ -66,7 +66,7 @@ As we know, the delta-function will come to the rescue here -- it turns out that
 
 === Visualizing and Interpreting the Convolution
 
-In Prof. Osgood's opnion, it's /not worth your effort/ to try to visualize the convolution in terms of any integrals or whatever! It's like what he said about ``Don't lie there in bed and stare at the ceiling...''
+In Prof. Osgood's opnion, it's /not worth your effort/ to try to visualize the convolution in terms of any integrals or whatever! It's like what he said about visualizing teh orthogaonalizty of functions: ``don't lie there in bed and stare at the ceiling...''
 
 On a similar note, there are /multiple/ possible interpretations for the convolution, which come up in different contexts, so you don't do yourself any favor by limiting yoruself to just one interpretation! Nevertheless, we can have an operationally useful bit of intuition. In practice, convolution is typically associtaed with /smoothing/ and /averaging/ a function (in a qualitative sence).
 
