@@ -1,0 +1,32 @@
+# jemdoc: menu{MENU}{lec8.html}, showsource,
+#  analytics{UA-131436916-1}
+= Scaling & Derivatives
+
+Ready, set, go! There's one last property of Fourier transforms to mention, which we won't prove, but it's important to know. It's the analog of Rayleigh's identiy for Foruier Transforms.
+
+~~~
+{Parseval's Identity}
+
+\(
+\int_{-\infty}^{+\infty} | f(x) | ^2 dx = \int_{-\infty}^{+\infty} | F f(s) | ^2 ds 
+\)
+
+In fact, the inner product is also invariant under a Fouerit trasfmoration!
+~~~
+
+We won't go through the proof in class; you can find it in notes. It involves the inverse Fourier transform. It turns out this property is mportant for linear systems -- it ttells us that the FT is a *unitary transformation* -- and it also turns out to be important for the famous *uncertainty princkiple* of quantum mechanics.
+
+But we don't want to spend too much time on more properties; we want to move on to Convolution for now.
+
+== Convolution
+
+Let's remember the first time we saw convolution was in the context of the heat equation, when we saw that the soultions coulsd be written as a convoultion of the intiial condition with the fundamental solution. 
+
+This time approach it from an electrical engineer's viewpoint. It turns out that convolution is the fundamental operation of *signal processing* --which we'll take to mean as using one signal to modify another signal. We can process signals both in the /time/ doamin and in the /frequency/ domain, and often we want to see how they're related -- how an operation in one domain affects the other.
+
+=== Modifying Spectra
+
+The most common operation or modification that EE's perform on a signal is to /scale/ the spectrum of one signal by another. Mathematically, this just means that we multiply the Fourier transforms of two functions $f$ and $g$ together to create a new signal $h$ whose FT is the product $\mathcal{F}h(s) = \mathcal{F}f(s) = \mathcal{F}g(s)$. So we're scaling each of the frequency components of $f$ by the corresponding frequency component in $g$.
+
+So what operation do we need to do in the time domain so that the spectra end up multiplying together in the frequency domain? As a spoiler alert, the answer is *convolution* -- but this result is honestly quite surprising and unexpected! Our approach to figuring this out is a classical mathematical sort of argument, where we /pretend/ that we've found the solution, and then work out what form that solution's got to have.
+
