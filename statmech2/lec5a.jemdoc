@@ -13,8 +13,6 @@ Welcome back to class! Today (Wed Week 3) Prof. Kivelson began introducing some 
     -- Connection to Quantum Mechanics and trial wavefunctions
     -- Discussion: does ``best'' mean ``good enough''
 - [lec5c.html Interlude: the paramagnet (non-interacting spins)]
-    -- Tips'n'tricks to finding /non/-interacting partition functions!
-    -- Aside: Why and when do transfer matrices work?
 - [lec5d.html Mean Field Ising Model]
     -- Applying non-interacting variational ``ansatz'' to d-dim Ising Model
     -- Solving for ``best'' guess of $b_j$

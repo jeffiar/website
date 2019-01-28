@@ -1,4 +1,170 @@
 # jemdoc: menu{MENU}{lec5d.html}, showsource, analytics{UA-131436916-1}
 = Mean Field Solution of Ising Model
 
-Coming soon to a theater near you...
+Now that we understand the [lec5b.html variational principle] and the [lec5c.html non-interacting Ising Model], we're ready to accomplish our next task. We want to understand the general d-dimensional Ising Model /with/ spin-spin interactions by applying the non-interacting Ising Model as a variational ansatz. In other words, we want to use what we just derived for independent, uncorrelated spins as a trial Hamiltonian in a variational treatment of the full Ising model.
+
+As we'll see, we'll be able to interpret our results as a *mean-field model*, where each of the spins on the Ising lattice experiences the ``average'' field produced by all its neighbors. We'll discuss whether or not this brutal averaging is justified, and talk about under what circumstances it's more or less reasonable.
+
+As an added bonus, we'll also encounter our first example of a *continuous phase transition*. In this dramatic process, the spins go from a disordered random phase with no overall magnetization to an distinct low-temperature ordered ferromagnetic phase where a macroscopic fraction of the spins are all aligned in the same direction. It's really quite surprising that Nature exhibits these sorts of marvelous ``collective conspiracies'', and it's even more surprising that they occur at a single well-defined temperature called the *critical temperature* $T_c$.
+
+Finally, we'll talk about how to figure out the value of the critical temperature $T_c$ by drawing a picture and seeing where two graphs intersect. Sometimes you can discover the cleverest things in the silliest ways...
+
+Okay let's get started.
+
+~~~
+{Food for thought}
+We solved the 1D Ising model by using transfer matrices...but why can't you solve the general n-dimensional Ising model with transfer matrices?
+~~~
+
+== Variational Solution to Ising Model
+
+The game plan for today is to solve the general Ising model
+\(
+    H = - J \sum_{< ij>} \sigma_i \sigma_j - h \sum_j \sigma_j
+\)
+by using a trial Hamiltonian of the form
+\(
+    H_{tr} = - \sum b_j \sigma_j.
+\)
+Here our full Ising model has an energetic coupling between neighboring spins $\sigma_i$ and $\sigma_j$ and the external field $h$ acting on all the spins. In our variational ansatz $H_{tr}$, we pretend that the spins are actually decoupled from each other (that is, there's no $\sigma_i \sigma_j$ terms), and that each of the spins instead experiences an ``effective external field'' $b_j$. (We'll discuss how to interpret $b_j$ later on.)
+
+Our objective here is to find the values of $b_j$ that make our trial Hamiltonian the ``best'' possible approximation to the actual Hamiltonian. As we learned, the [lec5b.html variational principle] says us that the ``best'' value of $b_j$ is the one that minimizes the variational free energy
+\(
+    F_{var} = F_{tr} + \langle H - H_{tr} \rangle_{tr}.
+\)
+
+(Remember that the subscript $tr$ means that we're finding thermal averages using the weights from the trial ensemble. This statement is much fancier than it sounds; it just means that whenever we see something such as $\langle \sigma_j \rangle_{tr}$, we just replace it whatever the solution to the trial Hamiltonian was. For instance, in this example, we're using the non-interacting Ising model as a trial Hamiltonian, so we plug in the formulas at the bottom of the [lec5c.html last page].)
+
+Let's begin.
+
+=== Finding the variational free energy
+
+We have no recourse but to plug everything into the formula for $F_{var}$. We find that
+\(
+    F_{var} = F_{tr} + \left\langle \left(- J \sum_{< ij>} \sigma_i \sigma_j - h \sum_j \sigma_j\right) - \left(- \sum b_j \sigma_j\right) \right\rangle_{tr},
+\)
+or combining terms,
+\(
+    F_{var} = F_{tr} + \left\langle - J \sum_{< ij>} \sigma_i \sigma_j + \sum_j (b_j - h) \sigma_j \right\rangle_{tr}.
+\)
+
+And since expectations values are linear, we can pull the expectation values inside to go around the sigmas. (If you want to convince yourself of this, you can try writing out the difinition of $\langle \ldots \rangle$.)
+\(
+    F_{var} = F_{tr} + - J \sum_{< ij>} \langle\sigma_i \sigma_j\rangle_{tr} +  \sum_j (b_j - h) \langle\sigma_j\rangle_{tr}.
+\)
+
+Before moving on, we can make one more simplification: since we picked a /non-interacting/ trial Hamiltonian, the spins are uncorrelated, so $\langle \sigma_i \sigma_j \rangle_{tr}$ just factors into $\langle \sigma_i \rangle_{tr} \langle \sigma_j \rangle_{tr}$. (We can't /always/ do this; we just happened to pick a non-interacting trial Hamiltonian today.)
+\(
+    F_{var} = F_{tr} + - J \sum_{< ik>} \langle\sigma_i\rangle_{tr}\langle \sigma_k\rangle_{tr} + \sum_k (b_k - h) \langle\sigma_k\rangle_{tr}.
+\)
+
+(I changed the labels of the indices in preparation for the next step where we differentiate w.r.t. $b_j$.) At this point, we can expand out our expressions for $F_{tr}$ and $\langle \sigma_j \rangle$, but a lot of them will cancel out later on, so for now, we'll just leave this expression as it is. Prof. Kivelson calls this ``being clever.'' I call it ``hindsight is 20-20.''
+
+=== Finding the derivative
+
+Since we want to minimize $F_{var}$ with respect to the variational parameters $b_j$, we just take the derivative and set it equal to zero. Nothing particularly fancy here yet. For now, we'll leave everything in terms of $\langle \sigma_j \rangle$'s because we're ``clever.''
+
+When we hit $F_{var}$ with a $\frac \partial {\partial b_j}$:
+- The first term gives us a ${\partial F_{tr} \over \partial b_j} = - \langle \sigma_j \rangle_{tr}$. You can see this is true by plugging in $F = - T \log Z$ and then expanding out the partition function...or if you want some thermodynamic justification, read the [\#yaythermo Remark at the bottom of this page].
+- For the second term, the derivative only hits the terms involving spin $j$, because the trial Hamiltonian only had terms which looked like $b_j \sigma_j$. In the nearest-neighbor-sum, there is one term for each nearest neighbor of site $j$, so we end up with a sum over nearest neighbors $i$ of $-J \langle\sigma_i\rangle_{tr} {\partial \langle \sigma_j \rangle_{tr} \over \partial b_j}$
+- In the last term, we use the product rule. When we hit the coefficient, we get $\langle \sigma_j \rangle_{tr}$, and when we hit the sigma we get $(b_j - h) {\partial \langle\sigma_j\rangle_{tr} \over \partial b_j}$.
+
+
+So the derivative of the variational free energy ends up being
+\(
+ \frac {\partial F_{var}} {\partial b_j} = -\langle \sigma_j \rangle_{tr} - \left(J \sum_{i \, n.n.\,j} \langle\sigma_i\rangle_{tr} {\partial \langle \sigma_j \rangle_{tr} \over \partial b_j}\right) + \langle \sigma_j \rangle_{tr} + (b_j - h) {\partial \langle\sigma_j\rangle_{tr} \over \partial b_j}
+\)
+where in the second sum, I'm summing over sites $i$ that are nearest neighbors (n.n.) of site $j$.
+
+Now time for some magic: the first and the third term cancel out, and then we can factor out a ${\partial \langle\sigma_j\rangle_{tr} \over \partial b_j}$ from what's left! And then when we set the derivative equal to zero, we're left with
+\(
+0 = \frac {\partial F_{var}} {\partial b_j} = \left[-J \sum_{i \, n.n.\,j} \langle\sigma_i\rangle_{tr} + b_j - h\right] {\partial \langle\sigma_j\rangle_{tr} \over \partial b_j}
+\)
+or 
+\(
+b_j = J \sum_{i \, n.n.\,j} \langle\sigma_i\rangle_{tr} + h.
+\)
+
+Finally, at this point we finally need to plug in our expression for $\langle\sigma_i\rangle_{tr}$ from the previous page; we end up with a relation between the external field of a spin $b_j$ and the external field of its neighboring spins $b_i$.
+\(
+b_j = J \sum_{i \, n.n.\,j} \tanh (\beta b_i) + h.
+\)
+
+=== Translational invariance
+
+Hooray, we finally have an expression for the $b_j$'s that satisfy our variational condition ${\partial F_{var} \over \partial b_j} = 0$. Unfortunately, all the $b_j$'s are related to each other in a nasty sort of way involving hyperbolic tanhs, so it all looks kind of messy.
+
+So to proceed further, we make the assumption of *translational invariance* that all spins really experience the same ``external'' field; i.e., that $b_j$ equals the same $b$ for all the sites $j$. 
+
+~~~
+{Remark}
+What's the motivation exactly for assuming $b_j = b$? I...don't quite know honestly. We tried to justify it in section by some argument about it must be the same for all sites $j$ in zero-temperature limit, but in my opinion, the argument falls flat because the $b_j$'s depend on temperature anyways, so why doesn't all hell just break loose when you turn on the thermostat? I think the actual justification is another one of those ``you can't stop me'' reasons...
+
+This begs the question of why we even /bothered/ putting an index $j$ on the parameter $b_j$ in the first place, if we were gonna get rid of it at the end of the derivation anyways. I don't know. Go ask the professor.
+~~~
+
+No matter our reasoning for /assuming/ why $b_j = b$, it lets us simplify our result quite a bit: we only need to find /one/ unknown $b$ now. The $b_j$ on the LHS is the same as $b_i$ on the RHS. Our sum over the nearest neighbors of site $j$ ends up being the same for each of its neighbors, so rather than summing, we just need to multiply by the number of nearest neighbors $z$.
+
+These simplifications give as an equation for $b$ /in terms of itself/ as
+\(
+    b = h + z J \tanh (\beta b)
+\)
+where $z$ is the number of nearest neighbors in the Ising model. You might be thinking that we haven't /actually/ found $b$, since we haven't exactly solved for it...but as we'll see, this expression lets us draw some pretty pictures, so it's good enough for a lot of qualitative purposes. And in any case, mean field theory is only /qualitatively/ correct in low-ish dimensions, so why bother?
+
+~~~
+{Remark}
+The number of nearest neighbors $z$ in an Ising model on a $d$-dimensional hypercube lattice is $z = 2d$. For instance, on a chain ($d=1$), you have 2 neighbors to your left and right; on a square grid ($d=2$), you have 4 neighbors (left, right, up, down); on a cubic lattice ($d=3$), you have 6 neighbors ($\pm \hat x, \pm \hat y, \pm \hat z$), and so on and so forth.
+~~~
+
+~~~
+{Another Remark}
+It's confusing to write $Jz$ because the little $z$ looks like a subscript on $J$, which is reminiscent of the $J_z$ spin operator in quantum mechanics (and also reminiscent of a certain rapper...)
+
+On the other hand, $zJ$ means a zeptojoule or $10^{-21}$ Joules! And wouldn't you know, the thermal energy $k_b T$ is typically on the order of zeptojoules; at room temperature $T \sim 300\textrm{K}$, it's roughly 4 zJ....I swear there's a conspiracy going on here.
+~~~
+
+== Phase diagrams
+
+Ah man, it's getting late, I'm gonna have to go sleep. I'll finish this up tomorrow! The main points of this section are:
+
+- You can solve for $b$ self-consistently by plotting the LHS and RHS and looking for where the graphs cross each other.
+- Sometimes, you'll see this self-consistency relation written in terms of $m = \tanh (\beta b)$ rather than in terms of $b$.
+- If you solve for $b$ at different temperatures, you'll find that at high temperatures, there's only the $b = 0$ solution, but that after you cross a *critical temperature* $T_c$, there's some solutions $b = b_0 \neq 0$ as well! This phase with a nonzero net magnetization is known as the ferromagnetic phase.
+- To solve for the critical temperature, we realize that the condition for having a nonzero graph-crossing is that /the slope of the tanh at $b=0$ has to be lesser greater than 1/ so that the LHS can ``catch up'' to the graph at some later $b=b_0$. If we do this for this mean field Ising theory, we find that it predicts a critical temperature $T_c = zJ$.
+
+And then I want to make a few more comments about how to interpret the mean field experienced by each spin, and when the mean field is accurate or not. Perhaps if time permits, I'll also discuss the spontaneous symmetry breaking that occurs in the ferromagnetic phase...hopefully I get around to this someday...
+
+{{<a name="yaythermo"></a>}}
+~~~
+{Remark on thermodynamics}
+Why does taking a derivative of the free energy w.r.t. the external field give you the magnetization ${\partial F_{tr} \over \partial b_j} = - \langle \sigma_j \rangle_{tr}$?
+
+Well, you can see this directly by plugging in $F = -T \log Z$ and then expanding out the partition function. It's a pretty fun exercise to work this out yourself...remember that $(\log f(x))' = f'(x) / f(x)$...
+
+If you're feeling more *thermodyanmically inclined*, you can also convince yourself that ${\partial F \over \partial H} = - M$ via the following thermodynamic argument. (Now I'm calling the external field $H$ and the magnetization $M$ in the true thermodynamic spirit!) Ah yes, thermodynamics...your old friend...I'll gloss over a lot of the details because, because this is a statistical mechanics course, not a thermodynamics course.
+    
+Okay here we go. When we include the external *magnetic field* $H$ into a thermodynamic treatment, our *internal energy* function $E = E(S,H)$ gains an extra parameter $H$. The external field gives us another handle to perform work on the system; when we twiddle it by an amount $dH$, the energy of the system changes by an amount $-M dH$, where we recognize the magnetization $-M$ as the *conjugate variable* to the external field $H$. (Think back to E'n'M why magnetic dipole times magnetic field gives you an energy...or maybe think to a quantum mechanical spin...)
+
+Anyways, once we include a magnetic field, we can either change the internal energy by adding some heat $T dS$ or by performing some magnetic work $-MdH$, which means that the total differential of the internal energy is
+\(
+    dE = T dS - M dH.
+\)
+
+However, since we're considering the Ising model in a /canonical/ ensemble at a fixed temperature $T$, it doesn't make much sense to talk about derivatives of the (internal) energy $E$, because $E$ is a natural function of the /entropy/ $S$ rather than the /temperature/ $T$. So even though we /can/ find the magnetization $M$ in principle as a derivative of the internal energy $E$ as $M = {\partial E \over \partial H} |_S$, it's pretty physically useless to do so, because we're holding entropy constant in the derivative, rather than the temperature.
+
+To account for this issue, we perform a /Legendre transformation/ to the *free energy*
+\(
+    F \equiv E - TS
+\)
+which then becomes a /natural/ function of the temperature as $F = F(T,H)$! (I don't have room to actually /prove/ why this is the case in this little remark box...I'm already going /way/ over my quota today in this little aside.) The differential of free energy can then be expressed as
+\(
+    dF = -S dT - M dH
+\)
+from which we can read off the magnetization
+\(
+    M = - {\partial F \over \partial H}|_T
+\)
+where the derivative is now taken at a fixed /temperature/ rather than at fixed /entropy/, meaning that it aligns with our treatment of the Ising Model as a constant-temperature canonical ensemble of statistical mechanics.
+
+Okay, to be fair, I didn't really prove anything in the above, I just kind of pulled the $-H dM$ term out of thin air and then waved my hands around for a sort of ``plausibility'' argument. But I do think it's a reasonable sort of thing to sa. Hooray, thermodynamics!
+~~~
