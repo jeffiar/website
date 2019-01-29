@@ -109,7 +109,7 @@ These simplifications give as an equation for $b$ /in terms of itself/ as
 \(
     b = h + z J \tanh (\beta b)
 \)
-where $z$ is the number of nearest neighbors in the Ising model. You might be thinking that we haven't /actually/ found $b$, since we haven't exactly solved for it...but as we'll see, this expression lets us draw some pretty pictures, so it's good enough for a lot of qualitative purposes. And in any case, mean field theory is only /qualitatively/ correct in low-ish dimensions, so why bother?
+where $z$ is the number of nearest neighbors in the Ising model. 
 
 ~~~
 {Remark}
@@ -123,16 +123,71 @@ It's confusing to write $Jz$ because the little $z$ looks like a subscript on $J
 On the other hand, $zJ$ means a zeptojoule or $10^{-21}$ Joules! And wouldn't you know, the thermal energy $k_b T$ is typically on the order of zeptojoules; at room temperature $T \sim 300\textrm{K}$, it's roughly 4 zJ....I swear there's a conspiracy going on here.
 ~~~
 
-== Phase diagrams
+== Solving for b
 
-Ah man, it's getting late, I'm gonna have to go sleep. I'll finish this up tomorrow! The main points of this section are:
+At this point, we have an expression involving $b$ on the LHS and the RHS. If we think back to the bigger picture, we have just learned that the value of $b$ which satisfies this equation is the ``best'' possible value of $b$ in our trial Hamiltonian. Unfortunately, we can't /explicitly/ solve for $b$ in a closed-form way...so how do we proceed further?
 
-- You can solve for $b$ self-consistently by plotting the LHS and RHS and looking for where the graphs cross each other.
-- Sometimes, you'll see this self-consistency relation written in terms of $m = \tanh (\beta b)$ rather than in terms of $b$.
-- If you solve for $b$ at different temperatures, you'll find that at high temperatures, there's only the $b = 0$ solution, but that after you cross a *critical temperature* $T_c$, there's some solutions $b = b_0 \neq 0$ as well! This phase with a nonzero net magnetization is known as the ferromagnetic phase.
-- To solve for the critical temperature, we realize that the condition for having a nonzero graph-crossing is that /the slope of the tanh at $b=0$ has to be lesser greater than 1/ so that the LHS can ``catch up'' to the graph at some later $b=b_0$. If we do this for this mean field Ising theory, we find that it predicts a critical temperature $T_c = zJ$.
+We'll appeal to the maxim: /when in doubt, simplify things and draw a picture/. So let's set $h=0$ for now, and draw a picture, and see if we can gain any qualitative insight.
 
-And then I want to make a few more comments about how to interpret the mean field experienced by each spin, and when the mean field is accurate or not. Perhaps if time permits, I'll also discuss the spontaneous symmetry breaking that occurs in the ferromagnetic phase...hopefully I get around to this someday...
+Our strategy here is to plot both sides of the equation and see where the graphs intersect. The intersection points will tell us the solutions for $b$. In this case, we want to where the graphs of $y = b$ and $y = z J \tanh \beta b$ intersect:
+
+{{<img src="img/Tc.png" style="max-width:100%; max-height: 100%;">}}
+
+Surprisingly, /the number of graph crossings depends on the temperature/! This is /by far/ the coolest thing we've discovered in the entire class so far: the behavior of the mean-field Ising model is /completely/ different at low temperatures than at high temperatures. We've discovered a phase transition!
+
+If you start out at high temperature, you'll only find a trivial solution at $b=0$, but when you lower the temperature past a special *critical temperature* $T_c$, all of a sudden, there will be /nonzero solutions/ $b=\pm b_0 \neq 0$ as well. This is rather remarkable; it tells us the system behaves dramatically differently depending on whether $T > T_c$ or $T < T_c$. The high-temperature regime is called the *paramagnetic phase* and the low-temperature regime is called the *(anti)ferromagnetic phase*.
+
+== Physical interpreation
+
+Let's think back to our main physical observable, the *magnetization density* $m = \langle \sigma_j \rangle$ which tells us whether the spins tend to align up or down in thermal equilibrium. (To calibrate our intuition, it's helpftul to [lec5c.html\#intuition review how non-interacting spins behave] at different temperatures.) 
+
+In our mean-field model, the magnetization density is given by $m = \tanh(\beta b)$, which means at low temperatures when $b$ is nonzero, there is a net nonzero magnetic moment in the system.
+
+Wait a second. Let's think about how unusual this is. Since we dialed down the external field $h$ /to zero/, there is /no energetic incentive whatsoever/ for the spins to want to align one way versus another. There's nothing pulling on the spins to make them want to point in a particular. /Yet/ we've just discovered that there's a nonzero net magnetic moment at low temperatures; in other words, that all the spins are preferring to point in some direction over the other! How is this possible?
+
+Well, believe it or not, this is how nature behaves. It's what you might call a *collective conspiracy* -- none of the /individual/ spins feel an external field, but if enough of them happen to fluctuate and point in a particular way, they'll set up a strong enough local field to convince their neighbors to the same way -- so strong, in fact, that a nontrivial fraction of the $N$ spins also ``get in on the conspiracy'', and the material develops long-range order and gains a /macroscopic/ magnetic moment! Truly remarkable, especially if you consider just how many spins there are ($N \sim 10^{23}$), and just how weak the magnetic field of each individual spin is. Magical.
+
+So to summarize, we've just discovered a conspiracy:
+
+~~~
+{Behavior of Mean-field Ising Ferromagnet}
+- At high temperatures $T > T_c$, the spins exhibit a disordered *paramagnetic* phase, pointing in every which way. The average magnetization of the system is zero.
+- At low temperatures $T < T_c$, the spins exibit an ordered *ferromagnetic* phase, where they all conspired to point in one direction (even when there's no external field telling them which way to point!) The average magnetization of the system is (shockingly!) nonzero.
+~~~
+
+=== How come long-range order only develops at low T?
+
+How come long-range order only develops at low T? There are a number of explanations, some of which are more enlightening than others:
+- Look at the graphs, goddammit! We just proved it!
+- At high temperatures, all the spins are jiggling around with so much thermal energy that any local conspiracies of all-up-zones or all-down-zones are quickly jiggled away out of existence before they have time to spread into a macroscopic fraction of the material.
+
+We can also an argument for the phase transition by thinking about the two terms in the free energy $F = E - TS$. Each of the phases has an ``energy'' $E$ and an ``entropy'' $S$, and depending on the value of the temperature $T$, the free energy of one phase might be higher than the other. (Of course this is all somewhat qualitative, I'm being a bit loose with my language here...don't take this argument /too/ seriously!)
+- In the disordered paramagnetic phase, the spins can point in any which way, so there's lots of possible configurations (high entropy, happy!), but there's very little energetic reward because the spins haven't chosen to align (high energy, sad!).
+- In the ordered paramagnetic phase, the spins have all conspired to point (mostly) in one direction, so there are less possible configurations for them (low entropy, sad!), but since they're neatly lined up in an energy-minimizing manner, there's a glorious energetic reward (low energy, happy!)
+
+Which phase has the lower free energy? At high temperatures, when the entropic contribution is more heavily favored, the paramagnetic phase flies off to an entropic heaven of possibilities, whereas at low temperatures, when all the system wants to do is to minimize energy, the orderly ferromagnetic phase wins out.
+
+== Solving for the critical temperature
+
+Alright, enough qualitative remarks, I'm starting to sound like a chemist. Let's move on to solve for the critical temperature $T = T_c$.
+
+Let's look at our pictures again:
+
+{{<img src="img/Tc.png" style="max-width:100%; max-height: 100%;">}}
+
+Our goal here is to find the special temperature $T_c$ that separates the nonzero-solution-regime from the no-nonzero-solution-regime (sorry, these words are confusing). There's a simple condition that tells you whether or not the green curve will hit the blue curve again after $b=0$. Can you figure it out by staring at the picture?
+
+Here's the secret: The green curve has to be /steep enough/ at $b=0$ for the blue curve to ``catch up to it'' later on and intersect the green line again. If the green line's steeper than the blue line at $b=0$, then there'll be a nonzero solution for $b$, and if it's shallower, there won't be. And if the green line is exactly as steep as the blue line at $b=0$, then we're at the critical temperature taht separates the two possibilities. Clever, eh?
+
+This little observation gives us a mathematical procedure to find the critical temperature: we take the derivative of the LHS and RHS, set them equal to each other at $b=0$, and solve for $\beta$. The slope of the blue curve $y=b$ is 1, and the slope of the green curve at $b=0$ is
+\(
+    \left[{\partial \over \partial b} zJ \tanh(\beta b)\right]_{b=0} = \left[\frac {zJ\beta} {\cosh^2 (\beta b)}\right]_{b=0} = z J \beta.
+\)
+When we set the two slopes equal to each other, we find that $z J \beta = 1$ or $T_c = 1 / \beta = zJ$. Hooray!
+
+== Interpreting Mean Field Theory
+
+Let's step back and think a bit about what we've learned from the Ising model from all this. Actually, I'm getting a bit tired, so I'll finish writing this tomorrow...stay tuned...
 
 {{<a name="yaythermo"></a>}}
 ~~~

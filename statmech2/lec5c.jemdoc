@@ -135,7 +135,7 @@ Notice that all the factors of $z_i$ on the top and bottom cancel except for $i 
 
 === Gaining some intuition
 
-{{<img src="img/tanh.png">}}
+{{<a name="intuition"></a><img src="img/tanh.png">}}
 
 Shown above is how the magnetization density $m = \langle \sigma_j \rangle$ varies as we adjust the external field $b_j$, at various temperatures $T = 1/\beta$. At zero field ($b_j = 0$), the spin has equal chances of being up and down, so the average magnetization is zero ($m = 0$). As we turn the field up, the spin wants to point up; as we turn it down, the spin wants to point down. Once the field is strong enough, the spin has essentially probability 1 of pointing in the direction of the field, and the magnetization saturates at $\pm 1$ ($\lim_{b_j \to \pm \infty} m(b_j, T) = \pm 1$). If you interpret the average as a time-average, this means that the particle spends pretty much all of its time aligned with the field; if you interpret the average as an average over sites on the lattice, it means that /most of the spins/ on the lattice are aligned with the field if it's strong enough. 
 

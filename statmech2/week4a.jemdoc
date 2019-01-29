@@ -1,0 +1,10 @@
+# jemdoc: menu{MENU}{week4a.html}, showsource
+# , analytics{UA-131436916-1}
+= Overview of Landau-Ginzburg Theory
+
+Coming soon...
+
+- The trick of introducing ``fictitious'' or ``probe'' fields $h_j$ lets us find magnetization by differentiating the free energy (even if there isn't an actual physical external field presetnt!)
+- A long awaited drumroll...variational free energy is /actually/ useful because its derivative w.r.t. these probe fields /does/ tell us the magnetization in the trial ensemble! Hooray.
+- Legendre transforms to find the free energy in terms of $m$ rather than in terms of $h$...leading to Landau-Ginzburg theory where we define the free energy as a functional of an order parameter field....pretty pithy stuff.
+    -- So this is why we stuck an index on the $b_j$ when we [lec5c.html first derived] the expressions for a non-interacting Ising
