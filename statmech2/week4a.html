@@ -5,9 +5,18 @@
 <meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<title>Overview of Landau-Ginzburg Theory</title>
+<title>Landau-Ginzburg Theory</title>
 </head>
 <body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
 <td id="layout-menu">
@@ -28,27 +37,150 @@
 <div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
 <div class="menu-item"><a href="lec5c.html">Warm-up:&nbsp;Paramagnet</a></div>
 <div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
 <div class="menu-category">Landau-Ginzburg</div>
-<div class="menu-item"><a href="week4a.html" class="current">Overview</a></div>
+<div class="menu-item"><a href="week4a.html" class="current">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">(Probe&nbsp;Fields)</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
-<h1>Overview of Landau-Ginzburg Theory</h1>
+<h1>Landau-Ginzburg Theory</h1>
 </div>
-<p>Coming soon&hellip;</p>
+<p>Onwards we continue in our quest for understanding complicated interacting systems! </p>
+<h2>Overview</h2>
+<p>We're going to take a slightly different approach than in class. (See the <a href="#opinion">bottom of this page</a> for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />, we're going to go <i>step by step</i> to properly build up our intuition. Here's the game plan:</p>
+<div class="infoblock">
+<div class="blocktitle">Game Plan</div>
+<div class="blockcontent">
+<p>We want to understand what <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> really means, and why it's such a useful object to consider.</p>
+<p>First we'll learn about what exactly free enenergy means, and why <a href="week4d.html">we care so much</a> about it. Spoiler alert: the minima of the free energy tell you the equilibrium values! Armed with this intuition, we'll think about the free energy as a function of the magnetization density <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> (<a href="week4e.html">Landau theory</a>), which will teach us many fabulous things:</p>
 <ul>
-<li><p>The trick of introducing &lsquo;&lsquo;fictitious&rsquo;&rsquo; or &lsquo;&lsquo;probe&rsquo;&rsquo; fields <img class="eq" src="eqs/6429308858200906340-130.png" alt="h_j" style="vertical-align: -6px" /> lets us find magnetization by differentiating the free energy (even if there isn't an actual physical external field presetnt!)</p>
+<li><p>a beautiful intuition for the behavior of second-order phase transitions</p>
 </li>
-<li><p>A long awaited drumroll&hellip;variational free energy is <i>actually</i> useful because its derivative w.r.t. these probe fields <i>does</i> tell us the magnetization in the trial ensemble! Hooray.</p>
+<li><p>how you can find the magnetization density <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> at any temperature by looking at the minima of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /></p>
 </li>
-<li><p>Legendre transforms to find the free energy in terms of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> rather than in terms of <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />&hellip;leading to Landau-Ginzburg theory where we define the free energy as a functional of an order parameter field&hellip;.pretty pithy stuff.</p>
+<li><p>a direct picture for how <img class="eq" src="eqs/7334278463708383850-130.png" alt="(m leftrightarrow -m)" style="vertical-align: -5px" /> symmetry is broken when <img class="eq" src="eqs/8348194109533205829-130.png" alt="T &lt; T_c" style="vertical-align: -4px" /></p>
+</li>
+<li><p>insight into how you can deduce the shape of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> merely with <i>symmetry</i> arguments</p>
+</li>
+<li><p>and far more&hellip;.</p>
+</li>
+</ul>
+<p>Once we've solidified our understanding of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, we'll move on and <a href="week4f.html">generalize <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /></a> to a <i>spatially-varying</i> magnetization density <img class="eq" src="eqs/121258632327452069-130.png" alt="m to m_j" style="vertical-align: -6px" />, which lets us account for <i>textures</i> in <img class="eq" src="eqs/6387157653018356321-130.png" alt="m_j" style="vertical-align: -6px" /> at different sites <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. Also, we'll discuss how to generalize from <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> to an <b>order parameter</b> <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /> to describe all sorts of phase transitions beyond ferromagnetic ordering. Finally, we'll take the continuum limit <img class="eq" src="eqs/5395845173043045059-130.png" alt="m_j to m(vec{r})" style="vertical-align: -6px" /> and pretend that the order parameter is defined <i>everywhere in space</i> <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> rather than just sites <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. If time permits, we'll also explain how to arrive at <img class="eq" src="eqs/8539512413733617150-130.png" alt="m(vec{r})" style="vertical-align: -5px" /> by <b>coarse-graining</b>. (Depending on how we cover the renormalization group later, this may or may not be useful!)</p>
+<p>Finally, we'll discuss how we <a href="week4g.html">could have arrived</a> at the shape of <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> just by <b>symmetry arguments</b>. This sort of top-down or <b>phenomenological</b> approach is the sort of stuff that theorists fantasize about. The argument is simple, general, and powerful.</p>
+</div></div>
+<h2>Motivation: Lingering Questions about Mean Field Approaches</h2>
+<p>We spent the last few weeks learning about the variational principle and mean field theory, but these appraoches still leave us with a few lingering questions.</p>
 <ul>
-<li><p>So this is why we stuck an index on the <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> when we <a href="lec5c.html">first derived</a> the expressions for a non-interacting Ising</p>
+<li><p>Even though the variational principle tells us how to pick the &lsquo;&lsquo;best&rsquo;&rsquo; trial Hamiltonian, how do we know whether &lsquo;&lsquo;best&rsquo;&rsquo; is <i>&lsquo;&lsquo;good enough&rsquo;&rsquo;</i>?</p>
+<ul>
+<li><p>More precisely, even if we've minimized the variational free energy <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" /> is minimized, how do we know whether we can trust its derivatives to tell us anything about correlation functions?
+
+
+
+</p>
+</li></ul>
+</li>
+<li><p>In our guess for the trial Hamiltonian, we assumed that every single site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> felt the same &lsquo;&lsquo;mean field&rsquo;&rsquo; <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />; that is, we assumed a <i>spatially uniform solution</i> where <img class="eq" src="eqs/7196294448606532401-130.png" alt="b_j = b" style="vertical-align: -6px" /> at all sites.</p>
+<ul>
+<li><p>How do we know whether a spatially uniform solution is <i>actually</i> the best possible solution?</p>
+</li>
+<li><p>More generally, can we come up with a simple and robust way to take into account the textures and spatial inhomogeneities of the mean field?</p>
+</li></ul>
+</li>
+<li><p>We spent so much time on the details of the Ising model, but do the results about its second-order phase transitions <i>generalize</i> to other systems?</p>
+<ul>
+<li><p>Is there a conceptual framework that explains <i>why</i> the Ising model phase transition behaves as it does?</p>
+</li>
+<li><p>Can we argue how phase transitions <i>ought to</i> behave from a more general point of view?</p>
 </li>
 </ul>
 
 </li>
 </ul>
+<p>As we'll see, the more sophisticated methods that we'll learn in class over the next few weeks will let us address some of these nagging questions which keep us up at night and gnaw at our sanity.</p>
+<h3>Outline</h3>
+<p>Bonus sections are marked with an *asterisk.</p>
+<ul>
+<li><p>Movitivation</p>
+<ul>
+<li><p>Can we trust the <i>derivatives</i> of the variational free energy?</p>
+</li>
+<li><p>How can we account for <i>spatial variation and textures</i> in the mean field of a material?</p>
+</li>
+<li><p>Can we <i>generalize</i> the features of phase transitions we found in the Ising model?</p>
+</li></ul>
+</li>
+<li><p>Probe fields are a nice trick to find magnetization.</p>
+</li>
+<li><p>*Interlude: What exactly <i>is</i> free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" />?</p>
+<ul>
+<li><p>*We have to understand the star of the show!</p>
+</li>
+<li><p>*Coming to terms with chemistry's curvy caricatures</p>
+</li>
+<li><p>*Minimizing free energy for fun and profit</p>
+</li></ul>
+</li>
+<li><p>*Landau theory &ndash; free energy as a function of magnetization <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /></p>
+<ul>
+<li><p>*A trip down memory lane with Monsieur Legendre</p>
+</li>
+<li><p>Spontaneous Symmetry Breaking!!! the phase diagram of second-order transitions <b>&lt;&ndash; Important!</b></p>
+</li>
+<li><p>How do things vary near <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />? A taste of critical exponents <b>&lt;&ndash; Important!</b></p>
+</li>
+<li><p>*Metastability, hysteresis, spinodals, nucleation, and all that jazz</p>
+</li></ul>
+</li>
+<li><p>Landau-Ginzburg theory</p>
+<ul>
+<li><p>Taking into account textures of magnetization: <img class="eq" src="eqs/8278569638680321368-130.png" alt="m mapsto m_j" style="vertical-align: -6px" /></p>
+</li>
+<li><p>Calculating the Mean-Field Ising Landau-Ginzburg Free Energy <img class="eq" src="eqs/4157528468439071396-130.png" alt="F[{m_j}]" style="vertical-align: -6px" /></p>
+</li>
+<li><p>The continuum limit: the order parameter field <img class="eq" src="eqs/753093596626542311-130.png" alt="m_j mapsto phi(vec{r})" style="vertical-align: -6px" /></p>
+</li></ul>
+</li>
+<li><p>Theorist's Playground</p>
+<ul>
+<li><p>Guessing Mr. Ginzburg's free energy <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> from a top-down argument</p>
+</li>
+<li><p>Symmetry, universality, and deep implications</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p><a name="opinion"></a> </p>
+<h3>An opinion</h3>
+<p>Before we go on, I want to share my opinion about the way we covered this topic in our class.</p>
+<div class="infoblock">
+<div class="blocktitle">Opinion</div>
+<div class="blockcontent">
+<p>I think we covered this material way too fast. We jumped directly into the deep end of the pool.</p>
+<p>It would have been super helpful to spend more time discussing the qualitative features of second-order transitions, such as drawing pictures of the Landau Free energy, before introducing order-parameter-fields that model spatial variation. Pedagogically, it makes far more sense for us to sink our teeth into <i>really</i> understanding the Ising model transition so that we have <i>some</i> sort of concrete picture in mind before we move on to abstract things such as <img class="eq" src="eqs/125703290422114367-130.png" alt="phi(vec{r})" style="vertical-align: -5px" />. And to top it all off, the actual Landau-Ginzburg field theory is utterly unlike anything we've seen in physics before, with functional integrals and intense symmetry arguments and such, so I find it rather unenlightening and frankly a bit terrifying to dive right in to the math without preparation.</p>
+<p>I really don't know if I ought to be so opinionated as an undergraduate, especially since I don't understand this material terribly well yet. But this is just how I feel.</p>
+</div></div>
+<p>Because of my strong opinions, <b>this section of my notes will deviate a bit from the official course material</b>. I'll still cover everything we did in class, but the <i>ordering</i> will a bit different. In addition, I'll insert extra <b>bonus sections</b> to help clarify confusing concepts and present some helpful intuition and pictures. In the end, I hope that my presentation will be approachable and understandable.</p>
+<p>If I had a say, I would <i>strongly encourage</i> everyone to read the bonus sections, because </p>
+<ol>
+<li><p>I feel that they make the actual course material much more intuitive and illuminating.</p>
+<ol>
+<li><p>The two middle sections of the Landau theory page will be especially helpful for some intuition behind phase transations!</p>
+</li></ol>
+</li>
+<li><p>Personally, I find the extra topics quite fascinating, and I think it's a shame we don't get to cover them in class.
+</p>
+</li>
+<li><p>I may include some discussion about topics on the problem set in the bonus sections!?</p>
+</li>
+</ol>
+<p>Anyways, enough babbling. Let's get started.</p>
 <hr>
 <h2>Leave a Comment Below!</h2>
 <!-- begin wwww.htmlcommentbox.com -->
@@ -58,7 +190,7 @@
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-01-28 23:29:58 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-02-01 13:19:37 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="week4a.jemdoc">source</a>)
 </div>
 </div>

@@ -11,13 +11,17 @@ Welcome back to class! Today (Wed Week 3) Prof. Kivelson began introducing some 
     -- Jenson's Inequality
     -- Proving the Variational Principle
     -- Connection to Quantum Mechanics and trial wavefunctions
-    -- Discussion: does ``best'' mean ``good enough''
+    -- Discussion: does ``best'' mean ``good enough''?
 - [lec5c.html Interlude: the paramagnet (non-interacting spins)]
-- [lec5d.html Mean Field Ising Model]
+    -- Sharpening our toolkit and strengthening our intuition!
+- [lec5d.html Approximately solving the Ising Model] via the variational principle
     -- Applying non-interacting variational ``ansatz'' to d-dim Ising Model
     -- Solving for ``best'' guess of $b_j$
-    -- Interpreting the solution
-    -- Discussion: What can mean field theory teach us?
+    -- Understanding the phase transition at $T = T_c$!
+- [lec5e.html Interpreting Mean Field Theory] 
+    -- Putting it all together
+    -- What does Mean Field Theory actually /mean/? (no pun intended)
+    -- When can we expect mean field theory to be accurate?
 
 == Motivation \/ Overview
 

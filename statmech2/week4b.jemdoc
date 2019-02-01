@@ -1,0 +1,34 @@
+# jemdoc: menu{MENU}{week4b.html}, showsource, analytics{UA-131436916-1}
+= Motivation and Overview
+
+On this page, let me first lay out WHY in the world we'd want to care this theory that we'll discuss over the next few weeks, and then I'll outline how we'll get around to understanding the theory
+
+== Motivation: Lingering Questions about Mean Field Approaches
+
+We spent the last few weeks learning about the variational principle and mean field theory, but these appraoches still leave us with a few lingering questions.
+- Even though the variational principle tells us how to pick the ``best'' trial Hamiltonian, how do we know whether ``best'' is /``good enough''/?
+    -- More precisely, even if we've minimized the variational free energy $F_{var}$ is minimized, how do we know whether we can trust its derivatives to tell us anything about correlation functions?
+# - In the mean field model, we ignored how the thermal jigglings of each site's neighbors creates an actual field that /fluctuates/ away from the true mean field.
+#     -- If we're lucky enough to have enough neighbors, then statistical averaging over neighbors can wash out the fluctuations, but if we're not lucky enough, then these discrete neighbors can completely mess up mean field theory.
+#         --- For instance, the mean field theory fails ``catastrophically'' for the 1D Ising model.
+#         --- Near the critical point, when fluctuations become more an more important, the mean field theory also begins to break down. Qualitatively, this means that the *critical exponents* of things such as how the susceptibility diverges near the critical point have an /incorrect/ value.
+- In our guess for the trial Hamiltonian, we assumed that every single site $j$ felt the same ``mean field'' $b_j$; that is, we assumed a /spatially uniform solution/ where $b_j = b$ at all sites.
+    -- How do we know whether a spatially uniform solution is /actually/ the best possible solution?
+    -- More generally, can we come up with a simple and robust way to take into account the textures and spatial inhomogeneities of the mean field?
+- We spent so much time on the details of the Ising model, but do the results about its second-order phase transitions /generalize/ to other systems?
+    -- Is there a conceptual framework that explains /why/ the Ising model phase transition behaves as it does?
+    -- Can we argue how phase transitions /ought to/ behave from a more general point of view?
+
+As we'll see, the more sophisticated methods that we'll learn in class over the next few weeks will let us address some of these nagging questions which keep us up at night and gnaw at our sanity.
+
+== Overview of Landau-Ginzburg Theory
+
+
+=== Probe fields
+
+=== Understanding Free energy
+
+# - The trick of introducing ``fictitious'' or ``probe'' fields $h_j$ lets us find magnetization by differentiating the free energy (even if there isn't an actual physical external field presetnt!)
+# - A long awaited drumroll...variational free energy is /actually/ useful because its derivative w.r.t. these probe fields /does/ tell us the magnetization in the trial ensemble! Hooray.
+# - Legendre transforms to find the free energy in terms of $m$ rather than in terms of $h$...leading to Landau-Ginzburg theory where we define the free energy as a functional of an order parameter field....pretty pithy stuff.
+#     -- So this is why we stuck an index on the $b_j$ when we [lec5c.html first derived] the expressions for a non-interacting Ising

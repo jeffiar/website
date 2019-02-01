@@ -183,13 +183,11 @@ This little observation gives us a mathematical procedure to find the critical t
 \(
     \left[{\partial \over \partial b} zJ \tanh(\beta b)\right]_{b=0} = \left[\frac {zJ\beta} {\cosh^2 (\beta b)}\right]_{b=0} = z J \beta.
 \)
-When we set the two slopes equal to each other, we find that $z J \beta = 1$ or $T_c = 1 / \beta = zJ$. Hooray!
+When we set the two slopes equal to each other, we find that $z J \beta = 1$ or $T_c = 1 / \beta = zJ$.
 
-== Interpreting Mean Field Theory
+Continue to [lec5e.html interpreting the mean-field solution].
 
-Let's step back and think a bit about what we've learned from the Ising model from all this. Actually, I'm getting a bit tired, so I'll finish writing this tomorrow...stay tuned...
-
-{{<a name="yaythermo"></a>}}
+{{<hr><a name="yaythermo"></a>}}
 ~~~
 {Remark on thermodynamics}
 Why does taking a derivative of the free energy w.r.t. the external field give you the magnetization ${\partial F_{tr} \over \partial b_j} = - \langle \sigma_j \rangle_{tr}$?

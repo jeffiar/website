@@ -1,10 +1,93 @@
-# jemdoc: menu{MENU}{week4a.html}, showsource
-# , analytics{UA-131436916-1}
-= Overview of Landau-Ginzburg Theory
+# jemdoc: menu{MENU}{week4a.html}, showsource, analytics{UA-131436916-1}
+= Landau-Ginzburg Theory
 
-Coming soon...
+Onwards we continue in our quest for understanding complicated interacting systems! 
 
-- The trick of introducing ``fictitious'' or ``probe'' fields $h_j$ lets us find magnetization by differentiating the free energy (even if there isn't an actual physical external field presetnt!)
-- A long awaited drumroll...variational free energy is /actually/ useful because its derivative w.r.t. these probe fields /does/ tell us the magnetization in the trial ensemble! Hooray.
-- Legendre transforms to find the free energy in terms of $m$ rather than in terms of $h$...leading to Landau-Ginzburg theory where we define the free energy as a functional of an order parameter field....pretty pithy stuff.
-    -- So this is why we stuck an index on the $b_j$ when we [lec5c.html first derived] the expressions for a non-interacting Ising
+== Overview
+
+We're going to take a slightly different approach than in class. (See the [\#opinion bottom of this page] for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional $F[\phi(\vec{r})]$, we're going to go /step by step/ to properly build up our intuition. Here's the game plan:
+
+~~~
+{Game Plan}
+We want to understand what $F[\phi(\vec{r})]$ really means, and why it's such a useful object to consider.
+
+First we'll learn about what exactly free enenergy means, and why [week4d.html we care so much] about it. Spoiler alert: the minima of the free energy tell you the equilibrium values! Armed with this intuition, we'll think about the free energy as a function of the magnetization density $m$ ([week4e.html Landau theory]), which will teach us many fabulous things:
+- a beautiful intuition for the behavior of second-order phase transitions
+- how you can find the magnetization density $m$ at any temperature by looking at the minima of $F(m)$
+- a direct picture for how $(m \leftrightarrow -m)$ symmetry is broken when $T < T_c$
+- insight into how you can deduce the shape of $F(m)$ merely with /symmetry/ arguments
+- and far more....
+
+Once we've solidified our understanding of $F(m)$, we'll move on and [week4f.html generalize $m$] to a /spatially-varying/ magnetization density $m \to m_j$, which lets us account for /textures/ in $m_j$ at different sites $j$. Also, we'll discuss how to generalize from $m$ to an *order parameter* $\phi$ to describe all sorts of phase transitions beyond ferromagnetic ordering. Finally, we'll take the continuum limit $m_j \to m(\vec{r})$ and pretend that the order parameter is defined /everywhere in space/ $\vec{r}$ rather than just sites $j$. If time permits, we'll also explain how to arrive at $m(\vec{r})$ by *coarse-graining*. (Depending on how we cover the renormalization group later, this may or may not be useful!)
+
+Finally, we'll discuss how we [week4g.html could have arrived] at the shape of $F[\phi(\vec{r})]$ just by *symmetry arguments*. This sort of top-down or *phenomenological* approach is the sort of stuff that theorists fantasize about. The argument is simple, general, and powerful.
+~~~
+
+== Motivation: Lingering Questions about Mean Field Approaches
+
+We spent the last few weeks learning about the variational principle and mean field theory, but these appraoches still leave us with a few lingering questions.
+- Even though the variational principle tells us how to pick the ``best'' trial Hamiltonian, how do we know whether ``best'' is /``good enough''/?
+    -- More precisely, even if we've minimized the variational free energy $F_{var}$ is minimized, how do we know whether we can trust its derivatives to tell us anything about correlation functions?
+# - In the mean field model, we ignored how the thermal jigglings of each site's neighbors creates an actual field that /fluctuates/ away from the true mean field.
+#     -- If we're lucky enough to have enough neighbors, then statistical averaging over neighbors can wash out the fluctuations, but if we're not lucky enough, then these discrete neighbors can completely mess up mean field theory.
+#         --- For instance, the mean field theory fails ``catastrophically'' for the 1D Ising model.
+#         --- Near the critical point, when fluctuations become more an more important, the mean field theory also begins to break down. Qualitatively, this means that the *critical exponents* of things such as how the susceptibility diverges near the critical point have an /incorrect/ value.
+- In our guess for the trial Hamiltonian, we assumed that every single site $j$ felt the same ``mean field'' $b_j$; that is, we assumed a /spatially uniform solution/ where $b_j = b$ at all sites.
+    -- How do we know whether a spatially uniform solution is /actually/ the best possible solution?
+    -- More generally, can we come up with a simple and robust way to take into account the textures and spatial inhomogeneities of the mean field?
+- We spent so much time on the details of the Ising model, but do the results about its second-order phase transitions /generalize/ to other systems?
+    -- Is there a conceptual framework that explains /why/ the Ising model phase transition behaves as it does?
+    -- Can we argue how phase transitions /ought to/ behave from a more general point of view?
+
+As we'll see, the more sophisticated methods that we'll learn in class over the next few weeks will let us address some of these nagging questions which keep us up at night and gnaw at our sanity.
+
+
+=== Outline
+
+Bonus sections are marked with an \*asterisk.
+- Movitivation
+    -- Can we trust the /derivatives/ of the variational free energy?
+    -- How can we account for /spatial variation and textures/ in the mean field of a material?
+    -- Can we /generalize/ the features of phase transitions we found in the Ising model?
+- Probe fields are a nice trick to find magnetization.
+- \*Interlude: What exactly /is/ free energy $F$?
+    -- \*We have to understand the star of the show!
+    -- \*Coming to terms with chemistry's curvy caricatures
+    -- \*Minimizing free energy for fun and profit
+- \*Landau theory -- free energy as a function of magnetization $F(m)$
+    -- \*A trip down memory lane with Monsieur Legendre
+    -- Spontaneous Symmetry Breaking!!! the phase diagram of second-order transitions *<-- Important!*
+    -- How do things vary near $T_c$? A taste of critical exponents *<-- Important!*
+    -- \*Metastability, hysteresis, spinodals, nucleation, and all that jazz
+- Landau-Ginzburg theory
+    -- Taking into account textures of magnetization: $m \mapsto m_j$
+    -- Calculating the Mean-Field Ising Landau-Ginzburg Free Energy $F[{m_j}]$
+    -- The continuum limit: the order parameter field $m_j \mapsto \phi(\vec{r})$
+- Theorist's Playground
+    -- Guessing Mr. Ginzburg's free energy $F[\phi(\vec{r})]$ from a top-down argument
+    -- Symmetry, universality, and deep implications
+
+{{ <a name="opinion"></a> }}
+=== An opinion
+
+Before we go on, I want to share my opinion about the way we covered this topic in our class.
+
+~~~
+{Opinion}
+I think we covered this material way too fast. We jumped directly into the deep end of the pool.
+
+It would have been super helpful to spend more time discussing the qualitative features of second-order transitions, such as drawing pictures of the Landau Free energy, before introducing order-parameter-fields that model spatial variation. Pedagogically, it makes far more sense for us to sink our teeth into /really/ understanding the Ising model transition so that we have /some/ sort of concrete picture in mind before we move on to abstract things such as $\phi(\vec{r})$. And to top it all off, the actual Landau-Ginzburg field theory is utterly unlike anything we've seen in physics before, with functional integrals and intense symmetry arguments and such, so I find it rather unenlightening and frankly a bit terrifying to dive right in to the math without preparation.
+
+I really don't know if I ought to be so opinionated as an undergraduate, especially since I don't understand this material terribly well yet. But this is just how I feel.
+~~~
+
+Because of my strong opinions, *this section of my notes will deviate a bit from the official course material*. I'll still cover everything we did in class, but the /ordering/ will a bit different. In addition, I'll insert extra *bonus sections* to help clarify confusing concepts and present some helpful intuition and pictures. In the end, I hope that my presentation will be approachable and understandable.
+
+If I had a say, I would /strongly encourage/ everyone to read the bonus sections, because 
+.  I feel that they make the actual course material much more intuitive and illuminating.
+    .. The two middle sections of the Landau theory page will be especially helpful for some intuition behind phase transations!
+.  Personally, I find the extra topics quite fascinating, and I think it's a shame we don't get to cover them in class.
+# .  In my opinion, the ordering and presentation that I choose is a bit more pedagogically reasonable.
+.  I may include some discussion about topics on the problem set in the bonus sections!?
+
+Anyways, enough babbling. Let's get started.

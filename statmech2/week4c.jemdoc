@@ -1,0 +1,5 @@
+# jemdoc: menu{MENU}{week4c.html}, showsource, analytics{UA-131436916-1}
+= Probe Fields
+
+In this section, we'll learn about a cute trick we can do to find the magnetization density $m$ just by taking a derivative of the free energy. This way we won't have to take a nasty sum over states each time we want to calculate it! Also, we'll see that quantities such as ${\partial F_{var} \over \partial h_j}$ are still useeful, even though the variational principle didn't guarantee us anything about /derivatives/ of $F_{var}$.
+    - In retrospect, I'm a bit confused why we chose to talk about this at all, because it doesn't seem to relate too much to the rest of what we're doing.
