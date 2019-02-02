@@ -1,5 +1,13 @@
 # jemdoc: menu{MENU}{week4c.html}, showsource, analytics{UA-131436916-1}
 = Probe Fields
 
-In this section, we'll learn about a cute trick we can do to find the magnetization density $m$ just by taking a derivative of the free energy. This way we won't have to take a nasty sum over states each time we want to calculate it! Also, we'll see that quantities such as ${\partial F_{var} \over \partial h_j}$ are still useeful, even though the variational principle didn't guarantee us anything about /derivatives/ of $F_{var}$.
-    - In retrospect, I'm a bit confused why we chose to talk about this at all, because it doesn't seem to relate too much to the rest of what we're doing.
+I don't know if I'll actually get around to writing this section, because it's a bit tangential to the main message behind the rest of this section. The worksheet we did in class goes through the algebra pretty well.
+
+I'll just summarize the main points below:
+
+- Most of the time, we care about systems in the absence of an external field ($h = 0$), so that the energies of $+m$ and $-m$ are exactly the same. 
+- That being said, it's still useful to /pretend/ that there are *fictitiuous fields* $h_j$ at each site $j$ on the lattice, and then just set $h_j = 0$ to correspond to the /actual/ physical no-applied-field scenario. There's a few reasons for this:
+    -- ``You can't stop me! I can add a $-h_j \sigma_j$ term to the Hamiltonian if I want, and since I let $h_j = 0$, nothing changes at all!''
+    -- The fictitious fields are a /cute trick/ to let us easily calculate the magnetization density just by taking a derivative of the free energy...
+    -- I'll finish this soon...
+
