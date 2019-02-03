@@ -1,0 +1,19 @@
+#funapp {
+    width: 900px;
+    height: 400px
+}
+
+#T_slider {
+    width: 91%;
+    float: right;
+}
+
+#leftpanel {
+    width: 50%;
+    float: left;
+}
+
+#rightpanel {
+    width: 50%;
+    float: right;
+}
