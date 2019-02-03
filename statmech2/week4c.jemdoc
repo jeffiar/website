@@ -1,13 +1,252 @@
 # jemdoc: menu{MENU}{week4c.html}, showsource, analytics{UA-131436916-1}
 = Probe Fields
 
-I don't know if I'll actually get around to writing this section, because it's a bit tangential to the main message behind the rest of this section. The worksheet we did in class goes through the algebra pretty well.
+~~~
+{Fair warning}
+This page is a bit rambly and incoherent. The most important part is the box titled ``Plan of Attack''.
+~~~
 
-I'll just summarize the main points below:
+Before we dive into the whole business of free energies and symmetries and order paramters, we need to introduce a neat little trick -- a ``fictitious probe field'' -- which lets us calculate the magnetization $m$ easily from a derivative of the free energy. This trick is also useful for other purposes: it lets us define the free energy $F$ as a function of magnetization $m$, which will be enlightening for understanding mean-field-theory. For instance, the function $\tilde F (m)$ will allow us to visualize how the magnetization $m$ spontaneously becomes nonzero once we cool below the critical temperature $T_c$. Sweet!
 
-- Most of the time, we care about systems in the absence of an external field ($h = 0$), so that the energies of $+m$ and $-m$ are exactly the same. 
-- That being said, it's still useful to /pretend/ that there are *fictitiuous fields* $h_j$ at each site $j$ on the lattice, and then just set $h_j = 0$ to correspond to the /actual/ physical no-applied-field scenario. There's a few reasons for this:
-    -- ``You can't stop me! I can add a $-h_j \sigma_j$ term to the Hamiltonian if I want, and since I let $h_j = 0$, nothing changes at all!''
-    -- The fictitious fields are a /cute trick/ to let us easily calculate the magnetization density just by taking a derivative of the free energy...
-    -- I'll finish this soon...
+Here's our plan of attack:
 
+~~~
+{Plan of attack}
+We want to understand the behavior of a system of interacting spins, such as $H = - J \sum_{<ij>} \sigma_i \sigma_j$, in the absense of a physical external field.
+. We'll introduce a fictitious probe field $h$, which adds a term $-h\sum_j \sigma_j$ into the Hamiltonian.
+. This trick lets us formally find the magnetization $m = \langle \sigma_j \rangle$ by taking a derivative of the free energy, ${\partial F \over \partial h}$.
+   .. In a similar vein, we can find the /susceptibility/ $\chi = {dm \over dh}$ by taking a second derivative of the free energy, ${\partial^2 F \over \partial h^2}$.
+   .. At the end of the day, since the spins aren't actually feeling a physical field $h$, we'll need to set the field $h=0$.
+. To re-express the free energy (density) in terms of the physical quantity $m$ rather than the non-physical quantity $h$, we take a *Legendre transform* to $\tilde \mathcal{F}(m) = \mathcal{F}(h) + m h$.
+
+The free energy $\tilde F(m)$, known as the *Landau Free Energy*, will be our main object of scrutiny on the [week4e.html following page]. It yields a wealth of information about how the phase transition behaves! For instance, we can figure out the equilibrium value of $m$ just by looking for the minima of $\tilde F(m)$.
+
+In later sections, we'll generalize this free energy from $F(m)$ to $F[\{m_j\}]$ and then to $F[\phi(\vec{r})]$.
+~~~
+
+Note that in class, we introduced a different $m_j$ at each site $j$, as well as a separate probe field $h_j$ for each site $j$. [week4g.html Later on], we'll account for a non-uniform ``textures'' in magnetization by letting things depend on the site $j$. For now, I've decided to keep the indices off the $m$'s and $h$'s, because
+- There's plenty of insight we can learn before we thinking about spatial variation in $m$.
+- The concepts are a bit cleaner without the $j$'s cluttering things up
+- It's pretty straightforward to generailze to non-uniform $m \mapsto m_j$.
+- As an added bonus, when we take the continuum limit later on ($m_j \mapsto \phi(\vec{r})$), we'll be used to making these sorts of generalizations.
+
+Alright, let us begin.
+
+== Intro: Why turn off the external field?
+
+So far, when we've discussed the [lec5e.html phase transition] in the mean-field Ising model, we've set the external field $h$ to zero. Throughout this section, we'll continue to keep the external field off ($h=0$). Here's a symmetry reason.
+
+~~~
+{Symmetry breakgin}
+As you remember, phase transitions involve a special conspiracy. When the system is hot ($T > T_c$), all its spins pointed in random directions, without any preferred magnetization ($m = 0$). As the system becomes colder and coler, all of a sudden, at a special temperature $T_c$, the spins began to ``conspire'' together and align in some particular direction ($m \neq 0$).
+
+In the ordered phase, the spins somehow have to decide on a /particular/ direction -- either $m > 0$ or $m < 0$ -- even in the /absence/ of the external field. Without an external field ($h=0$), there's no energetic difference between those states, so there's a /symmetry/ between the $m = m_0$ and $m=-m_0$. Once the spins are cooled below $T_c$, they collectively consspire to /break/ that symmetry by pointing in a particular direction.
+    - In general, this sort of *symmetry breaking* lies at the heart of the study of phase transitions: above the critical temperature, there is ``no special direction'' since $m$ is zero and the spins are pointing any which way. But below the critical temperature, since $m$ is no longer zero, there's a preferred direction to point, and we say that the symmetry is broken.
+
+There are oher things that break the intrinsic symmetry between spin up and spin down. For instance, an external field $h \neq 0$ would entice an energetic reward for one particular spin direction, distinguish the two spins. However, if our goal is to studay how /phase transitions/ break symmetry, we ought to make sure that nothing else does!
+
+So we keep $h=0$ in the Hamiltonian.
+~~~
+
+== The probe field
+
+Even though we typically care about $h=0$, it's still remarkably useful to keep the external field term $-h\sum_j \sigma_j$ in the Hamiltonian. The reason is that it lets us easily calculate the magnetization density $m = \langle \sigma_j \rangle$, just by taking a derivative of the free energy.
+
+(TODO Go through the algebra of showing ${\partial \mathcal{F} \over \partial h} = -m$ here. It's on worksheet 3.)
+
+At the end of the day, since there isn't /actually/ an external field, we just evaluate the derivatives at $h=0$. So, for instance, we can calculate the magnetization as $m = {\partial \mathcal{F} \over \partial h}|_{h=0}$.
+
+Keep in mind that the probe field $h$ is fake. It's a fictitious mathematical trick. In contrast, the magnetization $m$ is a real, physcially tangible quantity -- it's average direction that spins are pointing! Experimentally, for instance, you can probe it my neutron scattering. So magnetization $m$ is a far better thing to have laying around in your equations than its fictitious conjugate field $h$.
+
+=== Stepping back
+
+Let's step back and think about what we've done. We've come up with the following procedure for finding $m$:
+. Introduce a fake field $h$ in the Hamiltonian.
+. Calculate how the free energy $F(h)$ depends on $h$.
+. Take the derivative ${\partial \mathcal{F} \over \partial h}$ and then set $h=0$ to find the magnetization density $m$.
+
+This stuff all works, but there's a little hitch: the free energy function $F(h)$ that we calculate has a nasty dependence on the un-physical field $h$. It's kind of gross. It would be much better if we could instead express the free energy in terms of a physically meaningful quantity, such as the magnetization $m$.
+
+So we want to replace $F(h)$ with another function $\tilde F(m)$ that only depends on the physical magnetization $m$.
+
+If only there were a mathematical way to re-express a function in terms of one of its derivatives!
+
+== A visit from Monsieur Legendre
+
+Ah yes, the good old Legendre Transform. We've seen it a few times in our classes by now. Whenever we have a function in terms of something yucky, Monsieur Legendre helps us rewrite it in terms of something less yucky.
+
+Today, we're going to use a Legendre Transform to go from the free energy $F(h)$ -- a yucky quantity that involves the non-physical probe field $h$ -- into its cousin $\tilde F(m)$ -- a nice quantity that involves the physically observable magnetization! This trick hinges on the fact that the quantities $m$ and $h$ are /conjugate/ variables $m = -{\partial \mathcal{F} \over \partial h}$.
+
+Let's take trip down memory lane and remind ourselves of what the Legendre Transformation can do for us.
+
+~~~
+In the next few paragraphs, I'm gonna spend a while to brush up our understanding of Legendre Transformations (and frankly, my own understanding as well). It's not /super/ relevant to our current material...but there's a very good review of some thermodynamics as well in there. So up to you.
+
+Feel free to just [\#ahead skip ahead] to the actual course material....
+~~~
+
+=== Lagrangians and Hamiltonians
+
+\(
+L(\dot x, x) \to H(p, x)
+\)
+
+Back in classical mechanics, we learned how the dynamics of a system were described by its Lagrangian $L(\dot x, x)$. To figure out how things moved around, we had to solve some /second-order/ differential equations, the Euler-Lagrange equations, given by $0 = \frac{d}{dt} {\partial L \over \partial \dot x} - {\partial L \over \partial x}$.
+
+Unfortunately, the Lagrangian depends on the /velocity/ $\dot x$, which means that we have to solve a /second-order/ equation to find the trajectories. Also, it's a bit annoying that you can't specify the state of a system by the location of all its particles -- you have to specify their /velocities/ as well -- ugh! If only there were a way to get rid of the $\dot x$-dependence in the Lagrangian $L(\dot x, x)$...
+
+Lo and behold, Sir Hamilton comes to the rescue. If we define the *Hamiltonian* $H = p \dot x - L$, where the momentum $p = {\partial L \over \partial x}$ is /conjugate/ to the original variable $\dot x$, all of a sudden, there is no more nasty $\dot x$-dependence left in our function! We have a nice and pristine Hamiltonian $H(p, x)$, where
+- the equations of motion are now /first-order/ (since $H$ doesn't depend on any derivatives).
+- the state of the system can be /fully/ specified as a point $(p,x)$ in *phase space*. You don't need to add any extra information about velocities or anything like that.
+
+Of course, I don't mean to say that the Hamiltonian /always/ better than the Lagrangian -- they're useful for different things, and they give you different physical insights.
+
+Let's see another example of a Legendre Transform.
+
+=== Internal Energy and Free Energy
+
+\(
+    E(S,V) \to F(T,V)
+\)
+
+Thermodynamics is chock full of Legendre Transforms. In this particular example, we'll transform the internal energy $E$ into the (Helmholtz) free energy $F$, which allows us to express things in terms of the temperature $T$ rather than the entropy $S$. Since temperature is far easier to control than entropy, we often prefer to use the Free Energy to describe the thermodynamic behavior of systems.
+
+~~~
+You know, the issue with thermodynamics is that it's so goddamn dry and confusing. Most of the time, thermo textbooks just jump right into new topics without telling you /why the hell/ you should care about anything! Maybe one day I'll find a good textbook...
+
+In keeping with this tradition, I'll hop right into the physics without any motivation at all.
+
+Sorry.
+~~~
+
+The internal energy $E$ is a natural function of entropy and volume, $E(S,V)$. Since the internal energy is a function of two different variables, the expression $E(S,V)$ tells us that we can change the total energy of a system in two different ways:
+    - by adding *heat* through changing the entropy $S$, or
+    - by performing *mechanical work* by changing the volume $V$.
+
+Let's consider what happens when we ``twiddle the knobs'' to add a little entropy $\Delta S$ and a little volume $\Delta V$. If our deltas are small, we can taylor expand the energy to get
+\(
+    E(S_0 + \Delta S, V_0 + \Delta V) = E(S_0, V_0) + {\partial E \over \partial S}\bigg|_{V} \Delta S + {\partial E \over \partial V}\bigg|_{S} \Delta V,
+\)
+which means that the change in energy $\Delta E = E(S_0 + \Delta S, V_0 + \Delta V) - E(S_0, V_0)$ can be expressed as
+\(
+    \Delta E = {\partial E \over \partial S}\bigg|_{V} \Delta S + {\partial E \over \partial V}\bigg|_{S} \Delta V
+\)
+Traditionally, this *total differential* is written out as
+\(
+    dE = T dS - P dV,
+\)
+where the *temperature* and *pressure* are defined by the derivatives
+\(
+    T := {\partial E \over \partial S}\bigg|_{V}; \qquad P := - {\partial E \over \partial V}\bigg|_{S}.
+\)
+
+If you stare closely at these definitions, you'll find something pretty yucky: the pressure is defined as a derivative /where the entropy is held constant/. Apparently, to find the pressure, you're supposed to measure how the energy changes as you adjust the volume.../while keeping the entropy fixed/. But how the hell are you supposed to conduct any experiments without changing entropy?
+
+To solve this conundrum, we should define a new sort of energy whose derivative at constant /temperature/ will tell you the pressure...
+
+=== Legendre transforming from E to F
+
+Again, Monsieur Legendre comes to the rescue. We're going to switch from the energy $E(S,V)$ -- whose natural derivatives are taken at constant entropy -- to the free energy $F(T,V)$ -- whose natural derivatives are taken at constant /temperature/. In particular, we want to define the free energy so that its volume-derivative at a fixed /temperature/ ${\partial F \over \partial V}\big|_{T}$ is equal to the pressure.
+
+Well, if we want the pressure to equal the derivative with the /temperature/ held constant (rather than the /entropy/), we're going to have to add a little correction term to the energy, so that $F = E + \textrm{(correction.)}$. To figure out this correction term, we have to perform a little partial-derivative-sorcery...and as much as I enjoy sorcery, we don't have enough time to go through the derivation, I'm already getting /super/ sidetracked here. Let me just finish up and summarize the point of this Legendre transform.
+
+We define the free energy as $F := E - TS$. (Agh! Another unmotivated thermodynamic statement!). This definition yields the desired properties that
+- $F = F(T,V)$ is a /natural/ function of the temperature and volume, with no more explicit entropy dependence.
+- The pressure $p = - {\partial F \over \partial V}\big|_T$ is now defined with the /temperature/ held constant, rather than the entropy.
+
+I wish I could give a more convincing explanation of /why/ the Legendre transform from $E(S,V)$ to $F(T,V)$ yields these desirable properties, but life is short and we have to move on. To compensate, I'll just present the classic physicisty-proof for why the free energy doesn't have any explicit dependence on the entropy.
+
+Let's consider the total differential of the free energy $dF$. Remember earlier, when we found the total differential of the internal energy $dE$, we had a term involving $dS$ on the RHS, which meant that the energy $E(S,V)$ depended explicitly on the entropy $S$. Here, we want to show that the free energy $F = E - TS$ no longer has any explicit entropy-dependence, which we can do by expanding out its total differential $dF$ and seeing that the $dS$ term on the RHS cancels out.
+
+Well, here we go...
+\(
+    dF = d(E - TS) = dE - T dS - S dT
+\)
+In the first step I plugged in the definition of $F$ and in the second step I used the product rule on $TS$. Now if we plug in our expression for $dE$ from a few equations ago, we find that
+\(
+    dF = (T dS - P dV) - T dS - S dT.
+\)
+Miraculously, the $T dS$ term cancels out, and we're left with
+\(
+    dF = - S dT - P dV,
+\)
+which mean that there's no more explicit entropy dependence (since $dS$ has disappeared), and that $p = - {\partial F \over \partial V}\big|_T$, where the derivative is taken at constant /temperature/.
+
+So to summarize this whole sidestory about the internal energy and the free energy: 
+
+~~~
+{Summary of Legendre Transform}
+- We started off with the internal energy $E(S,V)$, which depends explicitly on the entropy $S$.
+- We wanted to get rid of that $S$-dependence, and replace it with a dependence on the temperature $T$.
+    -- Notice here that $S$ and $T$ are /conjugate/ variables -- you get one of them by taking the derivative of the thermo. potential w.r.t. the other: $T = {\partial E \over \partial S}$ and $S = - {\partial F \over \partial T}$.
+- To accomplish this, we performed a *Legendre Transform* to the free energy $F = E - TS$ to arrive at a function $F(T,V)$ which no longer explicitly depends on the entropy, but instead depends on its conjugate variable of the /temperature/.
+    -- We ``prooved'' this property comes by expanding out the total differentials of $dE$ and $dF$.
+~~~
+
+Okay, I've gotten sidetracked enough talking about Legendre Transforms. Hopefully my discussion is a helpful trip down memory lane. Back to the task at hand...
+
+{{<a name="ahead"></a>}}
+== Legendre Transforming the free energy
+
+Let's remember what we want to do here. We started off with the free energy $F(h)$ as a function of the fake external field $h$, and we want to instead express it as a function of the physical magnetization $m = - {\partial F \over \partial h}$.
+
+As advertised, we can accomplish this feat by taking a Legendre Transform to
+\(
+    \tilde F(m) := F(h) + hm.
+\)
+
+Hopefully, if you're brushed up enough on your Legendre Transforms, you can convince yourself why this new function $\tilde F$ is indeed the beast that we're looking for: it no longer depends explicitly on the fictitious field $h$, and it only depends on the magnetization $m$.
+
+=== Interpreting the Legendre-Transformed Free Energy
+
+There's a particular awesome feature about our new free energy $\tilde F(m)$. Namely, the minima of $\tilde F(m)$ tell us the equilibrium magnetization! This is pretty important, so I'll repeat it again in a box:
+
+~~~
+{Key Point}
+In thermal equilibrium, the magnetization takes on a value which minimizes the free energy $\tilde F(m)$.
+~~~
+
+To see why this is the case, let's take the derivative of $\tilde F(m)$ with respect to $m$. When we plug into the definition, we find
+\(
+    \frac{\partial \tilde F}{\partial m} = \frac \partial {\partial m} \bigg(F(h) + m h\bigg) = h,
+\)
+which means that we get the probe field $h$ when we take the derivative of $\tilde F$ wrt $m$! 
+- Notice the nice pattern between the two conjugate variables $m$ and $h$...${\partial F \over \partial h} = -m$ and ${\partial \tilde F \over \partial m} = h$....
+
+However, since $h$ was just a cute trick, we have to set it back equal to 0 to answer the question ``what value of $m$ would you expect to see in the absence of an external field?''. And the condition that we end up on $m$ is simply ${\partial F \over \partial m} = 0$; in other words, that $m$ must be a minimum of $\tilde F$.
+- Technically, $m$ could be a maximum as well, but such solutions will be /unstable/ -- just as how a particle balancing on a potential-energy maximum is unstable under the slightest nudge.
+- The theme of ``the equilibrium state minimizes the free energy'' is a super common refrain in thermodynamics, in chemistry, in biology, and more. It's how chemists think about the driving forces behind reactions, or how biophysicists think about membrane potentials, or how biochemists think about metabolic pathways....so it's not super unusual that we encounter the same theme here
+    -- The typical physical rationalization for ``why do we minimize free energy?'' is as follows: In a perfectly energetically isolated world, the equilibrium state is determined by maximizing /entropy/. (hence the ``entropy always increases'' maxim). However, if we look at a smaller subsystem which can /exchange energy/ with the rest of that world, it's no longer energetically isolated, so the entropy is no longer the maximized quantity. Rather, from the subsystem's perspective, it wants to /minimize its free energy/. Why? It turns out that the state which maximizes the entropy of the world is equivalent to the state which minimizes the free energy of the subsystem. Whoa....
+
+Here's one final remark on another way to think of the new free energy $\tilde F(m)$, if you're feeling thermodynamically inclined.
+
+~~~
+{Remark}
+The original free energy $F = F(T,V,H)$ has a total differential of
+\(
+    dF = -S dT - P dV - M dH,
+\)
+whereas the Legendre-Transformed free energy $\tilde F = \tilde F(T,V,M)$ has a total differential of
+\(
+    d \tilde F = -S dT - P dV + H dM.
+\)
+(In these expressions here, the first term represents heat, the second term represents mechanical work, and the last term represents magnetic work.) Notice that the last slot of the function has been swapped out between the conjugate pair $H \leftrightarrow M$!
+
+If you stare at these differentials for long enough, you can convince yourself that the relationship between $M$ and $H$ is given by
+\(
+    M = - {\partial F \over \partial H}; \qquad H = {\partial \tilde F \over \partial M}.
+\)
+
+In many respects, this is rather similar to the Legendre Transformations we've seen before; for instance, we know that momentum $p$ and velocity $\dot x$ are related by
+\(
+    p = {\partial L \over \partial \dot x}; \qquad \dot x = - {\partial H \over \partial p},
+\)
+and the temperature $T$ and entropy $S$ are related by
+\(
+    T = {\partial E \over \partial S}; \quad S = - {\partial F \over \partial T}.
+\)
+~~~
+
+Man, I've been rambling /so much/ today. I'm sorry if it's confusing to read! This is probably the most incoherent page of all my notes so far...
+
+Well, onwards to [week4e.html Landau Theory].

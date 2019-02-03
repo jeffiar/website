@@ -1,11 +1,11 @@
 # jemdoc: menu{MENU}{week4a.html}, showsource, analytics{UA-131436916-1}
 = Landau-Ginzburg Theory
 
-Onwards we continue in our quest for understanding complicated interacting systems! 
+Onwards we continue in our quest for understanding complicated interacting systems! [lec5a.hmtl Last week], we built up our understanding of mean field theory, and this week, we'll extend the theory a bit further, thinking about how magnetization can vary throughout space, and working towards the concept of an *order parameter field*.
 
 == Overview
 
-We're going to take a slightly different approach than in class. (See the [\#opinion bottom of this page] for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional $F[\phi(\vec{r})]$, we're going to go /step by step/ to properly build up our intuition. Here's the game plan:
+In my notes, we're going to take a slightly different approach than in class. (See the [\#opinion bottom of this page] for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional $F[\phi(\vec{r})]$, we're going to go /step by step/ to properly build up our intuition. Here's the game plan:
 
 ~~~
 {Game Plan}
@@ -55,7 +55,7 @@ Bonus sections are marked with an \*asterisk.
     -- How can we account for /spatial variation and textures/ in the mean field of a material?
     -- Can we /generalize/ the features of phase transitions we found in the Ising model?
 - Probe fields are a nice trick to find magnetization.
-    -- A trip down memory lane with Monsieur Legendre
+    -- \*A trip down memory lane with Monsieur Legendre
     -- Going from $F(h)$ to $\tilde F (m)$ via Legendre Transform
 - \*Interlude: What exactly /is/ free energy $F$?
     -- \*Coming to terms with chemistry's curvy caricatures
@@ -96,4 +96,4 @@ If I had a say, I would /strongly encourage/ everyone to read the bonus sections
 # .  In my opinion, the ordering and presentation that I choose is a bit more pedagogically reasonable.
 .  I may include some discussion about topics on the problem set in the bonus sections!?
 
-Anyways, enough babbling. Let's get started.
+Anyways, enough babbling. [week4c.html Let's get started].
