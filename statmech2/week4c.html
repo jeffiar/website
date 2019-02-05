@@ -45,28 +45,238 @@ try {
 <div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
 <div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
 <div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
 <h1>Probe Fields</h1>
 </div>
-<p>I don't know if I'll actually get around to writing this section, because it's a bit tangential to the main message behind the rest of this section. The worksheet we did in class goes through the algebra pretty well.</p>
-<p>I'll just summarize the main points below:</p>
+<div class="infoblock">
+<div class="blocktitle">Note</div>
+<div class="blockcontent">
+<p>This page is a bit rambly. The most important part is the box titled &lsquo;&lsquo;Plan of Attack&rsquo;&rsquo;.</p>
+</div></div>
+<p>Before we dive into the whole business of free energies and symmetries and order paramters, we need to introduce a neat little trick &ndash; a &lsquo;&lsquo;fictitious probe field&rsquo;&rsquo; &ndash; which lets us calculate the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> easily from a derivative of the free energy. This trick is also useful for other purposes: it lets us define the free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> as a function of magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />, which will be enlightening for understanding mean-field-theory. For instance, the function <img class="eq" src="eqs/386834021110775914-130.png" alt="tilde F (m)" style="vertical-align: -5px" /> will allow us to visualize how the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> spontaneously becomes nonzero once we cool below the critical temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />. Sweet!</p>
+<p>Here's our plan of attack:</p>
+<div class="infoblock">
+<div class="blocktitle">Plan of attack</div>
+<div class="blockcontent">
+<p>We want to understand the behavior of a system of interacting spins, such as <img class="eq" src="eqs/2561277918521445469-130.png" alt="H = - J sum_{&lt;ij&gt;} sigma_i sigma_j" style="vertical-align: -9px" />, in the absense of a physical external field.</p>
+<ol>
+<li><p>We'll introduce a fictitious probe field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, which adds a term <img class="eq" src="eqs/6756833276117831148-130.png" alt="-hsum_j sigma_j" style="vertical-align: -9px" /> into the Hamiltonian.</p>
+</li>
+<li><p>This trick lets us formally find the magnetization <img class="eq" src="eqs/5477051225804240734-130.png" alt="m = langle sigma_j rangle" style="vertical-align: -6px" /> by taking a derivative of the free energy, <img class="eq" src="eqs/6008037781436989843-130.png" alt="{partial F over partial h}" style="vertical-align: -8px" />.</p>
+<ol>
+<li><p>In a similar vein, we can find the <i>susceptibility</i> <img class="eq" src="eqs/5454122818539771790-130.png" alt="chi = {dm over dh}" style="vertical-align: -8px" /> by taking a second derivative of the free energy, <img class="eq" src="eqs/2771447503634964035-130.png" alt="{partial^2 F over partial h^2}" style="vertical-align: -8px" />.</p>
+</li>
+<li><p>At the end of the day, since the spins aren't actually feeling a physical field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, we'll need to set the field <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />.</p>
+</li></ol>
+</li>
+<li><p>To re-express the free energy (density) in terms of the physical quantity <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> rather than the non-physical quantity <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, we take a <b>Legendre transform</b> to <img class="eq" src="eqs/9074648234660330324-130.png" alt="tilde mathcal{F}(m) = mathcal{F}(h) + m h" style="vertical-align: -5px" />.</p>
+</li>
+</ol>
+<p>The free energy <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" />, known as the <b>Landau Free Energy</b>, will be our main object of scrutiny on the <a href="week4e.html">following page</a>. It yields a wealth of information about how the phase transition behaves! For instance, we can figure out the equilibrium value of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> just by looking for the minima of <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" />.</p>
+<p>In later sections, we'll generalize this free energy from <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> to <img class="eq" src="eqs/8355282710606645888-130.png" alt="F[{m_j}]" style="vertical-align: -6px" /> and then to <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />.</p>
+</div></div>
+<p>Note that in class, we introduced a different <img class="eq" src="eqs/6387157653018356321-130.png" alt="m_j" style="vertical-align: -6px" /> at each site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />, as well as a separate probe field <img class="eq" src="eqs/6429308858200906340-130.png" alt="h_j" style="vertical-align: -6px" /> for each site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. <a href="week4g.html">Later on</a>, we'll account for a non-uniform &lsquo;&lsquo;textures&rsquo;&rsquo; in magnetization by letting things depend on the site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. For now, I've decided to keep the indices off the <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />'s and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />'s, because</p>
 <ul>
-<li><p>Most of the time, we care about systems in the absence of an external field (<img class="eq" src="eqs/5627079964775322312-130.png" alt="h = 0" style="vertical-align: -1px" />), so that the energies of <img class="eq" src="eqs/5504033067049646-130.png" alt="+m" style="vertical-align: -2px" /> and <img class="eq" src="eqs/5760034605051944-130.png" alt="-m" style="vertical-align: -1px" /> are exactly the same. </p>
+<li><p>There's plenty of insight we can learn before we thinking about spatial variation in <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
 </li>
-<li><p>That being said, it's still useful to <i>pretend</i> that there are <b>fictitiuous fields</b> <img class="eq" src="eqs/6429308858200906340-130.png" alt="h_j" style="vertical-align: -6px" /> at each site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> on the lattice, and then just set <img class="eq" src="eqs/2877040984870541619-130.png" alt="h_j = 0" style="vertical-align: -6px" /> to correspond to the <i>actual</i> physical no-applied-field scenario. There's a few reasons for this:</p>
+<li><p>The concepts are a bit cleaner without the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'s cluttering things up</p>
+</li>
+<li><p>It's pretty straightforward to generailze to non-uniform <img class="eq" src="eqs/8278569638680321368-130.png" alt="m mapsto m_j" style="vertical-align: -6px" />.</p>
+</li>
+<li><p>As an added bonus, when we take the continuum limit later on (<img class="eq" src="eqs/753093596626542311-130.png" alt="m_j mapsto phi(vec{r})" style="vertical-align: -6px" />), we'll be used to making these sorts of generalizations.</p>
+</li>
+</ul>
+<p>Alright, let us begin.</p>
+<h2>Intro: Why turn off the external field?</h2>
+<p>So far, when we've discussed the <a href="lec5e.html">phase transition</a> in the mean-field Ising model, we've set the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> to zero. Throughout this section, we'll continue to keep the external field off (<img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />). Here's a symmetry reason.</p>
+<div class="infoblock">
+<div class="blocktitle">Symmetry breakgin</div>
+<div class="blockcontent">
+<p>As you remember, phase transitions involve a special conspiracy. When the system is hot (<img class="eq" src="eqs/537689627556104645-130.png" alt="T &gt; T_c" style="vertical-align: -4px" />), all its spins pointed in random directions, without any preferred magnetization (<img class="eq" src="eqs/310183670474442653-130.png" alt="m = 0" style="vertical-align: -1px" />). As the system becomes colder and coler, all of a sudden, at a special temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, the spins began to &lsquo;&lsquo;conspire&rsquo;&rsquo; together and align in some particular direction (<img class="eq" src="eqs/8630905247332564463-130.png" alt="m neq 0" style="vertical-align: -4px" />).</p>
+<p>In the ordered phase, the spins somehow have to decide on a <i>particular</i> direction &ndash; either <img class="eq" src="eqs/310186670428442550-130.png" alt="m &gt; 0" style="vertical-align: -1px" /> or <img class="eq" src="eqs/310184670480442628-130.png" alt="m &lt; 0" style="vertical-align: -1px" /> &ndash; even in the <i>absence</i> of the external field. Without an external field (<img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />), there's no energetic difference between those states, so there's a <i>symmetry</i> between the <img class="eq" src="eqs/7561606866053804985-130.png" alt="m = m_0" style="vertical-align: -4px" /> and <img class="eq" src="eqs/6029240177100332305-130.png" alt="m=-m_0" style="vertical-align: -4px" />. Once the spins are cooled below <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, they collectively consspire to <i>break</i> that symmetry by pointing in a particular direction.</p>
 <ul>
-<li><p>&lsquo;&lsquo;You can't stop me! I can add a <img class="eq" src="eqs/4582985501333195013-130.png" alt="-h_j sigma_j" style="vertical-align: -6px" /> term to the Hamiltonian if I want, and since I let <img class="eq" src="eqs/2877040984870541619-130.png" alt="h_j = 0" style="vertical-align: -6px" />, nothing changes at all!&rsquo;&rsquo;</p>
+<li><p>In general, this sort of <b>symmetry breaking</b> lies at the heart of the study of phase transitions: above the critical temperature, there is &lsquo;&lsquo;no special direction&rsquo;&rsquo; since <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is zero and the spins are pointing any which way. But below the critical temperature, since <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is no longer zero, there's a preferred direction to point, and we say that the symmetry is broken.</p>
 </li>
-<li><p>The fictitious fields are a <i>cute trick</i> to let us easily calculate the magnetization density just by taking a derivative of the free energy&hellip;</p>
+</ul>
+<p>There are oher things that break the intrinsic symmetry between spin up and spin down. For instance, an external field <img class="eq" src="eqs/3085285053611006992-130.png" alt="h neq 0" style="vertical-align: -4px" /> would entice an energetic reward for one particular spin direction, distinguish the two spins. However, if our goal is to studay how <i>phase transitions</i> break symmetry, we ought to make sure that nothing else does!</p>
+<p>So we keep <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> in the Hamiltonian.</p>
+</div></div>
+<h2>The probe field</h2>
+<p>Even though we typically care about <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />, it's still remarkably useful to keep the external field term <img class="eq" src="eqs/6756833276117831148-130.png" alt="-hsum_j sigma_j" style="vertical-align: -9px" /> in the Hamiltonian. The reason is that it lets us easily calculate the magnetization density <img class="eq" src="eqs/5477051225804240734-130.png" alt="m = langle sigma_j rangle" style="vertical-align: -6px" />, just by taking a derivative of the free energy.</p>
+<p>(TODO Go through the algebra of showing <img class="eq" src="eqs/8735441006980820959-130.png" alt="{partial mathcal{F} over partial h} = -m" style="vertical-align: -8px" /> here. It's on worksheet 3.)</p>
+<p>At the end of the day, since there isn't <i>actually</i> an external field, we just evaluate the derivatives at <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />. So, for instance, we can calculate the magnetization as <img class="eq" src="eqs/5685655018289924328-130.png" alt="m = {partial mathcal{F} over partial h}|_{h=0}" style="vertical-align: -8px" />.</p>
+<p>Keep in mind that the probe field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> is fake. It's a fictitious mathematical trick. In contrast, the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is a real, physcially tangible quantity &ndash; it's average direction that spins are pointing! Experimentally, for instance, you can probe it my neutron scattering. So magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is a far better thing to have laying around in your equations than its fictitious conjugate field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />.</p>
+<h3>Stepping back</h3>
+<p>Let's step back and think about what we've done. We've come up with the following procedure for finding <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />:</p>
+<ol>
+<li><p>Introduce a fake field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> in the Hamiltonian.</p>
 </li>
-<li><p>I'll finish this soon&hellip;</p>
+<li><p>Calculate how the free energy <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> depends on <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>Take the derivative <img class="eq" src="eqs/6858235895546844991-130.png" alt="{partial mathcal{F} over partial h}" style="vertical-align: -8px" /> and then set <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> to find the magnetization density <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
+</li>
+</ol>
+<p>This stuff all works, but there's a little hitch: the free energy function <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> that we calculate has a nasty dependence on the un-physical field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />. It's kind of gross. It would be much better if we could instead express the free energy in terms of a physically meaningful quantity, such as the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
+<p>So we want to replace <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> with another function <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" /> that only depends on the physical magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
+<p>If only there were a mathematical way to re-express a function in terms of one of its derivatives!</p>
+<h2>A visit from Monsieur Legendre</h2>
+<p>Ah yes, the good old Legendre Transform. We've seen it a few times in our classes by now. Whenever we have a function in terms of something yucky, Monsieur Legendre helps us rewrite it in terms of something less yucky.</p>
+<p>Today, we're going to use a Legendre Transform to go from the free energy <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> &ndash; a yucky quantity that involves the non-physical probe field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> &ndash; into its cousin <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" /> &ndash; a nice quantity that involves the physically observable magnetization! This trick hinges on the fact that the quantities <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> are <i>conjugate</i> variables <img class="eq" src="eqs/2664771902951615757-130.png" alt="m = -{partial mathcal{F} over partial h}" style="vertical-align: -8px" />.</p>
+<p>Let's take trip down memory lane and remind ourselves of what the Legendre Transformation can do for us.</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>In the next few paragraphs, I'm gonna spend a while to brush up our understanding of Legendre Transformations (and frankly, my own understanding as well). It's not <i>super</i> relevant to our current material&hellip;but there's a very good review of some thermodynamics as well in there. So up to you.</p>
+<p>Feel free to just <a href="#ahead">skip ahead</a> to the actual course material&hellip;.</p>
+</div></div>
+<h3>Lagrangians and Hamiltonians</h3>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7434416350479340868-130.png" alt=" L(dot x, x) to H(p, x) " />
+<br /></div><p>Back in classical mechanics, we learned how the dynamics of a system were described by its Lagrangian <img class="eq" src="eqs/7342419659423609836-130.png" alt="L(dot x, x)" style="vertical-align: -5px" />. To figure out how things moved around, we had to solve some <i>second-order</i> differential equations, the Euler-Lagrange equations, given by <img class="eq" src="eqs/1642181849046908740-130.png" alt="0 = frac{d}{dt} {partial L over partial dot x} - {partial L over partial x}" style="vertical-align: -8px" />.</p>
+<p>Unfortunately, the Lagrangian depends on the <i>velocity</i> <img class="eq" src="eqs/6219599268031089999-130.png" alt="dot x" style="vertical-align: -1px" />, which means that we have to solve a <i>second-order</i> equation to find the trajectories. Also, it's a bit annoying that you can't specify the state of a system by the location of all its particles &ndash; you have to specify their <i>velocities</i> as well &ndash; ugh! If only there were a way to get rid of the <img class="eq" src="eqs/6219599268031089999-130.png" alt="dot x" style="vertical-align: -1px" />-dependence in the Lagrangian <img class="eq" src="eqs/7342419659423609836-130.png" alt="L(dot x, x)" style="vertical-align: -5px" />&hellip;</p>
+<p>Lo and behold, Sir Hamilton comes to the rescue. If we define the <b>Hamiltonian</b> <img class="eq" src="eqs/5881287055816434771-130.png" alt="H = p dot x - L" style="vertical-align: -4px" />, where the momentum <img class="eq" src="eqs/6962583582037014454-130.png" alt="p = {partial L over partial x}" style="vertical-align: -8px" /> is <i>conjugate</i> to the original variable <img class="eq" src="eqs/6219599268031089999-130.png" alt="dot x" style="vertical-align: -1px" />, all of a sudden, there is no more nasty <img class="eq" src="eqs/6219599268031089999-130.png" alt="dot x" style="vertical-align: -1px" />-dependence left in our function! We have a nice and pristine Hamiltonian <img class="eq" src="eqs/1123192819901889074-130.png" alt="H(p, x)" style="vertical-align: -5px" />, where</p>
+<ul>
+<li><p>the equations of motion are now <i>first-order</i> (since <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" /> doesn't depend on any derivatives).</p>
+</li>
+<li><p>the state of the system can be <i>fully</i> specified as a point <img class="eq" src="eqs/2457251713151189376-130.png" alt="(p,x)" style="vertical-align: -5px" /> in <b>phase space</b>. You don't need to add any extra information about velocities or anything like that.</p>
+</li>
+</ul>
+<p>Of course, I don't mean to say that the Hamiltonian <i>always</i> better than the Lagrangian &ndash; they're useful for different things, and they give you different physical insights.</p>
+<p>Let's see another example of a Legendre Transform.</p>
+<h3>Internal Energy and Free Energy</h3>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3038121764569340458-130.png" alt="     E(S,V) to F(T,V) " />
+<br /></div><p>Thermodynamics is chock full of Legendre Transforms. In this particular example, we'll transform the internal energy <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" /> into the (Helmholtz) free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" />, which allows us to express things in terms of the temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> rather than the entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" />. Since temperature is far easier to control than entropy, we often prefer to use the Free Energy to describe the thermodynamic behavior of systems.</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>You know, the issue with thermodynamics is that it's so goddamn dry and confusing. Most of the time, thermo textbooks just jump right into new topics without telling you <i>why the hell</i> you should care about anything! Maybe one day I'll find a good textbook&hellip;</p>
+<p>In keeping with this tradition, I'll hop right into the physics without any motivation at all.</p>
+<p>Sorry.</p>
+</div></div>
+<p>The internal energy <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" /> is a natural function of entropy and volume, <img class="eq" src="eqs/1130802788038458741-130.png" alt="E(S,V)" style="vertical-align: -5px" />. Since the internal energy is a function of two different variables, the expression <img class="eq" src="eqs/1130802788038458741-130.png" alt="E(S,V)" style="vertical-align: -5px" /> tells us that we can change the total energy of a system in two different ways:</p>
+<ul>
+<li><p>by adding <b>heat</b> through changing the entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" />, or</p>
+</li>
+<li><p>by performing <b>mechanical work</b> by changing the volume <img class="eq" src="eqs/11008033111-130.png" alt="V" style="vertical-align: -1px" />.</p>
+</li>
+</ul>
+<p>Let's consider what happens when we &lsquo;&lsquo;twiddle the knobs&rsquo;&rsquo; to add a little entropy <img class="eq" src="eqs/1315007983466271539-130.png" alt="Delta S" style="vertical-align: -1px" /> and a little volume <img class="eq" src="eqs/1315007983466271544-130.png" alt="Delta V" style="vertical-align: -1px" />. If our deltas are small, we can taylor expand the energy to get</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2660876387977932731-130.png" alt="     E(S_0 + Delta S, V_0 + Delta V) = E(S_0, V_0) + {partial E over partial S}bigg|_{V} Delta S + {partial E over partial V}bigg|_{S} Delta V, " />
+<br /></div><p>which means that the change in energy <img class="eq" src="eqs/3559847492109677832-130.png" alt="Delta E = E(S_0 + Delta S, V_0 + Delta V) - E(S_0, V_0)" style="vertical-align: -5px" /> can be expressed as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4947933257045872896-130.png" alt="     Delta E = {partial E over partial S}bigg|_{V} Delta S + {partial E over partial V}bigg|_{S} Delta V " />
+<br /></div><p>Traditionally, this <b>total differential</b> is written out as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4469182389613178031-130.png" alt="     dE = T dS - P dV, " />
+<br /></div><p>where the <b>temperature</b> and <b>pressure</b> are defined by the derivatives</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6225964057959636240-130.png" alt="     T := {partial E over partial S}bigg|_{V}; qquad P := - {partial E over partial V}bigg|_{S}. " />
+<br /></div><p>If you stare closely at these definitions, you'll find something pretty yucky: the pressure is defined as a derivative <i>where the entropy is held constant</i>. Apparently, to find the pressure, you're supposed to measure how the energy changes as you adjust the volume&hellip;<i>while keeping the entropy fixed</i>. But how the hell are you supposed to conduct any experiments without changing entropy?</p>
+<p>To solve this conundrum, we should define a new sort of energy whose derivative at constant <i>temperature</i> will tell you the pressure&hellip;</p>
+<h3>Legendre transforming from E to F</h3>
+<p>Again, Monsieur Legendre comes to the rescue. We're going to switch from the energy <img class="eq" src="eqs/1130802788038458741-130.png" alt="E(S,V)" style="vertical-align: -5px" /> &ndash; whose natural derivatives are taken at constant entropy &ndash; to the free energy <img class="eq" src="eqs/3512705351930860767-130.png" alt="F(T,V)" style="vertical-align: -5px" /> &ndash; whose natural derivatives are taken at constant <i>temperature</i>. In particular, we want to define the free energy so that its volume-derivative at a fixed <i>temperature</i> <img class="eq" src="eqs/7653833651679025503-130.png" alt="{partial F over partial V}big|_{T}" style="vertical-align: -8px" /> is equal to the pressure.</p>
+<p>Well, if we want the pressure to equal the derivative with the <i>temperature</i> held constant (rather than the <i>entropy</i>), we're going to have to add a little correction term to the energy, so that <img class="eq" src="eqs/7922004706891564060-130.png" alt="F = E + textrm{(correction.)}" style="vertical-align: -5px" />. To figure out this correction term, we have to perform a little partial-derivative-sorcery&hellip;and as much as I enjoy sorcery, we don't have enough time to go through the derivation, I'm already getting <i>super</i> sidetracked here. Let me just finish up and summarize the point of this Legendre transform.</p>
+<p>We define the free energy as <img class="eq" src="eqs/7236129288983975671-130.png" alt="F := E - TS" style="vertical-align: -1px" />. (Agh! Another unmotivated thermodynamic statement!). This definition yields the desired properties that</p>
+<ul>
+<li><p><img class="eq" src="eqs/1434513580404131150-130.png" alt="F = F(T,V)" style="vertical-align: -5px" /> is a <i>natural</i> function of the temperature and volume, with no more explicit entropy dependence.</p>
+</li>
+<li><p>The pressure <img class="eq" src="eqs/8419079619699214845-130.png" alt="p = - {partial F over partial V}big|_T" style="vertical-align: -8px" /> is now defined with the <i>temperature</i> held constant, rather than the entropy.</p>
+</li>
+</ul>
+<p>I wish I could give a more convincing explanation of <i>why</i> the Legendre transform from <img class="eq" src="eqs/1130802788038458741-130.png" alt="E(S,V)" style="vertical-align: -5px" /> to <img class="eq" src="eqs/3512705351930860767-130.png" alt="F(T,V)" style="vertical-align: -5px" /> yields these desirable properties, but life is short and we have to move on. To compensate, I'll just present the classic physicisty-proof for why the free energy doesn't have any explicit dependence on the entropy.</p>
+<p>Let's consider the total differential of the free energy <img class="eq" src="eqs/12800076900115560-130.png" alt="dF" style="vertical-align: -1px" />. Remember earlier, when we found the total differential of the internal energy <img class="eq" src="eqs/12800076900115563-130.png" alt="dE" style="vertical-align: -1px" />, we had a term involving <img class="eq" src="eqs/12800076900115581-130.png" alt="dS" style="vertical-align: -1px" /> on the RHS, which meant that the energy <img class="eq" src="eqs/1130802788038458741-130.png" alt="E(S,V)" style="vertical-align: -5px" /> depended explicitly on the entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" />. Here, we want to show that the free energy <img class="eq" src="eqs/1291638254472210676-130.png" alt="F = E - TS" style="vertical-align: -1px" /> no longer has any explicit entropy-dependence, which we can do by expanding out its total differential <img class="eq" src="eqs/12800076900115560-130.png" alt="dF" style="vertical-align: -1px" /> and seeing that the <img class="eq" src="eqs/12800076900115581-130.png" alt="dS" style="vertical-align: -1px" /> term on the RHS cancels out.</p>
+<p>Well, here we go&hellip;</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6631381333607619640-130.png" alt="     dF = d(E - TS) = dE - T dS - S dT " />
+<br /></div><p>In the first step I plugged in the definition of <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> and in the second step I used the product rule on <img class="eq" src="eqs/10752064596096941-130.png" alt="TS" style="vertical-align: -1px" />. Now if we plug in our expression for <img class="eq" src="eqs/12800076900115563-130.png" alt="dE" style="vertical-align: -1px" /> from a few equations ago, we find that</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/644325139678382823-130.png" alt="     dF = (T dS - P dV) - T dS - S dT. " />
+<br /></div><p>Miraculously, the <img class="eq" src="eqs/1504782437970501497-130.png" alt="T dS" style="vertical-align: -1px" /> term cancels out, and we're left with</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8690072378669297603-130.png" alt="     dF = - S dT - P dV, " />
+<br /></div><p>which mean that there's no more explicit entropy dependence (since <img class="eq" src="eqs/12800076900115581-130.png" alt="dS" style="vertical-align: -1px" /> has disappeared), and that <img class="eq" src="eqs/8419079619699214845-130.png" alt="p = - {partial F over partial V}big|_T" style="vertical-align: -8px" />, where the derivative is taken at constant <i>temperature</i>.</p>
+<p>So to summarize this whole sidestory about the internal energy and the free energy: </p>
+<div class="infoblock">
+<div class="blocktitle">Summary of Legendre Transform</div>
+<div class="blockcontent">
+<ul>
+<li><p>We started off with the internal energy <img class="eq" src="eqs/1130802788038458741-130.png" alt="E(S,V)" style="vertical-align: -5px" />, which depends explicitly on the entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>We wanted to get rid of that <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" />-dependence, and replace it with a dependence on the temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" />.</p>
+<ul>
+<li><p>Notice here that <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" /> and <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> are <i>conjugate</i> variables &ndash; you get one of them by taking the derivative of the thermo. potential w.r.t. the other: <img class="eq" src="eqs/7112371133411514354-130.png" alt="T = {partial E over partial S}" style="vertical-align: -8px" /> and <img class="eq" src="eqs/461367379175443284-130.png" alt="S = - {partial F over partial T}" style="vertical-align: -8px" />.</p>
+</li></ul>
+</li>
+<li><p>To accomplish this, we performed a <b>Legendre Transform</b> to the free energy <img class="eq" src="eqs/1291638254472210676-130.png" alt="F = E - TS" style="vertical-align: -1px" /> to arrive at a function <img class="eq" src="eqs/3512705351930860767-130.png" alt="F(T,V)" style="vertical-align: -5px" /> which no longer explicitly depends on the entropy, but instead depends on its conjugate variable of the <i>temperature</i>.</p>
+<ul>
+<li><p>We &lsquo;&lsquo;prooved&rsquo;&rsquo; this property comes by expanding out the total differentials of <img class="eq" src="eqs/12800076900115563-130.png" alt="dE" style="vertical-align: -1px" /> and <img class="eq" src="eqs/12800076900115560-130.png" alt="dF" style="vertical-align: -1px" />.</p>
 </li>
 </ul>
 
 </li>
 </ul>
+</div></div>
+<p>Okay, I've gotten sidetracked enough talking about Legendre Transforms. Hopefully my discussion is a helpful trip down memory lane. Back to the task at hand&hellip;</p>
+<p><a name="ahead"></a></p>
+<h2>Legendre Transforming the free energy</h2>
+<p>Let's remember what we want to do here. We started off with the free energy <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> as a function of the fake external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, and we want to instead express it as a function of the physical magnetization <img class="eq" src="eqs/6241595168159313910-130.png" alt="m = - {partial F over partial h}" style="vertical-align: -8px" />.</p>
+<p>As advertised, we can accomplish this feat by taking a Legendre Transform to</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3892366777533432323-130.png" alt="     tilde F(m) := F(h) + hm. " />
+<br /></div><p>Hopefully, if you're brushed up enough on your Legendre Transforms, you can convince yourself why this new function <img class="eq" src="eqs/536005584367629432-130.png" alt="tilde F" style="vertical-align: -0px" /> is indeed the beast that we're looking for: it no longer depends explicitly on the fictitious field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, and it only depends on the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
+<h3>Interpreting the Legendre-Transformed Free Energy</h3>
+<p>There's a particular awesome feature about our new free energy <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" />. Namely, the minima of <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" /> tell us the equilibrium magnetization! This is pretty important, so I'll repeat it again in a box:</p>
+<div class="infoblock">
+<div class="blocktitle">Key Point</div>
+<div class="blockcontent">
+<p>In thermal equilibrium, the magnetization takes on a value which minimizes the free energy <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" />.</p>
+</div></div>
+<p>To see why this is the case, let's take the derivative of <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" /> with respect to <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. When we plug into the definition, we find</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5525059561253990478-130.png" alt="     frac{partial tilde F}{partial m} = frac partial {partial m} bigg(F(h) + m hbigg) = h, " />
+<br /></div><p>which means that we get the probe field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> when we take the derivative of <img class="eq" src="eqs/536005584367629432-130.png" alt="tilde F" style="vertical-align: -0px" /> wrt <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />! </p>
+<ul>
+<li><p>Notice the nice pattern between the two conjugate variables <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />&hellip;<img class="eq" src="eqs/7932202937299287687-130.png" alt="{partial F over partial h} = -m" style="vertical-align: -8px" /> and <img class="eq" src="eqs/761221920602122872-130.png" alt="{partial tilde F over partial m} = h" style="vertical-align: -8px" />&hellip;.</p>
+</li>
+</ul>
+<p>However, since <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> was just a cute trick, we have to set it back equal to 0 to answer the question &lsquo;&lsquo;what value of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> would you expect to see in the absence of an external field?&rsquo;&rsquo;. And the condition that we end up on <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is simply <img class="eq" src="eqs/4531970939519733511-130.png" alt="{partial F over partial m} = 0" style="vertical-align: -8px" />; in other words, that <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> must be a minimum of <img class="eq" src="eqs/536005584367629432-130.png" alt="tilde F" style="vertical-align: -0px" />.</p>
+<ul>
+<li><p>Technically, <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> could be a maximum as well, but such solutions will be <i>unstable</i> &ndash; just as how a particle balancing on a potential-energy maximum is unstable under the slightest nudge.</p>
+</li>
+<li><p>The theme of &lsquo;&lsquo;the equilibrium state minimizes the free energy&rsquo;&rsquo; is a super common refrain in thermodynamics, in chemistry, in biology, and more. It's how chemists think about the driving forces behind reactions, or how biophysicists think about membrane potentials, or how biochemists think about metabolic pathways&hellip;.so it's not super unusual that we encounter the same theme here</p>
+<ul>
+<li><p>The typical physical rationalization for &lsquo;&lsquo;why do we minimize free energy?&rsquo;&rsquo; is as follows: In a perfectly energetically isolated world, the equilibrium state is determined by maximizing <i>entropy</i>. (hence the &lsquo;&lsquo;entropy always increases&rsquo;&rsquo; maxim). However, if we look at a smaller subsystem which can <i>exchange energy</i> with the rest of that world, it's no longer energetically isolated, so the entropy is no longer the maximized quantity. Rather, from the subsystem's perspective, it wants to <i>minimize its free energy</i>. Why? It turns out that the state which maximizes the entropy of the world is equivalent to the state which minimizes the free energy of the subsystem. Whoa&hellip;.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>Here's one final remark on another way to think of the new free energy <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" />, if you're feeling thermodynamically inclined.</p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>The original free energy <img class="eq" src="eqs/4204060917255349928-130.png" alt="F = F(T,V,H)" style="vertical-align: -5px" /> has a total differential of</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1409117975494192345-130.png" alt="     dF = -S dT - P dV - M dH, " />
+<br /></div><p>whereas the Legendre-Transformed free energy <img class="eq" src="eqs/3401226737094936597-130.png" alt="tilde F = tilde F(T,V,M)" style="vertical-align: -5px" /> has a total differential of</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/893199296042978899-130.png" alt="     d tilde F = -S dT - P dV + H dM. " />
+<br /></div><p>(In these expressions here, the first term represents heat, the second term represents mechanical work, and the last term represents magnetic work.) Notice that the last slot of the function has been swapped out between the conjugate pair <img class="eq" src="eqs/3840132814702584068-130.png" alt="H leftrightarrow M" style="vertical-align: -1px" />!</p>
+<p>If you stare at these differentials for long enough, you can convince yourself that the relationship between <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" /> and <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" /> is given by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/236398837374470661-130.png" alt="     M = - {partial F over partial H}; qquad H = {partial tilde F over partial M}. " />
+<br /></div><p>In many respects, this is rather similar to the Legendre Transformations we've seen before; for instance, we know that momentum <img class="eq" src="eqs/14336043121-130.png" alt="p" style="vertical-align: -4px" /> and velocity <img class="eq" src="eqs/6219599268031089999-130.png" alt="dot x" style="vertical-align: -1px" /> are related by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5341238628133660994-130.png" alt="     p = {partial L over partial dot x}; qquad dot x = - {partial H over partial p}, " />
+<br /></div><p>and the temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> and entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" /> are related by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7051044130193412579-130.png" alt="     T = {partial E over partial S}; quad S = - {partial F over partial T}. " />
+<br /></div></div></div>
+<p>Man, I've been rambling <i>so much</i> today. I'm sorry if it's confusing to read! This is probably the most incoherent page of all my notes so far&hellip;</p>
+<p>Well, onwards to <a href="week4e.html">Landau Theory</a>.</p>
 <hr>
 <h2>Leave a Comment Below!</h2>
 <!-- begin wwww.htmlcommentbox.com -->
@@ -76,7 +286,7 @@ try {
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-02-02 12:07:45 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-02-03 13:48:20 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="week4c.jemdoc">source</a>)
 </div>
 </div>

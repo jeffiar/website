@@ -2,8 +2,8 @@
 = Probe Fields
 
 ~~~
-{Fair warning}
-This page is a bit rambly and incoherent. The most important part is the box titled ``Plan of Attack''.
+{Note}
+This page is a bit rambly. The most important part is the box titled ``Plan of Attack''.
 ~~~
 
 Before we dive into the whole business of free energies and symmetries and order paramters, we need to introduce a neat little trick -- a ``fictitious probe field'' -- which lets us calculate the magnetization $m$ easily from a derivative of the free energy. This trick is also useful for other purposes: it lets us define the free energy $F$ as a function of magnetization $m$, which will be enlightening for understanding mean-field-theory. For instance, the function $\tilde F (m)$ will allow us to visualize how the magnetization $m$ spontaneously becomes nonzero once we cool below the critical temperature $T_c$. Sweet!

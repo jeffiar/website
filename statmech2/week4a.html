@@ -45,19 +45,20 @@ try {
 <div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
 <div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
 <div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
 <h1>Landau-Ginzburg Theory</h1>
 </div>
-<p>Onwards we continue in our quest for understanding complicated interacting systems! </p>
+<p>Onwards we continue in our quest for understanding complicated interacting systems! <a href="lec5a.hmtl">Last week</a>, we built up our understanding of mean field theory, and this week, we'll extend the theory a bit further, thinking about how magnetization can vary throughout space, and working towards the concept of an <b>order parameter field</b>.</p>
 <h2>Overview</h2>
-<p>We're going to take a slightly different approach than in class. (See the <a href="#opinion">bottom of this page</a> for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />, we're going to go <i>step by step</i> to properly build up our intuition. Here's the game plan:</p>
+<p>In my notes, we're going to take a slightly different approach than in class. (See the <a href="#opinion">bottom of this page</a> for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />, we're going to go <i>step by step</i> to properly build up our intuition. Here's the game plan:</p>
 <div class="infoblock">
 <div class="blocktitle">Game Plan</div>
 <div class="blockcontent">
 <p>We want to understand what <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> really means, and why it's such a useful object to consider. We'll start with <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, then generalize to <img class="eq" src="eqs/1844318935802195621-130.png" alt="F({m_j})" style="vertical-align: -6px" />, and then finally talk about <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />.</p>
-<p>To start off, we will introduce a fictitious &lsquo;&lsquo;probe field&rsquo;&rsquo; <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> as a <a href="week4c.html">cute trick</a> to easily calculate the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. This probe field allows us to express the free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> as a function of magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> (via a Legendre transform) &ndash; and as we'll find, <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> is a fantastic little object which tells us lots of things.</p>
+<p>To start off, we will introduce a fictitious &lsquo;&lsquo;probe field&rsquo;&rsquo; <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> as a <a href="week4c.html">cute trick</a> to easily calculate the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. After a Legendre transform, we will end up with the free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> as a function of magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> &ndash; and as we'll find, <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> is a fantastic little object.</p>
 <ul>
 <li><p>Note: In class we jumped directly into a <i>spatially-varying magnetization density</i> <img class="eq" src="eqs/6387157653018356321-130.png" alt="m_j" style="vertical-align: -6px" /> rather than beginning with a uniform <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. I'm taking a different approach here.</p>
 </li>
@@ -121,9 +122,9 @@ try {
 <li><p>Can we <i>generalize</i> the features of phase transitions we found in the Ising model?</p>
 </li></ul>
 </li>
-<li><p>Probe fields are a nice trick to find magnetization.</p>
+<li><p><a href="week4c.html">Probe fields</a> are a nice trick to find magnetization. (Note: this page is a bit disorganized!)</p>
 <ul>
-<li><p>A trip down memory lane with Monsieur Legendre</p>
+<li><p>*A trip down memory lane with Monsieur Legendre</p>
 </li>
 <li><p>Going from <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> to <img class="eq" src="eqs/386834021110775914-130.png" alt="tilde F (m)" style="vertical-align: -5px" /> via Legendre Transform</p>
 </li></ul>
@@ -189,7 +190,7 @@ try {
 <li><p>I may include some discussion about topics on the problem set in the bonus sections!?</p>
 </li>
 </ol>
-<p>Anyways, enough babbling. Let's get started.</p>
+<p>Anyways, enough babbling. <a href="week4c.html">Let's get started</a>.</p>
 <hr>
 <h2>Leave a Comment Below!</h2>
 <!-- begin wwww.htmlcommentbox.com -->
@@ -199,7 +200,7 @@ try {
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-02-02 12:09:45 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-02-03 13:48:21 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="week4a.jemdoc">source</a>)
 </div>
 </div>

@@ -1,0 +1,94 @@
+# jemdoc: menu{MENU}{fun.html}, showsource, analytics{UA-131436916-1}
+= Interactive demos
+
+
+== Symmetry Breaking in the Landau Free Energy
+
+One of the coolest things we discovered in the [lec5e.html mean-field Ising model] is how the magnetization /suddenly/ becomes non-zero once we cool the system below its critical temperature $T_c$. In this applet, you'll visualize this behavior firsthand.
+
+As we learned in our lesson about [week4c.html probe fields], the equilibrium magnetization is the value of $m$ that minimizes the Landau free energy $F(m)$. And since $m$ is so small near the critical point, we can do a Taylor expansion of $F(m)$ about $m=0$ and just keep the first few terms. Here, I've kept the quadratic and quartic terms.
+
+As we vary the temperature, the shape of $F(m)$ will change, because the coefficients in front of each of the terms will change. Above the critical temperature $T_c$, when the coefficient of the $m^2$ term is /positive/, there is a unique minimum at $m=0$, meaning that the magnet is disordered and the spins are pointing any which way. However, once we've cooled the system below $T_c$, the coefficient of the $m^2$ term becomes /negative/, and we find minima at $m \neq 0$. The spins begin to align, and the system develops a *spontaneous magnetization* even though there's no external field! We say that spin-flip-symmetry has been /broken/ in the ordered low-temperature phase.
+
+Try it out yourself below. On the left panel, I've plotted $F(m)$ as a function of $m$, and I've labeled the minimum value $m^*$. On the right panel, I show how $m*$ varies as you drag around the temperature.
+
+~~~
+{}{raw}
+<div id="funapp" style="height:400px; width:900px">
+
+<div id="leftpanel" style="float:left; width:50%">
+<canvas id="left_canvas" width="400" height="400"> </canvas>
+</div>
+
+<div id="rightpanel" style="float:right; width:50%">
+<canvas id="right_canvas" width="400" height="400"> </canvas>
+<div style="width:400px">
+<input type="range" min="1" max="500" value="250" id="T_slider" style="width: 91%; float: right;">
+</div>
+</div>
+</div>
+
+~~~
+
+\(
+    F(m) = \frac r 2 m^2 + \frac u 4 m^4; \qquad r = r_0 (T - T_c)
+\)
+
+== Turning on the External Field
+
+This applet demonstrates the *phase diagram* in the $h-r$ plane! Wow! Smells like part of our homework for this week ;)
+
+On the left panel, I've plotted the free energy $F(m)$ as a function of the magnetization $m$, and I've labeled the equilibrium value of magnetization as $m*$. On the right panel, you can adjust the values of the external field $h$ and the parameter $r = r_0 (T - T_c)$, which you can think about as the temperature. Note that this panel has been flipped 90 degrees compared to the previous applet!
+
+Here are a few pointers to wrap your head around the $h-r$ plane
+- Left means applying an external field in one direction, right means applying the field in another.
+- Up means hotter, down means colder.
+- The origin at $r=0, h=0$ corresponds to the *critical point*. The lower half is below the critical point, the upper half is above the critical point.
+
+
+~~~
+{}{raw}
+<div style="height:400px; width:900px">
+
+<div style="float:left; width:50%">
+<canvas id="left_canvas2" width="400" height="400"> </canvas>
+</div>
+
+<div style="float:right; width:50%">
+<div id="movable">
+</div>
+<canvas id="right_canvas2" width="400" height="400"> </canvas>
+</div>
+
+<style>
+#movable {
+    width:20px;
+    height:20px;
+    background:green;
+    cursor:pointer;
+    position:absolute;
+    border-radius: 50%;
+}
+
+#right_canvas2 {
+    border: 1px dotted gray;
+}
+</style>
+<script src="fun.js"> </script>
+~~~
+
+\(
+    F(m) = -hm + \frac r 2 m^2 + \frac u 4 m^4
+\)
+
+Try dragging the ball around the $h-r$ plane in various paths. See if you can answer the following questions!
+- Can you find a place in the $h-r$ plane where the equilibrium magnetization $m*$ /suddenly jumps discontinuously/ as you drag the ball around?
+    -- This discontinuous jump is known as a *first-order phase transition*.
+    -- There's a /line of first-order phase transitions/ hiding somewhere in this phase diagram, where $m*$ jumps discontinuously as you cross over it. Can you find the line?
+- Sometimes, there's /two/ minima in the free energy, and sometimes, there's only /one/.
+    -- Can you draw out these two regions on the phase diagram?
+    -- What's the mathematical expression for the ``spinodal curve'' separating these two regions?
+# - Imagine you could get ``stuck'' inside a local minimum of the free energy, so that you wouldn't actually jump to the global minimum after crossing a first-order phase transition, but rather, you'd stay in that little valley.
+#     -- Physically, what does it mean to stay in that *metastable* local minimum? Can you stay there forever?
+#     -- What happens when the external field gets stronger and stronger? Is there a limit for how strong the field can get before you slide into the global minimum?
+#     -- How does *hysteresis* fit into the picture of the spinodal curves earlier?

@@ -5,10 +5,18 @@
 <meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<link rel="stylesheet" href="fun.css" type="text/css" />
-<title>Fun!</title>
+<title>Interactive demos</title>
 </head>
 <body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
 <table summary="Table for page layout." id="tlayout">
 <tr valign="top">
 <td id="layout-menu">
@@ -21,7 +29,7 @@
 <div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
 <div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
 <div class="menu-category">1D Ising Model</div>
-<div class="menu-item"><a href="lec2.html" class="current">Motivation</a></div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
 <div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
 <div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
 <div class="menu-category">Mean Field Theory</div>
@@ -37,34 +45,108 @@
 <div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
 <div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
 <div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="fun.html" class="current">Applets!</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
-<h1>Hello, World!</h1>
+<h1>Interactive demos</h1>
 </div>
+<h2>Symmetry Breaking in the Landau Free Energy</h2>
+<p>One of the coolest things we discovered in the <a href="lec5e.html">mean-field Ising model</a> is how the magnetization <i>suddenly</i> becomes non-zero once we cool the system below its critical temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />. In this applet, you'll visualize this behavior firsthand.</p>
+<p>As we learned in our lesson about <a href="week4c.html">probe fields</a>, the equilibrium magnetization is the value of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> that minimizes the Landau free energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />. And since <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is so small near the critical point, we can do a Taylor expansion of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> about <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" /> and just keep the first few terms. Here, I've kept the quadratic and quartic terms.</p>
+<p>As we vary the temperature, the shape of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> will change, because the coefficients in front of each of the terms will change. Above the critical temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, when the coefficient of the <img class="eq" src="eqs/6387157653019356282-130.png" alt="m^2" style="vertical-align: -1px" /> term is <i>positive</i>, there is a unique minimum at <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" />, meaning that the magnet is disordered and the spins are pointing any which way. However, once we've cooled the system below <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, the coefficient of the <img class="eq" src="eqs/6387157653019356282-130.png" alt="m^2" style="vertical-align: -1px" /> term becomes <i>negative</i>, and we find minima at <img class="eq" src="eqs/8630905247332564463-130.png" alt="m neq 0" style="vertical-align: -4px" />. The spins begin to align, and the system develops a <b>spontaneous magnetization</b> even though there's no external field! We say that spin-flip-symmetry has been <i>broken</i> in the ordered low-temperature phase.</p>
+<p>Try it out yourself below. On the left panel, I've plotted <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> as a function of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />, and I've labeled the minimum value <img class="eq" src="eqs/6387157653019356258-130.png" alt="m^*" style="vertical-align: -1px" />. On the right panel, I show how <img class="eq" src="eqs/13952083821125935-130.png" alt="m*" style="vertical-align: -1px" /> varies as you drag around the temperature.</p>
+<div id="funapp" style="height:400px; width:900px">
 
-<div id="funapp">
-
-<div id="leftpanel">
+<div id="leftpanel" style="float:left; width:50%">
 <canvas id="left_canvas" width="400" height="400"> </canvas>
 </div>
 
-<div id="rightpanel">
+<div id="rightpanel" style="float:right; width:50%">
 <canvas id="right_canvas" width="400" height="400"> </canvas>
 <div style="width:400px">
-<input type="range" min="1" max="500" value="250" id="T_slider">
+<input type="range" min="1" max="500" value="250" id="T_slider" style="width: 91%; float: right;">
 </div>
 </div>
-<p>F(m) = <span id="T_value"></span>m<sup>2</sup>/2 + m<sup>4</sup>/4
-
 </div>
 
+
+<div class="eqwl"><img class="eqwl" src="eqs/588500208968603292-130.png" alt="     F(m) = frac r 2 m^2 + frac u 4 m^4; qquad r = r_0 (T - T_c) " />
+<br /></div><h2>Turning on the External Field</h2>
+<p>This applet demonstrates the <b>phase diagram</b> in the <img class="eq" src="eqs/6429308858282906610-130.png" alt="h-r" style="vertical-align: -1px" /> plane! Wow! Smells like part of our homework for this week ;)</p>
+<p>On the left panel, I've plotted the free energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> as a function of the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />, and I've labeled the equilibrium value of magnetization as <img class="eq" src="eqs/13952083821125935-130.png" alt="m*" style="vertical-align: -1px" />. On the right panel, you can adjust the values of the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> and the parameter <img class="eq" src="eqs/275336119114097801-130.png" alt="r = r_0 (T - T_c)" style="vertical-align: -5px" />, which you can think about as the temperature. Note that this panel has been flipped 90 degrees compared to the previous applet!</p>
+<p>Here are a few pointers to wrap your head around the <img class="eq" src="eqs/6429308858282906610-130.png" alt="h-r" style="vertical-align: -1px" /> plane</p>
+<ul>
+<li><p>Left means applying an external field in one direction, right means applying the field in another.</p>
+</li>
+<li><p>Up means hotter, down means colder.</p>
+</li>
+<li><p>The origin at <img class="eq" src="eqs/8188773392395240776-130.png" alt="r=0, h=0" style="vertical-align: -4px" /> corresponds to the <b>critical point</b>. The lower half is below the critical point, the upper half is above the critical point.</p>
+</li>
+</ul>
+<div style="height:400px; width:900px">
+
+<div style="float:left; width:50%">
+<canvas id="left_canvas2" width="400" height="400"> </canvas>
+</div>
+
+<div style="float:right; width:50%">
+<div id="movable">
+</div>
+<canvas id="right_canvas2" width="400" height="400"> </canvas>
+</div>
+
+<style>
+#movable {
+    width:20px;
+    height:20px;
+    background:green;
+    cursor:pointer;
+    position:absolute;
+    border-radius: 50%;
+}
+
+#right_canvas2 {
+    border: 1px dotted gray;
+}
+</style>
 <script src="fun.js"> </script>
 
+<div class="eqwl"><img class="eqwl" src="eqs/6183978198577663598-130.png" alt="     F(m) = -hm + frac r 2 m^2 + frac u 4 m^4 " />
+<br /></div><p>Try dragging the ball around the <img class="eq" src="eqs/6429308858282906610-130.png" alt="h-r" style="vertical-align: -1px" /> plane in various paths. See if you can answer the following questions!</p>
+<ul>
+<li><p>Can you find a place in the <img class="eq" src="eqs/6429308858282906610-130.png" alt="h-r" style="vertical-align: -1px" /> plane where the equilibrium magnetization <img class="eq" src="eqs/13952083821125935-130.png" alt="m*" style="vertical-align: -1px" /> <i>suddenly jumps discontinuously</i> as you drag the ball around?</p>
+<ul>
+<li><p>This discontinuous jump is known as a <b>first-order phase transition</b>.</p>
+</li>
+<li><p>There's a <i>line of first-order phase transitions</i> hiding somewhere in this phase diagram, where <img class="eq" src="eqs/13952083821125935-130.png" alt="m*" style="vertical-align: -1px" /> jumps discontinuously as you cross over it. Can you find the line?</p>
+</li></ul>
+</li>
+<li><p>Sometimes, there's <i>two</i> minima in the free energy, and sometimes, there's only <i>one</i>.</p>
+<ul>
+<li><p>Can you draw out these two regions on the phase diagram?</p>
+</li>
+<li><p>What's the mathematical expression for the &lsquo;&lsquo;spinodal curve&rsquo;&rsquo; separating these two regions?
+
+
+
+</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-02-02 13:07:01 STD, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
-(<a href="lec2.jemdoc">source</a>)
+Page generated 2019-02-04 17:10:55 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="fun.jemdoc">source</a>)
 </div>
 </div>
 </td>
