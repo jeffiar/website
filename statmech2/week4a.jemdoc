@@ -61,17 +61,24 @@ Bonus sections are marked with an \*asterisk.
     -- \*Coming to terms with chemistry's curvy caricatures
     -- \*Minimizing free energy for fun and profit
 - \*Landau theory -- free energy as a function of magnetization $F(m)$
+    -- Deriving the Mean-Field Ising Free Energy
     -- Spontaneous Symmetry Breaking!!! the phase diagram of second-order transitions *<-- Important!*
     -- How do things vary near $T_c$? A taste of critical exponents *<-- Important!*
     -- \*Metastability, hysteresis, spinodals, nucleation, and all that jazz
-- Landau-Ginzburg theory
+- Order Parameter Fields
     -- Taking into account textures of magnetization: $m \mapsto m_j$
-    -- Calculating the Mean-Field Ising Landau-Ginzburg Free Energy $F[\{m_j\}]$
-    -- Universality: generalizing to other examples of order parameters $m \mapsto \phi$
+    -- Other examples of order parameters and universality $m \mapsto \phi$
     -- The continuum limit: the order parameter field $m_j \mapsto \phi(\vec{r})$
+        --- Example: phonons and fluids as classical fields
 - Theorist's Playground
     -- Guessing Mr. Ginzburg's free energy $F[\phi(\vec{r})]$ from a top-down argument
     -- Symmetry, universality, and deep implications
+    -- Internal order parameter symmetry vs spatial symmetry
+- Textures
+    -- Exponential decay from applied field at edges
+    -- Domain walls
+    -- General discussion: correlation length is only lengthscale!
+    -- Twisting order paramters with continuously broken symmetries
 
 {{ <a name="opinion"></a> }}
 === An opinion

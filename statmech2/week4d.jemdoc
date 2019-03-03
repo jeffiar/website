@@ -1,2 +1,41 @@
 # jemdoc: menu{MENU}{week4d.html}, showsource, analytics{UA-131436916-1}
 = What is Free Energy?
+
+On this page, I hope to provide an intuitive explanation of what free energy means. Since we'll be drawing many pictures of $F(m)$ and minimizing it in different contexts, it will be useful what exactly this function represents.
+
+=== Free Energy is minimized in equilibrium
+
+Operationally, we care about the free energy $F(m)$ because
+
+~~~
+The equilibrium value of $m$ is one that minimizes the free energy $F(m)$.
+~~~
+
+So it's rather straighforward to ``do thermodynamics'' once we know $F(m)$: we just have to take its derivative w.r.t. $m$, set it equal to zero, and then solve for $m$.
+
+However, this seemingly innocent claim contains a whole world of microscopic details, such as 
+- What does $F$ really mean?
+- How does the magnetization $m$ relate to the microstates of our system?
+
+Below, I hope to answer some of these questions.
+
+== Motivation: probabilities of ``mesostates''
+
+Will be completed one day...
+
+~~~
+{Summary}
+- The probability distribution over *microstates* $\{s\}$ is given by the Boltzmann factor $P[s] = e^{-E(s)/kT} / Z$, where the exponential is weighted by the energy $E(s)$.
+- If we want to assign an analogous probability distribution over *mesostates* $\{m\}$, we now need to weight probabilities by the *free energy* $F(m)$ of a mesostate, so that $P[m] = e^{-F(m)/kT} / Z$
+    -- The free energy $F$ takes into account both the ``average energy'' of the microstates within that mesostate, as well as entropic rewards for having lots of microstates in a mesostate.
+- The resulting function $F(m)$ is an ``effective energy'' in terms of the /mesostates/ $\{m\}$ rather than the individual microstates $\{s\}$, which is helpful because there are too many microstates to keep track of!
+    -- In the language of physical chemistry or protein dynamics, the same concept is often termed a ``collective variable'' or a ``reaction coordinate.''
+    -- We have too many microscopic degrees of freedom, and we want to define some ``coarse-grained'' function of them that's easier to think about.
+- There are many caveats about taking $F(m)$ too literally as a energy surface!
+    -- Nearby $m$'s can represent microstates that are actually quite far apart.
+    -- As the temperature changes, so does the shape of $F(m)$.
+    -- We only see a one-dimensional slice through a very very high-dimensional energy landscape.
+    -- And much more...
+- Nevertheless, the function $F(m)$ is very useful to think about, because /it directly tells us the thermal populations of different values of $m$/: a mesostate with free energy $F$ will be occupied with probability $e^{-F/kT} / Z$.
+    -- In particular, this tells us that the most populated mesostate is the one which minimizes the free energy $F(m)$.
+~~~
