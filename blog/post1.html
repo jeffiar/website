@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>What's on my mind? March 2019</title>
+</head>
+<body>
+<div id="header">
+<h2> Jeffjar's Writings </h2>
+[ <a href="../essays.html">Back to home</a> ]
+</div>
+<div class="content">
+<div id="toptitle">
+<h1>What's on my mind? March 2019</h1>
+</div>
+<p>What's going on in the curious canteloupe of my head? Lots of bizarre things pass through my mind, and I thought it'd be fruitful to document the sorts of topics I'm thinking about. This week, the theme is trajectories in high-dimensional spaces&hellip;and a little taste of complex anlysis and Fourier Transforms as well.</p>
+<h2>Statistical Mechanics and Ergodicity</h2>
+<p>Here's a question that's been nagging at me for years. When we do statistical mechanics, we take averages over phase space <img class="eq" src="eqs/1039681698573702867-130.png" alt="langle A rangle = int A(x,p) dx , dp" style="vertical-align: -5px" />, but in reality, Nature performs averages over <i>time</i>, <img class="eq" src="eqs/8017924179886919036-130.png" alt="overline A = int_0^T A(t) dt" style="vertical-align: -8px" />. So why the hell do the time averages we observe have anything to do with the abstract ensemble averages that we compute in statistical mechanics?</p>
+<p>Furthermore, if we think about an ensemble as a probability distribution over phase space, then the laws of time evolution do a <i>terrible</i> job of sampling from this probability distribution! In particular, in a system of <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles, the phase space is <img class="eq" src="eqs/6912041526062446-130.png" alt="6N" style="vertical-align: -1px" />-dimensional (3 position coordinates, 3 momentum coordinates per particle). And thus this probability distribution is defined over a volume of <img class="eq" src="eqs/9173283343296983461-130.png" alt="O(e^N)" style="vertical-align: -5px" />, a ridiculously huge number. On the other hand, the number of states sampled by a time trajectory is only of order <img class="eq" src="eqs/3830867017015318162-130.png" alt="O(N)" style="vertical-align: -5px" />. So it's all the more puzzling why ensemble averages have anything to do with physical observables at all.</p>
+<p>This week, I started rereading <a href="https://books.google.com/books/about/Statistical_Mechanics.html?id=3XyA0SYK4XIC">Shang-keng Ma's</a> statistical mechanics book. He has a careful and unorthodox viewpoint towards our understanding of statistical mechanics that centers on the key difference between abstract ensemble averages and physical time averages. In particular, he stresses that the concept of equilibrium necessarily involves a timescale of observation over which macroscopic properties don't change.</p>
+<p>For instance, he spends a whole chapter discussing impurities in a material,such as solutes dissolved in a (liquid) solution, or weird impurities inside the crystal lattice. Depending on the timescale of diffusion for these impurities, the thermodynamics of such systems are completely different. In one extreme, the mobile impurities thoroughly traverse the entire system during the observation timescale, so when we compute thermodynamic quantities, the relevant volume is <img class="eq" src="eqs/11008033111-130.png" alt="V" style="vertical-align: -1px" /> per particle, and we have to include a factor of <img class="eq" src="eqs/659498584239336971-130.png" alt="1/N!" style="vertical-align: -5px" /> to account for indistinguishability. In the other extreme, the impurities are &lsquo;&lsquo;trapped&rsquo;&rsquo; and don't move around much during the observation timescale, so now the volume per impurity atom is <img class="eq" src="eqs/4607053706827016694-130.png" alt="V/N" style="vertical-align: -5px" />, and since they can't switch places, we don't need to introduce the <img class="eq" src="eqs/659498584239336971-130.png" alt="1/N!" style="vertical-align: -5px" /> factor.</p>
+<ul>
+<li><p>Life is easiest when we can assume details happen fast enough to be in equilibrium, or slow enough to be static and unchanging. In the intermediate regime (glasses), it's much harder to think about what equilibrium means.</p>
+</li>
+<li><p>Incidentally, the difference in timescale results in the differing entropies of the solid and liquid states! In solids, atoms are locked in place; in liquids, they can move around and change places.</p>
+</li>
+<li><p>Philosophically, the above argument is pretty compelling evidence for why we must always take into account the <b>observation timescale</b> when discussing equilibrium. If we don't wait long enough for the impurities to diffuse and exchange locations, then the system explores far fewer configurations, and thus the entropy is far less.</p>
+</li>
+</ul>
+<p>The first time I read through this book, a lot of the chapters didn't make much sense. But now, with a bit more statistical mechanical sophistication under my belt, I think this book is becoming far more rewarding to read and understand. Hopefully it will give me some satisfactory answers about this question of ergodicity.</p>
+<h2>Chaos theory</h2>
+<p>Often, people justify the ergodic assumption by appealing to chaos theory. So I checked out a book called &lsquo;&lsquo;Chaos and Coarse Graining in Statistical Mechanics&rsquo;&rsquo; from the library, and I'm skimming through to see whether I'm convinced by these arguments.  I didn't read the book too carefully, because I don't think it's worth my time to understand all the details. But here were some key takeaways I got:</p>
+<ul>
+<li><p>Dynamical systems trace out some sort of trajectory in &lsquo;&lsquo;phase space&rsquo;&rsquo; as they evolve.</p>
+<ul>
+<li><p>If you start off in a basin of attraction, then you approach limit cycles or fixed points as <img class="eq" src="eqs/2253346866684938343-130.png" alt="t to infty" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>Often such strange attractors are fractals and have weird dimensions. Something something about chaos.</p>
+</li>
+<li><p>The nicest probability measure over phase space to pick is one that's invariant under time evolution. In the context of classical mechanics, this is our typical phase space variables <img class="eq" src="eqs/7682706072156707011-130.png" alt="int dx dp" style="vertical-align: -5px" />, or any other set of variables related to these by a canonical transformation.</p>
+</li></ul>
+</li>
+<li><p>Say we have some blob in a region of phase space. As we undergo time evolution, this blob morphs and stretches around. If we measure volume using the nice invariant probability measure, then the volume doesn't change as we undergo time evolution. We say that phase space is <b>incompressible</b>.</p>
+<ul>
+<li><p>Already, there's a seeming paradox between this fact and the ensemble view of entropy as the log volume of such a blob! If the volume of the blob doesn't get bigger, that means that this conventional definition of entropy doesn't increase with time.</p>
+</li>
+<li><p>There's some argument about how this blob of dough stretches out into thin filamentatious noodles and occupies a larger effective volume of phase space&hellip;.and about how quantum mechanics coarse-grains the phase space into volumes of size <img class="eq" src="eqs/6429308858201906177-130.png" alt="h^N" style="vertical-align: -1px" /> (where <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> is Planck's constant)&hellip;but I've never been very convinced by such arguments.</p>
+</li></ul>
+</li>
+<li><p><b>Lyapunov exponents</b> <img class="eq" src="eqs/9213219682577124982-130.png" alt="lambda" style="vertical-align: -1px" /> measure how quickly neighboring trajectories diverge from each other.</p>
+<ul>
+<li><p>These exponents are the eigenvalues of some matrix describing the divergence of neighboring paths, but as time approaches infinity, only the biggest eigenvalue matters.</p>
+</li>
+<li><p>Indeed, Lyapunov exponents only make sense in the <b>assymptotic limit</b> as <img class="eq" src="eqs/2253346866684938343-130.png" alt="t to infty" style="vertical-align: -1px" />, so we have to be careful about making claims in smaller timescales.</p>
+</li></ul>
+</li>
+<li><p>The <b>KS entropy</b> <img class="eq" src="eqs/8869687869589417451-130.png" alt="h_{KS}" style="vertical-align: -4px" /> is another way to measure how complicated the trajectories of a chaotic system are. If we coarse-grain the phase space into little cells, and then describe the trajectory as a sequence of cells, then the KS entropy is related to the shannon entropy of this sort of sequence.</p>
+</li>
+<li><p>Under this interpretation, we can think of a dynamical system as generating <img class="eq" src="eqs/2896410821426410556-130.png" alt="sim lambda" style="vertical-align: -1px" /> bits of information per unit time.</p>
+</li>
+</ul>
+<p>Here's a way to understand Lyapunov exponents. Say that we know the current state of the system to within an accuracy of <img class="eq" src="eqs/1432064026698804607-130.png" alt="delta_0" style="vertical-align: -4px" />, and we want to extrapolate the trajectory into the future. Because of the chaotic behavior of such a system, a tiny difference between two initial points can lead to an exponentially diverging distance between them. Hence we can only trust our predicted trajectory for a certain amount of time <img class="eq" src="eqs/2354942681949301286-130.png" alt="T_p" style="vertical-align: -6px" />, before our uncertainty in the initial state leads to complete ignorance. To be precise, if our maximum tolerable separation between trajectories is <img class="eq" src="eqs/605592759731837696-130.png" alt="Delta" style="vertical-align: -0px" />, then we can only trust our predictions to within a time</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/379063334950229991-130.png" alt=" T_p sim frac 1 lambda log left(frac Delta {delta_0} right), " />
+<br /></div><p>where <img class="eq" src="eqs/9213219682577124982-130.png" alt="lambda" style="vertical-align: -1px" /> is the Lyapunov exponent, <img class="eq" src="eqs/1432064026698804607-130.png" alt="delta_0" style="vertical-align: -4px" /> is the initial separation between trajectories, <img class="eq" src="eqs/605592759731837696-130.png" alt="Delta" style="vertical-align: -0px" /> is our maximum toleration between trajectories, and <img class="eq" src="eqs/2354942681949301286-130.png" alt="T_p" style="vertical-align: -6px" /> is the time range when we can trust our predictions.</p>
+<ul>
+<li><p>The book went on to talk about the differences between deterministic chaotic systems and stochastic non-chaotic systems. In the former, the time evolution is <i>completely</i> determined by the initial conditions, but the smallest perturbation leads to a completely different trajectory. And in the latter, there's a genuine aspect of randomness to the trajectory, even if we repeat the experiment starting off at the same initial point.</p>
+<ul>
+<li><p>In theory, you can distinguish these possibilities if you measure the trajectories for long enough, but you will need to take a ridiculous number of data points! There was a simple toy example in the book that required <img class="eq" src="eqs/3526379314060432855-130.png" alt="10^{34}" style="vertical-align: -1px" /> data points, for instance. Whoa.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>A particularly philosophically pithy take-away point is that <b>deterministic, chaotic systems look a lot like stochastic systems</b> when you</p>
+<ul>
+<li><p>observe data points with a finite resolution <img class="eq" src="eqs/7985781042590034715-130.png" alt="epsilon neq 0" style="vertical-align: -4px" />, and</p>
+</li>
+<li><p>only have a finite number of data points.</p>
+</li>
+</ul>
+<p>For instance, turbulence is a completely deterministic phenomenon &ndash; if you know the velocity field at some point in time, you can apply the time-evolution laws to figure out what it is at some later point. Yet you can model turbulence as a random process!</p>
+<p>On the other hand, the pseudo-random number generators in our computers are exactly deterministic: they result in the same &lsquo;&lsquo;random&rsquo;&rsquo; numbers if you seed them they same way. Yet their outpus have the statistical properties of a random sequence!</p>
+<h2>Fourier modes and translational invariance</h2>
+<p>I've wanted to build a better intuition of the Fourier Transform for the longest time, and finally, it's all sort of coming together and making sense. In particular, on my thermodynamics problem set this week, we're solving the classic problem of a &lsquo;&lsquo;mattress&rsquo;&rsquo; of coupled harmonic oscillators. We're given a bunch of masses in a square d-dimensional grid, each of which has a spring attached to its nearest neighbors in the form of <img class="eq" src="eqs/4765164600559287618-130.png" alt="H = sum_{&lt;ij&gt;} J (phi_i - phi_j)^2" style="vertical-align: -9px" />, and we want to find its thermodynamic properties.</p>
+<p>The trick to solving this problem is to rewrite the energy in terms of normal modes. We've seen such an approach multiple times throughout our physics education &ndash; in finding the phonons of a crystal lattice, in solving general small-oscillation problems, in <a href="https://www.acs.psu.edu/drussell/Demos/BeerBottle/beerbottle.html">vibrating beer bottles</a>, and more. But the interesting fact is that the modes which diagonalize this Hamiltonian turn out to be <b>Fourier modes</b>.</p>
+<p>This Fourier approach seemed intuitive to me, but I don't know why. I'm struggling to remind myself of <i>what</i> examples I'm drawing an analogy to. Let me see&hellip;</p>
+<ul>
+<li><p>When I had lunch with Scott on Tuesday, we were chatting about so-called &lsquo;&lsquo;circulant matrices&rsquo;&rsquo; &ndash; a silly sort of square matrix where each row has the same entries, except in each subsequet row, you slide down all the entries to the right. The eignevectors of these matrices are the Fourier basis!</p>
+</li>
+<li><p>Such circulant matrices correspond to <b>translationally invariant</b> systems, where the energy doesn't change under a translational shift of <img class="eq" src="eqs/3844081610483078043-130.png" alt="i mapsto i + 1" style="vertical-align: -2px" />. I convinced myself of these facts by explicitly writing it out and checking the matrix entries in the Fourier basis.</p>
+</li>
+<li><p>Perhaps it has to do with Bloch's theorem in quantum mechanics? Here, we have the translational symmetry of a crystal lattice, and a plane-wave-esque form.</p>
+</li>
+<li><p>Or maybe the free-space solutions to the wave equation. Here the equation looks something like <img class="eq" src="eqs/6242080866661526366-130.png" alt="(nabla^2 - k^2) phi = 0" style="vertical-align: -5px" />, and the second derivative term is analogous to the <img class="eq" src="eqs/1893833456381499108-130.png" alt="(phi_i - phi_j)^2" style="vertical-align: -6px" /> term in the Gaussian Model.</p>
+</li>
+</ul>
+<p>Anyways, I found it a bit annoying that I couldn't remember where exactly I was drawing my intuition from. I'm a strong believer that &lsquo;&lsquo;gut instinct&rsquo;&rsquo; is built up from seeing specific examples, so hopefully I can come up with some solid example to explain why Fourier modes diagonalize translationally invariant systems.</p>
+<h2>High-Dimensional Spaces</h2>
+<p>There's lots of counter-intuitive behaviors of high-dimensional spaces that come into play in all areas of science. As humans living in a measly three-dimensional world, we're forced to reason by analogy into spaces of higher dimension, but sometimes, the results of our intuition just don't hold true.</p>
+<p>Some concrete examples of high-dimensional spaces include:</p>
+<ul>
+<li><p>Say we're talking about a protein as an amino acid sequence of length <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" />. We can think of each letter of the sequence as a dimension, and then a particular sequence is a point in this <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" />-dimensional space. The number of such points in the space (<img class="eq" src="eqs/4814037714584610380-130.png" alt="20^L" style="vertical-align: -1px" />) is <i>exponential</i> in the number of dimensions! Volumes in high dimensions are just unimaginably huge.</p>
+</li>
+<li><p>Say we wished to describe the motion of such a protein as it wiggles and jiggles around. Each of its <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> atoms will have 3 position coordinates and 3 momentum coordinates, for a total of <img class="eq" src="eqs/6912041526062446-130.png" alt="6N" style="vertical-align: -1px" /> coordinates. The configuration of the protein thus lives in an utterly huge <img class="eq" src="eqs/6912041526062446-130.png" alt="6N" style="vertical-align: -1px" />-dimensional space.</p>
+</li>
+<li><p>Say we're training a neural network. There's all sorts of weights and parameters that enter into the model; the biggest networks today have millions to billions of them. Each possible &lsquo;&lsquo;configuration&rsquo;&rsquo; of weights yields a different value for the loss function evaluated on your training data. Notice that the volume in parameter-space goes like something to the millionth power &ndash; a ridiculously huge number. One of the difficultines of training such networks probably has to do with the huge hypervolume of possibilities.</p>
+</li>
+</ul>
+<h3>Properties of hyperspheres</h3>
+<p>To think about high-dimensional spaces a bit more, let's consider the geometric object of a <i>hypersphere</i>, the set of all points that are equidistant from the origin in a <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />-dimensional space. Let's say that points in our space are described by coordinates <img class="eq" src="eqs/9067535536975135223-130.png" alt="vec x = (x_1, x_2, x_3, ldots, x_N)" style="vertical-align: -5px" />, and that distance is measured by a typical L2 norm of <img class="eq" src="eqs/5484952518687049035-130.png" alt="|vec x|^2 = x_1^2 + x_2^2 + x_3^2 + ldots + x_N^2 = sum_i x_i^2" style="vertical-align: -7px" />. A hypersphere of radius <img class="eq" src="eqs/10496031571-130.png" alt="R" style="vertical-align: -1px" /> is given by the set of all points that are a distance <img class="eq" src="eqs/10496031571-130.png" alt="R" style="vertical-align: -1px" /> from the center; i.e., <img class="eq" src="eqs/9058640798560702742-130.png" alt="R^2 = sum_i x_i^2" style="vertical-align: -7px" />.</p>
+<p>In Ma's statistical mechanics book, he discussed the non-intuitive properties of hyperspheres. For instance:</p>
+<ul>
+<li><p>Most of the volume lies in a little shell right next to the surface! For instance, if compare a sphere of radius <img class="eq" src="eqs/6272018864-130.png" alt="1" style="vertical-align: -0px" /> to a sphere of radius <img class="eq" src="eqs/5081581859303928928-130.png" alt="1+epsilon" style="vertical-align: -2px" />, we see that volumes differ by <img class="eq" src="eqs/1628068855212356894-130.png" alt="(1 + epsilon)^N - 1^N approx N epsilon" style="vertical-align: -5px" />, and if <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> is huge, this little shell has a huge volume.</p>
+</li>
+<li><p>You can move very far distances by changing the individual coordinates a little amount. For instance, if we started at the origin, and then only moved a distance <img class="eq" src="eqs/3804680372864084874-130.png" alt="epsilon" style="vertical-align: -1px" /> in each of the dimensions, we'd end up at a distance <img class="eq" src="eqs/1632065703624317804-130.png" alt="sqrt {N sum_i epsilon^2} = sqrt N epsilon" style="vertical-align: -7px" /> away. And as <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> gets really big, <img class="eq" src="eqs/5497208385977646249-130.png" alt="sqrt N" style="vertical-align: -3px" /> also gets quite big too.</p>
+</li>
+<li><p>If you project a uniform hypersphere down into a lower-dimensional space, most of the mass is peaked quite broadly around the zero! In other words, for most of the points on the hypersphere, the <img class="eq" src="eqs/5999452984665080489-130.png" alt="x_1" style="vertical-align: -3px" /> coordinate is very close to zero, with a Gaussian distribution.</p>
+<ul>
+<li><p>Ma discussed this property in the context of the momentum distribution of an ideal gas. That is, if we have <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles each with momentum <img class="eq" src="eqs/3008991115357782151-130.png" alt="p_i" style="vertical-align: -4px" />, then the possible configurations with total energy <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" /> lie on a hypersphere given by <img class="eq" src="eqs/8800131440959350268-130.png" alt="2mE = sum_i p_i^2" style="vertical-align: -7px" />. The question of finding the &lsquo;&lsquo;marginal probability distribution&rsquo;&rsquo; of just a single particle corresponds to projecting this hypersphere down into the one-dimensional <img class="eq" src="eqs/3008991115357782239-130.png" alt="p_1" style="vertical-align: -4px" /> space. And indeed, we find that the momentum of a single particle in an ideal gas is distributed as a Gaussian!</p>
+</li>
+<li><p>This result seems related to the central limit theorem, because you can treat each dimension of the hypersphere as an independent variable.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<h3>Saddle points</h3>
+<p>For some reason, I also stumbled into a paper from Surya Ganguli's lab about <a href="http://ganguli-gang.stanford.edu/pdf/14.SaddlePoint.NIPS.pdf">saddle points</a> in high-dimensional spaces. Here the question about training statistical models with a huge buttload of parameters. While training neural networks with optimization algorithms such as stochastic gradient descent (SGD), researchers typically find that the loss function plateaus out. So there's lots of talk into better optimization schemes that don't get &lsquo;&lsquo;stuck&rsquo;&rsquo; in the landscape of the loss function.</p>
+<p>Often we hear talk about &lsquo;&lsquo;getting stuck in local minima&rsquo;&rsquo;. That is, if we think about the loss function as a hilly landscape in a high-dimensional parameter space, we imagine that it's got all sorts of hills and saddles and local minima. If we initialize the training trajectory at different places in this parameter space, we observe that the loss function converges to different values, suggesting that we get &lsquo;&lsquo;stuck&rsquo;&rsquo; in different minima. Typically, we mumble some justification such as &lsquo;&lsquo;some minima are shitty local minima, whereas other are better minima&rsquo;&rsquo;.</p>
+<p>However, this understanding about minima comes from our intuition of one-dimensional and two-dimensional functions, and it's not obvious whether the intuition in low dimensions can generalize to behavior in higher dimensions. And indeed, as this paper suggested, we've been chanting the wrong mantra for years; statistical models get appear to stuck in <b>saddle points</b> rather than in local minima, because of the nature of high-dimensional parameter space.</p>
+<p>There's a simple argument for why saddle points are much more common than minima in high dimensions. Let's imagine that we're exploring the landscape of a high-dimensional function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />, and that we've stumbled across a point where the first derivative <img class="eq" src="eqs/4341806281445254821-130.png" alt="partial_i f" style="vertical-align: -4px" /> is zero in all directions (i.e. the gradient vanishes). Remember from multivariable calclus that such a point is either a local min, a local max, or a saddle point, depending on what the second derivative is. More precisely, the eigenvalues of the second derivative matrix <img class="eq" src="eqs/3801396443527178552-130.png" alt="partial_i partial_j f" style="vertical-align: -6px" /> tell you whether the function decreases or increases as you walk in different directions. If all the eigenvalues are positive, then the function increases in all directions you walk and you're at a local minimum; if they're all negative, then it decreases in all directions and you're at a local max; and if some are positive and some are negative, then it increases or decreases depending on your direction, i.e., you're at a saddle point.</p>
+<p>So the question of &lsquo;&lsquo;am I at a minimum or at a saddle point&rsquo;&rsquo; corresponds to counting how many of the eigenvalues of the second derivative matrix are positive or negative. Notice that you have to be very lucky to have eigenvalues that are all positive. If you assume that each eigenvalue has equal chances of being positive and negative, then the chance that <i>all</i> the <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> eigenvalues are positive is given by <img class="eq" src="eqs/2184162741097637356-130.png" alt="(1/2)^N" style="vertical-align: -5px" />, which is an exceedingly small number if <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> is on the order of millions! And thus, we expect minima to be <i>extremely</i> rare in high dimensions compared to saddle points.</p>
+<p>Beyond the statistical unlikelihood of minima, the paper also argued that all minima tend to be around the same, and that the difference between good and mad local minima was dwarfed by the difference between critical points with different amounts of negative eigenvalues. That is, all minima are about the same, all first-order saddles (with one positive eigenvalue) are about the same, and so on.</p>
+<p>To summarize, I find that it's rather intriguing to think about high dimensional spaces, mainly because we tend to reason by analogy into a regime where our intuition might actually be wrong.</p>
+<ul>
+<li><p>I wonder if people have actually experimentally verified whether training algorithms converged to minima or to saddles.</p>
+</li>
+<li><p>Often in statistical mechanics, we talk about <b>metastable</b> states, which are local minima in the free energy representing kinetically trapped states that can't escape to the global minimum. (For instance, supercooled liquids, magnets under hysteresis, diamond versus graphite, etc&hellip;) Well, if <i>saddles</i> are more common than <i>minima</i> in high dimensions, is this the right language?</p>
+</li>
+<li><p>Apparently the idea of saddle points stemmed from the statistical physics of electron glasses! So in the coming weeks I'll be reading more about electron glasses to see what the connection is&hellip;</p>
+</li>
+</ul>
+<h2>Winding Numbers, Vortices, Poles, and all that jazz</h2>
+<p>I've also been dabbling in complex analysis again. For some reason, this flavor of math &ndash; back-seat topology, winding around poles, drawing loops and counting directions, conformal maps, projections onto spheres &ndash; it all reminds me days of the good old internet, with janky html websites and cute math applets, to simpler times with slower web browsers and non-pretentious <a href="http://www.cut-the-knot.org/">little webpages</a>&hellip;so I always a warm nostalgic feeling whenever I read about this kind of math.</p>
+<p>It's often said that complex analysis is a beautiful subject, and I'm starting to see why it is! Analytic functions are <i>so</i> well behaved and satisfy so many great properties, and they tie together so many cute aspects of math: the topology of winding around poles, the group theory of mappings of a plane, and more&hellip;</p>
+<p>This week, I finished a cursory scan-through of <a href="https://books.google.com/books/about/Visual_Complex_Analysis.html?id=ogz5FjmiqlQC">Visual Complex Analysis</a>, which takes a very geometric and visual approach to the subject. It's a super relaxing storybook to read before going to bed ;)</p>
+<p>To be quite frank, I don't identify too strongly with this flavor of math, and I'm not <i>too</i> sure how useful all the topics on projective geometry will be for my future. As a physicist, I think I'll mainly need to learn to do contour integrals, and maybe I'll need to understand analytic continuation as well. It might also be nice to learn some of the topological concepts of winding around vortices and all that jazz too. But it seems a bit excessive to prove <i>everything</i> by drawing pictures (although it's really cute!)</p>
+<ul>
+<li><p>I also watched a <a href="https://youtu.be/b7FxPsqfkOY">beautiful 3Blue1Brown video</a> about finding the roots of analytic functions. As you walk in a loop around an <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" />'th order root, the phase of the function wraps around <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" /> times, because if you zoom in really close around some root <img class="eq" src="eqs/8270884288693343799-130.png" alt="z=z_0" style="vertical-align: -4px" />, the function looks like <img class="eq" src="eqs/6417877096116931718-130.png" alt="(z-z_0)^n" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>There's a magical reason for why complex integrals count up the residues of the poles within the integration loop. If you integrate in some loop around the complex function <img class="eq" src="eqs/8251564009687796098-130.png" alt="z^m" style="vertical-align: -1px" />, you always get zero, except for when <img class="eq" src="eqs/2599426027941904888-130.png" alt="m = -1" style="vertical-align: -1px" />!! There's something special about <img class="eq" src="eqs/163512108431620365-130.png" alt="1/z" style="vertical-align: -5px" /> that none of the other powers have. So if you integrate some general function <img class="eq" src="eqs/5554689456625950018-130.png" alt="f(z) = ldots + az^{-2} + bz^{-1} + c + dz + ez^2 + ldots" style="vertical-align: -5px" /> in a loop around the origin, only the <img class="eq" src="eqs/5503323283082627548-130.png" alt="z^{-1}" style="vertical-align: -1px" /> term contributes to the integral.</p>
+</li>
+<li><p>Somehow, the fact that <img class="eq" src="eqs/163512108431620365-130.png" alt="1/z" style="vertical-align: -5px" /> is special relates to why monopole radiation lasts to infinity as a &lsquo;&lsquo;long-range interaction&rsquo;&rsquo;, whereas dipole or quadropole terms die away fast enough to disappear before infinity.</p>
+</li>
+</ul>
+<p>Anyways, I still don't have a very firm grasp of this subject, so I'm going to dive back through the book again, going through the derivations carefully and doing the interesting problems. I'm excited: complex analysis is a cute topic, and it brings up lots of intellectual nostalgia.</p>
+<h2>Renormalization Group</h2>
+<hr>
+<p><a href=".."><img src="../biochem/img/home.gif"> Back to my home page</a></p>
+<div id="footer">
+<div id="footer-text">
+<hr/>
+<small>
+Page generated 2019-03-02 21:58:19 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+</small>
+</div>
+</div>
+</div>
+</body>
+</html>

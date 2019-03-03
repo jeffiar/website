@@ -1,0 +1,46 @@
+/* From http://bettermotherfuckingwebsite.com/ */
+body {
+     margin      : 15px auto;
+     max-width   : 750px;
+     line-height : 1.6;
+     font-size   : 18px;
+     font-family : Arial,sans-serif;
+     color       : #333;
+     padding     : 0;
+     background-image: url("../img/background.gif");
+}
+
+#header {
+    text-align: center;
+    color: black;
+    margin:15px 0 15px 0;
+    padding:15px;
+    background-image: url("../img/background2.gif");
+    border:black 1px solid;
+    border-radius: 10px;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+}
+
+.content {
+    background-color: white;
+    padding: 15px;
+    border:black 1px solid;
+    border-radius: 10px;
+}
+
+ul, ol, dl {
+	margin-top: 0.2em;
+	padding-top: 0;
+	margin-bottom: 0.8em;
+}
+
+p + ul, p + ol {
+	margin-top: -0.5em;
+}

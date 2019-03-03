@@ -1,0 +1,20 @@
+= Seven Perspectives on Free Energy
+
+Ah, free energy: the eternally confusing concept that lies at the heart of thermodynamics and statistical mechanics.
+
+After so many years, I still find it remarkably difficult to properly /interepret/ the free energy of a system, because there's so many different ways to define it and think about it. Each time you encounter the free energy, you have cope with a different and often unrelated viewpoint. And then at the end of the day, once you've collected a bunch of diverse grab-bag perspectives, you have to somehow consolidate and reconcile them together into a coherent understanding.
+
+Sometimes I wish there were /one/ definition of The Free Energy, but the more and more I read about it, the less and less I believe in any unified understanding. At its core, free energy is a multi-faced beast.
+
+Typically, we first encounter this confusing creature in high school chemistry class, when we learn about what makes reactions ``go'' -- but as we continue through our educational journey, the unweildy animal pops its head at us again and again in unexpected places -- in the biophysics of molecular motors, in the thermodynamics of steam engines, in discussions of protein folding, in the modern statistical mechanical theory, here, there, everywhere. What lies in common among all these definitions of free energy? What understanding can we glean from each of the interpretations? And how do they help build towards a cohesive understanding of free energy?
+
+I don't have an answer to these questions. Nevertheless, I find it enlightening to bring together multiple perspectives towards free energy in one same place -- mostly to soothe my own cognitive dissonance towards the whole confusing affair.
+
+Here, I present to you: *Seven Perspectives on Free Energy*.
+    - Spontaneity -- qualitative explanations suffice in high school chem class.
+    - Total Entropy -- the driving force of the universe knocks at the door.
+    - Yin and Yang -- entropic bliss tangos with energetic reward in an eternal struggle.
+    - Optimization -- the internal energy is Legendre Transform'd when temperature is constrained.
+    - Multiplicity -- a redefined energy emerges when multiple states are occupied.
+    - Derivatives -- a magical connection is revealed between statistical mechanics and thermodynamics
+    - Reaction Coordinates -- an effective potential is born when we integrate over uninteresting degrees of freedom.
