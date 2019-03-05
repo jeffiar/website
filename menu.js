@@ -16,4 +16,6 @@ for (var i = 0; i < pages.length; i++) {
         menu_html += '[ <a href="' + pages[i] + '" title="' + titles[i] + '">' + names[i] + '</a> ] ';
     }
 }
+
+// menu_html += '<br/> [ <a href="statmech2/"> Notes on Statistical Mechanics</a> ]'
 document.write(menu_html);
