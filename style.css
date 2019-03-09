@@ -34,8 +34,14 @@ h2, h3, h4 {
     border-radius: 10px;
 }
 
-#me_image {
+.left_image {
     float: left;
+    margin: 15px;
+    border: black 1px solid
+}
+
+.right_image {
+    float: right;
     margin: 15px;
     border: black 1px solid
 }
