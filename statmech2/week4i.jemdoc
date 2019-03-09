@@ -155,11 +155,11 @@ Our goal here is to simplify this complicated motion into a sum of simple ``basi
 
 ~~~
 {1D chain}
-Consider a chain of $L$ masses, each spaced a distance $a$ apart. For simplicity, pretend that the masses live on a loop (i.e. periodic boundary conditions), so that mass \#N is connected back to mass \#1. Each mass is moving in its own harmonic potential with spring constant $\kappa$. In addition, each pair of neighboring masses is connected with a spring with spring contant $J$. 
+Consider a chain of $L$ masses, each spaced a distance $a$ apart. For simplicity, pretend that the masses live on a loop (i.e. periodic boundary conditions), so that mass \#N is connected back to mass \#1. Each mass is moving in its own harmonic potential with spring constant $\mu$. In addition, each pair of neighboring masses is connected with a spring with spring contant $J$. 
 
 The potential energy is given by
 \(
-V = \frac \kappa 2 \sum_j \phi_j^2 + \frac J 2\sum_j (\phi_j - \phi_{j-1})^2,
+V = \frac \mu 2 \sum_j \phi_j^2 + \frac J 2\sum_j (\phi_j - \phi_{j-1})^2,
 \)
 where $\phi_j$ is the displacement of the $j$'th mass from equilibrium. Here the first term represents each mass's own potential, and the second term represents the restoring force between two neighboring masses that are closer or further than the equilibrium separation.
 
@@ -168,10 +168,10 @@ Our goal is to find the thermodynamic quantities of this model. In particular, w
 
 Let us write out the energy more explicitly so that we have a better idea what's going on. If we have $L=4$ masses, then it looks like
 \(
-V = \frac \kappa 2 \phi_1^2 + \frac \kappa 2 \phi_2^2 + \frac \kappa 2 \phi_3^2 +\frac \kappa 2 \phi_4^2  \frac J 2 (\phi_1 - \phi_2)^2 + \frac J 2 (\phi_2 - \phi_3)^2+ \frac J 2 (\phi_3 - \phi_4)^2 + \frac J 2 (\phi_4 - \phi_1)^2
+V = \frac \mu 2 \phi_1^2 + \frac \mu 2 \phi_2^2 + \frac \mu 2 \phi_3^2 +\frac \mu 2 \phi_4^2  \frac J 2 (\phi_1 - \phi_2)^2 + \frac J 2 (\phi_2 - \phi_3)^2+ \frac J 2 (\phi_3 - \phi_4)^2 + \frac J 2 (\phi_4 - \phi_1)^2
 \)
 \(
-V = \left(\frac \kappa 2 + J \right) \phi_1^2 + \left(\frac \kappa 2 + J \right) \phi_2^2 + \left(\frac \kappa 2 + J\right) \phi_3^2 + \left(\frac \kappa 2 + J\right) \phi_3^2 - J \phi_1 \phi_2 - J \phi_2 \phi_3 - J \phi_3 \phi_4 - J \phi_4 \phi_1.
+V = \left(\frac \mu 2 + J \right) \phi_1^2 + \left(\frac \mu 2 + J \right) \phi_2^2 + \left(\frac \mu 2 + J\right) \phi_3^2 + \left(\frac \mu 2 + J\right) \phi_3^2 - J \phi_1 \phi_2 - J \phi_2 \phi_3 - J \phi_3 \phi_4 - J \phi_4 \phi_1.
 \)
 
 Notice that we have cross-terms between the phi's such as $\phi_1\phi_2$. Because of these cross-terms, we won't be able to factorize the integrals $\int \ldots d\phi_1 \, d\phi_2 \, d\phi_3 \, d\phi_4$ to find the partition function. So we'll need to find a way to rewrite the energy so that there's no more cross terms.
@@ -192,10 +192,10 @@ V = \left[
 \right]^T
 \left[
     \begin{array}{cccc}
-    \frac \kappa 2 + J & -\frac J 2 &   & -\frac J 2 \\
-    -\frac J 2 & \frac \kappa 2 + J & -\frac J 2 &   \\
-      & -\frac J 2 & \frac \kappa 2 + J & -\frac J 2 \\
-    -\frac J 2  &   & -\frac J 2 & \frac \kappa 2 + J \\
+    \frac \mu 2 + J & -\frac J 2 &   & -\frac J 2 \\
+    -\frac J 2 & \frac \mu 2 + J & -\frac J 2 &   \\
+      & -\frac J 2 & \frac \mu 2 + J & -\frac J 2 \\
+    -\frac J 2  &   & -\frac J 2 & \frac \mu 2 + J \\
     \end{array}
 \right]
 \left[
@@ -225,9 +225,51 @@ V = \left[
 
 then we'd be in business, because there would be no more cross terms like $\Phi_2 \Phi_3$. (Take a moment to convince yourself why this is true...)
 
-In principle, to find this nice new diagonal basis, we need to find the eigenvectors of the $L$-by-$L$ coupling matrix. However, we can save ourselves from this hard work, because we know that the answer is the *Fourier basis* $\Phi_n = \sum_j e^{2\pi i j n / L} \phi_j$. Perhaps I can provide some justification for why this answer is physically reasonable.
+In principle, to find this nice new diagonal basis, we need to find the eigenvectors of the $L$-by-$L$ coupling matrix. However, we don't actually have to do any hard work, because we know that the answer is the *Fourier basis* $\Phi_n = \sum_j e^{2\pi i j n / L} \phi_j$. Perhaps I can provide some justification for why this answer is physically reasonable.
 
-=== Why the Fourier basis?
+Coming soon....
 
 {{<a name="modes"></a>}}
 == The Gaussian Model
+
+Alas, I'm getting a bit lazy, and I'm not sure if I'll be able to muster the motivation to finish up the rest of this page. I'll summarize the main points behind this model and just wrap things up.
+
+~~~
+For simplicity I'm just working in one dimension....it's rather straightforward to tack on the indices to generalize to higher spatial dimensions (and $\phi$ dimensions). The only tricky part is recovering the real-space correlation function via inverse Fourier Transform, and thankfully, I think Jack our ever-helpful TA will be putting up a helpful worksheet on that later this week!
+~~~
+
+- Written in terms of the Fourier modes $\Phi_k$, the total energy no longer has any cross-terms between modes of different wavenumber $k$. We can write it as
+\(
+V = \frac 1 2 \sum_k (Jg(k) + \mu) |\Phi_k|^2,
+\)
+where the structure factor $g(k) = 2(1 - \cos (ka))$ is related to the local structure of the energetic couplings. Notice that $g(k) \approx k^2$ for small $k$, which means that $g(k) \to 0$ as $k \to 0$.
+- Notice that the energy is a sum over the Fourier modes (labeled with $k$), and that the amplitude of each mode $\Phi_k$ appears /squared/. The factor in front of of the $|\Phi_k|^2$ tells you how ``stiff'' the $k$'th mode is. There are two contributions to stiffness: one is the intrinsic stiffness of individual oscillators $\mu$, and another is a wavenumber-dependent term $J g(k)$ that goes to zero for long-wavelength excitations (small $k$).
+- Since the energy separates into a sum over modes, we know that the vibrations of different modes are /uncorrelated/ to each other; that is, $\langle \Phi_k \Phi_{k'} \rangle = 0$ if $k \neq k'$. So once you look at the problem in the Fourier basis, the whole mess of coupled springs turns into a bunch of non-interacting harmonic oscillators.
+- For a particular normal mode of wavelength $k$, the energy looks like $\frac 1 2 (J g(k) + \mu) |\Phi_k|^2$, which tells you it acts like a harmonic oscillator with spring constant $\kappa = J g(k) + \mu$. Since the modes don't interact with each other, we can quote our result from the earlier ``simple harmonic oscillator'' problem to say that
+\(
+\langle |\Phi_k|^2 \rangle = \frac T \kappa = \frac T {J g(k) + \mu} \, \longrightarrow \, \frac T {J k^2 + \mu} \, \textrm{when } k \to 0.
+\)
+Look, ma, no integrals!
+
+=== How excited are different modes?
+
+- The long-wavelength plane waves (small $k$) are the lowest energy excitations, so most of the thermal energy goes into these degrees of freedom. The shorter-wavelength, higher-frequency waves are much ``stiffer'' and tougher to excite, and thus they have a smaller mean squared amplitude $\langle |\Phi_k|^2 \rangle$ at thermal equilibrium.
+- Notice that the mean squared excitation of the $k = 0$ mode /diverges/ when we set $\mu = 0$! (Remember that $g(0) = 0$.) Since fluctuations become more and more important near critical points, we are tempted to say that $\mu \to 0$ corresponds to a critical point. However, since the Gaussian model doesn't make any sense for $\mu < 0$, we can't actually learn about how the ordered phase behaves from this model. We can only learn about the behavior of the disorderd phase as it approaches the continuous transition. 
+    -- Later on we will use this model as a variational guess in order to derive some critical exponents that extend beyond mean-field theory.
+
+=== The correlation length
+
+- Notice that there are two terms on the bottom of the fraction, the $Jk^2$ term and the $\mu$ term. If $k$ is big, then the first term's bigger; if $k$ is small, then the second term's bigger. The crossover point when the two terms are equal happens when $k^2 \sim \mu / J$ or when $k \sim \sqrt{\mu / J}$.
+- Remember that the wavenumber $k$ has units of inverse length. (For instance, the wavelength $\lambda$ is given by $2\pi / k$, so $k$ must have units of one over length for the wavelength to have units of length.) Taking the inverse of this ``crossover $k$'' gives us the characteristic lengthscale of the problem $\xi \sim \sqrt{J / \mu}$, known as the correlation length.
+    -- Behold the power of dimensional analysis...
+- In fact, this is a rather powerful result! Since the correlation length is the only possible quantity that we can construct with units of length, we know that /every/ spatially-dependent phenomenon in this problem occurs on a lengthscale of $\phi$. For instance, the correlation between two points...
+
+=== Finding the real-space correlation function
+
+- In real life, we don't just care about Fourier space, we also care about position space as well. It may be mathematically convenient to express energies in terms of sums over wavenumber $k$ rather than sums over position $r$, but at the end of the day, if we wish to do any local experiments probing different parts of materials, we better express physical quantities in terms of $r$.
+- One particularly interesting quantity is $\langle \phi_i \phi_j \rangle$, which tells you how much the fluctuations at site $i$ are correlated with the fluctuations at some other site $j$.
+    -- Because of translational and rotational invariance, we expect taht this correlation function only depends on the /distance/ between the sites $r = |\vec r_i - \vec r_j|$.
+    -- Furthermore, from our result with the 1D Ising model, we expect that at long enough distances, the correlation should decay /exponentially/ with a characteristic lengthscale of $\xi$ (because it's the only lengthscale in the problem)!
+    -- Again, as we approach a critical point, we expect that sites which are further and further away become more and more correlated, because once we're in the ordered phase, faraway sites point in the same direction and thus are correlated. This means that the correlation length $\xi$ probably diverges at the critical point.
+- To calculate the real-space correlation function, we can express the displacements $\phi_i$ as a sum over Fourier modes $\phi_i = 1/\sqrt{L^d} \sum_k e^{i k \cdot r_i} \Phi_k$, and then use our knowledge about $\langle | \Phi_k |^2 \rangle$ to simplify the result.
+    -- The result looks like the *Fourier Transform of a Lorentzian*, which is indeed a decaying exponential at large distances...

@@ -48,6 +48,8 @@ try {
 <div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
 <div class="menu-item"><a href="week4i.html" class="current">Gaussian&nbsp;Model</a></div>
 <div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
@@ -167,18 +169,18 @@ try {
 <div class="infoblock">
 <div class="blocktitle">1D chain</div>
 <div class="blockcontent">
-<p>Consider a chain of <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" /> masses, each spaced a distance <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" /> apart. For simplicity, pretend that the masses live on a loop (i.e. periodic boundary conditions), so that mass #N is connected back to mass #1. Each mass is moving in its own harmonic potential with spring constant <img class="eq" src="eqs/6023083318308821363-130.png" alt="kappa" style="vertical-align: -1px" />. In addition, each pair of neighboring masses is connected with a spring with spring contant <img class="eq" src="eqs/9472028491-130.png" alt="J" style="vertical-align: -1px" />. </p>
+<p>Consider a chain of <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" /> masses, each spaced a distance <img class="eq" src="eqs/12416037344-130.png" alt="a" style="vertical-align: -1px" /> apart. For simplicity, pretend that the masses live on a loop (i.e. periodic boundary conditions), so that mass #N is connected back to mass #1. Each mass is moving in its own harmonic potential with spring constant <img class="eq" src="eqs/7083357291911388125-130.png" alt="mu" style="vertical-align: -4px" />. In addition, each pair of neighboring masses is connected with a spring with spring contant <img class="eq" src="eqs/9472028491-130.png" alt="J" style="vertical-align: -1px" />. </p>
 <p>The potential energy is given by</p>
 
-<div class="eqwl"><img class="eqwl" src="eqs/2834399253418560152-130.png" alt=" V = frac kappa 2 sum_j phi_j^2 + frac J 2sum_j (phi_j - phi_{j-1})^2, " />
+<div class="eqwl"><img class="eqwl" src="eqs/2435290419828810282-130.png" alt=" V = frac mu 2 sum_j phi_j^2 + frac J 2sum_j (phi_j - phi_{j-1})^2, " />
 <br /></div><p>where <img class="eq" src="eqs/8301435321821192508-130.png" alt="phi_j" style="vertical-align: -6px" /> is the displacement of the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th mass from equilibrium. Here the first term represents each mass's own potential, and the second term represents the restoring force between two neighboring masses that are closer or further than the equilibrium separation.</p>
 <p>Our goal is to find the thermodynamic quantities of this model. In particular, we want to find the two-point correlator <img class="eq" src="eqs/8251287074840639150-130.png" alt="langle phi_i phi_j rangle" style="vertical-align: -6px" />, which tells us how much the displacements at site <img class="eq" src="eqs/13440040424-130.png" alt="i" style="vertical-align: -1px" /> and at site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> are correlated in equilibrium.</p>
 </div></div>
 <p>Let us write out the energy more explicitly so that we have a better idea what's going on. If we have <img class="eq" src="eqs/6653501418167561724-130.png" alt="L=4" style="vertical-align: -0px" /> masses, then it looks like</p>
 
-<div class="eqwl"><img class="eqwl" src="eqs/5824568788566007153-130.png" alt=" V = frac kappa 2 phi_1^2 + frac kappa 2 phi_2^2 + frac kappa 2 phi_3^2 +frac kappa 2 phi_4^2  frac J 2 (phi_1 - phi_2)^2 + frac J 2 (phi_2 - phi_3)^2+ frac J 2 (phi_3 - phi_4)^2 + frac J 2 (phi_4 - phi_1)^2 " />
+<div class="eqwl"><img class="eqwl" src="eqs/6718205364321843349-130.png" alt=" V = frac mu 2 phi_1^2 + frac mu 2 phi_2^2 + frac mu 2 phi_3^2 +frac mu 2 phi_4^2  frac J 2 (phi_1 - phi_2)^2 + frac J 2 (phi_2 - phi_3)^2+ frac J 2 (phi_3 - phi_4)^2 + frac J 2 (phi_4 - phi_1)^2 " />
 <br /></div>
-<div class="eqwl"><img class="eqwl" src="eqs/668552715667887293-130.png" alt=" V = left(frac kappa 2 + J right) phi_1^2 + left(frac kappa 2 + J right) phi_2^2 + left(frac kappa 2 + Jright) phi_3^2 + left(frac kappa 2 + Jright) phi_3^2 - J phi_1 phi_2 - J phi_2 phi_3 - J phi_3 phi_4 - J phi_4 phi_1. " />
+<div class="eqwl"><img class="eqwl" src="eqs/7627183048753275251-130.png" alt=" V = left(frac mu 2 + J right) phi_1^2 + left(frac mu 2 + J right) phi_2^2 + left(frac mu 2 + Jright) phi_3^2 + left(frac mu 2 + Jright) phi_3^2 - J phi_1 phi_2 - J phi_2 phi_3 - J phi_3 phi_4 - J phi_4 phi_1. " />
 <br /></div><p>Notice that we have cross-terms between the phi's such as <img class="eq" src="eqs/2002170876438600455-130.png" alt="phi_1phi_2" style="vertical-align: -4px" />. Because of these cross-terms, we won't be able to factorize the integrals <img class="eq" src="eqs/6591312144095892983-130.png" alt="int ldots dphi_1 , dphi_2 , dphi_3 , dphi_4" style="vertical-align: -5px" /> to find the partition function. So we'll need to find a way to rewrite the energy so that there's no more cross terms.</p>
 <p>Here's the trick: we'll perform a <b>Fourier Transform</b>. If we write the energy in terms of the amplitudes of Fourier modes, rather than the displacements of particular sites, then there's no more cross terms. In the language of quantum mechanics, the Hamiltonian is diagonal in the momentum basis rather than the position basis.</p>
 <p>Since we're going to perform a change of basis, let us use the language of linear algebra.</p>
@@ -186,16 +188,84 @@ try {
 <p>The configuration of our system &ndash; the state of all the springs and masses &ndash; lives in an <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" />-dimensional space (because you need <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" /> different numbers to fully specify its state). And just like any vector space, you can represent your state in any basis you'd like. Currently we're using the position basis <img class="eq" src="eqs/3560041606642661784-130.png" alt="[phi_1, phi_2 ,phi_3 ,phi_4]" style="vertical-align: -5px" /> to specify state of the system.</p>
 <p>When we write our configuration using the position basis, it's easy to interpret the state vector, because each of the components are just the displacements of individual oscillators &ndash; the first component <img class="eq" src="eqs/8301435321821192551-130.png" alt="phi_1" style="vertical-align: -4px" /> is the displacement of the first oscillator, etc. However, the position basis has the downside that the <i>Hamiltonian is not diagonal in this basis</i>. That is, there are cross-terms between the different positions such as <img class="eq" src="eqs/2960566443049683400-130.png" alt="phi_1 phi_2" style="vertical-align: -4px" />. This non-diagonal-ness is more clear when we write out the energy in matrix notation as</p>
 
-<div class="eqwl"><img class="eqwl" src="eqs/1594009572503264978-130.png" alt=" V = left[     begin{array}{c} phi_1  phi_2  phi_3  phi_4 end{array} right]^T left[     begin{array}{cccc}     frac kappa 2 + J &amp; -frac J 2 &amp;   &amp; -frac J 2      -frac J 2 &amp; frac kappa 2 + J &amp; -frac J 2 &amp;          &amp; -frac J 2 &amp; frac kappa 2 + J &amp; -frac J 2      -frac J 2  &amp;   &amp; -frac J 2 &amp; frac kappa 2 + J      end{array} right] left[     begin{array}{c} phi_1  phi_2  phi_3  phi_4 end{array} right]. " />
+<div class="eqwl"><img class="eqwl" src="eqs/6678117415884505264-130.png" alt=" V = left[     begin{array}{c} phi_1  phi_2  phi_3  phi_4 end{array} right]^T left[     begin{array}{cccc}     frac mu 2 + J &amp; -frac J 2 &amp;   &amp; -frac J 2      -frac J 2 &amp; frac mu 2 + J &amp; -frac J 2 &amp;          &amp; -frac J 2 &amp; frac mu 2 + J &amp; -frac J 2      -frac J 2  &amp;   &amp; -frac J 2 &amp; frac mu 2 + J      end{array} right] left[     begin{array}{c} phi_1  phi_2  phi_3  phi_4 end{array} right]. " />
 <br /></div><p>In this expression we explicitly see that the <b>quadratic form</b> has non-diagonal elements, which causes terms such as <img class="eq" src="eqs/2960566443049683400-130.png" alt="phi_1 phi_2" style="vertical-align: -4px" /> to appear in the energy.</p>
 <p>If we instead chose a different basis to represent the energy, where the coupling matrix was <i>diagonal</i>, then we'd get rid of all the cross-terms, so we could easily calculate the partition function. That is, if we switched into a new basis <img class="eq" src="eqs/9074339659432000572-130.png" alt="[Phi_0, Phi_1, Phi_2, Phi_3]" style="vertical-align: -5px" /> where the energy looks like</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/2284179805880955371-130.png" alt=" V = left[     begin{array}{c} Phi_0  Phi_1  Phi_2  Phi_3  end{array} right]^T left[     begin{array}{cccc}     # &amp; &amp; &amp;      &amp; # &amp; &amp;      &amp; &amp; # &amp;     &amp; &amp; &amp; #      end{array} right] left[     begin{array}{c} Phi_0  Phi_1  Phi_2  Phi_3 end{array} right], " />
 <br /></div><p>then we'd be in business, because there would be no more cross terms like <img class="eq" src="eqs/6039636274435402860-130.png" alt="Phi_2 Phi_3" style="vertical-align: -4px" />. (Take a moment to convince yourself why this is true&hellip;)</p>
-<p>In principle, to find this nice new diagonal basis, we need to find the eigenvectors of the <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" />-by-<img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" /> coupling matrix. However, we can save ourselves from this hard work, because we know that the answer is the <b>Fourier basis</b> <img class="eq" src="eqs/7894683241268118658-130.png" alt="Phi_n = sum_j e^{2pi i j n / L} phi_j" style="vertical-align: -9px" />. Perhaps I can provide some justification for why this answer is physically reasonable.</p>
-<h3>Why the Fourier basis?</h3>
+<p>In principle, to find this nice new diagonal basis, we need to find the eigenvectors of the <img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" />-by-<img class="eq" src="eqs/9728029261-130.png" alt="L" style="vertical-align: -0px" /> coupling matrix. However, we don't actually have to do any hard work, because we know that the answer is the <b>Fourier basis</b> <img class="eq" src="eqs/7894683241268118658-130.png" alt="Phi_n = sum_j e^{2pi i j n / L} phi_j" style="vertical-align: -9px" />. Perhaps I can provide some justification for why this answer is physically reasonable.</p>
+<p>Coming soon&hellip;.</p>
 <p><a name="modes"></a></p>
 <h2>The Gaussian Model</h2>
+<p>Alas, I'm getting a bit lazy, and I'm not sure if I'll be able to muster the motivation to finish up the rest of this page. I'll summarize the main points behind this model and just wrap things up.</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>For simplicity I'm just working in one dimension&hellip;.it's rather straightforward to tack on the indices to generalize to higher spatial dimensions (and <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /> dimensions). The only tricky part is recovering the real-space correlation function via inverse Fourier Transform, and thankfully, I think Jack our ever-helpful TA will be putting up a helpful worksheet on that later this week!</p>
+</div></div>
+<ul>
+<li><p>Written in terms of the Fourier modes <img class="eq" src="eqs/5759297260337611555-130.png" alt="Phi_k" style="vertical-align: -4px" />, the total energy no longer has any cross-terms between modes of different wavenumber <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />. We can write it as</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5334001789107633977-130.png" alt=" V = frac 1 2 sum_k (Jg(k) + mu) |Phi_k|^2, " />
+<br /></div><p>where the structure factor <img class="eq" src="eqs/9170858191132481106-130.png" alt="g(k) = 2(1 - cos (ka))" style="vertical-align: -5px" /> is related to the local structure of the energetic couplings. Notice that <img class="eq" src="eqs/791036726879604754-130.png" alt="g(k) approx k^2" style="vertical-align: -5px" /> for small <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />, which means that <img class="eq" src="eqs/7259623815354600232-130.png" alt="g(k) to 0" style="vertical-align: -5px" /> as <img class="eq" src="eqs/741981395170463421-130.png" alt="k to 0" style="vertical-align: -1px" />.</p>
+<ul>
+<li><p>Notice that the energy is a sum over the Fourier modes (labeled with <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />), and that the amplitude of each mode <img class="eq" src="eqs/5759297260337611555-130.png" alt="Phi_k" style="vertical-align: -4px" /> appears <i>squared</i>. The factor in front of of the <img class="eq" src="eqs/3216753647500964839-130.png" alt="|Phi_k|^2" style="vertical-align: -5px" /> tells you how &lsquo;&lsquo;stiff&rsquo;&rsquo; the <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />'th mode is. There are two contributions to stiffness: one is the intrinsic stiffness of individual oscillators <img class="eq" src="eqs/7083357291911388125-130.png" alt="mu" style="vertical-align: -4px" />, and another is a wavenumber-dependent term <img class="eq" src="eqs/4004572645356338925-130.png" alt="J g(k)" style="vertical-align: -5px" /> that goes to zero for long-wavelength excitations (small <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />).</p>
+</li>
+<li><p>Since the energy separates into a sum over modes, we know that the vibrations of different modes are <i>uncorrelated</i> to each other; that is, <img class="eq" src="eqs/2309686057456591232-130.png" alt="langle Phi_k Phi_{k'} rangle = 0" style="vertical-align: -5px" /> if <img class="eq" src="eqs/7399367000083916668-130.png" alt="k neq k'" style="vertical-align: -4px" />. So once you look at the problem in the Fourier basis, the whole mess of coupled springs turns into a bunch of non-interacting harmonic oscillators.</p>
+</li>
+<li><p>For a particular normal mode of wavelength <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />, the energy looks like <img class="eq" src="eqs/6416205456838401236-130.png" alt="frac 1 2 (J g(k) + mu) |Phi_k|^2" style="vertical-align: -7px" />, which tells you it acts like a harmonic oscillator with spring constant <img class="eq" src="eqs/770945410563472915-130.png" alt="kappa = J g(k) + mu" style="vertical-align: -5px" />. Since the modes don't interact with each other, we can quote our result from the earlier &lsquo;&lsquo;simple harmonic oscillator&rsquo;&rsquo; problem to say that</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7280203700991560478-130.png" alt=" langle |Phi_k|^2 rangle = frac T kappa = frac T {J g(k) + mu} , longrightarrow , frac T {J k^2 + mu} , textrm{when } k to 0. " />
+<br /></div><p>Look, ma, no integrals!</p>
+<h3>How excited are different modes?</h3>
+<ul>
+<li><p>The long-wavelength plane waves (small <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />) are the lowest energy excitations, so most of the thermal energy goes into these degrees of freedom. The shorter-wavelength, higher-frequency waves are much &lsquo;&lsquo;stiffer&rsquo;&rsquo; and tougher to excite, and thus they have a smaller mean squared amplitude <img class="eq" src="eqs/2357989457934911153-130.png" alt="langle |Phi_k|^2 rangle" style="vertical-align: -5px" /> at thermal equilibrium.</p>
+</li>
+<li><p>Notice that the mean squared excitation of the <img class="eq" src="eqs/1477613929025287333-130.png" alt="k = 0" style="vertical-align: -1px" /> mode <i>diverges</i> when we set <img class="eq" src="eqs/2577553275127234308-130.png" alt="mu = 0" style="vertical-align: -4px" />! (Remember that <img class="eq" src="eqs/4188952836641343887-130.png" alt="g(0) = 0" style="vertical-align: -5px" />.) Since fluctuations become more and more important near critical points, we are tempted to say that <img class="eq" src="eqs/7094274924344483064-130.png" alt="mu to 0" style="vertical-align: -4px" /> corresponds to a critical point. However, since the Gaussian model doesn't make any sense for <img class="eq" src="eqs/2577554275133234315-130.png" alt="mu &lt; 0" style="vertical-align: -4px" />, we can't actually learn about how the ordered phase behaves from this model. We can only learn about the behavior of the disorderd phase as it approaches the continuous transition. </p>
+<ul>
+<li><p>Later on we will use this model as a variational guess in order to derive some critical exponents that extend beyond mean-field theory.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<h3>The correlation length</h3>
+<ul>
+<li><p>Notice that there are two terms on the bottom of the fraction, the <img class="eq" src="eqs/6156944595864134411-130.png" alt="Jk^2" style="vertical-align: -1px" /> term and the <img class="eq" src="eqs/7083357291911388125-130.png" alt="mu" style="vertical-align: -4px" /> term. If <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> is big, then the first term's bigger; if <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> is small, then the second term's bigger. The crossover point when the two terms are equal happens when <img class="eq" src="eqs/6156105047718616941-130.png" alt="k^2 sim mu / J" style="vertical-align: -5px" /> or when <img class="eq" src="eqs/7528320281966185524-130.png" alt="k sim sqrt{mu / J}" style="vertical-align: -6px" />.</p>
+</li>
+<li><p>Remember that the wavenumber <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> has units of inverse length. (For instance, the wavelength <img class="eq" src="eqs/9213219682577124982-130.png" alt="lambda" style="vertical-align: -1px" /> is given by <img class="eq" src="eqs/7158184080086796585-130.png" alt="2pi / k" style="vertical-align: -5px" />, so <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> must have units of one over length for the wavelength to have units of length.) Taking the inverse of this &lsquo;&lsquo;crossover <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" />&rsquo;&rsquo; gives us the characteristic lengthscale of the problem <img class="eq" src="eqs/7256059170670847152-130.png" alt="xi sim sqrt{J / mu}" style="vertical-align: -6px" />, known as the correlation length.</p>
+<ul>
+<li><p>Behold the power of dimensional analysis&hellip;</p>
+</li></ul>
+</li>
+<li><p>In fact, this is a rather powerful result! Since the correlation length is the only possible quantity that we can construct with units of length, we know that <i>every</i> spatially-dependent phenomenon in this problem occurs on a lengthscale of <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" />. For instance, the correlation between two points&hellip;</p>
+</li>
+</ul>
+<h3>Finding the real-space correlation function</h3>
+<ul>
+<li><p>In real life, we don't just care about Fourier space, we also care about position space as well. It may be mathematically convenient to express energies in terms of sums over wavenumber <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> rather than sums over position <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" />, but at the end of the day, if we wish to do any local experiments probing different parts of materials, we better express physical quantities in terms of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>One particularly interesting quantity is <img class="eq" src="eqs/8251287074840639150-130.png" alt="langle phi_i phi_j rangle" style="vertical-align: -6px" />, which tells you how much the fluctuations at site <img class="eq" src="eqs/13440040424-130.png" alt="i" style="vertical-align: -1px" /> are correlated with the fluctuations at some other site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />.</p>
+<ul>
+<li><p>Because of translational and rotational invariance, we expect taht this correlation function only depends on the <i>distance</i> between the sites <img class="eq" src="eqs/8001062719681061022-130.png" alt="r = |vec r_i - vec r_j|" style="vertical-align: -6px" />.</p>
+</li>
+<li><p>Furthermore, from our result with the 1D Ising model, we expect that at long enough distances, the correlation should decay <i>exponentially</i> with a characteristic lengthscale of <img class="eq" src="eqs/7083357291898388014-130.png" alt="xi" style="vertical-align: -4px" /> (because it's the only lengthscale in the problem)!</p>
+</li>
+<li><p>Again, as we approach a critical point, we expect that sites which are further and further away become more and more correlated, because once we're in the ordered phase, faraway sites point in the same direction and thus are correlated. This means that the correlation length <img class="eq" src="eqs/7083357291898388014-130.png" alt="xi" style="vertical-align: -4px" /> probably diverges at the critical point.</p>
+</li></ul>
+</li>
+<li><p>To calculate the real-space correlation function, we can express the displacements <img class="eq" src="eqs/8301435321821192511-130.png" alt="phi_i" style="vertical-align: -4px" /> as a sum over Fourier modes <img class="eq" src="eqs/3327417020754153086-130.png" alt="phi_i = 1/sqrt{L^d} sum_k e^{i k cdot r_i} Phi_k" style="vertical-align: -7px" />, and then use our knowledge about <img class="eq" src="eqs/2619256631492172739-130.png" alt="langle | Phi_k |^2 rangle" style="vertical-align: -5px" /> to simplify the result.</p>
+<ul>
+<li><p>The result looks like the <b>Fourier Transform of a Lorentzian</b>, which is indeed a decaying exponential at large distances&hellip;</p>
+</li>
+</ul>
+
+</li>
+</ul>
 <hr>
 <h2>Leave a Comment Below!</h2>
 <!-- begin wwww.htmlcommentbox.com -->
@@ -205,7 +275,7 @@ try {
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-02-28 22:35:21 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-03-05 00:25:11 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="week4i.jemdoc">source</a>)
 </div>
 </div>
