@@ -55,11 +55,11 @@ try {
 <div id="toptitle">
 <h1>Warm-up: Non-Interacting Spins</h1>
 </div>
-<p>Before we go on to apply the variational principle to the Ising model, I want to review the statistical mechanics of a <i>non</i>-interacting paramagnet. The better we understand what we <i>already</i> know, the more prepared we'll be to tackle what we don't know!</p>
+<p>Before we go on to apply the variational principle to the Ising model, I want to review the statistical mechanics of a <i>non</i>-interacting paramagnet. The better we understand what we <i>already</i> know, the more prepared we'll be to tackle what we don't know.</p>
 <p>More practically speaking, the non-interacting Ising model will be our <i>trial Hamiltonian</i> for when we tackle the <i>full</i> Ising model. So the results from this page will come into play when we we apply the variational principle to the Ising model in its full interacting glory.</p>
 <p>The derivation on this page will also teach us a few other things:</p>
 <ul>
-<li><p>It presents a <i>baseline</i> level of understanding. In order to pin down the effects of interactions, we have to first know how life is like <i>without</i> interactions!</p>
+<li><p>It presents a <i>baseline</i> level of understanding. In order to pin down the effects of interactions, we have to first know how life is like <i>without</i> interactions.</p>
 </li>
 <li><p>It shows us how partition functions simplify and factorize when the Hamiltonian is just the sum of a lot of independent parts.</p>
 </li>
@@ -105,7 +105,7 @@ try {
 <br /></div><p>Very similarly, when we sum over the configurations of <i>all</i> the spins, it's the same as summing over the configurations of the first spin, and then over the configurations of the second spin, and so on. Mathematically, this means that</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/5594370014898411864-130.png" alt="     sum_{textrm{states}} = sum_{{sigma}} = sum_{sigma_1} sum_{sigma_2} sum_{sigma_3} ldots sum_{sigma_N} " />
-<br /></div><p>Prof. Kivelson uses a really perverse notation to express multiple sums like this, and it's very confusing! I find it much better to write it all out explicitly.</p>
+<br /></div><p>(In my opinion, Prof. Kivelson uses a really perverse notation to express multiple sums! I find it much less confusing to write it all out explicitly.)</p>
 <p>Anyways, if we put these two facts together to calculate the partition function, we find that</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/8906155386921937209-130.png" alt=" Z = sum_{textrm{states}} e^{-beta E(textrm{state})}      = left[sum_{sigma_1}e^{-beta E(sigma_1)}right],left[sum_{sigma_2}e^{- beta E(sigma_2)}right], left[sum_{sigma_3}e^{- beta E(sigma_3)}right], ldots , left[sum_{sigma_N}e^{- beta E(sigma_N)}right], " />
@@ -120,7 +120,7 @@ try {
 
 <div class="eqwl"><img class="eqwl" src="eqs/1269875526548794568-130.png" alt="     Z = prod_j z_j = prod_j 2 cosh (beta b_j). " />
 <br /></div><div class="infoblock">
-<div class="blocktitle">FOod for thought</div>
+<div class="blocktitle">Food for thought</div>
 <div class="blockcontent">
 <p>Can you see <i>why</i> <img class="eq" src="eqs/11520034651-130.png" alt="Z" style="vertical-align: -0px" /> no longer factorizes so easily once you introduce interactions into the Hamiltonian? And can you see why transfer matrices worked so nicely for the 1D Ising Model?</p>
 </div></div>
@@ -132,11 +132,11 @@ try {
 <div class="infoblock">
 <div class="blocktitle">Fun Fact</div>
 <div class="blockcontent">
-<p>Did you know that the reason the free energy is defined as <img class="eq" src="eqs/8773196842217219020-130.png" alt="F = - T log Z" style="vertical-align: -4px" /> is so that <img class="eq" src="eqs/1239584247873260232-130.png" alt="e^{-beta F} = Z = sum e^{-beta E}" style="vertical-align: -4px" />? This expression says that if you stick the free energy into a Boltzmann factor, it's equal to the sum of the boltzmann factors of <i>all</i> the microstates of your system. It's almost as if the free energy summarized possible energies of the system at a particular temperature! And look, it even takes into account the <i>number</i> of terms that you're adding up on the RHS, a.k.a. the number of microstates, a.k.a. the e to the entropy! Whoa, trippy.</p>
+<p>Did you know that the reason the free energy is defined as <img class="eq" src="eqs/8773196842217219020-130.png" alt="F = - T log Z" style="vertical-align: -4px" /> is so that <img class="eq" src="eqs/1239584247873260232-130.png" alt="e^{-beta F} = Z = sum e^{-beta E}" style="vertical-align: -4px" />? This expression says that if you stick the free energy into a Boltzmann factor, it's equal to the sum of the boltzmann factors of <i>all</i> the microstates of your system. It's almost as if the free energy summarized possible energies of the system at a particular temperature! And look, it even takes into account the <i>number</i> of terms that you're adding up on the RHS, a.k.a. the number of microstates, a.k.a. the e to the entropy&hellip;</p>
 </div></div>
 <h2>Correlation functions</h2>
 <p>Okay last step. We still have to calculate <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> and <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" />. Remember that these functions tell you the <i>thermal average</i> of spin <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />, and the <i>correlation</i> between two different spins, respectively. And also remember that <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> is also known as the <b>magnetization density</b>. (Well, technically, that's only true if <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> is the same for all the spins on the lattice&hellip;see my remark on the <a href="lec4.html#remark">bottom of this page</a>.)</p>
-<p>Now, since all the spins are independent and uncoupled in this model, it's remarkably easy to calculate the thermal averages of particular spins. We only need to consider the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th site, and nothing else in the partition function matters! Just watch:</p>
+<p>Now, since all the spins are independent and uncoupled in this model, it's remarkably easy to calculate the thermal averages of particular spins. We only need to consider the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th site, and nothing else in the partition function matters. Just watch:</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/592428348432651622-130.png" alt="     langle sigma_j rangle = frac 1 z_j sum_{sigma_j} sigma_j e^{-beta E(sigma_j) }= frac {[(+1) e^{beta b_j (+1)} + (-1) e^{beta b_j (-1)}]} {z_j} = frac {2 sinh (beta b_j)} { 2 cosh (beta b_j)} = tanh (beta b_j). " />
 <br /></div><p>To see why this trick works, write out the entire partition function for the whole system:</p>
@@ -153,7 +153,7 @@ try {
 <p>Ah, the entropic bliss of randomness! Ah, the allure of energetic award! Ah, the struggle between yin and yang, between energy and entropy, between order and disorder! What tension, what drama, what thermodynamics!</p>
 </div></div>
 <h3>Neighboring spins are not correlated</h3>
-<p>Okay, enough vivid language. There's one more task at hand: we need to find the correlation functions <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" />. Again, here we can aply the trick of independence: since the spins are <i>independent</i> in a non-coupled model, they must be <i>uncorrelated</i>. In other words, whether some spin <img class="eq" src="eqs/1833092850355643431-130.png" alt="sigma_i" style="vertical-align: -4px" /> points up or down does not depend on <i>any</i> other spin <img class="eq" src="eqs/1833092850355643430-130.png" alt="sigma_j" style="vertical-align: -6px" />! Statistically, this statement of independence is expressed as</p>
+<p>Okay, enough vivid language. There's one more task at hand: we need to find the correlation functions <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" />. Again, here we can aply the trick of independence: since the spins are <i>independent</i> in a non-coupled model, they must be <i>uncorrelated</i>. In other words, whether some spin <img class="eq" src="eqs/1833092850355643431-130.png" alt="sigma_i" style="vertical-align: -4px" /> points up or down does not depend on <i>any</i> other spin <img class="eq" src="eqs/1833092850355643430-130.png" alt="sigma_j" style="vertical-align: -6px" />. Statistically, this statement of independence is expressed as</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/1439322249508757315-130.png" alt="     langle sigma_i sigma_j rangle = langle sigma_i rangle langle sigma_j rangle.     " />
 <br /></div><div class="infoblock">
@@ -197,7 +197,7 @@ try {
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-03-05 00:25:09 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-03-11 22:41:06 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec5c.jemdoc">source</a>)
 </div>
 </div>

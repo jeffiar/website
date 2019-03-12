@@ -9,18 +9,17 @@ Let's review what we've learned from the mean-field solution to the Ising Model.
 \(
     b = h + zJ \tanh (\beta b).
 \)
-- Remarkably, the nature of the solutions for $b$ depend on the temperature! When we set $h=0$,
+- Remarkably, we found that the nature of the solutions for $b$ depend on the temperature! When we set $h=0$,
     -- At high temperatures $T > T_c$, $b=0$ is the only solution, meaning that there's no net magnetization.
     -- At low temperatures $T < T_c$, there exists a /nonzero/ solution at $b=b_0$, meaning that the Ising model picks up a /net magnetization/ (the spins tend to point in some particular direction) EVEN in the absence of an external field. 
-        --- (Even though $b=0$ is still a solution, it represents an unstable free energy maximum, rather than a minimum. Hopefully we'll discuss this...)
 - These two qualitatively (and quantitatively!) different phases are separated by the *critical temperature* $T_c$, which we can find by setting the slopes of both sides of the self-consistency equation equal to each other at $b=0$.
 - When the temperature crosses $T_c$, the Ising model undergoes a *continuous phase transition* from the high-temperature disordered phase to the low-temperature ordered phase.
-    -- We call this phase transition /continuous/ because the free energy is continuous here. Its derivatives aren't continuous, though; in particular, its second derivative (the *magnetic susceptibility*) /diverges/ as we appraoch the critical point. (Hopefully we'll discuss this in class soon)
-    -- The exact behavior of these divergences are governed by *critical exponents*, which we'll hopefully cover later in the class as well.
+    -- We call this phase transition /continuous/ because the free energy is continuous here. Its derivatives aren't continuous, though; in particular, its second derivative (the *magnetic susceptibility*) /diverges/ as we approach the critical point.
+    -- The exact behavior of these divergences are governed by *critical exponents*, which we'll hopefully cover later in the class.
 
 == Interpreting the Mean-Field Solution
 
-The optimized value of $b$ has a very nice and particular physical interpretation! Let me write down the self-consistency expression again:
+The optimized value of $b$ has a very nice and particular physical interpretation. Let me write down the self-consistency expression again:
 \(
     b = h + z J \tanh (b).
 \)
@@ -40,7 +39,7 @@ So the self-consistency relation tells you that:
 
 In the trial Hamiltonian, we pretend that each spin experiences an ``effective'' magnetic field $b$, resulting from the external field $h$ as well as the field set up by $z$ perfectly-average-neighbors. (In reality, though, neighbors aren't always perfectly average...)
 
-Notice that the average magnetization $m$ of these neighbors is in determined by the effective value of the field $b$...which is must be determined by the average magnetization $m$...so it's a self-consistent sort of relation: the mean field is exactly the right strength to induce a magnetization that produces exactly that same mean field. (Think about it.) Trippy.
+Notice that the average magnetization $m$ of these neighbors is in determined by the effective value of the field $b$...which is must be determined by the average magnetization $m$...so it's a self-consistent sort of relation: the mean field is exactly the right strength to induce a magnetization that produces exactly that same mean field. (Think about it.)
 ~~~
 
 == Is mean field theory accurate?
@@ -70,7 +69,7 @@ As an example of how poorly mean-field theory can behave, let's consider again t
 
 - Well, if we think back to the average-over-neighbors picture, we shouldn't really be too surprised that mean field theory is pretty shitty in one dimension. Since each site only has two neighbors, there really isn't much of a ``mean'' field to be talking about: either both of the neighbors are up, or both are down, or one up one down....
 
-Another ``issue'' common to all mean-field theories is taht they incorrectly predict the /correlations/ between spins. Remember that in the exact 1D Ising model solution, we found that there was a correlation between nearby spins, where if a particular spin $i$ happened to point up, then a nearby spin $j$ would probably point up as well (for $J > 0$). More precisely, the 2-site correlation was given by $\langle \sigma_i \sigma_j \rangle = \langle \sigma_i \rangle \langle \sigma_j \rangle + A e^ {-|i-j| / \xi}$, which decays exponentially with a characteristic lengthscale $\xi$ as the distance $|i-j|$ between the spins increased.
+Another ``issue'' common to all mean-field theories is that they incorrectly predict the /correlations/ between spins. Remember that in the exact 1D Ising model solution, we found that there was a correlation between nearby spins, where if a particular spin $i$ happened to point up, then a nearby spin $j$ would probably point up as well (for $J > 0$). More precisely, the 2-site correlation was given by $\langle \sigma_i \sigma_j \rangle = \langle \sigma_i \rangle \langle \sigma_j \rangle + A e^ {-|i-j| / \xi}$, which decays exponentially with a characteristic lengthscale $\xi$ as the distance $|i-j|$ between the spins increased.
 
 On the other hand, mean field theory fails to predict this behavior, because the trial Hamiltonian has a non-interactig form where each of the spins lives in its own energetically isolated world...and remember that there can be no correlations without interaction terms in the Hamiltonian, because the partition function just factorizes.
 

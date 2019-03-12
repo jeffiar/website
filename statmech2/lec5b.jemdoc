@@ -1,7 +1,7 @@
 # jemdoc: menu{MENU}{lec5b.html}, showsource, analytics{UA-131436916-1}
 = The Variational Principle
 
-When Prof. Kivelson walked into class today, he looked a bit taken by surprise. He just kind of stood there for a bit and stared at everyone who stared back at him. There was a funny look on his face, like, ``Oh, you're expecting me to teach you somethign?'' Well, yes, we would like you to teach us some statistical mechanics!
+When Prof. Kivelson walked into class today, he looked a bit taken by surprise. He just kind of stood there for a bit and stared at everyone who stared back at him. There was a funny look on his face, like, ``Oh, you're expecting me to teach you something?'' Well, yes, we would like you to teach us some statistical mechanics!
 
 In class, we spent /way/ too much time proving the variational principle, and not enough time explaining what it actually means. Honestly, it's much more important to understand the logic behind a variational argument than to know how to prove it...so of all the sections on this page, the [\#motivation Motivation and Overview] section is most important. (I don't even know if I'll get around to writing the rest of the sections...I have a life too, you know!)
 
@@ -22,7 +22,7 @@ One of the key points today is that interacting systems are /very difficult/ to 
 {Key Point}
 The strategy of the variational principle is to use a problem we /can/ solve to *approximate* a problem we /can't/.
 
-More preciesly, suppose we want to solve a hard system with a Hamiltonian $H$. Our plan of attack is to approximate it with a different ``trial Hamiltonian'' $H_{tr}$ which has the same general ``flavor'' as the actual Hamiltonian, but (in contrast) is /actually solvable/. You could also call $H_{tr}$ a different name such as a ``variational ansatz'' or a ``guess of the solution shape'' or even ``a random shot in the dark''.The main point is that the the trial Hamiltonian should be a solvable problem that's similar to the actual problem at hand.
+More preciesly, suppose we want to solve a hard system with a Hamiltonian $H$. Our plan of attack is to approximate it with a different ``trial Hamiltonian'' $H_{tr}$ which has the same general ``flavor'' as the actual Hamiltonian, but (in contrast) is /actually solvable/. You could also call $H_{tr}$ a different name such as a ``variational ansatz'' or a ``guess of the solution shape'' or even ``a random shot in the dark.'' The main point is that the the trial Hamiltonian should be a solvable problem that's similar to the actual problem at hand.
 
 But we don't care about the trial Hamiltonian -- we care about the actual hamiltornian $H$. So a natural question to ask is, ``what's our best guess for the free energy of the actual system''?
 

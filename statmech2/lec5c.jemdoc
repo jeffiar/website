@@ -1,13 +1,13 @@
 # jemdoc: menu{MENU}{lec5c.html}, showsource, analytics{UA-131436916-1}
 = Warm-up: Non-Interacting Spins
 
-Before we go on to apply the variational principle to the Ising model, I want to review the statistical mechanics of a /non/-interacting paramagnet. The better we understand what we /already/ know, the more prepared we'll be to tackle what we don't know!
+Before we go on to apply the variational principle to the Ising model, I want to review the statistical mechanics of a /non/-interacting paramagnet. The better we understand what we /already/ know, the more prepared we'll be to tackle what we don't know.
 
 More practically speaking, the non-interacting Ising model will be our /trial Hamiltonian/ for when we tackle the /full/ Ising model. So the results from this page will come into play when we we apply the variational principle to the Ising model in its full interacting glory.
 
 The derivation on this page will also teach us a few other things:
 
-- It presents a /baseline/ level of understanding. In order to pin down the effects of interactions, we have to first know how life is like /without/ interactions!
+- It presents a /baseline/ level of understanding. In order to pin down the effects of interactions, we have to first know how life is like /without/ interactions.
 - It shows us how partition functions simplify and factorize when the Hamiltonian is just the sum of a lot of independent parts.
 - Our results will be a good sanity check to check our math later, since the full Ising model results should reduce to the expressions on this page if we take $J \to 0$.
 
@@ -72,7 +72,7 @@ Very similarly, when we sum over the configurations of /all/ the spins, it's the
     \sum_{\textrm{states}} = \sum_{\{\sigma\}} = \sum_{\sigma_1} \sum_{\sigma_2} \sum_{\sigma_3} \ldots \sum_{\sigma_N}
 \)
 
-Prof. Kivelson uses a really perverse notation to express multiple sums like this, and it's very confusing! I find it much better to write it all out explicitly.
+(In my opinion, Prof. Kivelson uses a really perverse notation to express multiple sums! I find it much less confusing to write it all out explicitly.)
 
 Anyways, if we put these two facts together to calculate the partition function, we find that
 \(
@@ -97,7 +97,7 @@ and the partition function for the whole system is given by
 \)
 
 ~~~
-{FOod for thought}
+{Food for thought}
 
 Can you see /why/ $Z$ no longer factorizes so easily once you introduce interactions into the Hamiltonian? And can you see why transfer matrices worked so nicely for the 1D Ising Model?
 ~~~
@@ -113,14 +113,14 @@ Not much to say here, apart from recognizing the log property that the log of a 
 
 ~~~
 {Fun Fact}
-Did you know that the reason the free energy is defined as $F = - T \log Z$ is so that $e^{-\beta F} = Z = \sum e^{-\beta E}$? This expression says that if you stick the free energy into a Boltzmann factor, it's equal to the sum of the boltzmann factors of /all/ the microstates of your system. It's almost as if the free energy summarized possible energies of the system at a particular temperature! And look, it even takes into account the /number/ of terms that you're adding up on the RHS, a.k.a. the number of microstates, a.k.a. the e to the entropy! Whoa, trippy.
+Did you know that the reason the free energy is defined as $F = - T \log Z$ is so that $e^{-\beta F} = Z = \sum e^{-\beta E}$? This expression says that if you stick the free energy into a Boltzmann factor, it's equal to the sum of the boltzmann factors of /all/ the microstates of your system. It's almost as if the free energy summarized possible energies of the system at a particular temperature! And look, it even takes into account the /number/ of terms that you're adding up on the RHS, a.k.a. the number of microstates, a.k.a. the e to the entropy...
 ~~~
 
 == Correlation functions
 
 Okay last step. We still have to calculate $\langle \sigma_j \rangle$ and $\langle \sigma_i \sigma_j \rangle$. Remember that these functions tell you the /thermal average/ of spin $j$, and the /correlation/ between two different spins, respectively. And also remember that $\langle \sigma_j \rangle$ is also known as the *magnetization density*. (Well, technically, that's only true if $b_j$ is the same for all the spins on the lattice...see my remark on the [lec4.html\#remark bottom of this page].)
 
-Now, since all the spins are independent and uncoupled in this model, it's remarkably easy to calculate the thermal averages of particular spins. We only need to consider the $j$'th site, and nothing else in the partition function matters! Just watch:
+Now, since all the spins are independent and uncoupled in this model, it's remarkably easy to calculate the thermal averages of particular spins. We only need to consider the $j$'th site, and nothing else in the partition function matters. Just watch:
 \(
     \langle \sigma_j \rangle = \frac 1 z_j \sum_{\sigma_j} \sigma_j e^{-\beta E(\sigma_j) }= \frac {[(+1) e^{\beta b_j (+1)} + (-1) e^{\beta b_j (-1)}]} {z_j} = \frac {2 \sinh (\beta b_j)} { 2 \cosh (\beta b_j)} = \tanh (\beta b_j).
 \)
@@ -148,7 +148,7 @@ Ah, the entropic bliss of randomness! Ah, the allure of energetic award! Ah, the
 
 === Neighboring spins are not correlated
 
-Okay, enough vivid language. There's one more task at hand: we need to find the correlation functions $\langle \sigma_i \sigma_j \rangle$. Again, here we can aply the trick of independence: since the spins are /independent/ in a non-coupled model, they must be /uncorrelated/. In other words, whether some spin $\sigma_i$ points up or down does not depend on /any/ other spin $\sigma_j$! Statistically, this statement of independence is expressed as
+Okay, enough vivid language. There's one more task at hand: we need to find the correlation functions $\langle \sigma_i \sigma_j \rangle$. Again, here we can aply the trick of independence: since the spins are /independent/ in a non-coupled model, they must be /uncorrelated/. In other words, whether some spin $\sigma_i$ points up or down does not depend on /any/ other spin $\sigma_j$. Statistically, this statement of independence is expressed as
     \(
     \langle \sigma_i \sigma_j \rangle = \langle \sigma_i \rangle \langle \sigma_j \rangle.
     \)

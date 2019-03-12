@@ -7,7 +7,7 @@ As we'll see, we'll be able to interpret our results as a *mean-field model*, wh
 
 As an added bonus, we'll also encounter our first example of a *continuous phase transition*. In this dramatic process, the spins go from a disordered random phase with no overall magnetization to an distinct low-temperature ordered ferromagnetic phase where a macroscopic fraction of the spins are all aligned in the same direction. It's really quite surprising that Nature exhibits these sorts of marvelous ``collective conspiracies'', and it's even more surprising that they occur at a single well-defined temperature called the *critical temperature* $T_c$.
 
-Finally, we'll talk about how to figure out the value of the critical temperature $T_c$ by drawing a picture and seeing where two graphs intersect. Sometimes you can discover the cleverest things in the silliest ways...
+Finally, we'll talk about how to figure out the value of the critical temperature $T_c$ by drawing a picture and seeing where two graphs intersect.
 
 Okay let's get started.
 
@@ -98,12 +98,12 @@ So to proceed further, we make the assumption of *translational invariance* that
 
 ~~~
 {Remark}
-What's the motivation exactly for assuming $b_j = b$? I...don't quite know honestly. We tried to justify it in section by some argument about it must be the same for all sites $j$ in zero-temperature limit, but in my opinion, the argument falls flat because the $b_j$'s depend on temperature anyways, so why doesn't all hell just break loose when you turn on the thermostat? I think the actual justification is another one of those ``you can't stop me'' reasons...
+What's the motivation exactly for assuming $b_j = b$? We tried to justify it in section by some argument about the zero-temperature limit, but I wasn't fully convinced, because the variational parameters depend on temperatures anyways.
 
-This begs the question of why we even /bothered/ putting an index $j$ on the parameter $b_j$ in the first place, if we were gonna get rid of it at the end of the derivation anyways. I don't know. Go ask the professor.
+A few weeks later in class, when we learned about Landau-Ginzburg theory, we were able to give a more convincing argument for why a spatially uniform solution for $b_j$ is indeed the ``best'' solution.
 ~~~
 
-No matter our reasoning for /assuming/ why $b_j = b$, it lets us simplify our result quite a bit: we only need to find /one/ unknown $b$ now. The $b_j$ on the LHS is the same as $b_i$ on the RHS. Our sum over the nearest neighbors of site $j$ ends up being the same for each of its neighbors, so rather than summing, we just need to multiply by the number of nearest neighbors $z$.
+Once we assume that $b_j$ is the same for all sites, we can simplify our result quite a bit, because we only need to find /one/ unknown $b$ now. The $b_j$ on the LHS is the same as $b_i$ on the RHS. Our sum over the nearest neighbors of site $j$ ends up being the same for each of its neighbors, so rather than summing, we just need to multiply by the number of nearest neighbors $z$.
 
 These simplifications give as an equation for $b$ /in terms of itself/ as
 \(
@@ -133,7 +133,7 @@ Our strategy here is to plot both sides of the equation and see where the graphs
 
 {{<img src="img/Tc.png" style="max-width:100%; max-height: 100%;">}}
 
-Surprisingly, /the number of graph crossings depends on the temperature/! This is /by far/ the coolest thing we've discovered in the entire class so far: the behavior of the mean-field Ising model is /completely/ different at low temperatures than at high temperatures. We've discovered a phase transition!
+Surprisingly, /the number of graph crossings depends on the temperature/! This is /by far/ the most interesting thing we've discovered in class so far: the behavior of the mean-field Ising model is /completely/ different at low temperatures than at high temperatures. We've discovered a phase transition.
 
 If you start out at high temperature, you'll only find a trivial solution at $b=0$, but when you lower the temperature past a special *critical temperature* $T_c$, all of a sudden, there will be /nonzero solutions/ $b=\pm b_0 \neq 0$ as well. This is rather remarkable; it tells us the system behaves dramatically differently depending on whether $T > T_c$ or $T < T_c$. The high-temperature regime is called the *paramagnetic phase* and the low-temperature regime is called the *(anti)ferromagnetic phase*.
 
@@ -145,27 +145,25 @@ In our mean-field model, the magnetization density is given by $m = \tanh(\beta 
 
 Wait a second. Let's think about how unusual this is. Since we dialed down the external field $h$ /to zero/, there is /no energetic incentive whatsoever/ for the spins to want to align one way versus another. There's nothing pulling on the spins to make them want to point in a particular. /Yet/ we've just discovered that there's a nonzero net magnetic moment at low temperatures; in other words, that all the spins are preferring to point in some direction over the other! How is this possible?
 
-Well, believe it or not, this is how nature behaves. It's what you might call a *collective conspiracy* -- none of the /individual/ spins feel an external field, but if enough of them happen to fluctuate and point in a particular way, they'll set up a strong enough local field to convince their neighbors to the same way -- so strong, in fact, that a nontrivial fraction of the $N$ spins also ``get in on the conspiracy'', and the material develops long-range order and gains a /macroscopic/ magnetic moment! Truly remarkable, especially if you consider just how many spins there are ($N \sim 10^{23}$), and just how weak the magnetic field of each individual spin is. Magical.
+Well, believe it or not, this is how nature behaves. It's what you might call a *collective conspiracy* -- none of the /individual/ spins feel an external field, but if enough of them happen to fluctuate and point in a particular way, they'll set up a strong enough ``local field'' to convince their neighbors to the same way -- so strong, in fact, that a nontrivial fraction of the $N$ spins also ``get in on the conspiracy'', and the material develops long-range order and gains a /macroscopic/ magnetic moment. Truly remarkable, especially if you consider just how many spins there are ($N \sim 10^{23}$), and just how weak each individual magnetic moment is. Magical.
 
 So to summarize, we've just discovered a conspiracy:
 
 ~~~
 {Behavior of Mean-field Ising Ferromagnet}
 - At high temperatures $T > T_c$, the spins exhibit a disordered *paramagnetic* phase, pointing in every which way. The average magnetization of the system is zero.
-- At low temperatures $T < T_c$, the spins exibit an ordered *ferromagnetic* phase, where they all conspired to point in one direction (even when there's no external field telling them which way to point!) The average magnetization of the system is (shockingly!) nonzero.
+- At low temperatures $T < T_c$, the spins exibit an ordered *ferromagnetic* phase, where they all conspired to point in one direction (even when there's no external field telling them which way to point!) The average magnetization of the system is (shockingly) nonzero.
 ~~~
 
 === How come long-range order only develops at low T?
 
-How come long-range order only develops at low T? There are a number of explanations, some of which are more enlightening than others:
-- Look at the graphs, goddammit! We just proved it!
-- At high temperatures, all the spins are jiggling around with so much thermal energy that any local conspiracies of all-up-zones or all-down-zones are quickly jiggled away out of existence before they have time to spread into a macroscopic fraction of the material.
+Here is a qualitative picture for why high temperature favors disorded phases. At sufficiently high temperatures, all the spins are jiggling around with so much thermal energy that any local conspiracies of all-up-zones or all-down-zones are quickly jiggled away out of existence before they have time to spread into a macroscopic fraction of the material.
 
-We can also an argument for the phase transition by thinking about the two terms in the free energy $F = E - TS$. Each of the phases has an ``energy'' $E$ and an ``entropy'' $S$, and depending on the value of the temperature $T$, the free energy of one phase might be higher than the other. (Of course this is all somewhat qualitative, I'm being a bit loose with my language here...don't take this argument /too/ seriously!)
-- In the disordered paramagnetic phase, the spins can point in any which way, so there's lots of possible configurations (high entropy, happy!), but there's very little energetic reward because the spins haven't chosen to align (high energy, sad!).
-- In the ordered paramagnetic phase, the spins have all conspired to point (mostly) in one direction, so there are less possible configurations for them (low entropy, sad!), but since they're neatly lined up in an energy-minimizing manner, there's a glorious energetic reward (low energy, happy!)
+There's also a nice argument that comes from the interplay between the two terms of the free energy $F = E - TS$. Each phase has its own energy $E$ and entropy $S$, and depending on the value of the temperature $T$, the free energy $F$ of one phase might be higher than the other. 
+- In the disordered paramagnetic phase, the spins can point in any which way, so there's lots of possible configurations (high entropy, favorable), but there's very little energetic reward because the spins haven't chosen to align (high energy, unfavorable).
+- In the ordered paramagnetic phase, the spins have all conspired to point (mostly) in one direction, so there are less possible configurations for them (low entropy, unfavorable) but since they're neatly lined up in an energy-minimizing manner, there's a glorious energetic reward (low energy, favorable)
 
-Which phase has the lower free energy? At high temperatures, when the entropic contribution is more heavily favored, the paramagnetic phase flies off to an entropic heaven of possibilities, whereas at low temperatures, when all the system wants to do is to minimize energy, the orderly ferromagnetic phase wins out.
+Which phase has the lower free energy? At high temperatures, when the entropic contribution is more heavily weighted, the paramagnetic phase flies off to an entropic heaven of possibilities, whereas at low temperatures, when all the system wants to do is to minimize energy, the orderly ferromagnetic phase wins out.
 
 == Solving for the critical temperature
 
@@ -177,7 +175,7 @@ Let's look at our pictures again:
 
 Our goal here is to find the special temperature $T_c$ that separates the nonzero-solution-regime from the no-nonzero-solution-regime (sorry, these words are confusing). There's a simple condition that tells you whether or not the green curve will hit the blue curve again after $b=0$. Can you figure it out by staring at the picture?
 
-Here's the secret: The green curve has to be /steep enough/ at $b=0$ for the blue curve to ``catch up to it'' later on and intersect the green line again. If the green line's steeper than the blue line at $b=0$, then there'll be a nonzero solution for $b$, and if it's shallower, there won't be. And if the green line is exactly as steep as the blue line at $b=0$, then we're at the critical temperature taht separates the two possibilities. Clever, eh?
+Here's the secret: The green curve has to be /steep enough/ at $b=0$ for the blue curve to ``catch up to it'' later on and intersect the green line again. If the green line's steeper than the blue line at $b=0$, then there'll be a nonzero solution for $b$, and if it's shallower, there won't be. And if the green line is exactly as steep as the blue line at $b=0$, then we're at the critical temperature that separates the two possibilities. Clever, eh?
 
 This little observation gives us a mathematical procedure to find the critical temperature: we take the derivative of the LHS and RHS, set them equal to each other at $b=0$, and solve for $\beta$. The slope of the blue curve $y=b$ is 1, and the slope of the green curve at $b=0$ is
 \(
@@ -194,30 +192,30 @@ Why does taking a derivative of the free energy w.r.t. the external field give y
 
 Well, you can see this directly by plugging in $F = -T \log Z$ and then expanding out the partition function. It's a pretty fun exercise to work this out yourself...remember that $(\log f(x))' = f'(x) / f(x)$...
 
-If you're feeling more *thermodyanmically inclined*, you can also convince yourself that ${\partial F \over \partial H} = - M$ via the following thermodynamic argument. (Now I'm calling the external field $H$ and the magnetization $M$ in the true thermodynamic spirit!) Ah yes, thermodynamics...your old friend...I'll gloss over a lot of the details because, because this is a statistical mechanics course, not a thermodynamics course.
+If you're feeling more *thermodyanmically inclined*, you can also convince yourself that ${\partial F \over \partial H} = - M$ via the following thermodynamic argument. (Now I'm calling the external field $H$ and the magnetization $M$ in the true thermodynamic spirit.) 
     
-Okay here we go. When we include the external *magnetic field* $H$ into a thermodynamic treatment, our *internal energy* function $E = E(S,H)$ gains an extra parameter $H$. The external field gives us another handle to perform work on the system; when we twiddle it by an amount $dH$, the energy of the system changes by an amount $-M dH$, where we recognize the magnetization $-M$ as the *conjugate variable* to the external field $H$. (Think back to E'n'M why magnetic dipole times magnetic field gives you an energy...or maybe think to a quantum mechanical spin...)
+When we include the external *magnetic field* $H$ into a thermodynamic treatment, our *internal energy* function $E = E(S,H)$ gains an extra parameter $H$. The external field gives us another handle to perform work on the system; when we twiddle it by an amount $dH$, the energy of the system changes by an amount $-M dH$, where we recognize the magnetization $-M$ as the *conjugate variable* to the external field $H$. (Think back to E'n'M why magnetic dipole times magnetic field gives you an energy...)
 
-Anyways, once we include a magnetic field, we can either change the internal energy by adding some heat $T dS$ or by performing some magnetic work $-MdH$, which means that the total differential of the internal energy is
+Once we include a magnetic field, we can either change the internal energy by adding some heat $T dS$ or by performing some magnetic work $-MdH$, which means that the total differential of the internal energy is
 \(
     dE = T dS - M dH.
 \)
 
-However, since we're considering the Ising model in a /canonical/ ensemble at a fixed temperature $T$, it doesn't make much sense to talk about derivatives of the (internal) energy $E$, because $E$ is a natural function of the /entropy/ $S$ rather than the /temperature/ $T$. So even though we /can/ find the magnetization $M$ in principle as a derivative of the internal energy $E$ as $M = {\partial E \over \partial H} |_S$, it's pretty physically useless to do so, because we're holding entropy constant in the derivative, rather than the temperature.
+However, since we're considering the Ising model in a /canonical/ ensemble at a fixed temperature $T$, it doesn't make much sense to talk about derivatives of the (internal) energy $E$, because $E$ is a natural function of the entropy $S$ rather than the temperature $T$. So even though we /can/ find the magnetization $M$ in principle as a derivative of the internal energy $E$ as $M = {\partial E \over \partial H} |_S$, it's pretty physically useless to do so, because that derivative holds entropy constant rather than the temperature.
 
 To account for this issue, we perform a /Legendre transformation/ to the *free energy*
 \(
     F \equiv E - TS
 \)
-which then becomes a /natural/ function of the temperature as $F = F(T,H)$! (I don't have room to actually /prove/ why this is the case in this little remark box...I'm already going /way/ over my quota today in this little aside.) The differential of free energy can then be expressed as
+which then becomes a /natural/ function of the temperature as $F = F(T,H)$. The differential of free energy can then be expressed as
 \(
     dF = -S dT - M dH
 \)
 from which we can read off the magnetization
 \(
-    M = - {\partial F \over \partial H}|_T
+    M = - {\partial F \over \partial H}\bigg|_T
 \)
-where the derivative is now taken at a fixed /temperature/ rather than at fixed /entropy/, meaning that it aligns with our treatment of the Ising Model as a constant-temperature canonical ensemble of statistical mechanics.
+where the derivative is now taken at a fixed /temperature/ rather than at fixed /entropy/, meaning that it aligns with our treatment of the Ising Model in the constant-temperature canonical ensemble of statistical mechanics.
 
-Okay, to be fair, I didn't really prove anything in the above, I just kind of pulled the $-H dM$ term out of thin air and then waved my hands around for a sort of ``plausibility'' argument. But I do think it's a reasonable sort of thing to sa. Hooray, thermodynamics!
+Okay, to be fair, I didn't really prove anything in the above, I just kind of pulled the $-H dM$ term out of thin air and then waved my hands around for a sort of ``plausibility'' argument. But I do think it's a reasonable sort of thing to say. Hooray, thermodynamics.
 ~~~

@@ -5,7 +5,7 @@ Onwards we continue in our quest for understanding complicated interacting syste
 
 == Overview
 
-In my notes, we're going to take a slightly different approach than in class. (See the [\#opinion bottom of this page] for my reasoning.) Rather than jumping right into Landau and Ginzburg's functional $F[\phi(\vec{r})]$, we're going to go /step by step/ to properly build up our intuition. Here's the game plan:
+In my notes, we're going to take a slightly different approach than in class. (See the [\#opinion bottom of this page] for my reasoning.) Rather than jumping right into the Landau-Ginzburg functional $F[\phi(\vec{r})]$, we're going to go /step by step/ to properly build up our intuition. Here's the game plan:
 
 ~~~
 {Game Plan}
@@ -14,7 +14,7 @@ We want to understand what $F[\phi(\vec{r})]$ really means, and why it's such a 
 To start off, we will introduce a fictitious ``probe field'' $h$ as a [week4c.html cute trick] to easily calculate the magnetization $m$. After a Legendre transform, we will end up with the free energy $F$ as a function of magnetization $m$ -- and as we'll find, $F(m)$ is a fantastic little object.
    - Note: In class we jumped directly into a /spatially-varying magnetization density/ $m_j$ rather than beginning with a uniform $m$. I'm taking a different approach here.
 
-If time permits, we'll take a little detour to understand free energy, and why [week4d.html we care so much] about it. Spoiler alert: the minima of the free energy tell you where equilibrium lies! 
+If time permits, we'll take a little detour to understand free energy, and why [week4d.html we care so much] about it. Spoiler alert: the minima of the free energy tell you where equilibrium lies. 
 
 Armed with intuition about free energy, we'll [week4e.html explore the behavior of $F(m)$] (Landau theory), which will teach us many fabulous things:
 - a beautiful intuition for the behavior of second-order phase transitions
@@ -23,7 +23,9 @@ Armed with intuition about free energy, we'll [week4e.html explore the behavior 
 - insight into how you can deduce the shape of $F(m)$ merely with /symmetry/ arguments
 - and far more....
 
-Once we've solidified our understanding of $F(m)$, we'll move on and [week4f.html generalize] $m$ to a /spatially-varying/ magnetization density $m \to m_j$, which lets us account for /textures/ in $m_j$ at different sites $j$. Also, we'll discuss how to generalize from $m$ to an *order parameter* $\phi$ to describe all sorts of phase transitions beyond ferromagnetic ordering. Finally, we'll [week4g.html take the continuum limit] $\phi_j \to \phi(\vec{r})$ and pretend that the order parameter is defined /everywhere in space/ $\vec{r}$ rather than just sites $j$. This approach allows us to construct an *order parameter field* $\phi(\vec{r})$ and to think about the free energy as a function(al) of the ``texture'' of the field (Landau-Ginzburg theory). If time permits, we'll also explain how to arrive at $\phi(\vec{r})$ by *coarse-graining*. (Depending on how we cover the renormalization group later, this may or may not be useful!)
+Once we've solidified our understanding of $F(m)$, we'll move on and [week4f.html generalize] $m$ to a /spatially-varying/ magnetization density $m \to m_j$, which lets us account for /textures/ in $m_j$ at different sites $j$. Also, we'll discuss how to generalize from $m$ to an *order parameter* $\phi$ to describe all sorts of phase transitions beyond ferromagnetic ordering.
+
+Then we'll [week4g.html take the continuum limit] $\phi_j \to \phi(\vec{r})$ and pretend that the order parameter is defined /everywhere in space/ $\vec{r}$ rather than just sites $j$. This approach allows us to construct an *order parameter field* $\phi(\vec{r})$ and to think about the free energy as a function(al) of the ``texture'' of the field (Landau-Ginzburg theory). If time permits, we'll also explain how to arrive at $\phi(\vec{r})$ by *coarse-graining*. (Depending on how we cover the renormalization group later, this may or may not be useful!)
 
 Finally, we'll discuss how we [week4g.html could have arrived] at the shape of $F[\phi(\vec{r})]$ just by *symmetry arguments*. This sort of top-down or *phenomenological* approach is the sort of stuff that theorists fantasize about. The argument is simple, general, and powerful.
 ~~~
@@ -98,9 +100,7 @@ Because of my strong opinions, *this section of my notes will deviate a bit from
 
 If I had a say, I would /strongly encourage/ everyone to read the bonus sections, because 
 .  I feel that they make the actual course material much more intuitive and illuminating.
-    .. The two middle sections of the Landau theory page will be especially helpful for some intuition behind phase transations!
 .  Personally, I find the extra topics quite fascinating, and I think it's a shame we don't get to cover them in class.
-# .  In my opinion, the ordering and presentation that I choose is a bit more pedagogically reasonable.
 .  I may include some discussion about topics on the problem set in the bonus sections!?
 
 Anyways, enough babbling. [week4c.html Let's get started].

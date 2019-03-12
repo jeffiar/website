@@ -5,7 +5,7 @@
 <meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <link rel="stylesheet" href="jemdoc.css" type="text/css" />
-<title>Solving the 1D Ising Model for real!!</title>
+<title>Solving the 1D Ising Model</title>
 </head>
 <body>
 <script type="text/javascript">
@@ -53,15 +53,14 @@ try {
 </td>
 <td id="layout-content">
 <div id="toptitle">
-<h1>Solving the 1D Ising Model for real!!</h1>
+<h1>Solving the 1D Ising Model</h1>
 </div>
-<p>Today (Wed Week 2) marks the third time that we've gone over the 1D Ising model, and it's still confusing as hell! Thankfully, today's class made things a bit more clear for me. I guess third time's a charm. </p>
-<p>Anyways, here we go.</p>
+<p>Today (Wed Week 2) we went through the solution to the 1D Ising model in detail.</p>
 <h3>Outline of this lecture</h3>
 <ul>
-<li><p>Big Picture</p>
+<li><p><a href="#big">Big Picture</a></p>
 </li>
-<li><p><a href="#solving">Solving the 1D Ising Model for real!!</a></p>
+<li><p><a href="#solving">Solving the 1D Ising Model</a></p>
 <ul>
 <li><p><a href="#solving1">The transfer matrix trick</a></p>
 </li>
@@ -70,9 +69,10 @@ try {
 <li><p><a href="#solving3">Diagonalizing <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> via analogy to spin-half</a></p>
 </li></ul>
 </li>
-<li><p>The homework</p>
+<li><p><a href="#hw">The homework</a></p>
 </li>
 </ul>
+<p><a name="big"></a></p>
 <h2>Big picture</h2>
 <h3>What are we trying to do?</h3>
 <p>Our end goal is to find various <b>thermodynamic properties</b> of the 1D Ising model. Remember that thermodynamics means that</p>
@@ -89,7 +89,7 @@ try {
 <ul>
 <li><p>For instance, you can imagine that if there's a very strong magnetic field that wants to align the spins to face downwards, then <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> will be close to -1. Or that if you heat everything up to very hot, then all the spins are scrambled to be randomly up or down, so <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> will be close to 0.</p>
 </li>
-<li><p>For the 1D Ising model, <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> is the same for <i>all values of <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /></i>! Since the Hamiltonian is <b>translationally invariant</b> (see <a href="intro3.html">explanation of symmetry</a>), all the sites are identical, and the average spin will be the same no matter which site you look at.</p>
+<li><p>For the 1D Ising model, <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> is the same for <i>all values of <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /></i>. Since the Hamiltonian is <b>translationally invariant</b> (see <a href="intro3.html">explanation of symmetry</a>), all the sites are identical, and the average spin will be the same no matter which site you look at.</p>
 <ul>
 <li><p>(Maybe for more complicated or realistic models, the sites would be distinct &ndash; as in a <i>heterogenous</i> material &ndash; and then perhaps <img class="eq" src="eqs/5203875748889829938-130.png" alt="langle sigma_j rangle neq langle sigma_i rangle " style="vertical-align: -6px" /> in general)</p>
 </li></ul>
@@ -100,7 +100,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <ul>
 <li><p>For instance, you can imagine that nearby spins are more correlated than faraway spins, because they can interact with eachother more strongly. Or you can imagine that as <img class="eq" src="eqs/6728176591232189689-130.png" alt="T to infty" style="vertical-align: -1px" />, any pairs of spins will become less correlated, since the thermal excitations make all the spins jiggle around more.</p>
 </li>
-<li><p>Again, because of translational invariance (see <a href="intro3.html">here for explanation</a>), we expect <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" /> to <i>only depend on the distance between the spins</i> <img class="eq" src="eqs/7555364370789764245-130.png" alt="i-j" style="vertical-align: -4px" />! For instance, the correlation between spins 2 and 5 is the same as between 100 and 103, since in both cases, the pairs of sites are separated by three lattice spacings.</p>
+<li><p>Again, because of translational invariance (see <a href="intro3.html">here for explanation</a>), we expect <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" /> to <i>only depend on the distance between the spins</i> <img class="eq" src="eqs/7555364370789764245-130.png" alt="i-j" style="vertical-align: -4px" />. For instance, the correlation between spins 2 and 5 is the same as between 100 and 103, since in both cases, the pairs of sites are separated by three lattice spacings.</p>
 </li>
 </ul>
 
@@ -124,11 +124,11 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <br /></div><p>Here the sum runs over all the states of the system <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />, <img class="eq" src="eqs/8482956174189949697-130.png" alt="E(s)" style="vertical-align: -5px" /> means &lsquo;&lsquo;the energy of the system when it's in state s&rsquo;&rsquo;, and <img class="eq" src="eqs/6492755770254744360-130.png" alt="beta = 1/T" style="vertical-align: -5px" /> is the inverse temperature of our system.</p>
 <p>We spend most of our effort trying to figure out how to compute the partition function, which begs the question&hellip;</p>
 <h3>Why is the partition function useful?</h3>
-<p>Once we've found the partition function <img class="eq" src="eqs/11520034651-130.png" alt="Z" style="vertical-align: -0px" />, we can calculate pretty much everything else! For instance:</p>
+<p>Once we've found the partition function <img class="eq" src="eqs/11520034651-130.png" alt="Z" style="vertical-align: -0px" />, we can calculate pretty much everything else. For instance:</p>
 <ul>
 <li><p>the <b>free energy</b> <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> is given by <img class="eq" src="eqs/8773196842217219020-130.png" alt="F = - T log Z" style="vertical-align: -4px" /></p>
 </li>
-<li><p>the <b>average spin</b> <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> is given by </p>
+<li><p>the thermal <b>average spin</b> <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> is given by </p>
 </li>
 </ul>
 
@@ -147,8 +147,6 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <div class="blocktitle">Game Plan</div>
 <div class="blockcontent">
 <ol>
-<li><p>Draw a <b>picture</b> to gain some physical intuition (we didn't do this in class!!)</p>
-</li>
 <li><p>Rewrite the Hamiltonian as a sum over <b>bonds</b> (rather than sites AND bonds)</p>
 </li>
 <li><p>Zoom in on a particular bond and write down a <b>transfer matrix</b> which represents the bond from site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> to site <img class="eq" src="eqs/8681419883298622259-130.png" alt="j+1" style="vertical-align: -4px" />.</p>
@@ -169,7 +167,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <li><p>Express the <b>correlation function</b> <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" /> in terms of eigenvalues and eigenstates of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />. (difficulty: Kivelson)</p>
 </li>
 </ol>
-<p>Afterwards, we will diagonalize the transfer matrix and explicitly calculate these quantities. Throughout these steps, we'll appeal to Pauli matrices and our intuition about the quantum mechanics of spin-half to help us calculate things!</p>
+<p>Afterwards, we will diagonalize the transfer matrix and explicitly calculate these quantities. Throughout these steps, we'll appeal to Pauli matrices and our intuition about the quantum mechanics of spin-half to help us calculate things.</p>
 <ol>
 <li><p>Find the eigenvalues and eigenvectors of the transfer matrix <img class="eq" src="eqs/7934638204519285711-130.png" alt="underline{t}" style="vertical-align: -3px" /></p>
 </li>
@@ -228,7 +226,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <p>Anyways, to find the partition function, we need to calculate</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/5332849873503450309-130.png" alt=" Z = sum_{{sigma}} e^{-beta H({sigma})}. " />
-<br /></div><p>When we expand out the sum, we realize the key trick: <i>the transfer matrices are matrix-multiplied</i> with each other, because you sum over the repeated index!</p>
+<br /></div><p>When we expand out the sum, we realize the key trick: <i>the transfer matrices are matrix-multiplied</i> with each other, because you sum over the repeated index.</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/4468606757709239582-130.png" alt=" Z = sum_{sigma_1} sum_{sigma_2} ... sum_{sigma_N} t_{sigma_1 sigma_{2}} t_{sigma_2 sigma_3} ... t_{sigma_{N-1} sigma_{N}} t_{sigma_{N} sigma_1} " />
 <br /></div><p>Rememeber that matrix multiplication is defined as <img class="eq" src="eqs/2399393867863337256-130.png" alt="(AB)_{ik} = sum_j A_{ij}B_{jk}" style="vertical-align: -9px" />. If we zoom in on the multiplication between the 1-2 transfer matrix and the 2-3 transfer matrix, we see that indeed, the transfer matrices are being multiplied by each other when we sum over their shared index <img class="eq" src="eqs/1833092850355643518-130.png" alt="sigma_2" style="vertical-align: -3px" />:</p>
@@ -250,7 +248,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <br /></div><p>If we suggestively scooch the sum signs next to their respective ket-bras, it looks like</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/774378093776474918-130.png" alt=" Z = sum_{sigma_1} langle sigma_1 | t underbrace{left[sum_{sigma_2}  | sigma_2 rangle langle sigma_2 | right]}_I t underbrace{left[sum_{sigma_3} | sigma_3 rangle langle sigma_3 | right ]}_I t ...  t underbrace{left[ sum_{sigma_N}| sigma_N rangle langle sigma_N | right]}_I t | sigma_1 rangle " />
-<br /></div><p>and we realize that there's just a copy of the identity lying between neighboring transfer matrix operators! (Remember the resolution of the identity <img class="eq" src="eqs/6955961616210004152-130.png" alt="I = sum_a |arangle langle a|" style="vertical-align: -7px" />.)</p>
+<br /></div><p>and we realize that there's just a copy of the identity lying between neighboring transfer matrix operators. (Remember the resolution of the identity <img class="eq" src="eqs/6955961616210004152-130.png" alt="I = sum_a |arangle langle a|" style="vertical-align: -7px" />.)</p>
 <p>So <img class="eq" src="eqs/11520034651-130.png" alt="Z" style="vertical-align: -0px" /> simplifies to</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/7694865124103242872-130.png" alt=" Z = sum_{sigma_1} langle sigma_1 | t^N | sigma_1 rangle = textrm{Tr} left[t^Nright] " />
@@ -274,7 +272,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <br /></div><p>This is a matrix with +1 in the (+1,+1) entry and a -1 in the (-1,-1) entry. In other words, it's the <b>Pauli z matrix</b> <img class="eq" src="eqs/1820114350954289909-130.png" alt="tau_z" style="vertical-align: -4px" /> defined by</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/2750191719009266943-130.png" alt=" tau_z |pm1 rangle = pm | pm1 rangle. " />
-<br /></div><p>Now when we write out the transfer matrices in our sum, all the ket-bras resolve to the identity <i>expect</i> for the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th one, which instead becomes a Pauli z matrix! So we end up with a <img class="eq" src="eqs/1820114350954289909-130.png" alt="tau_z" style="vertical-align: -4px" /> trapped between a bunch of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />'s in our expression.</p>
+<br /></div><p>Now when we write out the transfer matrices in our sum, all the ket-bras resolve to the identity <i>expect</i> for the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th one, which instead becomes a Pauli z matrix. So we end up with a <img class="eq" src="eqs/1820114350954289909-130.png" alt="tau_z" style="vertical-align: -4px" /> trapped between a bunch of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />'s in our expression.</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/3944850711770817419-130.png" alt="     langle sigma_j rangle = sum_{sigma_1} langle sigma_1 | underbrace{t cdot ... cdot t}_{j-1} cdot tau_z cdot underbrace{t cdot ... cdot t}_{N-(j-1)} | sigma_1 rangle = textrm{Tr} left[t^{j-1} tau_z t^{N-(j-1)}right] " />
 <br /></div><h3>Rewriting the spin-spin correlation as a trace</h3>
@@ -283,7 +281,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <div class="infoblock">
 <div class="blockcontent">
 
-<div class="eqwl"><img class="eqwl" src="eqs/6307643891956330437-130.png" alt=" begin{array}{rl} Z &amp;= textrm{Tr} left[t^Nright],  langle sigma_j rangle &amp;= Z^{-1} textrm{Tr} left[t^{j-1} tau_z t^{N-(j-1)}right],  langle sigma_i sigma_j rangle  &amp;= Z^{-1} textrm{Tr} left[t^Nright]. end{array} " />
+<div class="eqwl"><img class="eqwl" src="eqs/7864856541006257332-130.png" alt=" begin{array}{rl} Z &amp;= textrm{Tr} left[t^Nright],  langle sigma_j rangle &amp;= Z^{-1} textrm{Tr} left[t^{j-1} tau_z t^{N-(j-1)}right],  langle sigma_i sigma_j rangle &amp;= Z^{-1} textrm{Tr} left[t^{i-1} tau_z t^{j-i} tau_z t^{N-(j-1)}right],  end{array} " />
 <br /></div></div></div>
 <p><a name="solving2"></a></p>
 <h2>Calculating these traces</h2>
@@ -326,6 +324,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <p>Check out the picture <a href="https://piazza.com/class/jr1doe3kcpj3wf?cid=6">here</a> for a graphical explanation of why <img class="eq" src="eqs/7671567527649116472-130.png" alt="langle psi_+ | tau_z | psi_+ rangle = t_z / sqrt{t_z^2 + t_x^2}" style="vertical-align: -6px" />. A picture is worth a thousand words!</p>
 <p>Work in progress, check back soon&hellip;</p>
 <p><img src="../img/under_construction.gif" style="height: 50px; width:50px"/></p>
+<p><a name="hw"></a></p>
 <h2>Our first problem set</h2>
 <p>To be honest, we pretty much did the problem set during class today.</p>
 <p>On the problem set, Prof. Kivelson first asks us to calculate the magnetization density <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />, which we did in class (!). Later he asks us to express the transfer matrix in terms of Pauli matrices (which we also did in class (!?)) and to discuss the correspondence between the 1D Ising Model and a spin-half quantum system (again, we also did this in class!!!).</p>
@@ -353,13 +352,12 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 
 <div class="eqwl"><img class="eqwl" src="eqs/7523272421005268160-130.png" alt="     M equiv sum_{j=1}^{N} langle sigma_j rangle, " />
 <br /></div><p>That is, when we perform an experiment, we measure the <b>total magnetization</b> of the magnet, which we get by adding up the contributions from each of the spins. (Notice this is capital <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" />, not lowercase <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />!)</p>
-<p>The problem with total magnetization <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" /> is that it's an <i>extensive</i> rather than <i>intensive</i> property &ndash; that is, it scales with the system size <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />. If we doubled the size of the magnet, we would also double the total magnetiation <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" />. Now, we don't want to use an extensive property that grows with <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />, since it'll blow up when we take the thermodynamic limit <img class="eq" src="eqs/6521057346860132603-130.png" alt="N to infty" style="vertical-align: -1px" />. Rather, we want an intensive property independent of system size.</p>
+<p>The problem with total magnetization <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" /> is that it's an <i>extensive</i> rather than <i>intensive</i> property &ndash; that is, it scales with the system size <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />. If we doubled the size of the magnet, we would also double the total magnetiation <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" />. Now, we don't want to use an extensive property that grows with <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />, since it'll blow up when we take the thermodynamic limit <img class="eq" src="eqs/6521057346860132603-130.png" alt="N to infty" style="vertical-align: -1px" />. Rather, we want to use an intensive property independent of system size, a density rather than a total quantity.</p>
 <p>To solve this conundrum, just divide the total magnetization by <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />. We define the <b>magnetization density</b> <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> as</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/4901257011716284478-130.png" alt="     m = frac M N = N^{-1} sum_{j = 1}^{N}langle sigma_j rangle, " />
 <br /></div><p>and voila, <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> no longer blows up as <img class="eq" src="eqs/6521057346860132603-130.png" alt="N to infty" style="vertical-align: -1px" />. So we've achieved our goal of finding an experimental quantity that's intensive.</p>
 <p>Finally, just to make this whole affair even more ridiculous, it turns out that <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" /> is actually the same value for all <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />! (Remember, the Ising model Hamiltonian is <a href="intro3.html">translationally invariant.</a>) So when we find <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />, we're just adding up the same number <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> times, and then dividing by <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />&hellip;and at the end of the day, the magnetization density is just the same as the average spin <img class="eq" src="eqs/5477051225804240734-130.png" alt="m = langle sigma_j rangle" style="vertical-align: -6px" />.</p>
-<p>Anyways, that was a long-winded way to arrive at the equation <img class="eq" src="eqs/5477051225804240734-130.png" alt="m = langle sigma_j rangle" style="vertical-align: -6px" />, but there's a few subtleties involved in interpreting both sides of the equation.</p>
 </div></div>
 <hr>
 <h2>Leave a Comment Below!</h2>
@@ -370,7 +368,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-03-05 00:25:10 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-03-11 22:29:39 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec4.jemdoc">source</a>)
 </div>
 </div>
