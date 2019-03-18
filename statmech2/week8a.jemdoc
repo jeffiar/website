@@ -5,22 +5,13 @@ After a long foray into sophisticated field theories, we're going to jump into a
 
 ~~~
 {Opinion}
-Honestly, I would have /much/ preferred to learn about simple close-to-equilibrium dynamics, such as diffusion, the Langevin equation, and fluctuation-dissipation. I think it would provide a nice philosophical wrap-up to the class, since it convincingly explains how an equilibrium ``ensemble'' results from the /dynamics/ of coupling to an external heat bath.
-
-But from the looks of things, we're instead going to talk about bouncing balls in a half-assed manner...
+I would have /much/ preferred to learn about simple close-to-equilibrium dynamics, such as diffusion, the Langevin equation, and fluctuation-dissipation. I think it would provide a nice philosophical wrap-up to the class, since it convincingly explains how an equilibrium ``ensemble'' results from the /dynamics/ of coupling to an external heat bath.
 ~~~
 
 ~~~
 {Another side note}
 Since Prof. Kivelson is gone for the American Physical Society's March Meeting this week, we have another guest instructor, the wonderful Prof. Ben Feldman. He took a much more ``traditional'' active learning approach with well-designed (!) worksheets that guided us through problems.
 ~~~
-
-=== Outline
-- Motivation
-- Kinetic Theory of gases a.k.a. bouncing balls
-- Collisions
-- Mean Free Path
-- Mickey-mouse viscosity
 
 == Motivation: Thinking about Dynamics
 
@@ -38,9 +29,9 @@ Let me open with a cool gif I made last year in Physics 113. (Ignore the right h
 
 On the left hand panel, I've drawn a toy model for a gas. Microscopically, we can see that a gas looks like a bunch of particles whizzing around and bumping into each other. But macroscopically, we know that a gas behaves quite differently -- it obeys the ideal gas law $PV = Nk_B T$, it's compressible, it's homogenous, etc.
 
-To explain our day-to-day experience with gases, we turn to the *kinetic theory* of gases. It's a pretty silly theory that uses bouncing balls to explain all the properties that we know and love. The theory turns to some simple notions of statistics to describe the huge number of particles, and it relies on a few cartoon arguments, but apart from that, it's a simple and rather enlightening theory.
+To explain our day-to-day experience with gases, we turn to the *kinetic theory* of gases. This theory is a silly caricature that uses bouncing balls to explain all the properties that we know and love. It relies on some simple notions of statistics to describe the huge number of particles, and it relies on a few cartoon arguments, but apart from that, it's a simple and rather enlightening theory.
 
-Keep in mind that we can't take the cartoon picture of bouncing balls too seriously! Of course reality is much more complicated: gases have a rich internal structure of electrons bound to nuclei; the molecules feel an interaction energy with each other; the collisions cause vibrational energy transfer between molecules, and far more. But the point of kinetic theory isn't the details; the purpose is to figure out simple properties from the silliest assumptions.
+Keep in mind that we can't take the cartoon picture of bouncing balls too seriously! Of course reality is much more complicated: gases have a rich internal structure of electrons bound to nuclei; the molecules feel an interaction energy with each other; the collisions cause vibrational energy transfer between molecules, and far more. But the point of kinetic theory isn't the details; the purpose is to figure out simple properties from the simplest assumptions.
 
 ~~~
 {Half-assing}
@@ -49,7 +40,7 @@ We're going to be half-assing a lot, because kinetic theory is a ridiculous cari
 
 === Collisions
 
-An ideal gas consists of $N$ particles whizzing around. How ideal is ideal?
+We begin by considering the question of collisions between the particles of an ideal gas.
 
 In absolutely non-interacting world, the particles would fly right through each other, but such a model would be way too boring. If a particle started off with some speed, then no matter how long you wait, it always has the same speed. Furthermore, the particles wouldn't actually reach thermal equilibrium with each other because they don't exchange energy.
 
@@ -62,6 +53,31 @@ Of course, in reality, the collisions /do/ cause other effects, so what I really
 
 And so on and so forth, you get the idea. When we ignore certain aspects of molecular behavior, we're really just saying that its characterisitc lengthscale (timescale) is far shorter than something else we care about.
 
+The rest of this page will be brief.
+
 == Collision rates
 
-How often do collisions occur?
+- Say that a particle collides with a rate of $w$ collisions per second. That is, in a time interval of $dt$, we expect to have $N \,w \,dt$ collisions.
+- The number of particles that remain unharmed thus decreases by $dN = - N \,w \,dt$ during every time interval $dt$. Solving the differential equation, we find that the the number of unharmed particles /decays exponentially/ in time as $N e^{-wt}$.
+- The characteristic timescale of this exponential decay tells you roughly how long a particle travels for until it collides with another particle.
+    -- We call $\tau = 1 / w$ the *relaxation time*.
+    -- We could have found this answer via dimensional analysis: since the collision rate $w$ has units of ``per time'', the only possibility for something with units of time is $1 / w$.
+    -- To fix the constant of proportionality, we have to be a bit more careful with our argument. We see that the number of (unharmed) particles that experience a collision between $t$ and $t + dt$ is given by $(\textrm{collision rate}) (\textrm{\# of unharmed particles})$ = $w \,N e^{-wt}$. And thus the average `time of collision' is given by
+    \(
+\frac 1 N \int_0^\infty t \textrm{(\# particles that collide at time t)} dt = \frac 1 N \int_0^\infty t\, w \, N e^{-wt} dt = 1/w.
+    \)
+
+== Mean Free Paths
+
+- The *mean free path* $l$ is the typical length that a particle travels for before it hits another particle.
+    -- If $l >> a$ then the particles spends most of their time propogating through free space, so the ideal gas approximation is a good one.
+- If a particle travels with a typical speed of $v$, then we see that the mean free path is given by $l = \tau v$. Nothing too surprising.
+
+We can find the mean free path (up to constant factors) via simple dimensional arguments.
+- First we have to remember that scattering theory tells us that the *cross-section* $\sigma_0$ of a scatterer tells you how well it scatters off oncoming particles. The cross-section has units of /area/ and it essentially tells you the effective cross-sectional area when you look at it head-on.
+    -- For instance, for hard-sphere classical particles (e.g. billiard balls), the cross-sectional area is given by $\sigma_0 = \pi d^2$, where $d$ is the diameter of the sphere. (Yes, that's right; two billiard balls will hit each other if their centers are within a /diameter/ of each other!)
+- So in total, there are two unit-ful parameters that can enter into the mean free path:
+    -- the density of the gas (number of particles per unit volume) has units of ``per volume'': $[n] = 1 / L^3$.
+    -- the cross-section of the particles has units of area: $[\sigma_0] = L^2$.
+- And hence the only reasonable possibility is that $l \sim 1 / n \sigma_0$.
+    -- We see that the mean free path is longer for more dilute gases (which makes sense, because there's less particles to collide with), and that it's also longer for particles with a smaller collisional cross-section (which also makes sense because it's harder to collide.)

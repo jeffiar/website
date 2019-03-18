@@ -50,6 +50,8 @@ try {
 <div class="menu-item"><a href="fun.html">Applets!</a></div>
 <div class="menu-category">Transport</div>
 <div class="menu-item"><a href="week8a.html" class="current">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
 </td>
 <td id="layout-content">
 <div id="toptitle">
@@ -59,27 +61,13 @@ try {
 <div class="infoblock">
 <div class="blocktitle">Opinion</div>
 <div class="blockcontent">
-<p>Honestly, I would have <i>much</i> preferred to learn about simple close-to-equilibrium dynamics, such as diffusion, the Langevin equation, and fluctuation-dissipation. I think it would provide a nice philosophical wrap-up to the class, since it convincingly explains how an equilibrium &lsquo;&lsquo;ensemble&rsquo;&rsquo; results from the <i>dynamics</i> of coupling to an external heat bath.</p>
-<p>But from the looks of things, we're instead going to talk about bouncing balls in a half-assed manner&hellip;</p>
+<p>I would have <i>much</i> preferred to learn about simple close-to-equilibrium dynamics, such as diffusion, the Langevin equation, and fluctuation-dissipation. I think it would provide a nice philosophical wrap-up to the class, since it convincingly explains how an equilibrium &lsquo;&lsquo;ensemble&rsquo;&rsquo; results from the <i>dynamics</i> of coupling to an external heat bath.</p>
 </div></div>
 <div class="infoblock">
 <div class="blocktitle">Another side note</div>
 <div class="blockcontent">
 <p>Since Prof. Kivelson is gone for the American Physical Society's March Meeting this week, we have another guest instructor, the wonderful Prof. Ben Feldman. He took a much more &lsquo;&lsquo;traditional&rsquo;&rsquo; active learning approach with well-designed (!) worksheets that guided us through problems.</p>
 </div></div>
-<h3>Outline</h3>
-<ul>
-<li><p>Motivation</p>
-</li>
-<li><p>Kinetic Theory of gases a.k.a. bouncing balls</p>
-</li>
-<li><p>Collisions</p>
-</li>
-<li><p>Mean Free Path</p>
-</li>
-<li><p>Mickey-mouse viscosity</p>
-</li>
-</ul>
 <h2>Motivation: Thinking about Dynamics</h2>
 <p>Throughout the quarter so far (and honestly through most of the previous quarter!), we've worked with the abstract notion of a &lsquo;&lsquo;statistical ensemble&rsquo;&rsquo; over the individual microstates with of a large system. For some reason, we had to believe that ensembles accurately represented the thermodynamic equilibrium state. But we never really went back and explored the arguments and assumptions in detail. What does it really mean to take the average over a <i>huge</i> probability distribution over microstates?</p>
 <p>Ultimately, any discussion about thermodynamic equilibrium must come down to a discussion about <i>dynamics</i> &ndash; about how microstates change in time, and about how this time evolution ultimately causes the system to end up in special thermal-equilibrium-state where macroscopic observables stop changing. To understand the lack of change, we need to understand the process of change.</p>
@@ -88,15 +76,15 @@ try {
 <p>Let me open with a cool gif I made last year in Physics 113. (Ignore the right hand panel for now!)</p>
 <p><img src="../files/physics113/dfluc100.gif"></p>
 <p>On the left hand panel, I've drawn a toy model for a gas. Microscopically, we can see that a gas looks like a bunch of particles whizzing around and bumping into each other. But macroscopically, we know that a gas behaves quite differently &ndash; it obeys the ideal gas law <img class="eq" src="eqs/1620602306748434996-130.png" alt="PV = Nk_B T" style="vertical-align: -3px" />, it's compressible, it's homogenous, etc.</p>
-<p>To explain our day-to-day experience with gases, we turn to the <b>kinetic theory</b> of gases. It's a pretty silly theory that uses bouncing balls to explain all the properties that we know and love. The theory turns to some simple notions of statistics to describe the huge number of particles, and it relies on a few cartoon arguments, but apart from that, it's a simple and rather enlightening theory.</p>
-<p>Keep in mind that we can't take the cartoon picture of bouncing balls too seriously! Of course reality is much more complicated: gases have a rich internal structure of electrons bound to nuclei; the molecules feel an interaction energy with each other; the collisions cause vibrational energy transfer between molecules, and far more. But the point of kinetic theory isn't the details; the purpose is to figure out simple properties from the silliest assumptions.</p>
+<p>To explain our day-to-day experience with gases, we turn to the <b>kinetic theory</b> of gases. This theory is a silly caricature that uses bouncing balls to explain all the properties that we know and love. It relies on some simple notions of statistics to describe the huge number of particles, and it relies on a few cartoon arguments, but apart from that, it's a simple and rather enlightening theory.</p>
+<p>Keep in mind that we can't take the cartoon picture of bouncing balls too seriously! Of course reality is much more complicated: gases have a rich internal structure of electrons bound to nuclei; the molecules feel an interaction energy with each other; the collisions cause vibrational energy transfer between molecules, and far more. But the point of kinetic theory isn't the details; the purpose is to figure out simple properties from the simplest assumptions.</p>
 <div class="infoblock">
 <div class="blocktitle">Half-assing</div>
 <div class="blockcontent">
 <p>We're going to be half-assing a lot, because kinetic theory is a ridiculous caricature of reality anyways. So at best we'll probably get results to within an order of magnitude. But that's okay, since the whole purpose of the theory is just to build some simple arguments about the behavior of gases. Don't take factors of 2 too seriously!</p>
 </div></div>
 <h3>Collisions</h3>
-<p>An ideal gas consists of <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles whizzing around. How ideal is ideal?</p>
+<p>We begin by considering the question of collisions between the particles of an ideal gas.</p>
 <p>In absolutely non-interacting world, the particles would fly right through each other, but such a model would be way too boring. If a particle started off with some speed, then no matter how long you wait, it always has the same speed. Furthermore, the particles wouldn't actually reach thermal equilibrium with each other because they don't exchange energy.</p>
 <p>So we make the next simplest assumption: the particles collide with each other so that they can exchange energy. To make our lives easier, we can pretend that the collisions have <i>no other significant effects</i>: they don't add extra terms to the energies, they don't take too long to occur, and so on.</p>
 <p>Of course, in reality, the collisions <i>do</i> cause other effects, so what I really mean here is that the &lsquo;&lsquo;non-ideal deviations&rsquo;&rsquo; had better be small and unimportant. To be more precise:</p>
@@ -109,8 +97,59 @@ try {
 </li>
 </ul>
 <p>And so on and so forth, you get the idea. When we ignore certain aspects of molecular behavior, we're really just saying that its characterisitc lengthscale (timescale) is far shorter than something else we care about.</p>
+<p>The rest of this page will be brief.</p>
 <h2>Collision rates</h2>
-<p>How often do collisions occur?</p>
+<ul>
+<li><p>Say that a particle collides with a rate of <img class="eq" src="eqs/15232045814-130.png" alt="w" style="vertical-align: -1px" /> collisions per second. That is, in a time interval of <img class="eq" src="eqs/12800076900115546-130.png" alt="dt" style="vertical-align: -1px" />, we expect to have <img class="eq" src="eqs/3606940660767475537-130.png" alt="N ,w ,dt" style="vertical-align: -1px" /> collisions.</p>
+</li>
+<li><p>The number of particles that remain unharmed thus decreases by <img class="eq" src="eqs/1916858030417295584-130.png" alt="dN = - N ,w ,dt" style="vertical-align: -1px" /> during every time interval <img class="eq" src="eqs/12800076900115546-130.png" alt="dt" style="vertical-align: -1px" />. Solving the differential equation, we find that the the number of unharmed particles <i>decays exponentially</i> in time as <img class="eq" src="eqs/3677308896102046554-130.png" alt="N e^{-wt}" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>The characteristic timescale of this exponential decay tells you roughly how long a particle travels for until it collides with another particle.</p>
+<ul>
+<li><p>We call <img class="eq" src="eqs/4467022117040671074-130.png" alt="tau = 1 / w" style="vertical-align: -5px" /> the <b>relaxation time</b>.</p>
+</li>
+<li><p>We could have found this answer via dimensional analysis: since the collision rate <img class="eq" src="eqs/15232045814-130.png" alt="w" style="vertical-align: -1px" /> has units of &lsquo;&lsquo;per time&rsquo;&rsquo;, the only possibility for something with units of time is <img class="eq" src="eqs/2015361899791187956-130.png" alt="1 / w" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>To fix the constant of proportionality, we have to be a bit more careful with our argument. We see that the number of (unharmed) particles that experience a collision between <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/9106913798286553653-130.png" alt="t + dt" style="vertical-align: -2px" /> is given by <img class="eq" src="eqs/863286977603013580-130.png" alt="(textrm{collision rate}) (textrm{# of unharmed particles})" style="vertical-align: -5px" /> = <img class="eq" src="eqs/820751714962309723-130.png" alt="w ,N e^{-wt}" style="vertical-align: -1px" />. And thus the average &lsquo;time of collision&rsquo; is given by</p>
+</li>
+</ul>
+
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2391162670652923095-130.png" alt=" frac 1 N int_0^infty t textrm{(# particles that collide at time t)} dt = frac 1 N int_0^infty t, w , N e^{-wt} dt = 1/w.     " />
+<br /></div><h2>Mean Free Paths</h2>
+<ul>
+<li><p>The <b>mean free path</b> <img class="eq" src="eqs/13824041581-130.png" alt="l" style="vertical-align: -1px" /> is the typical length that a particle travels for before it hits another particle.</p>
+<ul>
+<li><p>If <img class="eq" src="eqs/7557783419272482481-130.png" alt="l &gt;&gt; a" style="vertical-align: -1px" /> then the particles spends most of their time propogating through free space, so the ideal gas approximation is a good one.</p>
+</li></ul>
+</li>
+<li><p>If a particle travels with a typical speed of <img class="eq" src="eqs/15104045431-130.png" alt="v" style="vertical-align: -1px" />, then we see that the mean free path is given by <img class="eq" src="eqs/8941205654582717295-130.png" alt="l = tau v" style="vertical-align: -1px" />. Nothing too surprising.</p>
+</li>
+</ul>
+<p>We can find the mean free path (up to constant factors) via simple dimensional arguments.</p>
+<ul>
+<li><p>First we have to remember that scattering theory tells us that the <b>cross-section</b> <img class="eq" src="eqs/1833092850355643520-130.png" alt="sigma_0" style="vertical-align: -4px" /> of a scatterer tells you how well it scatters off oncoming particles. The cross-section has units of <i>area</i> and it essentially tells you the effective cross-sectional area when you look at it head-on.</p>
+<ul>
+<li><p>For instance, for hard-sphere classical particles (e.g. billiard balls), the cross-sectional area is given by <img class="eq" src="eqs/4669906867790497062-130.png" alt="sigma_0 = pi d^2" style="vertical-align: -4px" />, where <img class="eq" src="eqs/12800038501-130.png" alt="d" style="vertical-align: -1px" /> is the diameter of the sphere. (Yes, that's right; two billiard balls will hit each other if their centers are within a <i>diameter</i> of each other!)</p>
+</li></ul>
+</li>
+<li><p>So in total, there are two unit-ful parameters that can enter into the mean free path:</p>
+<ul>
+<li><p>the density of the gas (number of particles per unit volume) has units of &lsquo;&lsquo;per volume&rsquo;&rsquo;: <img class="eq" src="eqs/6622479897142866377-130.png" alt="[n] = 1 / L^3" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>the cross-section of the particles has units of area: <img class="eq" src="eqs/2370757368929848611-130.png" alt="[sigma_0] = L^2" style="vertical-align: -5px" />.</p>
+</li></ul>
+</li>
+<li><p>And hence the only reasonable possibility is that <img class="eq" src="eqs/1161688819729546142-130.png" alt="l sim 1 / n sigma_0" style="vertical-align: -5px" />.</p>
+<ul>
+<li><p>We see that the mean free path is longer for more dilute gases (which makes sense, because there's less particles to collide with), and that it's also longer for particles with a smaller collisional cross-section (which also makes sense because it's harder to collide.)</p>
+</li>
+</ul>
+
+</li>
+</ul>
 <hr>
 <h2>Leave a Comment Below!</h2>
 <!-- begin wwww.htmlcommentbox.com -->
@@ -120,7 +159,7 @@ try {
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-03-06 12:25:17 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-03-14 12:51:06 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="week8a.jemdoc">source</a>)
 </div>
 </div>
