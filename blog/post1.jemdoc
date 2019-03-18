@@ -1,3 +1,4 @@
+# jemdoc: showsource, analytics{UA-131436916-1}
 = What's on my mind? March 2019
 
 What's going on in the curious canteloupe of my head? Lots of bizarre things pass through my mind, and I thought it'd be fruitful to document the sorts of topics I'm thinking about. This week, the theme is trajectories in high-dimensional spaces...and a little taste of complex anlysis and Fourier Transforms as well.
@@ -127,5 +128,10 @@ To be quite frank, I don't identify too strongly with this flavor of math, and I
 
 Anyways, I still don't have a very firm grasp of this subject, so I'm going to dive back through the book again, going through the derivations carefully and doing the interesting problems. I'm excited: complex analysis is a cute topic, and it brings up lots of intellectual nostalgia.
 
-== Renormalization Group
-
+~~~
+{}{raw}
+<script>
+    document.getElementById("prevlink").href = "free-energy.html";
+    document.getElementById("nextlink").href = "post2.html";
+</script>
+~~~

@@ -8,16 +8,25 @@
 <title>Seven Perspectives on Free Energy</title>
 </head>
 <body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
 <div id="header">
 <h2> Jeffjar's Writings </h2>
-[ <a href="../essays.html">Back to home</a> ]
+<table style="width:100%; table-layout:fixed"><tr><td align=left><a id="prevlink">&#171; Previous Post</a></td><td align=center>[ <a href="../essays.html">Back to home</a> ]</td><td align=right><a id="nextlink">Next Post &#187;</a></td></tr></table>
 </div>
 <div class="content">
 <div id="toptitle">
 <h1>Seven Perspectives on Free Energy</h1>
 </div>
 <p>Ah, free energy: the eternally confusing concept that lies at the heart of thermodynamics and statistical mechanics.</p>
-<p>After so many years, I still find it remarkably difficult to properly <i>interepret</i> the free energy of a system, because there's so many different ways to define it and think about it. Each time you encounter the free energy, you have cope with a different and often unrelated viewpoint. And then at the end of the day, once you've collected a bunch of diverse grab-bag perspectives, you have to somehow consolidate and reconcile them together into a coherent understanding.</p>
+<p>After so many years, I still find it remarkably difficult to properly <i>interepret</i> the free energy of a system, because there's so many different ways to define it and think about it. Each time you encounter the free energy, you have to cope with a different and often unrelated viewpoint. And then at the end of the day, once you've collected a bunch of diverse grab-bag perspectives, you have to somehow consolidate and reconcile them together into a coherent understanding.</p>
 <p>Sometimes I wish there were <i>one</i> definition of The Free Energy, but the more and more I read about it, the less and less I believe in any unified understanding. At its core, free energy is a multi-faced beast.</p>
 <p>Typically, we first encounter this confusing creature in high school chemistry class, when we learn about what makes reactions &lsquo;&lsquo;go&rsquo;&rsquo; &ndash; but as we continue through our educational journey, the unweildy animal pops its head at us again and again in unexpected places &ndash; in the biophysics of molecular motors, in the thermodynamics of steam engines, in discussions of protein folding, in the modern statistical mechanical theory, here, there, everywhere. What lies in common among all these definitions of free energy? What understanding can we glean from each of the interpretations? And how do they help build towards a cohesive understanding of free energy?</p>
 <p>I don't have an answer to these questions. Nevertheless, I find it enlightening to bring together multiple perspectives towards free energy in one same place &ndash; mostly to soothe my own cognitive dissonance towards the whole confusing affair.</p>
@@ -38,14 +47,50 @@
 <li><p>Reaction Coordinates &ndash; an effective potential is born when we integrate over uninteresting degrees of freedom.</p>
 </li>
 </ul>
+<h2>Spontaneity</h2>
+<p>We begin our journey with a qualitative explanation from high school chemistry class: <i>the free energy tells you whether matter wants to transform</i>. Leave iron in the rain and it becomes rust; put water in a freezer and it becomes ice; put water in an oven and it becomes steam. In all these chemical reactions, matter begins in one form and ends in another, and the driving force behind all such transformations is a <i>decrease in free energy</i>.</p>
+<p>We can figure out whether chemical reactions proceed by comparing the free energy of their reactants and products. If a reaction results in a free energy that's <i>smaller</i> than what you started out with, then the transformation occurs. Typically, we define <img class="eq" src="eqs/2648023363908940020-130.png" alt="Delta F = F_{products} - F_{reactants}" style="vertical-align: -6px" /> to quantify how much the free energy changes due to a chemical reaction; if it's negative (<img class="eq" src="eqs/643909315802033424-130.png" alt="Delta F &lt; 0" style="vertical-align: -1px" />) then we know the reaction occurs spontaneously because <img class="eq" src="eqs/2968248684099871655-130.png" alt="F_{products} &lt; F_{reactants}" style="vertical-align: -6px" />. Conversely, if the free energy <i>increases</i> over the course of a reaction (<img class="eq" src="eqs/643907315790033438-130.png" alt="Delta F &gt; 0" style="vertical-align: -1px" />), then it can't happen spontaneously.</p>
+<p>This simple rule already reveals some interesting physics:</p>
+<ul>
+<li><p>We've implicitly assumed that we can define a <i>unique</i> free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> that captures everything we need to know about a chunk of matter. This rather deep assumption implies that the details of individual atoms don't matter when we're talking about large-scale chemical transformations; in the parlance of thermodynamics, we've assumed that the macroscopic coordinates determine a unique equilibrium state. We'll discuss this point in more depth later.</p>
+</li>
+<li><p>We've also taken for granted that the <img class="eq" src="eqs/1315007983466271528-130.png" alt="Delta F" style="vertical-align: -0px" /> doesn't depend on <i>how</i> you enact a chemical transformation. The free energy change <img class="eq" src="eqs/7828335588245735558-130.png" alt="Delta F_{AB} = F_B - F_A" style="vertical-align: -3px" /> is the same regardless of if we perform <img class="eq" src="eqs/832884721079634774-130.png" alt="A to X to B" style="vertical-align: -1px" /> or <img class="eq" src="eqs/5157436580967432425-130.png" alt="A to Y to B" style="vertical-align: -1px" />. Since <img class="eq" src="eqs/1315007983466271528-130.png" alt="Delta F" style="vertical-align: -0px" /> only depends on the free energy of the initial and final states, we're claiming that <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> is a <b>path-independent</b> state function.</p>
+</li>
+<li><p>Finally, we see that the only physically relevant quantities are the <i>differences</i> in free energy <img class="eq" src="eqs/1315007983466271528-130.png" alt="Delta F" style="vertical-align: -0px" />. We could add a constant energy offset <img class="eq" src="eqs/2216976646404760193-130.png" alt="F mapsto F + epsilon" style="vertical-align: -2px" /> to the definition of free energy, but the change in free energy between states wouldn't change because <img class="eq" src="eqs/6564250259253667969-130.png" alt="Delta F_{AB} = (F_B + epsilon) - (F_A + epsilon) = F_B - F_A" style="vertical-align: -5px" /> stays the same. The <i>absolute</i> values of free energy <img class="eq" src="eqs/5036909580570843099-130.png" alt="F_A" style="vertical-align: -3px" /> don't seem to play a role in the theory; only the changes <img class="eq" src="eqs/1315007983466271528-130.png" alt="Delta F" style="vertical-align: -0px" /> tell you whether chemical reactions proceed.</p>
+</li>
+</ul>
+<h3>The timescale question</h3>
+<p>Notice that our description of chemical reactions has no mention of how <i>long</i> it takes for the transformation to occur. Indeed, the biggest caveat of thermodynamics is that it assumes you've waited an <i>infinite</i> amount of time for things to happen!</p>
+<p>In reality, just because <img class="eq" src="eqs/643909315802033424-130.png" alt="Delta F &lt; 0" style="vertical-align: -1px" /> doesn't necessarily mean that a transformation will occur in experiments. All it says is that if you wait for infinitely long, then the transformation will ventually occur &ndash; but it doesn't tell you whether you have to wait milliseconds, or hours, or millenia, or the lifetime of the universe. Often the system must overcome an <b>activation energy barrier</b> to undergo a reaction; if it is too costly to &lsquo;&lsquo;go over the hump&rsquo;&rsquo; then the reaction might not actually occur over timescales we care about.</p>
+<p>Here are a few instances where kinetics hinder a thermodynamically favored reaction (on human timescales):</p>
+<ul>
+<li><p><b>Diamonds and Graphite.</b> The classic example of metastability is that graphite has a lower free energy than diamond, yet diamond is stable and doesn't spontaneously turn into graphite on any reasonable timescale. If you take a look at the atomic structures of both allotropes of carbon, you see that there's <i>absolutely no way</i> for all the atoms in a diamond crystal to be unlucky enough to fluctuate into the form of graphite.</p>
+</li>
+<li><p><b>Supercooled water.</b> Below 0 degrees C, we know that water freezes spontaneously because <img class="eq" src="eqs/7140343756975089629-130.png" alt="Delta F_{freeze} = F_{ice} - F_{water} &lt; 0" style="vertical-align: -6px" />&hellip;</p>
+</li>
+<li><p><b>Glasses.</b> </p>
+</li>
+</ul>
+<h3>Temperature dependence</h3>
 <p><img src="../biochem/img/construction.gif"</p>
+<script>
+    document.getElementById("nextlink").href = "post1.html";
+</script>
 <hr>
 <p><a href=".."><img src="../biochem/img/home.gif"> Back to my home page</a></p>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
 <hr/>
 <small>
-Page generated 2019-03-02 22:20:28 PST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-03-18 00:11:15 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="free-energy.jemdoc">source</a>)
 </small>
 </div>
 </div>

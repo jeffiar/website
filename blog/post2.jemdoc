@@ -1,0 +1,72 @@
+# jemdoc: showsource, analytics{UA-131436916-1}
+= Sculpture, Youtube, and Probability
+
+Here are a few disjointed thoughts, some scientific, some non-scientific, some coherent, some incoherent, some rational, some irrational, and some transcendental (?).
+
+{{<hr>}}
+
+I've been checking out some of [http://www.georgehart.com George Hart's] mathematical artwork. His stuff is really pretty and really intriguing.
+
+One sculpture that blew me away was [http://www.georgehart.com/sculpture/pencils.html this one made out of 72 pencils]. As soon as I saw it, I knew I had to make it for myself! So I went on Amazon and ordered a pack of pencils. I can't wait. Tomorrow will be a very zen-like afternoon of sculpture assembly.
+
+To me, there's something irresistably beautiful about making artwork out of mundane objects -- rearranging things we take for granted into an unexpected aesthetic form. All through high school, I was infamous for making chair sculptures in the quad, or for placing music stands and chairs into funny shapes. A few summers ago in New York, I decided to make a box out of (used) scratch paper, and I really liked how it looked.
+
+
+{{Here's a picture of the box: <img src="../img/box.jpg" height=100px><hr>}}
+
+Whoa, Bach's [https://youtu.be/g6vF9owrxMo Art of the Fugue] is so mesmerizing.
+
+{{<hr>}}
+
+I rewatched some of [https://www.youtube.com/user/Vihart Vi Hart's] classic youtube videos about mathematical doodling. They make me very nostalgic! Her videos remind me of simpler times on the internet when people created things just for the hell of it, when youtube channels were silly and unpolished, when the era of online video was fresh and exciting. But nowadays, content creation has become a /business/, and it's hard to find people doing things for the hell of it anymore. Ironically, the youtube format has become a set paradigm, and it doesn't seem as fun that way.
+
+Or maybe I'm just no longer in middle school.
+
+Well, I'm not trying to say that youtube is better or worse now, I just think that the circumstances are different than they were a decade ago. Today's videos are much more polished. And there are some *truly incredible* videos out there! It's honestly unbelievable how much high-quality content exists out there, free for our consumption. We live in remarkable times indeed.
+
+Here are some of my favorite channels:
+- [https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw 3Blue1Brown] borrows the magic of animations to explain math in /wonderfully/ intuitive ways. The videos are gorgeous, the takeaways are incredible, and the enthusiasm is contagious.
+- [https://www.youtube.com/channel/UCivA7_KLKWo43tFcCkFvydw Applied Science] This guy is a total badass and knows how to make some really impressive things. A very real and down-to-earth channel, and some nitty-gritty fun science.
+- [https://www.youtube.com/channel/UC8R8FRt1KcPiR-rtAflXmeg Nahre Sol] makes some really inspiring videos about music. Her old ``practice notes'' videos are calming, thought-provoking, and [https://www.youtube.com/watch?v=mGYo6PQIKEI&index=70&list=PL0UfT1ar7nMclK9fh4hVcbwB-GJcUVzvY beautifully made].
+
+{{<hr>}}
+
+[http://sumatrapdfreader.org/ SumatraPDF] is a wonderful PDF reader, holy cow! Why did it take me so long to discover its existence?
+
+It has all the features I could ever want:
+
+. Super fast, lightweight, and simple
+. Well-mapped keyboard shortcuts for everything
+. Touch screen support
+. Automatically reloads the PDF file when it updates (useful for LaTeX)
+. Did I mention how /fast/ it is??
+
+For years, I'd been using the default PDF reader that came with my laptop (DrawBoard PDF on Microsoft Surface), but I never consciously realized how slow and buggy it was, because I got used to it! I just thought that shitty PDF viewers were a fact of life and ``rolled with it.'' (Absurd.) And then I finally overcame the activation energy barrier and downloaded a new PDF viewer last week. Now I'm a much happier human being.
+
+{{<hr>}}
+
+I'm getting too tired to type coherently, so I'll just bullet-point the rest of my thoughts:
+
+- The classic question of fate versus free will: In the grander context of human history, how much impact can an individual create?
+    -- I've been reading Dickens' /A Tale of Two Cities/, which protrays the horrors of the French Revolution through the eyes of individuals and their stories. It's fascinating how he describes social forces as oceans and waves that propogate of their own accord, as if they're natural forces that no individual can stop.
+    -- What's the point of trying to enact social change if individual efforts are just like drops in an ocean?
+- What exactly does probability mean? Is it subjective or objective? Or is it just a mathematical definition?
+    -- I've been continuing to read S-K Ma's stat mech textbook. He takes a very realist approach: when we do statistical mechanics, there is only /one/ physical system, not an abstract mathematical ensemble of $N$ systems.
+    -- In this view, probability is just a tool to help us count things and do statistics. Ma thinks that probability must represent an /objectively meaningful/ fraction, such as the fraction of the time the trajecory of a system spends in a particular region of phase space.
+    -- Yet there's also a perfectly valid view where probability expresses /subjective belief/! In the standard Bayesian view, our probability distributions represent our subjective views of the world which we update (via Bayes' rule) when we observe empirical data points. This view of probability also has natural ties to maximizing entropy (in the information theoretic sense). 
+        --- Indeed, some formulations of statistical mechanics justify the fundamental assumption of ``equal probabilities of all microscopically compatible states'' by appealing to a maximum-entropy-of-ignorance argument.
+    -- Well, what is a random process? Is a chaotic process essentially random if we wait for long enough? Even if a system is deterministic, it can act as though it were stochastic (e.g. pseudo-random number generators) because we don't have full knowledge of its exact internal state. But when we're describing our knowledge of this internal state, do we use the language of Bayesian probability? That can't be right, because there's exactly /one/ internal state that actually physically exists in the world. And so on and so forth, the arguments get really confusing to think about...
+    -- Don't even get me started about quantum superpositions...
+
+I thought probability was a simple concept, but after thinking more carefully, I'm so confused that I can't even English. Hopefully one day I'll find satisfactory answers.
+
+Anyways, I'm too tired to think anymore. Till next time.
+
+/- Jeffjar, 17 March 2019./
+
+~~~
+{}{raw}
+<script>
+    document.getElementById("prevlink").href = "post1.html";
+</script>
+~~~
