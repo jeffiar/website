@@ -90,7 +90,4 @@ The Hamiltonian of the Ising Model can be written as
 
 where $J$ reprents the spin-spin interaction, $h$ represents the external field, and the $\sigma_j$ are the individual spins on each of the lattice sites. The first sum is over all pairs of neighboring lattice sites (a.k.a. bonds); it represents the interactions between spins. The second sum is over all the lattice sites themselves; it represents the external field trying to align all the spins in one direction.
 
-Still need to write up...
-
-- A few more intuitive comments about what states are low energy and high energy
-
+Continue on to the [intro5.html thermodynamics of the Ising model.]
