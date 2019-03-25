@@ -74,7 +74,16 @@ My email address is <code>jeffjar (snail) stanford.edu</code> .
     <img id="lightbox-picture" src="#" />
 </div>
 
+<div class="content"><small>
+        This website was made from scratch with simple html, css, and javascript.<br/>
+
+  Icons downloaded from: <a href="http://www.dewa.com/FREEICON/"><img src="http://www.dewa.com/images/move7.gif"></a>  <br/>
+Last updated: <span id="updated">...</span>
+</small>
+</div>
+
 <script>
+// Make the lightbox work
 var imgs = document.getElementsByClassName('lightboxable')
 for (var i = 0; i < imgs.length; i++) {
         (function() {
@@ -86,19 +95,22 @@ for (var i = 0; i < imgs.length; i++) {
             img.style.cursor = "pointer";
         })(); // Silly scoping rules...
 }
-
 document.getElementById("xbutton").onclick = function() {
     document.getElementById("lightbox").style.display = 'none';
 };
+
+// Get the last updated date from github repo
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://api.github.com/repos/jeffiar/website', true);
+xhr.send();
+xhr.onreadystatechange = function(e) {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        var date = new Date(response['updated_at'])
+        document.getElementById("updated").innerHTML = date;
+    }
+}
 </script>
-
-<div class="content"><small>
-        This website was made from scratch with simple html, css, and javascript.<br/>
-
-  Icons downloaded from: <a href="http://www.dewa.com/FREEICON/"><img src="http://www.dewa.com/images/move7.gif"></a>  <br/>
-Last updated: 3 Mar 2019
-</small>
-</div>
 
 </body>
 </html>
