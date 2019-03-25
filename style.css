@@ -99,10 +99,6 @@ ul.performances{
     padding-right: 0px;
 }
 
-#past_performances{
-    display: none;
-}
-
 #navtable {
     line-height: 1.6;
     white-space: nowrap;

@@ -21,27 +21,21 @@
 </div>
 
 <div class="content">
-<h2>My Upcoming Performances <img src="img/new.gif"></h2>
+<h2>My Upcoming Performances</h2>
+<hr>
 <ul class="performances">
-    <b>SCOr Winter Concert</b><br/>
-    <em>Sat Feb 16 evening (TBA); Toyon Hall</em><br/>
-    <ul><li> Enjoy some music with your favorite chamber orchestra -- we're playing favorites like Mendelssohn's fourth symphony.</ul><br/>
+<b>SCOr Pop-up Admit Weekend Concert</b><br/>
+<em>Fri Apr 26, 3pm; next to the Claw</em><br/>
+<ul><li> Your favorite chamber musicians play some music outside on a Friday afternoon.</ul><br/>
+</ul>
 
-<img src="img/beatq46.gif">
-    Stay tuned for more!
+Stay tuned for more!  <img src="img/beatq46.gif">
 </ul>
 </div>
 
-<div class="content">
-<h3>
-    My Past Performances (2018)
-    <button id="past_button">Click to show</button>
-</h3>
-
 <script>
-document.getElementById("past_button").onclick = function() {
-    var text = document.getElementById("past_performances");
-    var button = document.getElementById("past_button");
+function toggleHide(button) {
+    var text = button.parentElement.parentElement.children[1]; // bleh!
     if (text.style.display !== "block") {
         text.style.display = "block";
         button.innerHTML = "Click to hide";
@@ -52,7 +46,13 @@ document.getElementById("past_button").onclick = function() {
 }
 </script>
 
-<div id="past_performances">
+<div class="content">
+<h3>
+    My Past Performances (2018)
+    <button onclick="toggleHide(this)">Click to show</button>
+</h3>
+<div style="display: none;">
+<hr>
 <ul class="performances">
     <b>SCOr Pop-up Admit Weekend Concert</b><br/>
     <em>Fri Apr 27, 3pm; next to the Claw</em><br/>
@@ -94,7 +94,7 @@ document.getElementById("past_button").onclick = function() {
     <em>Wed May 30, ~9pm; Campbell Recital Hall</em><br/>
     <ul> <li> Come hear some derpy chamber music, featuring 7 truly impressive musicians and a silly horn player. </ul><br/>
 
-    <b>Stanford Collaborative Orchestra (SCOr) Spring Concert! </b>(<a href="https://www.facebook.com/events/548157435585965/">Facebook Event</a>)<br/>
+    <b>Stanford Collaborative Orchestra (SCOr) Spring Concert! </b>(<a target="_blank" href="https://www.facebook.com/events/548157435585965/">Facebook Event</a>)<br/>
     <em>Sun Jun 3, 2:30pm; Toyon Hall</em><br/>
     <ul> <li> Spend a pleasant afternoon with your favorite chamber musician friends. We're playing some gorgeous American music, surreal and otherworldly French music, and Carnival of the Animals.</ul><br/>
 
@@ -109,6 +109,10 @@ document.getElementById("past_button").onclick = function() {
     <b>Improv gig with BATS</b><br/>
     <em>Mon Jun 12, 7:30pm; Cubberly Community Center in Palo Alto</em><br/>
     <ul> <li> Who ever imagined jeffjar would be playing music at an improv show in Palo Alto?</ul><br/>
+
+    <b>Stanford Summer Orchestra</b><br/>
+    <em>Fri Jul 27, 7:30pm; Bing Concert Hall </em>(<a target="_blank" href="https://music.stanford.edu/events/stanford-summer-orchestra">Event Page</a>)<br/>
+    <ul> <li> Back at it with a big symphony orchestra. </ul><br/>
 
     <b>Stanford Improv Halloween Shows</b><br/>
     <em>Fri Oct 26 at 8pm; Sat Oct 27 at 8pm; Roble Theater</em><br/>
@@ -132,4 +136,32 @@ document.getElementById("past_button").onclick = function() {
 </ul>
 </div>
 </div>
+
+<div class="content">
+<h3>
+    My Past Performances (2019)
+    <button onclick="toggleHide(this)">Click to show</button>
+</h3>
+<div style="display: none;">
+<hr>
+<ul class="performances">
+    <b>Playin' in Coho</b><br/>
+    <em>Tue  2/12 at 8:30pm; Coho</em><br/>
+    <ul><li> Playing some jazz duets with Blaine for a little charity event! </ul><br/>
+
+    <b>SCOr Winter Concert</b><br/>
+    <em>Sat 2/16 at 7:30pm; Toyon Hall</em><br/>
+    <ul><li> Enjoy some music with your favorite chamber orchestra -- we're playing favorites like Mendelssohn's fourth symphony.</ul><br/>
+
+    <b>Piano Studio Recital</b> (<a target="_blank" href="https://music.stanford.edu/events/noon-concert-piano-studio-frederick-weldy-3">Event page</a>)<br/>
+    <em>Fri 3/1 at 12:30pm; Campbell Recital Hall</em><br/>
+    <ul><li> I'm playing some Ravel in a noon recital with my piano studio.</ul><br/>
+
+    <b>SImps improvise Musicals</b><br/>
+    <em>Fri 3/9 at 9pm; Sat 3/10 at 10pm; Sun 3/11 at 9pm; Elliot Programming Center</em><br/>
+    <em>Sat 3/16 at 9pm; Roble Theater</em><br/>
+    <ul><li> The Stanford Improv team improvises musicals, with yours truly on piano.</ul><br/>
+</div>
+</div>
+
 </body>
