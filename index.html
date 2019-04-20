@@ -12,7 +12,7 @@
     <meta name="description" content="Personal webpage of Jeffrey Chang">
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
-<body background="img/background.gif">
+<body>
 
 <div id="header">
 <h2>Jeffrey Chang's Webpage</h2>
@@ -21,8 +21,8 @@
 </div>
 
 <div class="content">
-    <img src="img/new.gif"> I've started a pseudo-blog to document the silly thoughts in my head. <a href="blog/post1.html">Check out my first post here!</a> <small>(<i>Mar 2019</i>)</small><br/> 
-    <hr>
+    <img src="img/new.gif"> <a href="blog/post4.html">Read my thoughts</a> about the recent black hole image from the EHT collaboration <small>(<i>Apr 2019</i>)</small><br/> 
+    <img src="img/new.gif"> I've started a pseudo-blog to document the silly thoughts in my head. <a href="blog/post1.html">Check out the first post here.</a> <small>(<i>Mar 2019</i>)</small><br/> 
     <img src="img/new.gif"> I'm writing up lecture notes for my classes. <small>(<i>Jan 2019</i>)</small><br/>
 My notes for Physics 171 (Statistical Mechanics II) can be found <a href="statmech2/index.html">here</a>.<br/>
 My notes for EE 261 on Fourier Transforms can be found <a href="fourier/index.html">here</a>.<br/>
@@ -34,7 +34,6 @@ I play horn in the <a href="http://scor.stanford.edu"> Stanford Collaborative Or
 
 On my website, you can find my <a href="performances.html">upcoming performances</a>, <a href="gallery.html">recordings</a> from past performances, and a <a href="music.html">catalogue</a> of my musical creations. In addition, you can read about my <a href="blog/post1.html">various</a> <a href="blog/free-energy.html">scientific</a> <a href="files/rba.pdf">thoughts</a>, or learn some fascinating statistical mechanics from my <a href="statmech2/">lecture notes.</a><br/>
 
-<img src="img/beatq66.gif"><br/>
 My email address is <code>jeffjar (snail) stanford.edu</code> .
 <img src="img/iconsmile.gif"><br/>
 </div>
@@ -101,7 +100,7 @@ document.getElementById("xbutton").onclick = function() {
 
 // Get the last updated date from github repo
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://api.github.com/repos/jeffiar/website', true);
+xhr.open('GET', 'https://api.github.com/repos/jeffiar/website', true);
 xhr.send();
 xhr.onreadystatechange = function(e) {
     if (xhr.readyState == 4 && xhr.status == 200) {

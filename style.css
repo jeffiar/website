@@ -9,7 +9,7 @@ body {
      font-family : Arial,sans-serif;
      color       : #333;
      padding     : 0;
-     background-image: url("img/background.gif");
+     background : ivory;
 }
 
 h2, h3, h4 {
@@ -21,17 +21,13 @@ h2, h3, h4 {
     color: black;
     margin:15px 0 15px 0;
     padding:15px;
-    background-image: url("img/background2.gif");
-    border:black 1px solid;
-    border-radius: 10px;
+    background: lightsteelblue;
 }
 
 .content{
     margin-top: 15px;
     padding: 15px;
-    background-color: white;
-    border:black 1px solid;
-    border-radius: 10px;
+    background: aliceblue;
 }
 
 .left_image {
