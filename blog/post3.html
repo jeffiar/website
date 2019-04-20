@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>On Intuition and Hessians</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-1");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<div id="header">
+<h2> Jeffjar's Writings </h2>
+<table style="width:100%; table-layout:fixed"><tr><td align=left><a id="prevlink">&#171; Previous Post</a></td><td align=center>[ <a href="../essays.html">Back to home</a> ]</td><td align=right><a id="nextlink">Next Post &#187;</a></td></tr></table>
+</div>
+<div class="content">
+<div id="toptitle">
+<h1>On Intuition and Hessians</h1>
+</div>
+<p>There's a bizarre thing that sometimes happens when I'm reading about physics or statistics or other technical subjects. Even if the concept I'm learning is completely fresh and foreign, I sometimes feel an uncanny sense for the &lsquo;&lsquo;proper&rsquo;&rsquo; way to approach a concept. But I'm often quite confused <i>where</i> my gut feeling comes from, especially if I've never encountered a topic before!</p>
+<p>I attribute this feeling to the magic of intuition. As humans, we often feel a conviction that an idea is right or wrong even without a fully-fleshed-out explanation. Intuition lets us reason logically without any logical reasoning (!), and in my view, an &lsquo;&lsquo;intuitive&rsquo;&rsquo; understanding of technical knowledge can be more powerful than the details of particular logical steps.</p>
+<p>In my opinion, if we want to apply our intuition to solving problems, we ought to be rather careful about <i>how</i> we build up a intuition so that our gut instincts align well with reality. We also ought to recognize which situations we can trust our intuition in, and which situations we <i>can't</i>.</p>
+<p>These days, I find myself thinking carefully about where my intuition comes from. I feel that it's built up from (1) seeing lots of particular examples, (2) distilling the essence into simple language, and (3) reasoning by analogy for new examples. But if we don't want our intuition to run astray, we must refresh and recalibrate our intuition every once in a while by going over specific examples and hashing out the chain of logic. In my opinion, this recalibration process is a moral obligation for anyone who wishes to trust their intuition!</p>
+<p><hr></p>
+<p>A few days ago, as I was reading some of <a href="http://www.lassp.cornell.edu/sethna/Sloppy/WhatAreSloppyModels.html">Jim Sethna's work</a>, I had yet another moment of &lsquo;&lsquo;why the hell do I believe this idea even though I've never learned this topic before?&rsquo;&rsquo; And instead of just letting it slide by, I decided to sit down and hash out exactly how my intuition arose. So here I am, fulfilling my moral obligation to calibrate my intuition.</p>
+<p><hr></p>
+<p>In this post, I will discuss the curvature of multi-dimensional functions. For those of you familiar with the math, I will be talking about the eigenvectors and eigenvalues of (symmetric) quadratic forms. These sorts of concepts arise naturally in physics and in statistics when we want to talk about how high-dimensional functions behave near their minima.</p>
+<h3>Overview</h3>
+<ul>
+<li><p>Why care about high-dimensional functions</p>
+</li>
+<li><p>Mr. Taylor says quadratic</p>
+</li>
+<li><p>Ellipses and quadratic forms</p>
+</li>
+<li><p>The moment of inertia tensor</p>
+</li>
+<li><p>The covariance matrix and PCA (principal component analysis)</p>
+</li>
+<li><p>Vibrations around equilibrium</p>
+</li>
+<li><p>Saddle points in neural networks</p>
+</li>
+<li><p>Jim Sethna's sloppy models</p>
+</li>
+</ul>
+<h2>High-dimensional functions</h2>
+<p>Many problems in science and engineering have a natural geometric interpretation in terms a multi-dimensional space. Today, I'll be considering two main examples:</p>
+<ul>
+<li><p>motion. Say we have lots of particles &ndash; atoms in a protein, molecules in a gas, nuclei in a crystal lattice, etc. &ndash; and we want to understand how they move around in time. To specify a particular <i>configuration</i> of the system, we need to know the location of each particle; if there are <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> particles, we need to know <img class="eq" src="eqs/6528039219058837-130.png" alt="3N" style="vertical-align: -1px" /> numbers. (The factor of 3 comes from the x-component, y-component, z-component of each particle). We can think about each configuration as a point in a <img class="eq" src="eqs/6528039219058837-130.png" alt="3N" style="vertical-align: -1px" />-dimensional <b>configuration space</b>. (Note that this high-dimensional configuration space is a mathematical trick that has nothing to do with the actual physical space we live in!)</p>
+</li>
+<li><p>training a statistical model. Say we're given a bunch of data, and our task is to pick the &lsquo;&lsquo;best&rsquo;&rsquo; parameters for our statistical model. For instance, if we are fitting data to an exponential decay of <img class="eq" src="eqs/7423654679095235876-130.png" alt="y(t) = y_0 e^-{t / tau}" style="vertical-align: -5px" />, our job is to pick the best values of <img class="eq" src="eqs/7125508497047937937-130.png" alt="y_0" style="vertical-align: -4px" /> and <img class="eq" src="eqs/5161649540742415246-130.png" alt="tau" style="vertical-align: -1px" />. The different possible combinations of <img class="eq" src="eqs/7125508497047937937-130.png" alt="y_0" style="vertical-align: -4px" /> and <img class="eq" src="eqs/5161649540742415246-130.png" alt="tau" style="vertical-align: -1px" /> live in a 2-dimensional <b>parameter space</b>.</p>
+</li>
+</ul>
+<p>Since we're so familiar with 3D space from our day-to-day lives, the geometric interpretation is a helpful tool for us to reason by analogy. For instance, when a bunch of particles are bouncing around inside a box, we know that the motion is described by a <i>trajectory in configuration space</i>. (Think about it &ndash; the configuration is changing continuously over time.) Or when we're trying to pick a good set of parameter values for a statistical model, it's akin to finding the best point in parameter space. </p>
+<p>We can often define functions over these spaces. Such functions takes on different values at different points in the space. If we consider a &lsquo;&lsquo;mattress&rsquo;&rsquo; of balls and springs &ndash; a simple model of the nuclei in a metal, for instance &ndash; then each particular configuration of balls has an associated potential energy depending on how squished the springs are. We can thus think of the (potential) energy as a function of configuration space; it takes on a lower value at configurations where the springs are squeezed tightly and a higher value where the springs are loose. (Again, remember that points in configuration space have nothing to the real physical space we live in!). In the example of statistical models, we often think about a <b>loss function</b> the measures how well the model fits the data &ndash; sum-of-squared-errors loss, zero-one loss, whatever loss you like. A set of parameters that fits the data poorly results in a high loss; a good set of parameters will give a nice and low loss. In general, the loss function has different values at different places in parameter space.</p>
+<p>These functions are rather complicated beasts to tackle, in part because high-dimensional spaces are immensely vast. The number of points in these spaces grows exponentially with the dimension! (think about the formula for length versus area versus volume&hellip;) So it gets rather unweildy to characterize the behavior of a function <i>everywhere</i> in a high-dimensional space. Thankfully, we typically (!) don't need to understand the behavior everywhere, because we only care about particularly nice regions of the space. In the example of many-body-physics, we expect that the trajectory will settle down and stay around a minimum of the potential energy surface, in much the same way that a bale of hay will roll to the bottom of a valley. (There are many caveats to this statement that I will ignore for simplicity.) In the example of statistical learning, we only care about the &lsquo;&lsquo;best&rsquo;&rsquo; choices of parameters that fit the data well, corresponding to regions of parameter space where the loss function is small. In both of these cases, all we care about is how a function behaves in a region of space around a minimum.</p>
+<p>For the rest of this blog post, we will be examining how multi-dimensional functions behave in the neighborhood of a local minimum.</p>
+<h2>Mr. Taylor</h2>
+<p>We first review the mathematical language of functions of many variables. The takeaway of this section is that functions look like <b>quadratic forms</b> near their local minima.</p>
+<h3>One dimension</h3>
+<p>We begin with a function of a single variable <img class="eq" src="eqs/509596383745784049-130.png" alt="f(x)" style="vertical-align: -5px" />, and then we will generalize to higher dimensions.</p>
+<p>Let <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" /> be a point on a 1D line, and <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> be a (smooth) function over the line. We want to study the behavior of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> in the vicinity of a particular point <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" />.  In general, <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> might be a pretty complicated function, but if we zoom into the neighborhood of <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" />, we have a better hope of understanding its local behavior.</p>
+<p>Near this point, we can express <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" /> as <img class="eq" src="eqs/9107828412130822443-130.png" alt="x = x_0 + eta" style="vertical-align: -4px" />, where <img class="eq" src="eqs/5161632540589415152-130.png" alt="eta" style="vertical-align: -4px" /> is a small displacement.  Mr. Taylor tells us that the local behavior around <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" /> is described by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2469817017930555433-130.png" alt=" f(x) approx f(x_0) + f'(x_0) eta + frac 1 2 f''(x_0) eta^2 + O(eta^3) " />
+<br /></div><p>Each successive term in the approximation gives you a better and better estimate of how <img class="eq" src="eqs/509596383745784049-130.png" alt="f(x)" style="vertical-align: -5px" /> behaves near <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" />:</p>
+<ul>
+<li><p>To zero'th order, <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> just takes on a constant value of whatever it is at <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" />. But typically <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> isn't a constant, it changes value&hellip;</p>
+</li>
+<li><p>To first order, <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is a line with slope <img class="eq" src="eqs/9219341588548330634-130.png" alt="f'(x_0)" style="vertical-align: -5px" /> that passes through <img class="eq" src="eqs/5484570767172338054-130.png" alt="f(x_0)" style="vertical-align: -5px" /> at <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" />. But in general <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> isn't a line, it curves&hellip;</p>
+</li>
+<li><p>To second order, <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> has a bit of <b>curvature</b> described by a parabola <img class="eq" src="eqs/7666269598327377544-130.png" alt="sim eta^2" style="vertical-align: -4px" />. And so on&hellip;</p>
+</li>
+</ul>
+<p>Note that if <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" /> is a local minimum of <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" />, then the first derivative <img class="eq" src="eqs/1268045877650740833-130.png" alt="f'(x_0) = 0" style="vertical-align: -5px" /> vanishes because the slope is flat. So the Taylor expansion no longer has a linear term; instead, the function looks like</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2858952782586248562-130.png" alt=" f(x) approx f(x_0) + frac 1 2 f''(x_0) eta^2 + ldots " />
+<br /></div><p>This is the equation of a parabola. If <img class="eq" src="eqs/3899818994717682844-130.png" alt="f''(x_0) &gt; 0" style="vertical-align: -5px" />, then the parabola points upwards and the function <i>increases</i> when you walk away from <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" /> (to leading order); if <img class="eq" src="eqs/3899816994705682858-130.png" alt="f''(x_0) &lt; 0" style="vertical-align: -5px" /> then it decreases as you walk away from <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" />. The greater the magnitude of <img class="eq" src="eqs/8253673318651616126-130.png" alt="f''(x_0)" style="vertical-align: -5px" />, the greater the &lsquo;&lsquo;steepness&rsquo;&rsquo; of the walls of the parabola.</p>
+<p>We now understand the behavior of one-dimensional functions near their minima: they are parabolas. Now let us talk about higher dimensions.</p>
+<h3>Higher dimensions</h3>
+<p>In higher dimensions, the notion of a parabola generalizes to a <b>quadratic form</b>. As you may expect, a higher-dimensional function looks like a quadratic form in the vicinity of a local minimum. The reasoning is entirely analogous to the 1D case.</p>
+<p>Points in a high-dimensional space can be labeled by <img class="eq" src="eqs/8699125056846647747-130.png" alt="vec{x} = (x_1, x_2, ldots, x_n)" style="vertical-align: -5px" />. Our function <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> is now defined at every point in the space. Since high-dimensional space is so vast, it is fruitless to understand its behavior everywhere; we instead zoom in around a particular point <img class="eq" src="eqs/8302412421169067538-130.png" alt="vec{x_0}" style="vertical-align: -4px" /> and study the behavior in the neighborhood of <img class="eq" src="eqs/8302412421169067538-130.png" alt="vec{x_0}" style="vertical-align: -4px" />.</p>
+<p>Once again, the points near <img class="eq" src="eqs/8302412421169067538-130.png" alt="vec{x_0}" style="vertical-align: -4px" /> can be described as <img class="eq" src="eqs/5091154038569055643-130.png" alt="vec{x} = vec{x_0} + vec{eta}" style="vertical-align: -4px" />, where <img class="eq" src="eqs/1278178611790813836-130.png" alt="vec{eta}" style="vertical-align: -4px" /> is a small displacement. We want to write a Taylor expansion in <img class="eq" src="eqs/1278178611790813836-130.png" alt="vec{eta}" style="vertical-align: -4px" />, but this time around, it's not immediately obvious how to do so. So let us first understand how to take derivatives in higher dimensions.</p>
+<p>The first derivative tells you how much <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> varies when you move by a little <img class="eq" src="eqs/1278178611790813836-130.png" alt="vec{eta}" style="vertical-align: -4px" />. Since there are many possible directions to move in higher dimensions, the amount that <img class="eq" src="eqs/13056039271-130.png" alt="f" style="vertical-align: -4px" /> changes by depends on which direction you choose to move in. If you move along the <img class="eq" src="eqs/5999452984665080489-130.png" alt="x_1" style="vertical-align: -3px" />-axis, then the function changes by <img class="eq" src="eqs/4993262768079375780-130.png" alt="frac {partial f} {partial x_1} eta_1" style="vertical-align: -8px" />; if you move along the <img class="eq" src="eqs/5999452984665080492-130.png" alt="x_2" style="vertical-align: -3px" />-axis, then the function changes by <img class="eq" src="eqs/6530366969563572376-130.png" alt="frac {partial f} {partial x_2} eta_2" style="vertical-align: -8px" />, and so on and so forth. If you move in an <i>arbritrary</i> direction, then you need to add up how much the function changes due to your movement along each particular axis. Thus the first-order approximation can be written as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2689025913669182081-130.png" alt=" f(vec x) approx f(vec x_0) + sum_i frac {partial f} {partial x_i} bigg|_{vec{x_0}} eta_i + ldots, " />
+<br /></div><p>where the sum over <img class="eq" src="eqs/13440040424-130.png" alt="i" style="vertical-align: -1px" /> is a sum over the different possible basis directions that you can move in the space. (In our physical 3D world, for instance, these three basis directions are up, right, and forward.) The displacement <img class="eq" src="eqs/4583235484987979813-130.png" alt="vec eta" style="vertical-align: -4px" /> is due to small displacements <img class="eq" src="eqs/7902863039772871802-130.png" alt="eta_i" style="vertical-align: -4px" /> in each of the <img class="eq" src="eqs/5999452984665080561-130.png" alt="x_i" style="vertical-align: -4px" /> directions. The bar with the <img class="eq" src="eqs/8302412421169067538-130.png" alt="vec{x_0}" style="vertical-align: -4px" /> means to take the value of the derivative at the point <img class="eq" src="eqs/8302412421169067538-130.png" alt="vec{x_0}" style="vertical-align: -4px" />.</p>
+<p>Notice that the first-order term is generalization of a line to higher dimensions. In the case of one dimension, the linear correction was <img class="eq" src="eqs/7553974662643455495-130.png" alt="f(x) - f(x_0) approx f'(x_0) eta" style="vertical-align: -5px" />. In higher dimensions, since <img class="eq" src="eqs/6110472863726735659-130.png" alt="eta = (eta_1, eta_2, ldots, eta_n)" style="vertical-align: -5px" /> can be a displacement in many possible directions, we have to add up the contribution from each of the directions of <img class="eq" src="eqs/5161632540589415152-130.png" alt="eta" style="vertical-align: -4px" />, so <img class="eq" src="eqs/6421426673526661352-130.png" alt="f(vec x) - f(vec x_0) approx sum_i partial_i f(vec x_0) eta_i" style="vertical-align: -7px" />.</p>
+<p>As before, the first derivative vanishes when we're at a local minimum. In fact, the derivative must be zero along <i>all</i> possible directions in order for the function to have a minimum. (If there were a particular direction along which it <i>wasn't</i> zero, then the function would get smaller as you walked along that direction, so it couldn't be a minimum there.) So at a minimum, all the partial derivatives must be zero: <img class="eq" src="eqs/6707366113829403213-130.png" alt="frac {partial f}{partial x_1} = frac {partial f}{partial x_2} = ldots = frac {partial f}{partial x_n} = 0" style="vertical-align: -9px" />.</p>
+<p>Since the linear term vanishes at a minimum, we must go to second order. Let us think about how the quadratic term looks like. The second derivative is the derivative of the first derivative. Since the first derivative has <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" /> different components (corresponding to each of the basis directions in the space), the second derivative must have <img class="eq" src="eqs/5261102140378497933-130.png" alt="n^2" style="vertical-align: -1px" /> different &lsquo;&lsquo;components&rsquo;&rsquo; because for each of the <img class="eq" src="eqs/14080042351-130.png" alt="n" style="vertical-align: -1px" /> components of the first derivative, you can take another derivative in any direction.</p>
+<p>Thus the shape of the quadratic correction around the minimum of a multi-dimensional function is</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4357856593307750369-130.png" alt=" f(vec x) approx f(vec x_0) + frac 1 2 sum_i sum_j frac {partial^2 f} {partial x_i partial x_j} bigg|_{vec{x_0}} eta_i eta_j+ ldots, " />
+<br /></div><p>This expression is analogous to </p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2858952782586248562-130.png" alt=" f(x) approx f(x_0) + frac 1 2 f''(x_0) eta^2 + ldots " />
+<br /></div><p>in the one-dimensional case.</p>
+<p>Off the bat, I have to admit I can't come up with a compelling reason for why the expression takes this form. But it indeed turns out to be the case. In the next section I want to justify why <img class="eq" src="eqs/2313249652123895432-130.png" alt="frac 1 2 sum_{ij} Q_{ij} eta_i eta_j" style="vertical-align: -9px" /> is such a natural object to consider.</p>
+<h2>What is a quadratic form?</h2>
+<p>Quadratic forms seem exotic at first, but once we see past the funny notation, we find that they are rather familiar. A few concrete examples of ellipses will help solidify our understanding. As we investigate ellipses more, we will discover if we pick our basis directions to line up with the axes of the ellipse, then their description becomes far simpler. This will be our clue into understanding the eigenvectors and eigenvalues of a quadratic form.</p>
+<p>Let us work with a concrete 2D example to see how ellipses arise.</p>
+<p>In two dimensions, the displacement <img class="eq" src="eqs/4583235484987979813-130.png" alt="vec eta" style="vertical-align: -4px" /> can be written as <img class="eq" src="eqs/3367507472026671160-130.png" alt="vec eta = (x,y)" style="vertical-align: -5px" />. A typical quadratic form looks like</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1193659838616206571-130.png" alt=" f(vec eta) = sum_{ij} Q_{ij} eta_i eta_j = Q_{xx} x^2 + (Q_{xy} + Q_{yx}) xy + Q_{yy} y^2. " />
+<br /></div><p>For niceness let us rename some of the coefficents and write it as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/968323185158704738-130.png" alt=" f(x,y) = a , x^2 + 2 b , xy + c , y^2. " />
+<br /></div><p>Notice that the terms include all possible ways to multiply pairs of variables together. In this example, since we have <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" /> and <img class="eq" src="eqs/15488046584-130.png" alt="y" style="vertical-align: -4px" /> as our variables, the possible pairs are <img class="eq" src="eqs/5999452984666080493-130.png" alt="x^2" style="vertical-align: -1px" />, <img class="eq" src="eqs/7125508497046937938-130.png" alt="y^2" style="vertical-align: -4px" />, and the cross-term <img class="eq" src="eqs/15360092280138515-130.png" alt="xy" style="vertical-align: -4px" />. If we added a <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" /> variable as well, then we would have to add a new <img class="eq" src="eqs/8251564009687796191-130.png" alt="z^2" style="vertical-align: -1px" /> term, as well as the cross-terms <img class="eq" src="eqs/15360092280138512-130.png" alt="xz" style="vertical-align: -1px" /> and <img class="eq" src="eqs/15488093049139795-130.png" alt="yz" style="vertical-align: -4px" />. And so on and so forth. In general, a quadratic form is just a weighted sum of all the pairs of variables multiplied together.</p>
+<p>Now let us turn to understanding the behavior of the function <img class="eq" src="eqs/2108105153511072798-130.png" alt="f(x,y) = a x^2 + 2 b xy + c y^2" style="vertical-align: -5px" />. There are a few ways to visualize a function of two variables. One way is to graph it as a surface over the x-y plane, where the height of the surface tells you the value of <img class="eq" src="eqs/5484681767749338858-130.png" alt="f(x,y)" style="vertical-align: -5px" />. However, this surface lives in three dimensions, and it is very difficult to think and draw in three dimensions. So rather than trying to visualize this surface in its full three-dimensional glory, we typically slice it horizantally (like a CT scan) and draw the shape of the surface on the slice. The resulting &lsquo;&lsquo;level sets&rsquo;&rsquo; let you piece together a contour map of the surface.</p>
+<p>The horizantal slices of the surface correspond to &hellip;</p>
+<p>Thus we must answer the question: What are the shapes of the level sets of a quadratic form?</p>
+<p><img src="../biochem/img/construction.gif"</p>
+<ul>
+<li><p>Go back and forth between index notation, abstract vector notation, and explicit sums to show that all possible pairs of coordinates are added.</p>
+</li>
+<li><p>Draw ellipses as the level sets.</p>
+</li>
+<li><p>Question: how to describe the shapes of the ellipse most naturally? How to kill the off-diagonal terms?</p>
+</li>
+</ul>
+<h2>Diagonalizing the Hessian</h2>
+<ul>
+<li><p>Review of changing bases in linear algebra. Like RGB vs saturation/hue!</p>
+</li>
+<li><p>We want to find basis where the Hessian is diagonal and easy to think about.</p>
+</li>
+<li><p>Since partials commute, the Hessian is a symmetric matrix ==&gt; orthorgonal basis of eigenvectors.</p>
+</li>
+<li><p>The directions of the axes of the ellipses are eigenvectors, and the (squares of) the lengths are the eigenvalues.</p>
+</li>
+<li><p>Example: the moment of inertia tensor.</p>
+</li>
+</ul>
+<h2>Vibrations about equilibrium</h2>
+<ul>
+<li><p>With this understanding, the results fall out easily.</p>
+</li>
+<li><p>Normal modes are the eigenvectors, frequencies are the eigenvalues.</p>
+</li>
+<li><p>In low-frequency directions, walking a large distance in configuration space doesn't increase the energy by much.</p>
+</li>
+<li><p>Each mode is the combination of lots of individual degrees of freedom.</p>
+</li>
+<li><p>Change of basis into normal modes decouples the problem into independent harmonic oscillators.</p>
+</li>
+<li><p>Principle of superposition: just add up the motion of each part.</p>
+</li>
+<li><p>Crystals, beer bottles, buildings, marimbas&hellip;</p>
+</li>
+</ul>
+<h2>Principal Component Analysis</h2>
+<ul>
+<li><p>Once again&hellip;</p>
+</li>
+<li><p>High-dimensional Gaussians and the covariance matrix&hellip;</p>
+</li>
+</ul>
+<h2>Sloppy models</h2>
+<ul>
+<li><p>Now apply the same reasoning to the minima of the loss function in parameter-space.</p>
+</li>
+<li><p>Diagonalize the (Fisher info matrix?) into eigenparameters and eigenvalues.</p>
+</li>
+<li><p>Each eigenparameter is a combination of different parameters.</p>
+</li>
+<li><p>Walking in a large distance along &lsquo;&lsquo;sloppy&rsquo;&rsquo; directions doesn't penalize the loss too much.</p>
+</li>
+</ul>
+<script>
+    document.getElementById("prevlink").href = "post2.html";
+    document.getElementById("nextlink").href = "post4.html";
+</script>
+<hr>
+<p><a href=".."><img src="../biochem/img/home.gif"> Back to my home page</a></p>
+</div>
+<div class="content">
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+<hr/>
+<small>
+Page generated 2019-04-20 13:16:29 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="post3.jemdoc">source</a>)
+</small>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -68,5 +68,6 @@ Anyways, I'm too tired to think anymore. Till next time.
 {}{raw}
 <script>
     document.getElementById("prevlink").href = "post1.html";
+    document.getElementById("nextlink").href = "post3.html";
 </script>
 ~~~

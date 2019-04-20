@@ -73,6 +73,7 @@ This Fourier approach seemed intuitive to me, but I don't know why. I'm struggli
 
 Anyways, I found it a bit annoying that I couldn't remember where exactly I was drawing my intuition from. I'm a strong believer that ``gut instinct'' is built up from seeing specific examples, so hopefully I can come up with some solid example to explain why Fourier modes diagonalize translationally invariant systems.
 
+{{<a name="spaces"></a>}}
 == High-Dimensional Spaces
 
 There's lots of counter-intuitive behaviors of high-dimensional spaces that come into play in all areas of science. As humans living in a measly three-dimensional world, we're forced to reason by analogy into spaces of higher dimension, but sometimes, the results of our intuition just don't hold true.

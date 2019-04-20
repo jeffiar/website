@@ -26,24 +26,25 @@ We begin our journey with a qualitative explanation from high school chemistry c
 
 We can figure out whether chemical reactions proceed by comparing the free energy of their reactants and products. If a reaction results in a free energy that's /smaller/ than what you started out with, then the transformation occurs. Typically, we define $\Delta F = F_{products} - F_{reactants}$ to quantify how much the free energy changes due to a chemical reaction; if it's negative ($\Delta F < 0$) then we know the reaction occurs spontaneously because $F_{products} < F_{reactants}$. Conversely, if the free energy /increases/ over the course of a reaction ($\Delta F > 0$), then it can't happen spontaneously.
 
-This simple rule already reveals some interesting physics:
-- We've implicitly assumed that we can define a /unique/ free energy $F$ that captures everything we need to know about a chunk of matter. This rather deep assumption implies that the details of individual atoms don't matter when we're talking about large-scale chemical transformations; in the parlance of thermodynamics, we've assumed that the macroscopic coordinates determine a unique equilibrium state. We'll discuss this point in more depth later.
+This simple rule reveals some interesting physics:
+- We've implicitly assumed that we can define a /unique/ free energy $F$ that captures everything we need to know about a chunk of matter. This rather deep assumption implies that the details of individual atoms don't matter when we're talking about large-scale chemical transformations. In the parlance of thermodynamics, we've assumed that the macroscopic coordinates determine a unique equilibrium state. We'll discuss this point in more depth later.
 - We've also taken for granted that the $\Delta F$ doesn't depend on /how/ you enact a chemical transformation. The free energy change $\Delta F_{AB} = F_B - F_A$ is the same regardless of if we perform $A \to X \to B$ or $A \to Y \to B$. Since $\Delta F$ only depends on the free energy of the initial and final states, we're claiming that $F$ is a *path-independent* state function.
-- Finally, we see that the only physically relevant quantities are the /differences/ in free energy $\Delta F$. We could add a constant energy offset $F \mapsto F + \epsilon$ to the definition of free energy, but the change in free energy between states wouldn't change because $\Delta F_{AB} = (F_B + \epsilon) - (F_A + \epsilon) = F_B - F_A$ stays the same. The /absolute/ values of free energy $F_A$ don't seem to play a role in the theory; only the changes $\Delta F$ tell you whether chemical reactions proceed.
+- Finally, we see that only the /differences/ in free energy $\Delta F$ are physically relevant. We could add a constant energy offset $F \mapsto F + \epsilon$ to the definition of free energy, but the change in free energy between states wouldn't change because $\Delta F_{AB} = (F_B + \epsilon) - (F_A + \epsilon) = F_B - F_A$ stays the same. The /absolute/ values of free energy $F_A$ don't seem to play a role in the theory; only the changes $\Delta F$ tell you whether chemical reactions proceed.
 
 === The timescale question
 
-Notice that our description of chemical reactions has no mention of how /long/ it takes for the transformation to occur. Indeed, the biggest caveat of thermodynamics is that it assumes you've waited an /infinite/ amount of time for things to happen!
+Notice that our description of chemical reactions also has no mention of how /long/ it takes for the transformation to occur. Indeed, the biggest caveat of thermodynamics is that it assumes you've waited an /infinite/ amount of time for things to happen!
 
 In reality, just because $\Delta F < 0$ doesn't necessarily mean that a transformation will occur in experiments. All it says is that if you wait for infinitely long, then the transformation will ventually occur -- but it doesn't tell you whether you have to wait milliseconds, or hours, or millenia, or the lifetime of the universe. Often the system must overcome an *activation energy barrier* to undergo a reaction; if it is too costly to ``go over the hump'' then the reaction might not actually occur over timescales we care about.
 
 Here are a few instances where kinetics hinder a thermodynamically favored reaction (on human timescales):
 
 - *Diamonds and Graphite.* The classic example of metastability is that graphite has a lower free energy than diamond, yet diamond is stable and doesn't spontaneously turn into graphite on any reasonable timescale. If you take a look at the atomic structures of both allotropes of carbon, you see that there's /absolutely no way/ for all the atoms in a diamond crystal to be unlucky enough to fluctuate into the form of graphite.
-- *Supercooled water.* Below 0 degrees C, we know that water freezes spontaneously because $\Delta F_{freeze} = F_{ice} - F_{water} < 0$...
-- *Glasses.* 
+- *Supercooled water.* If we cool water below 0 degrees C, it is supposed to freeze spontaneously because $\Delta F_{freeze} = F_{ice} - F_{water} < 0$. However, if the water sample is pure and the container is smooth, then the water can maintain its liquid state even below its freezing point. Without impurities for ice crystals to nucleate and grow from, there is no kinetic pathway along which the liquid state can become solid, even though the frozen form is technically a lower free energy state.
 
-=== Temperature dependence
+In summary, the statement that /matter transforms into a state that minimizes its free energy/ is deceptively subtle. It is a simple rule, and yet it includes many assumptions and implications. We must keep these assumptions in mind whenever we do thermodynamics.
+
+== Entropy
 
 {{<img src="../biochem/img/construction.gif"}}
 ~~~
