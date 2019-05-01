@@ -103,6 +103,7 @@ The lecture itself was quite well explained, but I unfortunately found the topic
 For some reason, this coincidence happens a lot. I often see some concept come up in two completely unrelated classes:
 - Earlier this quarter, the same two classes were talking about assymptotic series -- series that don't actually add up to what you want them to add up to. One class was about estimating energies in quantum mechanics (perturbation series), and the other was about predicting the effect of Jupiter on the Earth's orbit.
 - Last quarter, I was trying to solve a problem in my statistical mechanics class (the XY model in one dimension), and I came across a completely unrelated integral that we happened to use in our Fourier Transform class (a nasty special function called a modified Bessel function of the first kind). I totally would not have recognized it if I hadn't taken the other class.
+
 It's incredible that scientific knowledge is all intertwined and interrelated in unexpected manners.
 
 {{<a name="blackhole">}}
