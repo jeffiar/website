@@ -95,14 +95,14 @@ ul.performances{
     padding-right: 0px;
 }
 
-#navtable {
+.navtable {
     line-height: 1.6;
     white-space: nowrap;
     overflow: hidden;
     text-overflow:ellipsis;
 }
 
-#navtable td {
+.navtable td {
     padding-right: 15px;
 }
 
