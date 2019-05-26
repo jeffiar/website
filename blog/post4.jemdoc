@@ -160,5 +160,6 @@ And onwards we continue.
 {}{raw}
 <script>
     document.getElementById("prevlink").href = "post3.html";
+    document.getElementById("nextlink").href = "post5.html";
 </script>
 ~~~

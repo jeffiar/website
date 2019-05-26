@@ -136,7 +136,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 </ul>
 
 <div class="eqwl"><img class="eqwl" src="eqs/3850162176875958507-130.png" alt="     langle sigma_j rangle = frac 1 Z sum_{{sigma}} sigma_j e^{-beta H({sigma})} " />
-<br /></div><p>To explain the notation: I'm summing over all states (this time I call the states <img class="eq" src="eqs/836831482282601329-130.png" alt="{sigma}" style="vertical-align: -5px" /> rather than <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />). Inside the sum I have a factor of the spin of the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th site (which is <img class="eq" src="eqs/3779426073040366563-130.png" alt="pm 1" style="vertical-align: -0px" />) as well as the Boltzmann weight <img class="eq" src="eqs/8830411818505333654-130.png" alt="e^{-beta H({sigma})}" style="vertical-align: -1px" />. The number <img class="eq" src="eqs/4198906569027762331-130.png" alt="H({sigma})" style="vertical-align: -5px" /> is the energy of the system when it's in the state <img class="eq" src="eqs/836831482282601329-130.png" alt="{sigma}" style="vertical-align: -5px" />, and we find this by plugging in the <img class="eq" src="eqs/7347888844222465669-130.png" alt="sigma" style="vertical-align: -1px" />'s into the Hamiltonian.</p>
+<br /></div><p>To explain the notation: I'm summing over all states (this time I call the states <img class="eq" src="eqs/836831482282601329-130.png" alt="{sigma}" style="vertical-align: -5px" /> rather than <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />). Inside the sum I am multiplying the spin of the <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />'th site (which is <img class="eq" src="eqs/3779426073040366563-130.png" alt="pm 1" style="vertical-align: -0px" />) by the Boltzmann weight <img class="eq" src="eqs/8830411818505333654-130.png" alt="e^{-beta H({sigma})}" style="vertical-align: -1px" />. The number <img class="eq" src="eqs/4198906569027762331-130.png" alt="H({sigma})" style="vertical-align: -5px" /> is the energy of the system when it's in the state <img class="eq" src="eqs/836831482282601329-130.png" alt="{sigma}" style="vertical-align: -5px" />, and we find this by plugging in each of the spins <img class="eq" src="eqs/1833092850355643430-130.png" alt="sigma_j" style="vertical-align: -6px" /> into the Hamiltonian.</p>
 <ul>
 <li><p>the <b>spin-spin correlation</b> <img class="eq" src="eqs/1329687845463852478-130.png" alt="langle sigma_i sigma_j rangle" style="vertical-align: -6px" />, which tells you whether spins <img class="eq" src="eqs/13440040424-130.png" alt="i" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> tend to align at equilibrium, is given by </p>
 </li>
@@ -289,7 +289,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <p><a name="solving2"></a></p>
 <h2>Calculating these traces</h2>
 <p>We still need to calculate these traces in terms of some basis. Remember from linear algebra that we can calculate traces in terms of <i>any basis</i> we want.</p>
-<p>In our case, the best basis to use is the <i>eigenbasis of the transfer matrix <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /></i>. Since it's a real symmetric 2x2 matrix, it's going to have two orthogonal eigenvectors that span its whole Hilbert space. We'll write these two eigenvectors and their corresponding eigenvalues as</p>
+<p>In our case, the best basis to use is the <i>eigenbasis of the transfer matrix <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /></i>. Since the transfer matrix is a real symmetric 2x2 matrix, it has two orthogonal eigenvectors that span its whole Hilbert space. We'll write these two eigenvectors and their corresponding eigenvalues as</p>
 
 <div class="eqwl"><img class="eqwl" src="eqs/1762224819217793276-130.png" alt=" t|psi_+ rangle = lambda_+ | psi_+ rangle, " />
 <br /></div>
@@ -320,7 +320,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <div class="eqwl"><img class="eqwl" src="eqs/6605663749693089394-130.png" alt="     langle sigma_j rangle = frac 1 Z bigg[lambda_+^N langle psi_+ | tau_z | psi_+ rangle + lambda_-^N langle psi_- | tau_z | psi_- rangle bigg] " />
 <br /></div><p>Again, when we take <img class="eq" src="eqs/6521057346860132603-130.png" alt="N to infty" style="vertical-align: -1px" />, only the first term survives, because the ratio of the terms <img class="eq" src="eqs/4786011048649511855-130.png" alt="(lambda_- / lambda_+)^N" style="vertical-align: -5px" /> goes to 0. So we find that</p>
 
-<div class="eqwl"><img class="eqwl" src="eqs/6076707229842465149-130.png" alt="     lim_{Ntoinfty} langle sigma_j rangle = frac 1 Z lambda_+^N langle psi_+ | tau_z | psi_+ rangle = langle psi_+ | tau_z | psi_+ rangle  " />
+<div class="eqwl"><img class="eqwl" src="eqs/4757316263978301116-130.png" alt="     lim_{Ntoinfty} langle sigma_j rangle = frac 1 Z lambda_+^N langle psi_+ | tau_z | psi_+ rangle. " />
 <br /></div><p><a name="solving3"></a></p>
 <h2>Diagonalizing the Transfer Matrix</h2>
 <p>Check out <a href="https://piazza.com/class/jr1doe3kcpj3wf?cid=7">my answer on piazza</a>, where I explain how to find the eigenvalues of <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> by decomposing it in terms of the Pauli matrices as <img class="eq" src="eqs/1739541596912926098-130.png" alt="t = t_0 I + t_x tau_x + t_y tau_y + t_z tau_z" style="vertical-align: -6px" />.</p>
@@ -371,7 +371,7 @@ tend to point in the same direction or in opposite directions at equilibrium.</p
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-03-18 18:11:22 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-05-26 12:13:48 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="lec4.jemdoc">source</a>)
 </div>
 </div>

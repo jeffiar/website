@@ -58,7 +58,7 @@ Before moving on, we can make one more simplification: since we picked a /non-in
     F_{var} = F_{tr} + - J \sum_{< ik>} \langle\sigma_i\rangle_{tr}\langle \sigma_k\rangle_{tr} + \sum_k (b_k - h) \langle\sigma_k\rangle_{tr}.
 \)
 
-(I changed the labels of the indices in preparation for the next step where we differentiate w.r.t. $b_j$.) At this point, we can expand out our expressions for $F_{tr}$ and $\langle \sigma_j \rangle$, but a lot of them will cancel out later on, so for now, we'll just leave this expression as it is. Prof. Kivelson calls this ``being clever.'' I call it ``hindsight is 20-20.''
+(I changed the labels of the indices in preparation for the next step where we differentiate w.r.t. $b_j$.) At this point, we can expand out our expressions for $F_{tr}$ and $\langle \sigma_j \rangle$, but a lot of the terms will cancel out later on, so for now, we'll just leave this expression as it is. (Prof. Kivelson calls this ``being clever,'' but I call it ``hindsight is 20-20.'')
 
 === Finding the derivative
 

@@ -56,7 +56,7 @@ Once we've found the partition function $Z$, we can calculate pretty much everyt
 \(
     \langle \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_j e^{-\beta H(\{\sigma\})}
 \)
-To explain the notation: I'm summing over all states (this time I call the states $\{\sigma\}$ rather than $s$). Inside the sum I have a factor of the spin of the $j$'th site (which is $\pm 1$) as well as the Boltzmann weight $e^{-\beta H(\{\sigma\})}$. The number $H(\{\sigma\})$ is the energy of the system when it's in the state $\{\sigma\}$, and we find this by plugging in the $\sigma$'s into the Hamiltonian.
+To explain the notation: I'm summing over all states (this time I call the states $\{\sigma\}$ rather than $s$). Inside the sum I am multiplying the spin of the $j$'th site (which is $\pm 1$) by the Boltzmann weight $e^{-\beta H(\{\sigma\})}$. The number $H(\{\sigma\})$ is the energy of the system when it's in the state $\{\sigma\}$, and we find this by plugging in each of the spins $\sigma_j$ into the Hamiltonian.
 - the *spin-spin correlation* $\langle \sigma_i \sigma_j \rangle$, which tells you whether spins $i$ and $j$ tend to align at equilibrium, is given by 
 \(
     \langle \sigma_i \sigma_j \rangle = \frac 1 Z \sum_{\{\sigma\}} \sigma_i \sigma_j e^{-\beta H(\{\sigma\})}
@@ -255,7 +255,7 @@ Z &= \textrm{Tr} \left[t^N\right], \\
 
 We still need to calculate these traces in terms of some basis. Remember from linear algebra that we can calculate traces in terms of /any basis/ we want.
 
-In our case, the best basis to use is the /eigenbasis of the transfer matrix $t$/. Since it's a real symmetric 2x2 matrix, it's going to have two orthogonal eigenvectors that span its whole Hilbert space. We'll write these two eigenvectors and their corresponding eigenvalues as
+In our case, the best basis to use is the /eigenbasis of the transfer matrix $t$/. Since the transfer matrix is a real symmetric 2x2 matrix, it has two orthogonal eigenvectors that span its whole Hilbert space. We'll write these two eigenvectors and their corresponding eigenvalues as
 \(
 t|\psi_+ \rangle = \lambda_+ | \psi_+ \rangle,
 \)
@@ -309,7 +309,7 @@ I'll describe in words what happens when we sandwich our eigenstates around the 
 \)
 Again, when we take $N \to \infty$, only the first term survives, because the ratio of the terms $(\lambda_- / \lambda_+)^N$ goes to 0. So we find that
 \(
-    \lim_{N\to\infty} \langle \sigma_j \rangle = \frac 1 Z \lambda_+^N \langle \psi_+ | \tau_z | \psi_+ \rangle = \langle \psi_+ | \tau_z | \psi_+ \rangle 
+    \lim_{N\to\infty} \langle \sigma_j \rangle = \frac 1 Z \lambda_+^N \langle \psi_+ | \tau_z | \psi_+ \rangle.
 \)
 
 {{<a name="solving3"></a>}}

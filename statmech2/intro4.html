@@ -74,7 +74,7 @@ try {
 </li>
 <li><p>It's one of few <b>exactly solvable models</b> where we can actually compute thermodynamic quantities and interpret them.</p>
 <ul>
-<li><p>In general, calculating thermodynamic quantities is hard because you have to sum up many terms. Remember from our first thermo class that you can think about an equilibrium system as an <i>ensemble</i> of many states <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />, each weighted with their own probability <img class="eq" src="eqs/2149279368094130109-130.png" alt="P_s" style="vertical-align: -4px" />. In this framework, the thermodynamic quantities that you observe correspond to averages over the ensemble. In particular, if you want to find the ensemble average of some observable <img class="eq" src="eqs/6654452622445492293-130.png" alt="A(s)" style="vertical-align: -5px" />, you need to find the sum <img class="eq" src="eqs/8084238853585595059-130.png" alt="langle A rangle = sum_s A(s) P_s" style="vertical-align: -7px" />, where the sum runs over <i>all the possible states</i>. The problem with this, as you remember, is that the number of states of a thermodynamic system scales <i>exponentially</i> with the number of particles! Even for a moderate-sized system, there are just too many states for a computer to explicitly compute the average &ndash; let alone a thermodynamic system where <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> is on the order of 10^{23}$.</p>
+<li><p>In general, calculating thermodynamic quantities is hard because you have to sum up many terms. Remember from our first thermo class that you can think about an equilibrium system as an <i>ensemble</i> of many states <img class="eq" src="eqs/14720044274-130.png" alt="s" style="vertical-align: -1px" />, each weighted with their own probability <img class="eq" src="eqs/2149279368094130109-130.png" alt="P_s" style="vertical-align: -4px" />. In this framework, the thermodynamic quantities that you observe correspond to averages over the ensemble. In particular, if you want to find the ensemble average of some observable <img class="eq" src="eqs/6654452622445492293-130.png" alt="A(s)" style="vertical-align: -5px" />, you need to find the sum <img class="eq" src="eqs/8084238853585595059-130.png" alt="langle A rangle = sum_s A(s) P_s" style="vertical-align: -7px" />, where the sum runs over <i>all the possible states</i>. The problem with this, as you remember, is that the number of states of a thermodynamic system scales <i>exponentially</i> with the number of particles! Even for a moderate-sized system, there are just too many states for a computer to explicitly compute the average &ndash; let alone a thermodynamic system where <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> is on the order of <img class="eq" src="eqs/3526378314053432731-130.png" alt="10^{23}" style="vertical-align: -1px" />.</p>
 </li>
 <li><p>So we need to &lsquo;&lsquo;be clever&rsquo;&rsquo; to compute the partition function, and we ought to be thankful for exactly solvable systems!</p>
 </li></ul>
@@ -94,7 +94,7 @@ try {
 <ul>
 <li><p>A magnet. Each site represents a particular &lsquo;spin&rsquo; in the material (an unpaired electron??), and it's <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> if the spin points down or <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> if the spin points up. Each of the spins acts like a mini magnet with its own mini magnetic moment; if all the spins are aligned, then the whole lattice of spins behaves like a big magnet with a net macroscopic magnetic moment.</p>
 </li>
-<li><p>An alloy; say, steel. Each of the sites is an atom in the lattice; <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> represents an iron atom at that site; <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> represents steel.</p>
+<li><p>An alloy; say, brass. Each of the sites is an atom in the lattice; <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> represents an copper atom at that site; <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> represents zinc.</p>
 </li>
 <li><p>A &lsquo;&lsquo;lattice gas&rsquo;&rsquo;. Each of the sites is the possible location of a particle; <img class="eq" src="eqs/5760034605052020-130.png" alt="-1" style="vertical-align: -0px" /> means that site is empty and <img class="eq" src="eqs/5504033067049714-130.png" alt="+1" style="vertical-align: -2px" /> means that site is occupied by a particle.</p>
 </li>
@@ -119,7 +119,7 @@ try {
 </li>
 </ul>
 <ul>
-<li><p>the <b>interaction</b> term between neighboring spins &ndash; maybe they want to align with each other and point the same way, maybe they want to anti-align and point in different ways. Physically, this interaction arises because each spin in the magnet is its own mini magnetic dipole that sets up its own magnetic field, and its neighbors can feel that magnetic field. </p>
+<li><p>the <b>interaction</b> term between neighboring spins &ndash; maybe they want to align with each other and point the same way, maybe they want to anti-align and point in different ways. Physically, we can imagine that this interaction arises because each spin in the magnet is its own mini magnetic dipole that sets up its own magnetic field, and its neighbors can feel that magnetic field. </p>
 <ul>
 <li><p>The size of <img class="eq" src="eqs/9472028491-130.png" alt="J" style="vertical-align: -1px" /> tells you how <i>strongly</i> neighboring spins are coupled to each other &ndash; how much they want to (anti-)align. Physically, the strength of spin-spin coupling could depend on distance between them in the maget's lattic, for instance.</p>
 </li>
@@ -133,7 +133,7 @@ try {
 </ul>
 <h3>More about the interaction term</h3>
 <p>A natural question about the spin-spin interaction term is <i>which spins are coupled to which spins?</i> </p>
-<p>If we turn back again to the physical picture of the magnet, and we zoom in on some particular spin, we would observe that the minature magnetic field set up by that spin is stronger closer to that spin and weaker further away. Consequently, we expect the strength of spin-spin interaction to be stronger for nearby spins and weaker for faraway spins. The exact distance-dependence of spin-spin interactions can be rather complicated for actual magnets.</p>
+<p>If we turn back again to the physical picture of the magnet, and we zoom in on some particular spin, we would expect strength of the spin-spin interaction to be stronger for nearby spins and weaker for faraway spins. The exact distance-dependence of spin-spin interactions is likely rather complicated for actual magnets.</p>
 <p>For the Ising model, we make the simplest possible assumption for the nature of this spin-spin interaction:</p>
 <div class="infoblock">
 <div class="blocktitle">Nearest-neighbor interaction</div>
@@ -148,7 +148,7 @@ try {
 </li>
 <li><p>We often talk about nearest-neighbor interactions as the energy of a <b>bond</b> that joins two lattice sites.</p>
 </li>
-<li><p>When we're summing over adjacent pairs of sites, symbolically, we writelittle angle brackets around the indices to represent &lsquo;&lsquo;nearest neighbor&rsquo;&rsquo;.</p>
+<li><p>When we're summing over adjacent pairs of sites, symbolically, we write little angle brackets around the indices to represent &lsquo;&lsquo;nearest neighbor&rsquo;&rsquo;.</p>
 </li>
 </ul>
 <p>A nice consequence of nearest-neighbor interactions is that when we're finding the total energy of some configuration of spins, rather than summing over <i>all possible pairs</i> of sites, we only sum over pairs of sites that are <i>adjacent</i> to each other.</p>
@@ -176,7 +176,7 @@ try {
 <!-- end www.htmlcommentbox.com -->
 <div id="footer">
 <div id="footer-text">
-Page generated 2019-03-18 18:11:24 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+Page generated 2019-05-26 12:20:56 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
 (<a href="intro4.jemdoc">source</a>)
 </div>
 </div>
