@@ -120,3 +120,7 @@ ul.performances{
     padding-top: 7px;
     font-size: smaller;
 }
+
+dl {
+    margin: 0;
+}
