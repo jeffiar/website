@@ -17,7 +17,17 @@
 <div id="header">
 <h2>Jeffrey Chang's Webpage</h2>
 <img src="img/hr.gif"><br/>
-<script src="menu.js"></script>
+<p class="topbar">
+[
+<a href="index.html" title="My home page">Home</a> | 
+<a href="research.html" title="My past and present research">Research</a> | 
+<a href="performances.html" title="A list of my performances">Performances</a> |
+<a href="essays.html" title="Some writings">Writings</a> | 
+<!-- <a href="music.html" title="My past musical compositions">Music</a> | --> 
+Music |
+<a href="cv.pdf" title="Curriculum Vitae">CV (pdf!)</a>
+]
+</p>
 </div>
 
 <div class="content">
@@ -149,7 +159,7 @@ At the end of high school, I produced a rap with four fellow graduating seniors 
 <em>May 2016</em><br/>
 After reading Dostoevsky's <em>Crime and Punishment</em> in my high school AP lit class, I was inspired to write a prelude for piano (6') about the psychology of guilt, suffering and redemption.<br/>
 <br/>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/FBMjC6-8mv8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="youtube-player" data-id="FBMjC6-8mv8"></div>
 <br/>
 <br/>
 <small>
@@ -173,5 +183,40 @@ Unfortunately, I don't have a good recording of the piece, but you can take a lo
 <img src="img/pig.jpg">
 I wrote a theme and variations on a Chinese children's song, "I am a Chubby Little Pig", for wind quintet. <a target="_blank" href="files/variations-on-a-pig.pdf">Here</a> is the score, and <a href="https://soundcloud.com/jeffjar/variations-on-a-pig">here</a> is a rather unpolished recording.<br/>
 </div>
+
+<script>
+
+    /* Light YouTube Embeds by @labnol */
+    /* Web: http://labnol.org/?p=27941 */
+
+    document.addEventListener("DOMContentLoaded",
+        function() {
+            var div, n,
+                v = document.getElementsByClassName("youtube-player");
+            for (n = 0; n < v.length; n++) {
+                div = document.createElement("div");
+                div.setAttribute("data-id", v[n].dataset.id);
+                div.innerHTML = labnolThumb(v[n].dataset.id);
+                div.onclick = labnolIframe;
+                v[n].appendChild(div);
+            }
+        });
+
+    function labnolThumb(id) {
+        var thumb = '<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg">',
+            play = '<div class="play"></div>';
+        return thumb.replace("ID", id) + play;
+    }
+
+    function labnolIframe() {
+        var iframe = document.createElement("iframe");
+        var embed = "https://www.youtube.com/embed/ID?autoplay=1";
+        iframe.setAttribute("src", embed.replace("ID", this.dataset.id));
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allowfullscreen", "1");
+        this.parentNode.replaceChild(iframe, this);
+    }
+
+</script>
 
 </body>

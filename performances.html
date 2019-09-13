@@ -17,16 +17,24 @@
 <div id="header">
 <h2>Jeffrey Chang's Webpage</h2>
 <img src="img/hr.gif"><br/>
-<script src="menu.js"></script>
+<p class="topbar">
+[
+<a href="index.html" title="My home page">Home</a> | 
+<a href="research.html" title="My past and present research">Research</a> | 
+<!-- <a href="performances.html" title="A list of my performances">Performances</a> | -->
+Performances |
+<a href="essays.html" title="Some writings">Writings</a> | 
+<a href="music.html" title="My past musical compositions">Music</a> | 
+<a href="cv.pdf" title="Curriculum Vitae">CV (pdf!)</a>
+]
+</p>
 </div>
 
 <div class="content">
 <h2>Upcoming Performances</h2>
 <hr>
 <ul class="performances">
-    <b>Stanford Symphony Orchestra Spring Concert</b> (<a target="_blank" href="https://web.stanford.edu/group/sso/cgi-bin/wordpress/concerts/2018-19-season/">Event Page</a>)<br/>
-    <em>Sat Jun 1, 7:30pm; Sun Jun 2, 2:30pm; Bing Concert Hall</em><br/>
-    <ul><li> Playing horn in a big orchestra, Mahler 5, behold!</ul>
+    None for now. In the mean time, check out some <a href="#recordings">old recordings</a>.
 </ul>
 </div>
 
@@ -182,7 +190,50 @@ function toggleHide(button) {
     <b>Stanford Collaborative Orchestra (SCOr) Spring Concert</b><br/>
     <em>Fri May 24, 7:30pm; Toyon Hall</em><br/>
     <ul><li> In which we perform some Shostakovich and potentially some memes.</ul><br/>
+
+    <b>Stanford Symphony Orchestra Spring Concert</b> (<a target="_blank" href="https://web.stanford.edu/group/sso/cgi-bin/wordpress/concerts/2018-19-season/">Event Page</a>)<br/>
+    <em>Sat Jun 1, 7:30pm; Sun Jun 2, 2:30pm; Bing Concert Hall</em><br/>
+    <ul><li> Playing horn in a big orchestra, Mahler 5, behold!</ul><br/>
 </div>
 </div>
 
+<div class="content"><a name="recordings">
+    <h3>Recordings</h3>
+    Here is a performance of Gaubert's <em>Trois Aquarelles</em> from the <a href="https://www.facebook.com/events/591248327933944/">Winter 2018 SCOr concert</a>, with my fellow SCOr musicians Papa Odita-Honnah (flute) and Michael Chung (cello). The performance was very energetic!<br/><br/>
+    <div class="youtube-player" data-id="1ymp8Hshkkg"></div>
+</div>
+<script>
+
+    /* Light YouTube Embeds by @labnol */
+    /* Web: http://labnol.org/?p=27941 */
+
+    document.addEventListener("DOMContentLoaded",
+        function() {
+            var div, n,
+                v = document.getElementsByClassName("youtube-player");
+            for (n = 0; n < v.length; n++) {
+                div = document.createElement("div");
+                div.setAttribute("data-id", v[n].dataset.id);
+                div.innerHTML = labnolThumb(v[n].dataset.id);
+                div.onclick = labnolIframe;
+                v[n].appendChild(div);
+            }
+        });
+
+    function labnolThumb(id) {
+        var thumb = '<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg">',
+            play = '<div class="play"></div>';
+        return thumb.replace("ID", id) + play;
+    }
+
+    function labnolIframe() {
+        var iframe = document.createElement("iframe");
+        var embed = "https://www.youtube.com/embed/ID?autoplay=1";
+        iframe.setAttribute("src", embed.replace("ID", this.dataset.id));
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allowfullscreen", "1");
+        this.parentNode.replaceChild(iframe, this);
+    }
+
+</script>
 </body>
