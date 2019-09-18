@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Random Stravinsky Generator</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131436916-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-131436916-1');
+    </script>
+</head>
+
+<body style="max-width: 46em; margin-left: 2em">
+
+<h1>Random Stravinsky Generator</h1>
+<div style="text-align: right;"><i>Sep 17, 2019</i></div>
+<img src="img/stravinsky-accents.png" alt="Sheet music with accented chords">
+
+<p>In this passage from Stravinsky's <cite>Rite of Spring</cite>, the irregular and unpredictable accents are <em>supposed</em> to mess with your sense of pulse. But century later, the piece is so overplayed that timings have become <a href="https://www.facebook.com/londonphilharmonicorchestra/videos/the-rite-of-spring-clap-along/10156221558723885/">perfectly predictable.</a> Little did Stravinsky know, though, that the computers of 2019 come equipped with random number generators...</p>
+
+<p>Behold the power of the modern web browser <small>and 2000's web design</small>! Brace yourself for a truly random and unpredictable experience!</p>
+
+<audio>
+    <p><span style="background-color: yellow">Your browser doesn't support HTML5 audio. Too bad...</span></p>
+</audio>
+
+<button id="button" onClick="buttonOnClick()">Play Random Stravinsky</button>
+
+<p>
+    <input id="slider" type="range" list="tickmarks" value="25">
+    <datalist id="tickmarks">
+        <option value="0" label="0%"></option>
+        <option value="50" label="50%"></option>
+        <option value="100" label="100%"></option>
+    </datalist>
+    Percent of randomly accented chords: <span id="freq">25</span>%
+</p>
+
+<p><small>More features coming soon...let me know if you have any suggestions.</small></p>
+
+<script>
+var button = document.getElementById("button")
+var slider = document.getElementById("slider")
+var freqSpan = document.getElementById("freq")
+var bopFile = 'media/bop1.mp3';
+var repeatedFile = 'media/repeated1.mp3';
+var bops = [new Audio(bopFile), new Audio(bopFile), new Audio(bopFile)]
+var repeated1 = new Audio(repeatedFile);
+var repeated2 = new Audio(repeatedFile);
+// TODO make some other sound files and choose randomly between
+// them each time so that it doesn't always sound the same...
+
+var freq = 0.25; // Fraction of chords which are accented
+var playing = false;
+var n = 0; // Number of chords played
+var dt = 268.9; // Time between chords in msec
+
+function buttonOnClick() {
+    if (playing == false) {
+        button.innerHTML = "Stop"
+        playing = true;
+        playStravinsky();
+    } else {
+        button.innerHTML = "Play Random Stravinsky"
+        stopStravinsky();
+        playing = false;
+    }
+}
+
+slider.oninput = function() {
+    freqSpan.innerHTML = slider.value;
+    freq = slider.value / 100;
+}
+
+var ticker;
+function playStravinsky() {
+    ticker = setInterval(tick, dt);
+}
+
+function stopStravinsky() {
+    clearInterval(ticker);
+    repeated1.pause();
+    repeated2.pause();
+    n = 0;
+}
+
+function tick() {
+    if (n % 10 == 0) {
+        repeated1.currentTime = 0;
+        repeated1.play();
+    }
+    if (n % 10 == 5) {
+        repeated2.currentTime = 0;
+        repeated2.play();
+    }
+    if (Math.random() < freq) {
+        var bop = bops[n % 3];
+        bop.currentTime = 0;
+        bop.play();
+    }
+    n += 1;
+}
+
+</script>
+
+<hr>
+<address><a href="https://stanford.edu/~jeffjar"><i>Jeffrey Chang</i></a></address>
+
+</body>
