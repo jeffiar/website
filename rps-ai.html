@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors AI</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131436916-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-131436916-1');
+    </script>
+</head>
+
+<body style="max-width: 46em; margin-left: 2em">
+
+<h1>Can you beat this AI?</h1>
+<div style="text-align: right"><i>Sep 17, 2019</i></div>
+
+<p>In this day and age, is there anything which AI <em>cannot</em> do? It can drive cars, play chess, predict the weather, feed our dogs, rub our tummys, and apparently, it will take over the world by 2025! But the real question is...can AI play rock, paper, scissors?</p>
+
+<p>Now I know what you are thinking: how in the world can an AI agent be skilled at a game of <em>chance</em>? Well, I have trained this AI on bajillions<sup><a href="#footnote-1">1</a></sup> of games against humans. By picking up on the <em>subtle tendencies</em> of human playstyle, the AI can learn to <a href="https://youtu.be/U_eZmEiyTo0" target="_blank">outsmart</a> the average human!</p>
+
+<p>How will <b>you</b> fare against the world's most advanced<sup><a href="#footnote-2">2</a></sup> AI agent?</p>
+
+<hr/>
+
+
+<table>
+    <tr>
+        <td>Your input:</td>
+        <td> <input name="player" type="radio" id="player-rock"><label for="player-rock">Rock</label> </td>
+        <td> <input name="player" type="radio" id="player-paper"><label for="player-paper">Paper</label> </td>
+        <td> <input name="player" type="radio" id="player-scissors"><label for="player-scissors">Scissors</label> </td>
+    </tr>
+    <tr>
+        <td>AI's input:</td>
+        <td> <input name="ai" type="radio" id="ai-rock" disabled><label for="ai-rock">Rock</label> </td>
+        <td> <input name="ai" type="radio" id="ai-paper" disabled><label for="ai-paper">Paper</label> </td>
+        <td> <input name="ai" type="radio" id="ai-scissors" disabled><label for="ai-scissors">Scissors</label> </td>
+    </tr>
+</table>
+
+
+<button id="shoot" onClick="shoot()" disabled><b>Shoot!</b></button>
+<button id="again" onClick="playAgain()" style="display: none;">Play again</button>
+
+<p id="results" style="display:none;">
+    <span id="message" style="background-color:yellow; font-size:large;">
+        You won!
+    </span>
+</p>
+
+<p> Current score: <span id="games-won">0</span>/<span id="total-games">0</span> (<span id="win-percentage">0</span>%) </p>
+
+<p id="explanation" style="display: none"><b>Explanation:</b> This artificially intelligent machine responds to the user's playstyle by leveraging the power of big data using state of the art machine learning algorithms deployed with cloud computing to serve shareholders by inventing disruptive technologies to create meaningful impact by moving fast and breaking things. Don't believe me? Take a look at the <a href="rps-ai.js" target="_blank">source code</a>.</p>
+
+<p id="real-explanation" style="display: none"><b>Real Explanation:</b> The computer is cheating. It decides what to play <em>after</em> it has seen the user input. The first two rounds, it lets the user win. The next few rounds, it plays randomly. And finally it crushes all of humanity. Artificial? Yes. Intelligent? Your call.</p>
+
+<script src="rps-ai.js"></script>
+<hr>
+<address><a href="https://stanford.edu/~jeffjar"><i>Jeffrey Chang</i></a></address>
+<small>
+<sup><a id="footnote-1">1</a></sup>I don't know how big a bajillion is.
+<sup><a id="footnote-2">2</a></sup>Beauty is in the eye of the beholder.
+</small>
+
+
+</body>
+
