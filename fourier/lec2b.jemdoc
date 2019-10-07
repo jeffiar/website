@@ -56,7 +56,7 @@ We can visualize this fact on a complex plane by observing how the real and imag
 {Remark}
 I should say a bit more about how to interpret complex numbers like $e^{i \theta}$. The cleanest way to think about complex numbers is as points on the complex plane, where ``pure phases'' such as $e^{i \theta}$ all fall on the unit circle, an angle of $\theta$ radians from the x-axis. Since a rotation by $2 \pi$ radians goes one time around the unit circle, it's clear that $e^{i (\theta + 2 \pi)} = e^{i \theta}$, because you wind up at the same point.
 
-Functions such as $g(t) = e^{2 \pi i \nu t}$ represent a point that starts off on the x-axis and then goes around the unit circle $\nu$ times per second. From this picture, it's pretty clear why we defined sines and cosines in terms of unit circles -- the real component of the complex number is the sine of the angle, the imaginary component is the cosine, which is quite precisely what Euler's formula tells us.
+Functions such as $g(t) = e^{2 \pi i \nu t}$ represent a point that starts off on the x-axis and then goes around the unit circle $\nu$ times per second. From this picture, it's pretty clear why we defined sines and cosines in terms of unit circles -- the real component of the complex number is the cosine of the angle, and the imaginary component is the sine, which is quite precisely what Euler's formula tells us.
 
 One other thing to note about functions of the form $g(t) = e^{2 \pi i \nu t}$ is that if the frequency $\nu$ is an integer, then every whole number of seconds, we wind around the circle an exact integer number of times and end up at the point $(x,y) = (1,0)$ again; in other words, if $n$ is an integer, then $e^{2 \pi i n} = 1$.
 ~~~
