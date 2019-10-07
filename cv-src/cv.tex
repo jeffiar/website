@@ -1,12 +1,16 @@
 % Jeffjar's CV
 % $ latexmk cv.tex -pdf -pvc -interaction=nonstopmode
-\documentclass[margin, 10pt]{res}
+\documentclass[margin]{res}
 
 \usepackage{hyperref}
+% \usepackage{bibentry}
 
 \newenvironment{myitemize}
 { \vspace{-1.5\topsep} \begin{itemize} }
 { \end{itemize} \vspace{-1.0\topsep}}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
 
 \begin{document}
 
@@ -74,7 +78,20 @@ Stanford Bio-X Undergraduate Summer Research Program \hfill 2018 \\
 Stanford Institutes of Medical Research Summer Research Program \hfill 2015
 
 \section{Publications}
-    \underline{J.\ Chang}, M.\ G.\ Romei, S.\ G.\ Boxer, ``Structural Evidence of Photoisomerization Pathways in Fluorescent Proteins'',  \textit{Journal of the American Chemical Society, in press.} \href{http://dx.doi.org/10.1021/jacs.9b08356}{[link]}
+
+% \nobibliography{pubs.bib}
+% \bibliographystyle{plain}
+% \bibentry{chang2019structural}
+
+\begin{changemargin}{0em}{3em}
+    ``Structural Evidence of Photoisomerization Pathways in Fluorescent Proteins'',
+    \underline{J.\ Chang}, M.\ G.\ Romei, S.\ G.\ Boxer,
+    \textit{Journal of the American Chemical Society},
+    \textbf{141},
+    15504-15508
+    (2019).
+    \href{http://dx.doi.org/10.1021/jacs.9b08356}{[link]}
+\end{changemargin}
 
 \section{Interests}
 
