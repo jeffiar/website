@@ -1,2 +1,0 @@
-- Make mobile friendly
-- Add script to grab the ``last updated'' date from github
