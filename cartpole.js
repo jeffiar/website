@@ -1,6 +1,5 @@
 // With some help from
 // http://physics.weber.edu/schroeder/software/demos/MolecularDynamics.html
-
 var stepsPerFrame = 50;
 var framesPerSec = 100;
 var stepsPerSec = stepsPerFrame * framesPerSec;
@@ -15,6 +14,10 @@ var context = canvas.getContext('2d');
 var startButton = document.getElementById('start');
 var highScore = 0;
 var highScoreSpan = document.getElementById('hi-score');
+var advancedCheckBox = document.getElementById('advanced-checkbox');
+var advancedDiv = document.getElementById('advanced-div');
+var codeBox = document.getElementById('code-box');
+var codeRunButton = document.getElementById('run-code');
 var overlayText = "Press Start to Begin!"
 var overlayColor = "gray";
 var timeoutVar = 0;
@@ -57,7 +60,11 @@ document.onkeypress = function (e) {
     // console.log('Key Press:' + e.keyCode);
     // Spacebar will start/stop the simulation as well
     if (e.keyCode == 32) {
-        startStop();
+        // If the Start button is the active element, the spacebar will
+        // hit the button, and we don't want to double-trigger it.
+        if (document.activeElement.id != "start") {
+            startStop();
+        }
     }
 };
 
@@ -129,6 +136,9 @@ function cartPoleAlmostDead() {
 
 function simulate() {
     for (var step = 0; step < stepsPerFrame; step++) {
+        if (advancedCheckBox.checked) {
+            throttle = pickAction(x, xDot, theta, thetaDot, t);
+        }
         doStep();
     }
 
@@ -146,7 +156,8 @@ function simulate() {
         startButton.value = "Play Again";
         var score = t / stepsPerSec;
         if (score > highScore) {
-            highScoreSpan.innerHTML = score.toFixed(1);
+            highScore = score;
+            highScoreSpan.innerHTML = highScore.toFixed(1);
         }
     }
     paintCanvas();
@@ -286,5 +297,37 @@ function startStop() {
     }
 }
 
+function advancedOnOff() {
+    if (advancedCheckBox.checked) {
+        advancedDiv.style.display = "table-cell";
+    } else {
+        advancedDiv.style.display = "none";
+    }
+}
+
+function runUserCode() {
+    // The most stupidly insecure thing on this planet
+    eval(codeBox.value);
+    alert('Your code has been run.')
+}
+
 startButton.onclick = startStop;
 themeSelect.onchange = paintCanvas;
+advancedCheckBox.onclick = advancedOnOff;
+codeRunButton.onclick = runUserCode;
+
+codeBox.value = `// This function will be executed every time step.
+// It should return a value of either -1, 1, or 0,
+// for leftward, rightward, or no acceleration.
+function pickAction(x, xDot, theta, thetaDot, t) {
+    if (theta < - Math.PI / 50) {
+        return 1;
+    } else if (theta > Math.PI / 50) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+`
+eval(codeBox.value);
+advancedOnOff();

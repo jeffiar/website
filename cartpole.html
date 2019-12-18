@@ -22,22 +22,36 @@
 <p>Here is a pole sitting on top of a cart. 
 <!-- If the pole falls down, then you lose. If the cart falls off the platform, you also lose. --> 
 How long can you balance the pole?</p>
-<p><small>Use the left and right arrow keys (or <code>h/l</code>) to accelerate the cart. Use the Start button (or spacebar) to pause and resume. </small></p>
+<p><small>Use the left and right arrow keys (or <code>h/l</code>) to accelerate the cart.<br/>
+Use the Start button (or spacebar) to pause, resume, and restart. </small></p>
 
 <p>
 <input type="button" id="start" style="font-weight:bold" value="Start">
 High Score: <span id="hi-score">0.0</span>
 </p>
 
-<canvas id="canvas" width="399" height="400" style="border: 1px black solid;">Your browser doesn't support the HTML5 canvas :(</canvas>
+<div style="width: 100%; display: table;">
+<div style="display: table-cell;">
+    <div style="width: 400px; display: table-cell;">
+        <canvas id="canvas" width="400" height="400" style="border: 1px black solid;">Your browser doesn't support the HTML5 canvas :(</canvas>
+    </div>
+    <div style="padding-left: 2em; vertical-align: top; display: none;" id="advanced-div">
+        <p>Write some code to balance the cart for you!</p>
+        <textarea id="code-box" rows="18" cols="50">
+        </textarea>
+        <br/>
+        <input type="button" id="run-code" value="Run!">
+    </div>
+</div>
+</div>
 
 <div>
 Theme: <select id="theme">
       <option value="plain">Plain</option>
       <option value="gobears">Go Bears</option>
 </select>
-<input type="checkbox" name="advanced" id="advanced">
-<label for="advanced">Advanced mode</label>
+<input type="checkbox" name="advanced-checkbox" id="advanced-checkbox">
+<label for="advanced-checkbox">Automatic mode</label>
 
 </div>
 
