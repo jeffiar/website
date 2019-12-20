@@ -82,16 +82,20 @@ if (theta < - Math.PI / 50) {
         The function <code>pickAction</code> will be executed on each frame.
         <!-- Its arguments represent the current state of the cartpole. -->
         It should return one of three possible actions: LEFT_PUSH, RIGHT_PUSH, or NO_PUSH.
-        See the <a href="cartpole.js">source code</a> for more details.
+        See the <a href="cartpole.js" target="_blank">source code</a> for more details.
         (The function <code>pickAction</code> is at the end of the file.)
     </p>
 </div>
 
-<img style="display:none" id="arrow" src="img/left-arrow.png" />
 <img style="display:none" id="kiwibot" src="img/kiwibot.png" />
 <img style="display:none" id="cal-flag" src="img/cal-flag.png" />
+<img style="display:none" id="arrow" src="img/left-arrow.png" />
 
 <script src="cartpole.js"></script>
+
+<p>
+This is the classic <a href="https://en.wikipedia.org/wiki/Inverted_pendulum">inverted pendulum problem</a> of control theory&mdash;also known as the <a href="https://gym.openai.com/envs/CartPole-v0/">cartpole problem</a> of reinforcement learning (or "AI"). With a proper strategy, you can stabilize the cart indefinitely. The strategy can come either via mathematical reasoning (control theory) or via "learning from experience" (reinforcement learning).
+</p>
 
 
 <hr style="width: 100%">
