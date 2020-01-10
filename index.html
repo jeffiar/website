@@ -1,10 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <title>Jeffrey Chang</title>
     <meta name="description" content="Personal webpage of Jeffrey Chang">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131436916-1"></script>
     <script>
@@ -13,6 +13,23 @@
     gtag('js', new Date());
     gtag('config', 'UA-131436916-1');
     </script>
+
+    <!-- Style sheet for the gallery -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+    .gallery_image {
+        width: 28%;
+        padding-left: 2%;
+        padding-right: 2%;
+        text-align: center;
+        display: inline-block;
+        padding-bottom: 1em;
+    }
+    .lightboxable {
+        max-height: 100%;
+        max-width: 100%;
+    }
+    </style>
 </head>
 
 <body style="background: #ebf5fb;">
@@ -28,7 +45,7 @@
         <br/>
         <a href="cv.pdf">Curriculum Vitae (pdf!)</a>
     </td>
-    <td> <img src="img/me.jpg" alt="Photo of me" height="200px" style="float: right;"> </td>
+    <td> <img src="img/me.jpg" alt="Photo of me" height="200" style="float: right;"> </td>
     </tr>
 </table>
 
@@ -48,45 +65,31 @@
 <hr>
 
 <p>
-    <img src="img/new.gif"> Can you <a href="cartpole.html">balance a pole on a cart</a>? Harder than you might think. <small>(<i>Dec 2019</i>)</small><br/> 
-    <img src="img/new.gif"> Check out this silly <a href="random-stravinsky.html">random Stravinsky generator</a>. <small>(<i>Sep 2019</i>)</small><br/> 
-        <img src="img/new.gif"> I wrote some <a href="stat-mech-rec.html">book reviews</a> of statistical mechanics textbooks. <small>(<i>Aug 2019</i>)</small><br/> 
-        <!-- <img src="img/new.gif"> <a href="blog/post4.html">Read my thoughts</a> about the recent black hole image from the EHT collaboration <small>(<i>Apr 2019</i>)</small><br/> --> 
+    <img src="img/new.gif" alt="New page"> Can you <a href="cartpole.html">balance a pole on a cart</a>? Harder than you might think! <small>(<i>Dec 2019</i>)</small><br/> 
+    <img src="img/new.gif" alt="New page"> Check out this silly <a href="random-stravinsky.html">random Stravinsky generator</a>. <small>(<i>Sep 2019</i>)</small><br/> 
+    <img src="img/new.gif" alt="New page"> I wrote some <a href="stat-mech-rec.html">book reviews</a> of statistical mechanics textbooks. <small>(<i>Aug 2019</i>)</small><br/> 
+    <!-- <img src="img/new.gif"> <a href="blog/post4.html">Read my thoughts</a> about the recent black hole image from the EHT collaboration <small>(<i>Apr 2019</i>)</small><br/> --> 
 </p>
 
 <hr/>
 
-<p>I am an undergraduate studying physics at Stanford University. Broadly, I am intrigued by the physics of the biochemical world -- the thermodynamics of life, the quantum chemistry of vision, the dynamical landscape of macromolecules, and more. I've done research about the photophysics of fluorescent proteins in the <a href='http://web.stanford.edu/group/boxer/'>Boxer lab</a>.</p>
+<p>I am an undergraduate studying physics at Stanford University. Broadly, I am intrigued by the physics of the biochemical world&mdash;the thermodynamics of life, the quantum chemistry of vision, the dynamical landscape of macromolecules, and more. In 2018, I did some <a href='research#crystals'>research</a> about the photophysics of fluorescent proteins in the <a href='http://web.stanford.edu/group/boxer/'>Boxer lab</a>.</p>
 
-<p>Outside of science, I take piano lessons with Dr. Weldy, and I play horn in the <a href="https://scor.stanford.edu" target="_blank">Stanford Collaborative Orchestra</a> (SCOr). I also play jazz piano in a trio called Casual Business. </p>
+<p>Outside of science, I take piano lessons with Dr. Frederick Weldy, and I play horn in the <a href="https://scor.stanford.edu" target="_blank">Stanford Collaborative Orchestra</a> (SCOr). I also play jazz piano in a trio called Casual Business. </p>
 
-<p>On my website, you can read about my <a href="blog/post1.html">various</a> <a href="blog/free-energy.html">scientific</a> <a href="files/rba.pdf">thoughts</a>, or learn some fascinating statistical mechanics from my <a href="statmech2/">lecture notes</a>. You can also find my <a href="performances.html">upcoming performances</a>, <a href="performances.html#recordings">recordings</a> from past performances, and a <a href="music.html">catalogue</a> of my musical creations.</p>
+<p>On this website, you can learn some <a href="statmech2/">fascinating statistical mechanics</a> and read about <a href="blog/post1.html">various</a> <a href="blog/free-energy.html">scientific</a> <a href="files/rba.pdf">thoughts</a>. You can enjoy some of my <a href="music.html">musical creations</a>.
 
-<p>Use the navigation bar at the bottom of the page to explore my website.</p>
+<p>Use the navigation bar at the bottom of the page to explore this website!</p>
 
 <hr>
 
 <div style="text-align: center;">
 <p>
-    <a href="statmech2/fun.html"><img style="border: 1px solid black;" src="img/landau-free-energy.PNG" width="150px"></a>
+    <a href="statmech2/fun.html"><img style="border: 1px solid black;" src="img/landau-free-energy.PNG" width="150" alt="An graph of the Landau Free Energy."></a>
 </p>
-<p>Click on the graph to play with some applets about phase transitions! <img src="img/iconsmile.gif"></p>
+<p>Click on the graph to play with some applets about phase transitions! <img src="img/iconsmile.gif" alt="A smiley face"></p>
 </div>
 
-<style>
-.gallery_image {
-    width: 28%;
-    padding-left: 2%;
-    padding-right: 2%;
-    text-align: center;
-    display: inline-block;
-    padding-bottom: 1em;
-}
-.lightboxable {
-    max-height: 100%;
-    max-width: 100%;
-}
-</style>
 
 <div class="gallery_image">
     <img class="lightboxable" src="img/box.jpg" title="Box">
@@ -131,7 +134,7 @@
 <address><a href="https://stanford.edu/~jeffjar"><i>Jeffrey Chang</i></a></address>
 <small>
     <!-- This website was made from scratch with html, css, and javascript.<br/> -->
-    Icons downloaded from <a href="http://www.dewa.com/FREEICON/">www.dewa.com/FREEICON</a>.  Last updated on Dec 19, 2019.
+    Icons downloaded from <a href="http://www.dewa.com/FREEICON/">www.dewa.com/FREEICON</a>.  Last updated on Jan 9, 2019.
 </small>
 
 </body>
