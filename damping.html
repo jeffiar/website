@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Damping!</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131436916-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-131436916-1');
+    </script>
+</head>
+
+<body style="background: aliceblue;">
+<div style="max-width: 600px; text-align: left; padding: 1px 2em 2em 2em; margin: 2em auto; border: 1px black solid; background: whitesmoke;" id="big-container">
+
+<h1>Damping!</h1>
+
+<p>
+This is the motion of a simple harmonic oscillator. It is governed by the equation
+<span style="font-family: sans-serif;"> m &#7821; + &gamma; &#7819; + kx = 0</span>.
+</p>
+
+<p>
+<em>Adjust the slider below to tune the value of the damping coefficient <span style="font-family: sans-serif;">&gamma;</span>. Notice the different regimes of behavior!</em>
+</p>
+
+<div style="text-align: center;">
+<div style="background: yellow; display: inline-block; margin: 0 0 1em 0; padding: 0.5em;">
+<label for="damping"><span id="damping-span" style="font-family: sans-serif;"></span></label>
+<br/>
+<input id="damping" type="range" value="15">
+<!-- <input type="button" id="animate!" value="Animate!"> -->
+</div>
+</div>
+
+<canvas id="canvas" width="400" height="400" style="border: 1px grey dotted;">
+        Your browser doesn't support the HTML5 canvas :(
+</canvas>
+
+<script src="damping.js"></script>
+</div>
+
+<hr style="width: 100%">
+<address><a href="https://stanford.edu/~jeffjar">Jeffrey Chang</a></address>
+Last updated on Mar 18, 2020.</small>
+<br/>
+
+</body>
+
+
+
