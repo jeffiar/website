@@ -5,7 +5,6 @@ const damping_span = document.getElementById("damping-span");
 const T_MAX = 50;
 const DT = 0.01;
 const DAMPING_MAX = 10;
-const defaultCanvasWidth = canvas.width;
 
 function resizeCanvas() {
     var containerWidth = parseInt(
@@ -139,14 +138,16 @@ var xs = [];
 var vs = [];
 var ts = [];
 
-damping_slider.oninput = paintCanvas;
-
-function paintCanvas() {
+damping_slider.oninput = function() {
     damping = DAMPING_MAX * Math.pow(damping_slider.value / 100, 2);
     damping_span.innerHTML = "&gamma; = " + damping.toFixed(2) + "&radic;km";
 
     calc_trajectory();
+    paintCanvas();
+}
+damping_slider.oninput();
 
+function paintCanvas() {
     x_of_t_plotter.clear_graph()
     x_of_t_plotter.draw_graph(x_of_t)
     if (damping < 2) {
@@ -159,7 +160,6 @@ function paintCanvas() {
         T_MAX / 2, 1.25, color="red"
     );
 }
-damping_slider.oninput();
 
 function calc_trajectory() {
     xs = []; vs = []; ts = [];
