@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{lec5.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{lec5.html}, showsource, analytics{UA-131436916-2}
 = Motivation for Fourier Transform
 
 We spent the second half of class then introducing the Fourier Transform as the limiting case of Fourier Coefficients as the periodicity of the function increased to infinity.

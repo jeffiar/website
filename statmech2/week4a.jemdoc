@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{week4a.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{week4a.html}, showsource, analytics{UA-131436916-2}
 = Landau-Ginzburg Theory
 
 Onwards we continue in our quest for understanding complicated interacting systems! [lec5a.hmtl Last week], we built up our understanding of mean field theory, and this week, we'll extend the theory a bit further, thinking about how magnetization can vary throughout space, and working towards the concept of an *order parameter field*.

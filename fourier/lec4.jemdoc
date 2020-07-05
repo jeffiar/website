@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{lec4.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{lec4.html}, showsource, analytics{UA-131436916-2}
 = Orthogonality
 
 We spent the rest of class (Mon Week 2) discussing the concept of orthogonality. Prof. Osgood presented a beautifully motivated and clean picture for why it was useful to define a notion of ``orthogonality'' for functions. I won't go through the whole background of linear algebra again here, but I'll state the main point:

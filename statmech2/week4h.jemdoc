@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{week4h.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{week4h.html}, showsource, analytics{UA-131436916-2}
 = Spatial Textures
 
 Earlier, we generalized the Landau Free energy $F(\phi)$ to account for /spatial variations/ in the texture of the order parameter, by allowing $\phi(\vec r)$ to vary as a function of space. However, this generalization turned out rather fruitless, because it turned out that any spatial variation would /increase/ the free energy, meaning that the best field configuration was the one that didn't change in space! So we were just as good assuming that $\phi$ was uniform.

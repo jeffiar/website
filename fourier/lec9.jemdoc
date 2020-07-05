@@ -1,5 +1,5 @@
 # jemdoc: menu{MENU}{lec8.html}, showsource,
-#  analytics{UA-131436916-1}
+#  analytics{UA-131436916-2}
 = Scaling & Derivatives
 
 Ready, set, go! There's one last property of Fourier transforms to mention, which we won't prove, but it's important to know. It's the analog of Rayleigh's identiy for Foruier Transforms.

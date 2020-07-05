@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{lec5d.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{lec5d.html}, showsource, analytics{UA-131436916-2}
 = Mean Field Solution of Ising Model
 
 Now that we understand the [lec5b.html variational principle] and the [lec5c.html non-interacting Ising Model], we're ready to accomplish our next task. We want to understand the general d-dimensional Ising Model /with/ spin-spin interactions by applying the non-interacting Ising Model as a variational ansatz. In other words, we want to use what we just derived for independent, uncorrelated spins as a trial Hamiltonian in a variational treatment of the full Ising model.

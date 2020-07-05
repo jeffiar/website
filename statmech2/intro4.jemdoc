@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{intro4.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{intro4.html}, showsource, analytics{UA-131436916-2}
 = The Ising Model
 
 The Ising model is a particular example of a thermodynamic system, and it's /the/ model system for understanding phase transitions. You know how so many biologists spend so much time with measly fruit flies? Well, physicists spend a lot of time with the Ising model. As Prof. Raghu helpfully tells us, it's the Drosophila of phase transitions.

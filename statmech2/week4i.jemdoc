@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{week4i.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{week4i.html}, showsource, analytics{UA-131436916-2}
 = Gaussian Model
 
 In week 8, we turned to our final topic in this little module of effective field theory. Here we'll use the so-called ``Gaussian Model'' to calculate our first taste of critical exponents beyond the mean-field approach. I frankly don't understand everything yet, but I think it'll start making more sense once I start typing it out. So here we go.

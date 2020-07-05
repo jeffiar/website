@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{week4f.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{week4f.html}, showsource, analytics{UA-131436916-2}
 = Order Parameter Fields and the Landau-Ginzburg Free Energy
 
 Now that we understand the Landau Free Energy $F(m)$ for the Ising Model, it's time to extend our results to understand broader phenomena. It's quite remarkable how far-reaching and generalizble this sort of phenomenological-free-energy approach can be: we'll see that with just a few assumptions we can make pretty powerful claims about how phase transitions occur.

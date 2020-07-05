@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{lec1.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{lec1.html}, showsource, analytics{UA-131436916-2}
 = Periodicity
 
 Fourier Series is the study of periodic phenomena (but the techniques we learn from it will generalize to thinking about many other non-periodic things as well).  Note that even though we often think of periodic things in terms of a graph, we don't always have to; there's many other ways to think about them; in fact, sometimes they can be less misleading and more enlightening than a graph. 

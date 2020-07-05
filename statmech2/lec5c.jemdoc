@@ -1,4 +1,4 @@
-# jemdoc: menu{MENU}{lec5c.html}, showsource, analytics{UA-131436916-1}
+# jemdoc: menu{MENU}{lec5c.html}, showsource, analytics{UA-131436916-2}
 = Warm-up: Non-Interacting Spins
 
 Before we go on to apply the variational principle to the Ising model, I want to review the statistical mechanics of a /non/-interacting paramagnet. The better we understand what we /already/ know, the more prepared we'll be to tackle what we don't know.
