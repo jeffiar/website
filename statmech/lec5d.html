@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Mean Field Solution of Ising Model</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html" class="current">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Mean Field Solution of Ising Model</h1>
+</div>
+<p>Now that we understand the <a href="lec5b.html">variational principle</a> and the <a href="lec5c.html">non-interacting Ising Model</a>, we're ready to accomplish our next task. We want to understand the general d-dimensional Ising Model <i>with</i> spin-spin interactions by applying the non-interacting Ising Model as a variational ansatz. In other words, we want to use what we just derived for independent, uncorrelated spins as a trial Hamiltonian in a variational treatment of the full Ising model.</p>
+<p>As we'll see, we'll be able to interpret our results as a <b>mean-field model</b>, where each of the spins on the Ising lattice experiences the &lsquo;&lsquo;average&rsquo;&rsquo; field produced by all its neighbors. We'll discuss whether or not this brutal averaging is justified, and talk about under what circumstances it's more or less reasonable.</p>
+<p>As an added bonus, we'll also encounter our first example of a <b>continuous phase transition</b>. In this dramatic process, the spins go from a disordered random phase with no overall magnetization to an distinct low-temperature ordered ferromagnetic phase where a macroscopic fraction of the spins are all aligned in the same direction. It's really quite surprising that Nature exhibits these sorts of marvelous &lsquo;&lsquo;collective conspiracies&rsquo;&rsquo;, and it's even more surprising that they occur at a single well-defined temperature called the <b>critical temperature</b> <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />.</p>
+<p>Finally, we'll talk about how to figure out the value of the critical temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" /> by drawing a picture and seeing where two graphs intersect.</p>
+<p>Okay let's get started.</p>
+<div class="infoblock">
+<div class="blocktitle">Food for thought</div>
+<div class="blockcontent">
+<p>We solved the 1D Ising model by using transfer matrices&hellip;but why can't you solve the general n-dimensional Ising model with transfer matrices?</p>
+</div></div>
+<h2>Variational Solution to Ising Model</h2>
+<p>The game plan for today is to solve the general Ising model</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1442682239173558075-130.png" alt="     H = - J sum_{&lt; ij&gt;} sigma_i sigma_j - h sum_j sigma_j " />
+<br /></div><p>by using a trial Hamiltonian of the form</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3746656320137738818-130.png" alt="     H_{tr} = - sum b_j sigma_j. " />
+<br /></div><p>Here our full Ising model has an energetic coupling between neighboring spins <img class="eq" src="eqs/1833092850355643431-130.png" alt="sigma_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/1833092850355643430-130.png" alt="sigma_j" style="vertical-align: -6px" /> and the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> acting on all the spins. In our variational ansatz <img class="eq" src="eqs/3679062891044675811-130.png" alt="H_{tr}" style="vertical-align: -4px" />, we pretend that the spins are actually decoupled from each other (that is, there's no <img class="eq" src="eqs/2439786022006990604-130.png" alt="sigma_i sigma_j" style="vertical-align: -6px" /> terms), and that each of the spins instead experiences an &lsquo;&lsquo;effective external field&rsquo;&rsquo; <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />. (We'll discuss how to interpret <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> later on.)</p>
+<p>Our objective here is to find the values of <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> that make our trial Hamiltonian the &lsquo;&lsquo;best&rsquo;&rsquo; possible approximation to the actual Hamiltonian. As we learned, the <a href="lec5b.html">variational principle</a> says us that the &lsquo;&lsquo;best&rsquo;&rsquo; value of <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> is the one that minimizes the variational free energy</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5440073323235467085-130.png" alt="     F_{var} = F_{tr} + langle H - H_{tr} rangle_{tr}. " />
+<br /></div><p>(Remember that the subscript <img class="eq" src="eqs/14848089204133932-130.png" alt="tr" style="vertical-align: -1px" /> means that we're finding thermal averages using the weights from the trial ensemble. This statement is much fancier than it sounds; it just means that whenever we see something such as <img class="eq" src="eqs/9039599803285369322-130.png" alt="langle sigma_j rangle_{tr}" style="vertical-align: -6px" />, we just replace it whatever the solution to the trial Hamiltonian was. For instance, in this example, we're using the non-interacting Ising model as a trial Hamiltonian, so we plug in the formulas at the bottom of the <a href="lec5c.html">last page</a>.)</p>
+<p>Let's begin.</p>
+<h3>Finding the variational free energy</h3>
+<p>We have no recourse but to plug everything into the formula for <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" />. We find that</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2713718125032082729-130.png" alt="     F_{var} = F_{tr} + leftlangle left(- J sum_{&lt; ij&gt;} sigma_i sigma_j - h sum_j sigma_jright) - left(- sum b_j sigma_jright) rightrangle_{tr}, " />
+<br /></div><p>or combining terms,</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8980889272892927658-130.png" alt="     F_{var} = F_{tr} + leftlangle - J sum_{&lt; ij&gt;} sigma_i sigma_j + sum_j (b_j - h) sigma_j rightrangle_{tr}. " />
+<br /></div><p>And since expectations values are linear, we can pull the expectation values inside to go around the sigmas. (If you want to convince yourself of this, you can try writing out the difinition of <img class="eq" src="eqs/1259582655997806906-130.png" alt="langle ldots rangle" style="vertical-align: -5px" />.)</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/1124468084481745259-130.png" alt="     F_{var} = F_{tr} + - J sum_{&lt; ij&gt;} langlesigma_i sigma_jrangle_{tr} +  sum_j (b_j - h) langlesigma_jrangle_{tr}. " />
+<br /></div><p>Before moving on, we can make one more simplification: since we picked a <i>non-interacting</i> trial Hamiltonian, the spins are uncorrelated, so <img class="eq" src="eqs/5227455771942028202-130.png" alt="langle sigma_i sigma_j rangle_{tr}" style="vertical-align: -6px" /> just factors into <img class="eq" src="eqs/2041039099202741722-130.png" alt="langle sigma_i rangle_{tr} langle sigma_j rangle_{tr}" style="vertical-align: -6px" />. (We can't <i>always</i> do this; we just happened to pick a non-interacting trial Hamiltonian today.)</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5301530776068303907-130.png" alt="     F_{var} = F_{tr} + - J sum_{&lt; ik&gt;} langlesigma_irangle_{tr}langle sigma_krangle_{tr} + sum_k (b_k - h) langlesigma_krangle_{tr}. " />
+<br /></div><p>(I changed the labels of the indices in preparation for the next step where we differentiate w.r.t. <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />.) At this point, we can expand out our expressions for <img class="eq" src="eqs/3622808163388452813-130.png" alt="F_{tr}" style="vertical-align: -4px" /> and <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" />, but a lot of the terms will cancel out later on, so for now, we'll just leave this expression as it is. (Prof. Kivelson calls this &lsquo;&lsquo;being clever,&rsquo;&rsquo; but I call it &lsquo;&lsquo;hindsight is 20-20.&rsquo;&rsquo;)</p>
+<h3>Finding the derivative</h3>
+<p>Since we want to minimize <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" /> with respect to the variational parameters <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />, we just take the derivative and set it equal to zero. Nothing particularly fancy here yet. For now, we'll leave everything in terms of <img class="eq" src="eqs/8043342305788806242-130.png" alt="langle sigma_j rangle" style="vertical-align: -6px" />'s because we're &lsquo;&lsquo;clever.&rsquo;&rsquo;</p>
+<p>When we hit <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" /> with a <img class="eq" src="eqs/9064206862799938290-130.png" alt="frac partial {partial b_j}" style="vertical-align: -10px" />:</p>
+<ul>
+<li><p>The first term gives us a <img class="eq" src="eqs/7505024492797624317-130.png" alt="{partial F_{tr} over partial b_j} = - langle sigma_j rangle_{tr}" style="vertical-align: -10px" />. You can see this is true by plugging in <img class="eq" src="eqs/8773196842217219020-130.png" alt="F = - T log Z" style="vertical-align: -4px" /> and then expanding out the partition function&hellip;or if you want some thermodynamic justification, read the <a href="#yaythermo">Remark at the bottom of this page</a>.</p>
+</li>
+<li><p>For the second term, the derivative only hits the terms involving spin <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />, because the trial Hamiltonian only had terms which looked like <img class="eq" src="eqs/6475930914712017089-130.png" alt="b_j sigma_j" style="vertical-align: -6px" />. In the nearest-neighbor-sum, there is one term for each nearest neighbor of site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />, so we end up with a sum over nearest neighbors <img class="eq" src="eqs/13440040424-130.png" alt="i" style="vertical-align: -1px" /> of <img class="eq" src="eqs/612522436338058951-130.png" alt="-J langlesigma_irangle_{tr} {partial langle sigma_j rangle_{tr} over partial b_j}" style="vertical-align: -11px" /></p>
+</li>
+<li><p>In the last term, we use the product rule. When we hit the coefficient, we get <img class="eq" src="eqs/9039599803285369322-130.png" alt="langle sigma_j rangle_{tr}" style="vertical-align: -6px" />, and when we hit the sigma we get <img class="eq" src="eqs/7590785719695557708-130.png" alt="(b_j - h) {partial langlesigma_jrangle_{tr} over partial b_j}" style="vertical-align: -11px" />.</p>
+</li>
+</ul>
+<p>So the derivative of the variational free energy ends up being</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2485127433796610086-130.png" alt="  frac {partial F_{var}} {partial b_j} = -langle sigma_j rangle_{tr} - left(J sum_{i , n.n.,j} langlesigma_irangle_{tr} {partial langle sigma_j rangle_{tr} over partial b_j}right) + langle sigma_j rangle_{tr} + (b_j - h) {partial langlesigma_jrangle_{tr} over partial b_j} " />
+<br /></div><p>where in the second sum, I'm summing over sites <img class="eq" src="eqs/13440040424-130.png" alt="i" style="vertical-align: -1px" /> that are nearest neighbors (n.n.) of site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />.</p>
+<p>Now time for some magic: the first and the third term cancel out, and then we can factor out a <img class="eq" src="eqs/905787389830677071-130.png" alt="{partial langlesigma_jrangle_{tr} over partial b_j}" style="vertical-align: -11px" /> from what's left! And then when we set the derivative equal to zero, we're left with</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4342851219466996748-130.png" alt=" 0 = frac {partial F_{var}} {partial b_j} = left[-J sum_{i , n.n.,j} langlesigma_irangle_{tr} + b_j - hright] {partial langlesigma_jrangle_{tr} over partial b_j} " />
+<br /></div><p>or </p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2639574311138889274-130.png" alt=" b_j = J sum_{i , n.n.,j} langlesigma_irangle_{tr} + h. " />
+<br /></div><p>Finally, at this point we finally need to plug in our expression for <img class="eq" src="eqs/3053351405973945125-130.png" alt="langlesigma_irangle_{tr}" style="vertical-align: -5px" /> from the previous page; we end up with a relation between the external field of a spin <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> and the external field of its neighboring spins <img class="eq" src="eqs/327024216864240961-130.png" alt="b_i" style="vertical-align: -4px" />.</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5422341657378744934-130.png" alt=" b_j = J sum_{i , n.n.,j} tanh (beta b_i) + h. " />
+<br /></div><h3>Translational invariance</h3>
+<p>Hooray, we finally have an expression for the <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />'s that satisfy our variational condition <img class="eq" src="eqs/4337025304771530293-130.png" alt="{partial F_{var} over partial b_j} = 0" style="vertical-align: -10px" />. Unfortunately, all the <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />'s are related to each other in a nasty sort of way involving hyperbolic tanhs, so it all looks kind of messy.</p>
+<p>So to proceed further, we make the assumption of <b>translational invariance</b> that all spins really experience the same &lsquo;&lsquo;external&rsquo;&rsquo; field; i.e., that <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> equals the same <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> for all the sites <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. </p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>What's the motivation exactly for assuming <img class="eq" src="eqs/7196294448606532401-130.png" alt="b_j = b" style="vertical-align: -6px" />? We tried to justify it in section by some argument about the zero-temperature limit, but I wasn't fully convinced, because the variational parameters depend on temperatures anyways.</p>
+<p>A few weeks later in class, when we learned about Landau-Ginzburg theory, we were able to give a more convincing argument for why a spatially uniform solution for <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> is indeed the &lsquo;&lsquo;best&rsquo;&rsquo; solution.</p>
+</div></div>
+<p>Once we assume that <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> is the same for all sites, we can simplify our result quite a bit, because we only need to find <i>one</i> unknown <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> now. The <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" /> on the LHS is the same as <img class="eq" src="eqs/327024216864240961-130.png" alt="b_i" style="vertical-align: -4px" /> on the RHS. Our sum over the nearest neighbors of site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> ends up being the same for each of its neighbors, so rather than summing, we just need to multiply by the number of nearest neighbors <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" />.</p>
+<p>These simplifications give as an equation for <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> <i>in terms of itself</i> as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3014051929876746655-130.png" alt="     b = h + z J tanh (beta b) " />
+<br /></div><p>where <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" /> is the number of nearest neighbors in the Ising model. </p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>The number of nearest neighbors <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" /> in an Ising model on a <img class="eq" src="eqs/12800038501-130.png" alt="d" style="vertical-align: -1px" />-dimensional hypercube lattice is <img class="eq" src="eqs/8984427379801106635-130.png" alt="z = 2d" style="vertical-align: -1px" />. For instance, on a chain (<img class="eq" src="eqs/1925086808255475135-130.png" alt="d=1" style="vertical-align: -1px" />), you have 2 neighbors to your left and right; on a square grid (<img class="eq" src="eqs/1925086808255475134-130.png" alt="d=2" style="vertical-align: -1px" />), you have 4 neighbors (left, right, up, down); on a cubic lattice (<img class="eq" src="eqs/1925086808255475133-130.png" alt="d=3" style="vertical-align: -1px" />), you have 6 neighbors (<img class="eq" src="eqs/6838334365202298479-130.png" alt="pm hat x, pm hat y, pm hat z" style="vertical-align: -4px" />), and so on and so forth.</p>
+</div></div>
+<div class="infoblock">
+<div class="blocktitle">Another Remark</div>
+<div class="blockcontent">
+<p>It's confusing to write <img class="eq" src="eqs/9472056906085414-130.png" alt="Jz" style="vertical-align: -1px" /> because the little <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" /> looks like a subscript on <img class="eq" src="eqs/9472028491-130.png" alt="J" style="vertical-align: -1px" />, which is reminiscent of the <img class="eq" src="eqs/8905612443095277114-130.png" alt="J_z" style="vertical-align: -4px" /> spin operator in quantum mechanics (and also reminiscent of a certain rapper&hellip;)</p>
+<p>On the other hand, <img class="eq" src="eqs/15616093818140838-130.png" alt="zJ" style="vertical-align: -1px" /> means a zeptojoule or <img class="eq" src="eqs/4830984458254476567-130.png" alt="10^{-21}" style="vertical-align: -1px" /> Joules! And wouldn't you know, the thermal energy <img class="eq" src="eqs/4182801852023060105-130.png" alt="k_b T" style="vertical-align: -4px" /> is typically on the order of zeptojoules; at room temperature <img class="eq" src="eqs/808696862303887429-130.png" alt="T sim 300textrm{K}" style="vertical-align: -1px" />, it's roughly 4 zJ&hellip;.I swear there's a conspiracy going on here.</p>
+</div></div>
+<h2>Solving for b</h2>
+<p>At this point, we have an expression involving <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> on the LHS and the RHS. If we think back to the bigger picture, we have just learned that the value of <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> which satisfies this equation is the &lsquo;&lsquo;best&rsquo;&rsquo; possible value of <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> in our trial Hamiltonian. Unfortunately, we can't <i>explicitly</i> solve for <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> in a closed-form way&hellip;so how do we proceed further?</p>
+<p>We'll appeal to the maxim: <i>when in doubt, simplify things and draw a picture</i>. So let's set <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> for now, and draw a picture, and see if we can gain any qualitative insight.</p>
+<p>Our strategy here is to plot both sides of the equation and see where the graphs intersect. The intersection points will tell us the solutions for <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />. In this case, we want to where the graphs of <img class="eq" src="eqs/2376905488553478267-130.png" alt="y = b" style="vertical-align: -4px" /> and <img class="eq" src="eqs/6167064143499504046-130.png" alt="y = z J tanh beta b" style="vertical-align: -4px" /> intersect:</p>
+<p><img src="img/Tc.png" style="max-width:100%; max-height: 100%;"></p>
+<p>Surprisingly, <i>the number of graph crossings depends on the temperature</i>! This is <i>by far</i> the most interesting thing we've discovered in class so far: the behavior of the mean-field Ising model is <i>completely</i> different at low temperatures than at high temperatures. We've discovered a phase transition.</p>
+<p>If you start out at high temperature, you'll only find a trivial solution at <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" />, but when you lower the temperature past a special <b>critical temperature</b> <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, all of a sudden, there will be <i>nonzero solutions</i> <img class="eq" src="eqs/3523543406171178299-130.png" alt="b=pm b_0 neq 0" style="vertical-align: -4px" /> as well. This is rather remarkable; it tells us the system behaves dramatically differently depending on whether <img class="eq" src="eqs/537689627556104645-130.png" alt="T &gt; T_c" style="vertical-align: -4px" /> or <img class="eq" src="eqs/8348194109533205829-130.png" alt="T &lt; T_c" style="vertical-align: -4px" />. The high-temperature regime is called the <b>paramagnetic phase</b> and the low-temperature regime is called the <b>(anti)ferromagnetic phase</b>.</p>
+<h2>Physical interpreation</h2>
+<p>Let's think back to our main physical observable, the <b>magnetization density</b> <img class="eq" src="eqs/5477051225804240734-130.png" alt="m = langle sigma_j rangle" style="vertical-align: -6px" /> which tells us whether the spins tend to align up or down in thermal equilibrium. (To calibrate our intuition, it's helpftul to <a href="lec5c.html#intuition">review how non-interacting spins behave</a> at different temperatures.) </p>
+<p>In our mean-field model, the magnetization density is given by <img class="eq" src="eqs/3455475434415243626-130.png" alt="m = tanh(beta b)" style="vertical-align: -5px" />, which means at low temperatures when <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> is nonzero, there is a net nonzero magnetic moment in the system.</p>
+<p>Wait a second. Let's think about how unusual this is. Since we dialed down the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> <i>to zero</i>, there is <i>no energetic incentive whatsoever</i> for the spins to want to align one way versus another. There's nothing pulling on the spins to make them want to point in a particular. <i>Yet</i> we've just discovered that there's a nonzero net magnetic moment at low temperatures; in other words, that all the spins are preferring to point in some direction over the other! How is this possible?</p>
+<p>Well, believe it or not, this is how nature behaves. It's what you might call a <b>collective conspiracy</b> &ndash; none of the <i>individual</i> spins feel an external field, but if enough of them happen to fluctuate and point in a particular way, they'll set up a strong enough &lsquo;&lsquo;local field&rsquo;&rsquo; to convince their neighbors to the same way &ndash; so strong, in fact, that a nontrivial fraction of the <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> spins also &lsquo;&lsquo;get in on the conspiracy&rsquo;&rsquo;, and the material develops long-range order and gains a <i>macroscopic</i> magnetic moment. Truly remarkable, especially if you consider just how many spins there are (<img class="eq" src="eqs/707386749816527659-130.png" alt="N sim 10^{23}" style="vertical-align: -1px" />), and just how weak each individual magnetic moment is. Magical.</p>
+<p>So to summarize, we've just discovered a conspiracy:</p>
+<div class="infoblock">
+<div class="blocktitle">Behavior of Mean-field Ising Ferromagnet</div>
+<div class="blockcontent">
+<ul>
+<li><p>At high temperatures <img class="eq" src="eqs/537689627556104645-130.png" alt="T &gt; T_c" style="vertical-align: -4px" />, the spins exhibit a disordered <b>paramagnetic</b> phase, pointing in every which way. The average magnetization of the system is zero.</p>
+</li>
+<li><p>At low temperatures <img class="eq" src="eqs/8348194109533205829-130.png" alt="T &lt; T_c" style="vertical-align: -4px" />, the spins exibit an ordered <b>ferromagnetic</b> phase, where they all conspired to point in one direction (even when there's no external field telling them which way to point!) The average magnetization of the system is (shockingly) nonzero.</p>
+</li>
+</ul>
+</div></div>
+<h3>How come long-range order only develops at low T?</h3>
+<p>Here is a qualitative picture for why high temperature favors disorded phases. At sufficiently high temperatures, all the spins are jiggling around with so much thermal energy that any local conspiracies of all-up-zones or all-down-zones are quickly jiggled away out of existence before they have time to spread into a macroscopic fraction of the material.</p>
+<p>There's also a nice argument that comes from the interplay between the two terms of the free energy <img class="eq" src="eqs/1291638254472210676-130.png" alt="F = E - TS" style="vertical-align: -1px" />. Each phase has its own energy <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" /> and entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" />, and depending on the value of the temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" />, the free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> of one phase might be higher than the other. </p>
+<ul>
+<li><p>In the disordered paramagnetic phase, the spins can point in any which way, so there's lots of possible configurations (high entropy, favorable), but there's very little energetic reward because the spins haven't chosen to align (high energy, unfavorable).</p>
+</li>
+<li><p>In the ordered paramagnetic phase, the spins have all conspired to point (mostly) in one direction, so there are less possible configurations for them (low entropy, unfavorable) but since they're neatly lined up in an energy-minimizing manner, there's a glorious energetic reward (low energy, favorable)</p>
+</li>
+</ul>
+<p>Which phase has the lower free energy? At high temperatures, when the entropic contribution is more heavily weighted, the paramagnetic phase flies off to an entropic heaven of possibilities, whereas at low temperatures, when all the system wants to do is to minimize energy, the orderly ferromagnetic phase wins out.</p>
+<h2>Solving for the critical temperature</h2>
+<p>Alright, enough qualitative remarks, I'm starting to sound like a chemist. Let's move on to solve for the critical temperature <img class="eq" src="eqs/3905236240956550548-130.png" alt="T = T_c" style="vertical-align: -4px" />.</p>
+<p>Let's look at our pictures again:</p>
+<p><img src="img/Tc.png" style="max-width:100%; max-height: 100%;"></p>
+<p>Our goal here is to find the special temperature <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" /> that separates the nonzero-solution-regime from the no-nonzero-solution-regime (sorry, these words are confusing). There's a simple condition that tells you whether or not the green curve will hit the blue curve again after <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" />. Can you figure it out by staring at the picture?</p>
+<p>Here's the secret: The green curve has to be <i>steep enough</i> at <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" /> for the blue curve to &lsquo;&lsquo;catch up to it&rsquo;&rsquo; later on and intersect the green line again. If the green line's steeper than the blue line at <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" />, then there'll be a nonzero solution for <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />, and if it's shallower, there won't be. And if the green line is exactly as steep as the blue line at <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" />, then we're at the critical temperature that separates the two possibilities. Clever, eh?</p>
+<p>This little observation gives us a mathematical procedure to find the critical temperature: we take the derivative of the LHS and RHS, set them equal to each other at <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" />, and solve for <img class="eq" src="eqs/4226120147019918905-130.png" alt="beta" style="vertical-align: -4px" />. The slope of the blue curve <img class="eq" src="eqs/7125508497141938269-130.png" alt="y=b" style="vertical-align: -4px" /> is 1, and the slope of the green curve at <img class="eq" src="eqs/327024216770240674-130.png" alt="b=0" style="vertical-align: -1px" /> is</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5126426440385481560-130.png" alt="     left[{partial over partial b} zJ tanh(beta b)right]_{b=0} = left[frac {zJbeta} {cosh^2 (beta b)}right]_{b=0} = z J beta. " />
+<br /></div><p>When we set the two slopes equal to each other, we find that <img class="eq" src="eqs/8410129096190803621-130.png" alt="z J beta = 1" style="vertical-align: -4px" /> or <img class="eq" src="eqs/2404987014595454422-130.png" alt="T_c = 1 / beta = zJ" style="vertical-align: -5px" />.</p>
+<p>Continue to <a href="lec5e.html">interpreting the mean-field solution</a>.</p>
+<p><hr><a name="yaythermo"></a></p>
+<div class="infoblock">
+<div class="blocktitle">Remark on thermodynamics</div>
+<div class="blockcontent">
+<p>Why does taking a derivative of the free energy w.r.t. the external field give you the magnetization <img class="eq" src="eqs/7505024492797624317-130.png" alt="{partial F_{tr} over partial b_j} = - langle sigma_j rangle_{tr}" style="vertical-align: -10px" />?</p>
+<p>Well, you can see this directly by plugging in <img class="eq" src="eqs/3654586777252253165-130.png" alt="F = -T log Z" style="vertical-align: -4px" /> and then expanding out the partition function. It's a pretty fun exercise to work this out yourself&hellip;remember that <img class="eq" src="eqs/8476974232037006927-130.png" alt="(log f(x))' = f'(x) / f(x)" style="vertical-align: -5px" />&hellip;</p>
+<p>If you're feeling more <b>thermodyanmically inclined</b>, you can also convince yourself that <img class="eq" src="eqs/6531043196020547766-130.png" alt="{partial F over partial H} = - M" style="vertical-align: -8px" /> via the following thermodynamic argument. (Now I'm calling the external field <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" /> and the magnetization <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" /> in the true thermodynamic spirit.) </p>
+<p>When we include the external <b>magnetic field</b> <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" /> into a thermodynamic treatment, our <b>internal energy</b> function <img class="eq" src="eqs/6629450506546745509-130.png" alt="E = E(S,H)" style="vertical-align: -5px" /> gains an extra parameter <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" />. The external field gives us another handle to perform work on the system; when we twiddle it by an amount <img class="eq" src="eqs/12800076900115558-130.png" alt="dH" style="vertical-align: -1px" />, the energy of the system changes by an amount <img class="eq" src="eqs/2327426933565516969-130.png" alt="-M dH" style="vertical-align: -1px" />, where we recognize the magnetization <img class="eq" src="eqs/5760034605051912-130.png" alt="-M" style="vertical-align: -0px" /> as the <b>conjugate variable</b> to the external field <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" />. (Think back to E'n'M why magnetic dipole times magnetic field gives you an energy&hellip;)</p>
+<p>Once we include a magnetic field, we can either change the internal energy by adding some heat <img class="eq" src="eqs/1504782437970501497-130.png" alt="T dS" style="vertical-align: -1px" /> or by performing some magnetic work <img class="eq" src="eqs/2487884135457793826-130.png" alt="-MdH" style="vertical-align: -1px" />, which means that the total differential of the internal energy is</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7801871752733908424-130.png" alt="     dE = T dS - M dH. " />
+<br /></div><p>However, since we're considering the Ising model in a <i>canonical</i> ensemble at a fixed temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" />, it doesn't make much sense to talk about derivatives of the (internal) energy <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" />, because <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" /> is a natural function of the entropy <img class="eq" src="eqs/10624031954-130.png" alt="S" style="vertical-align: -1px" /> rather than the temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" />. So even though we <i>can</i> find the magnetization <img class="eq" src="eqs/9856029644-130.png" alt="M" style="vertical-align: -0px" /> in principle as a derivative of the internal energy <img class="eq" src="eqs/8832026564-130.png" alt="E" style="vertical-align: -0px" /> as <img class="eq" src="eqs/739055083892766848-130.png" alt="M = {partial E over partial H} |_S" style="vertical-align: -8px" />, it's pretty physically useless to do so, because that derivative holds entropy constant rather than the temperature.</p>
+<p>To account for this issue, we perform a <i>Legendre transformation</i> to the <b>free energy</b></p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3938200374230393380-130.png" alt="     F equiv E - TS " />
+<br /></div><p>which then becomes a <i>natural</i> function of the temperature as <img class="eq" src="eqs/1434513580426131220-130.png" alt="F = F(T,H)" style="vertical-align: -5px" />. The differential of free energy can then be expressed as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/9213273762679422404-130.png" alt="     dF = -S dT - M dH " />
+<br /></div><p>from which we can read off the magnetization</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3651252560653366584-130.png" alt="     M = - {partial F over partial H}bigg|_T " />
+<br /></div><p>where the derivative is now taken at a fixed <i>temperature</i> rather than at fixed <i>entropy</i>, meaning that it aligns with our treatment of the Ising Model in the constant-temperature canonical ensemble of statistical mechanics.</p>
+<p>Okay, to be fair, I didn't really prove anything in the above, I just kind of pulled the <img class="eq" src="eqs/2672554066177482561-130.png" alt="-H dM" style="vertical-align: -1px" /> term out of thin air and then waved my hands around for a sort of &lsquo;&lsquo;plausibility&rsquo;&rsquo; argument. But I do think it's a reasonable sort of thing to say. Hooray, thermodynamics.</p>
+</div></div>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:16 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec5d.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

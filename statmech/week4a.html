@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Landau-Ginzburg Theory</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html" class="current">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Landau-Ginzburg Theory</h1>
+</div>
+<p>Onwards we continue in our quest for understanding complicated interacting systems! <a href="lec5a.hmtl">Last week</a>, we built up our understanding of mean field theory, and this week, we'll extend the theory a bit further, thinking about how magnetization can vary throughout space, and working towards the concept of an <b>order parameter field</b>.</p>
+<h2>Overview</h2>
+<p>In my notes, we're going to take a slightly different approach than in class.
+
+Rather than jumping right into the Landau-Ginzburg functional <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />, we're going to go <i>step by step</i> to properly build up our intuition. Here's the game plan:</p>
+<div class="infoblock">
+<div class="blocktitle">Game Plan</div>
+<div class="blockcontent">
+<p>We want to understand what <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> really means, and why it's such a useful object to consider. We'll start with <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, then generalize to <img class="eq" src="eqs/1844318935802195621-130.png" alt="F({m_j})" style="vertical-align: -6px" />, and then finally talk about <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" />.</p>
+<p>To start off, we will introduce a fictitious &lsquo;&lsquo;probe field&rsquo;&rsquo; <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> as a <a href="week4c.html">cute trick</a> to easily calculate the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. After a Legendre transform, we will end up with the free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" /> as a function of magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> &ndash; and as we'll find, <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> is a fantastic little object.</p>
+<ul>
+<li><p>Note: In class we jumped directly into a <i>spatially-varying magnetization density</i> <img class="eq" src="eqs/6387157653018356321-130.png" alt="m_j" style="vertical-align: -6px" /> rather than beginning with a uniform <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. I'm taking a different approach here.</p>
+</li>
+</ul>
+<p>If time permits, we'll take a little detour to understand free energy, and why <a href="week4d.html">we care so much</a> about it. Spoiler alert: the minima of the free energy tell you where equilibrium lies. </p>
+<p>Armed with intuition about free energy, we'll <a href="week4e.html">explore the behavior of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /></a> (Landau theory), which will teach us many fabulous things:</p>
+<ul>
+<li><p>a beautiful intuition for the behavior of second-order phase transitions</p>
+</li>
+<li><p>how you can find the magnetization density <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> at any temperature by looking at the minima of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /></p>
+</li>
+<li><p>a direct picture for how <img class="eq" src="eqs/7334278463708383850-130.png" alt="(m leftrightarrow -m)" style="vertical-align: -5px" /> symmetry is broken when <img class="eq" src="eqs/8348194109533205829-130.png" alt="T &lt; T_c" style="vertical-align: -4px" /></p>
+</li>
+<li><p>insight into how you can deduce the shape of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> merely with <i>symmetry</i> arguments</p>
+</li>
+<li><p>and far more&hellip;.</p>
+</li>
+</ul>
+<p>Once we've solidified our understanding of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, we'll move on and <a href="week4f.html">generalize</a> <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> to a <i>spatially-varying</i> magnetization density <img class="eq" src="eqs/121258632327452069-130.png" alt="m to m_j" style="vertical-align: -6px" />, which lets us account for <i>textures</i> in <img class="eq" src="eqs/6387157653018356321-130.png" alt="m_j" style="vertical-align: -6px" /> at different sites <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. Also, we'll discuss how to generalize from <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> to an <b>order parameter</b> <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /> to describe all sorts of phase transitions beyond ferromagnetic ordering.</p>
+<p>Then we'll <a href="week4g.html">take the continuum limit</a> <img class="eq" src="eqs/8320376200941027963-130.png" alt="phi_j to phi(vec{r})" style="vertical-align: -6px" /> and pretend that the order parameter is defined <i>everywhere in space</i> <img class="eq" src="eqs/6235765355755146163-130.png" alt="vec{r}" style="vertical-align: -1px" /> rather than just sites <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. This approach allows us to construct an <b>order parameter field</b> <img class="eq" src="eqs/125703290422114367-130.png" alt="phi(vec{r})" style="vertical-align: -5px" /> and to think about the free energy as a function(al) of the &lsquo;&lsquo;texture&rsquo;&rsquo; of the field (Landau-Ginzburg theory). If time permits, we'll also explain how to arrive at <img class="eq" src="eqs/125703290422114367-130.png" alt="phi(vec{r})" style="vertical-align: -5px" /> by <b>coarse-graining</b>. (Depending on how we cover the renormalization group later, this may or may not be useful!)</p>
+<p>Finally, we'll discuss how we <a href="week4g.html">could have arrived</a> at the shape of <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> just by <b>symmetry arguments</b>. This sort of top-down or <b>phenomenological</b> approach is the sort of stuff that theorists fantasize about. The argument is simple, general, and powerful.</p>
+</div></div>
+<h2>Motivation: Lingering Questions about Mean Field Approaches</h2>
+<p>We spent the last few weeks learning about the variational principle and mean field theory, but these appraoches still leave us with a few lingering questions.</p>
+<ul>
+<li><p>Even though the variational principle tells us how to pick the &lsquo;&lsquo;best&rsquo;&rsquo; trial Hamiltonian, how do we know whether &lsquo;&lsquo;best&rsquo;&rsquo; is <i>&lsquo;&lsquo;good enough&rsquo;&rsquo;</i>?</p>
+<ul>
+<li><p>More precisely, even if we've minimized the variational free energy <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" /> is minimized, how do we know whether we can trust its derivatives to tell us anything about correlation functions?
+
+
+
+</p>
+</li></ul>
+</li>
+<li><p>In our guess for the trial Hamiltonian, we assumed that every single site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> felt the same &lsquo;&lsquo;mean field&rsquo;&rsquo; <img class="eq" src="eqs/327024216864240962-130.png" alt="b_j" style="vertical-align: -6px" />; that is, we assumed a <i>spatially uniform solution</i> where <img class="eq" src="eqs/7196294448606532401-130.png" alt="b_j = b" style="vertical-align: -6px" /> at all sites.</p>
+<ul>
+<li><p>How do we know whether a spatially uniform solution is <i>actually</i> the best possible solution?</p>
+</li>
+<li><p>More generally, can we come up with a simple and robust way to take into account the textures and spatial inhomogeneities of the mean field?</p>
+</li></ul>
+</li>
+<li><p>We spent so much time on the details of the Ising model, but do the results about its second-order phase transitions <i>generalize</i> to other systems?</p>
+<ul>
+<li><p>Is there a conceptual framework that explains <i>why</i> the Ising model phase transition behaves as it does?</p>
+</li>
+<li><p>Can we argue how phase transitions <i>ought to</i> behave from a more general point of view?</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>As we'll see, the more sophisticated methods that we'll learn in class over the next few weeks will let us address some of these nagging questions which keep us up at night and gnaw at our sanity.</p>
+<h3>Outline</h3>
+<p>Bonus sections are marked with an *asterisk.</p>
+<ul>
+<li><p>Movitivation</p>
+<ul>
+<li><p>Can we trust the <i>derivatives</i> of the variational free energy?</p>
+</li>
+<li><p>How can we account for <i>spatial variation and textures</i> in the mean field of a material?</p>
+</li>
+<li><p>Can we <i>generalize</i> the features of phase transitions we found in the Ising model?</p>
+</li></ul>
+</li>
+<li><p><a href="week4c.html">Probe fields</a> are a nice trick to find magnetization. (Note: this page is a bit disorganized!)</p>
+<ul>
+<li><p>*A trip down memory lane with Monsieur Legendre</p>
+</li>
+<li><p>Going from <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> to <img class="eq" src="eqs/386834021110775914-130.png" alt="tilde F (m)" style="vertical-align: -5px" /> via Legendre Transform</p>
+</li></ul>
+</li>
+<li><p>*Interlude: What exactly <i>is</i> free energy <img class="eq" src="eqs/8960026951-130.png" alt="F" style="vertical-align: -0px" />?</p>
+<ul>
+<li><p>*Coming to terms with chemistry's curvy caricatures</p>
+</li>
+<li><p>*Minimizing free energy for fun and profit</p>
+</li></ul>
+</li>
+<li><p>*Landau theory &ndash; free energy as a function of magnetization <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /></p>
+<ul>
+<li><p>Deriving the Mean-Field Ising Free Energy</p>
+</li>
+<li><p>Spontaneous Symmetry Breaking!!! the phase diagram of second-order transitions <b>&lt;&ndash; Important!</b></p>
+</li>
+<li><p>How do things vary near <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />? A taste of critical exponents <b>&lt;&ndash; Important!</b></p>
+</li>
+<li><p>*Metastability, hysteresis, spinodals, nucleation, and all that jazz</p>
+</li></ul>
+</li>
+<li><p>Order Parameter Fields</p>
+<ul>
+<li><p>Taking into account textures of magnetization: <img class="eq" src="eqs/8278569638680321368-130.png" alt="m mapsto m_j" style="vertical-align: -6px" /></p>
+</li>
+<li><p>Other examples of order parameters and universality <img class="eq" src="eqs/7671464357117920250-130.png" alt="m mapsto phi" style="vertical-align: -4px" /></p>
+</li>
+<li><p>The continuum limit: the order parameter field <img class="eq" src="eqs/753093596626542311-130.png" alt="m_j mapsto phi(vec{r})" style="vertical-align: -6px" /></p>
+<ul>
+<li><p>Example: phonons and fluids as classical fields</p>
+</li></ul>
+</li></ul>
+</li>
+<li><p>Theorist's Playground</p>
+<ul>
+<li><p>Guessing Mr. Ginzburg's free energy <img class="eq" src="eqs/4356449759178279700-130.png" alt="F[phi(vec{r})]" style="vertical-align: -5px" /> from a top-down argument</p>
+</li>
+<li><p>Symmetry, universality, and deep implications</p>
+</li>
+<li><p>Internal order parameter symmetry vs spatial symmetry</p>
+</li></ul>
+</li>
+<li><p>Textures</p>
+<ul>
+<li><p>Exponential decay from applied field at edges</p>
+</li>
+<li><p>Domain walls</p>
+</li>
+<li><p>General discussion: correlation length is only lengthscale!</p>
+</li>
+<li><p>Twisting order paramters with continuously broken symmetries</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>Anyways, enough babbling. <a href="week4c.html">Let's get started</a>.</p>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:16 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week4a.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

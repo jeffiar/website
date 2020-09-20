@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Prof. Kivelson's first lecture</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html" class="current">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Prof. Kivelson's first lecture</h1>
+</div>
+<p>We had our first lecture with Prof. Steve Kivelson on the Friday of the first week of class. For the first hour, we discussed lots of course logistics. Then we started discussing physics.</p>
+<h2>The Ising Model</h2>
+<p>Prof. Kivelson gave some detailed philosophical motivation for why we're studying the Ising Model. Earlier in the week, Prof. Raghu had given a bit of motivation as well, but it was nice to hear even more motivation, especially since (I'm guessing) we'll be spending so much time on the Ising model.</p>
+<div class="infoblock">
+<div class="blocktitle">Prof. Kivelson's motivation for Ising Model</div>
+<div class="blockcontent">
+<p>Thermodynamics is a very abstract discipline &ndash; so abstract that you either understand it entirely or you don't understand it at all. Now on one hand, the abstract nature of thermodynamics is extremely valuable &ndash; it's the reason thermo can describe <i>any</i> system of many interacting parts, regardless of the microscopic details of interaction. Indeed, the beauty of thermodynamics is its generality to all sorts of the physical systems.</p>
+<p>On the other hand, though, the abstract nature of thermodyamics makes it very hard for us to wrap our head around the material at all! Rather than figuring out the &lsquo;grand vision&rsquo; of thermodynamics from the get-go, we need to start <i>somewhere</i>. We need to ground our understanding in a well-defined model before we go off to generalize to different systems. Once we do know how to solve all sorts of different problems, we can keep coming back to our original model system to refer to old concepts and draw analogies.</p>
+<p>So before we dive off into all sorts of crazy materials, it's valuable to just try understanding the Ising Model and see how it behaves. Once we do, then we can generalize to other systems.</p>
+</div></div>
+<p>Prof. Kivelson also reminded us that the Ising model does not actually represent a real physical system &ndash; it's just an abstract mathematical problem. Miraculously, though, we can actually draw analogies to real systems, such as magnets, alloys, or lattice gases.</p>
+<p>Another crucial feature of the Ising model is that <i>you can easily simulate it on a computer</i>. After all, each site of the lattice is just a bit which is in one of two states.</p>
+<p><a href="https://mattbierbaum.github.io/ising.js/">Here is a nice simulation</a> that comes up when you google &lsquo;&lsquo;Ising model simulation&rsquo;&rsquo;.</p>
+<h2>Solving the 1D Ising Model</h2>
+<p>We then went on to define the 1D Ising model. Since we already defined the Ising Model in the <a href="intro4.html">introductory lecture</a>, I'll just refer back to those notes here.</p>
+<p>Afterwords, we explicitly <i>solved</i> the model, but, we went a bit too fast for me to really understand. Thankfully, we did come back and re-derive everything again <a href="lec3.html">the following day</a>.</p>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:13 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec2.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

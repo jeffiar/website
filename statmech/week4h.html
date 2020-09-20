@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Spatial Textures</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html" class="current">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Spatial Textures</h1>
+</div>
+<p>Earlier, we generalized the Landau Free energy <img class="eq" src="eqs/6620347135923935067-130.png" alt="F(phi)" style="vertical-align: -5px" /> to account for <i>spatial variations</i> in the texture of the order parameter, by allowing <img class="eq" src="eqs/1524161191234168216-130.png" alt="phi(vec r)" style="vertical-align: -5px" /> to vary as a function of space. However, this generalization turned out rather fruitless, because it turned out that any spatial variation would <i>increase</i> the free energy, meaning that the best field configuration was the one that didn't change in space! So we were just as good assuming that <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /> was uniform.</p>
+<p>Well, when do spatial variations in <img class="eq" src="eqs/5161645540727415391-130.png" alt="phi" style="vertical-align: -4px" /> actually matter? On this page, we'll give a quick sketch of situations where we'll actually need to take into account the gradient term in the free energy:</p>
+<ul>
+<li><p><b>boundary effects</b>: how does the order parameter decay from any boundary weirdness into its uniform bulk value? In other words, if we poke the system on its edge, how far does that perturbation extend into the system?</p>
+<ul>
+<li><p>For instance, you might remember from EnM that if you shine light into an absorbing medium, the intensity of the light wave decreases <i>exponentially</i> as a function of distance into the absorptive material, with a characteristic lengthscale that depends on how absorbing the medium is.</p>
+</li></ul>
+</li>
+<li><p><b>domain walls</b>: how does the order parameter cope with conflicting boundary conditions? What happens if we apply a field in one direction at one end of the sample, and in the other direction on the other end? The spins want to point up on one side, but want to point down on the other &ndash; what's the spatial pattern for how they interpolate between one end and the other?</p>
+</li>
+</ul>
+<p>Surprisingly, in both of these situations, the characteristic lengthscale for variations in the order parameter is the same <b>correlation length</b> <img class="eq" src="eqs/7083357291898388014-130.png" alt="xi" style="vertical-align: -4px" />. In these simple field models, everything changes in space over same lengthscale &ndash; the size of local fluctuation patches, the &lsquo;&lsquo;skin depth&rsquo;&rsquo; from the boundary, you name it. Well, perhaps it's not too surprising that all spatially-varying-phenomena happen on the same lengthscale, because there's only one lengthscale that enters into the problem. We'll derive it via dimensional analysis, and then if time permits, we'll take a more formal approach by looking at how the field responds to a delta-function impulse.</p>
+<p>Finally, we'll take a look at spatial variations of order parameters describing a <i>continuously</i> broken symmetry, such as a spin that can point in any direction on a circle. If we impose contradictory boundary conditions on such fields, we find that the equilibrium configuration is not a domain wall solution (as it was for discrete symmetries), but rather, a continuous <b>twisting</b> sort of solution which is energetically cheaper. The existence of such <b>Goldstone modes</b> highlight a key difference between phases that involve broken discrete and continuous symmetries.</p>
+<p>Let's begin.</p>
+<h1>Situating Ourselves</h1>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:14 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week4h.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

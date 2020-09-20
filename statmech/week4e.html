@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Landau Theory</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html" class="current">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Landau Theory</h1>
+</div>
+<h2>Overview </h2>
+<p><a href="week4b.html">Previously</a>, we've found that the thermodynamic behavior of the mean-field Ising Model is entirely captured by its <b>Landau Free Energy</b> <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />.</p>
+<p>On this page, we're going to analyze this function in its full gory detail. Starting first-principles from the microscopic Hamiltonian, we'll find the Landau Free Energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> of the mean-field Ising Model, and then <b>zoom in around the critical point</b> to observe qualitative features of its phase transition (all in a mean-field treatment). It will be enlightening and beautiful!</p>
+<p>But the full power of the Landau Theory doesn't lie just here &ndash; it lies in its remarkable ability to <i>generalize</i> for all sorts of different phase transitions, such as superfluids, liquid crystals, shape-shifting transitions, order-disorder transitions, and more. We'll see examples of other Landau Theories in the <a href="week4f.html">next section</a>, when we'll also generalize to <b>spatially-varying</b> order parameters.</p>
+<p>And finally, we'll see how the behavior of the Landau Free Energy near a critical point is actually <a href="week4g.html">completely determined by <b>symmetries</b>.</a> This sort of <b>universality</b> is the dream of theoretical physicists, and it's incredibly powerful: it says that the way a thermodynamic system behaves doesn't depend too much on all the minute micrsocopic details of what it's made out of; the emergent behavior has a sort of universal behavior.</p>
+<p>I hope this is enough motivation to see why it's well worth our time to understand Landau Theory. Here's the game plan:</p>
+<h3>Outline</h3>
+<ul>
+<li><p><a href="#deriving">Deriving the Landau Free Energy of the mean-field Ising Model</a></p>
+</li>
+<li><p><a href="#expanding">Expanding about the critical point</a></p>
+</li>
+<li><p><a href="#drawing">Drawing pictures and phase diagrams</a></p>
+</li>
+<li><p><a href="#finding">Finding some critical exponents</a></p>
+</li>
+<li><p><a href="#summary">Summary, Limitations, and Outlook</a></p>
+</li>
+</ul>
+<p><a name="deriving"></p>
+<h2>Deriving F(m) for the Ising Model</h2>
+<p>The true power of Landau Theory is its generality, but I find it pretty tough to understand this generality without first grasping a concrete examples. For this reason, we'll first turn to our favorite model system: the Ising model.</p>
+<p>Let's start off by deriving <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> explicitly from the microscopic Hamiltonian of the Ising Model.</p>
+<div class="infoblock">
+<div class="blocktitle">Remark</div>
+<div class="blockcontent">
+<p>It's rather rare that we can calculate the explicit form of the Landau Free energy starting from a microscopic description of the system (the individual spins and their interactions). Rather, we typically start with symmetry arguments to figure out the shape that the Landau Free Energy must have; that is, we take a <b>top-down</b> rather than a <b>bottom-up</b> approach. We'll discuss this philosophical point later when we talk about symmetry arguments.</p>
+</div></div>
+<p>As before, we'll proceed with a variational approach. Rather than finding the exact free energy (hard!), we will find the variational free energy</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4937718409337430305-130.png" alt=" F_{var} = F_{tr} + langle H - H_{tr} rangle_{tr}, " />
+<br /></div><p>where <img class="eq" src="eqs/9216027721-130.png" alt="H" style="vertical-align: -0px" /> is the exact Hamiltonian of the Ising Model</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/696671792329430783-130.png" alt=" H = -J sum_{&lt;ij&gt;} sigma_i sigma_j - h sum_{i} sigma_i " />
+<br /></div><p>and <img class="eq" src="eqs/3679062891044675811-130.png" alt="H_{tr}" style="vertical-align: -4px" /> is our non-interacting variational guess of</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/879549417873654529-130.png" alt=" H_{tr} = -b sum_j sigma_j. " />
+<br /></div><p>(Remember, our variational free energy is our best guess for the exact free energy.)</p>
+<p>Thankfully, we <a href="lec5d.html">solved this problem a few weeks ago</a>. With a bit of work, we found that the variational free energy was</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3237124723282137017-130.png" alt=" F_{var} = underbrace{-T sum_{j} log [2cosh (beta b)]}_{F_{tr}} - J sum_{&lt;ij&gt;} m^2 + (b - h) sum_j m, " />
+<br /></div><p>where the <b>magnetization</b> <img class="eq" src="eqs/3320751097150716766-130.png" alt="m = langle sigma_j rangle_{tr}" style="vertical-align: -6px" /> is given by <img class="eq" src="eqs/574803848250106675-130.png" alt="m = tanh(beta (b))" style="vertical-align: -5px" />, and the molecular field <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> is determined by the self-consistent relation <img class="eq" src="eqs/5786121726632253378-130.png" alt="b = h + zJm" style="vertical-align: -2px" />, where <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" /> is the number of nearest neighbors. (We derived the expressions for <img class="eq" src="eqs/3622808163388452813-130.png" alt="F_{tr}" style="vertical-align: -4px" /> and <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> while <a href="lec5c.html">discussing non-interacting spins</a>, and we derived the self-consistency relation while finding the &lsquo;&lsquo;best&rsquo;&rsquo; variational guess for <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />).</p>
+<p>To proceed further, let us simplify our expression for <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" />. Notice that two of the terms are sums over sites <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />, so it would be nice to also express the sum over <i>bonds</i> <img class="eq" src="eqs/8980528201277308595-130.png" alt="&lt;ij&gt;" style="vertical-align: -4px" /> as a sum over <i>sites</i>. Well, one way to do this is to sum over all the sites, and then for each site, sum over the <i>neighbors</i> of each of the sites, but if you think about this a bit, you realize that you actually count each bond <i>twice</i> when you do this. (Think about it&hellip;.carefully&hellip;.) In mathematical symbols, we can write this as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6772884563367840215-130.png" alt=" sum_{&lt;ij&gt;} = frac 1 2 sum_{j} sum_{i textrm{ next to } j} = frac z 2 sum_j, " />
+<br /></div><p>where <img class="eq" src="eqs/15616046971-130.png" alt="z" style="vertical-align: -1px" /> is the number of nearest neighbors next to each site.</p>
+<p>With this observation, the (variational) free energy simplifies to </p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/92498761867769311-130.png" alt=" F_{var} = sum_j left[-T log [2cosh (beta b)] - frac {zJ} 2 m^2 + (b - h) mright]. " />
+<br /></div><p>We can interpret the quantity inside the brackets as a <b>free energy density</b> <img class="eq" src="eqs/6379065522982502573-130.png" alt="mathcal{F}" style="vertical-align: -1px" /> that we sum up over sites to find the total free energy: <img class="eq" src="eqs/1325184407487929527-130.png" alt="F = sum_j mathcal{F}" style="vertical-align: -9px" />. To simplify the expression further, let's employ the relation <img class="eq" src="eqs/5786121726632253378-130.png" alt="b = h + zJm" style="vertical-align: -2px" /> to write everything in terms of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> rather than <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />. (Remember, the whole name of the game here is to write everything in terms of the physical quantity <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. The &lsquo;&lsquo;local field&rsquo;&rsquo; <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" /> isn't exactly a physically observable quantity, so we'd like to get rid of it.)</p>
+<p>We're left with</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5675957434766534110-130.png" alt=" mathcal{F} = -T log [2cosh (beta (h + zJm))] - frac {zJ} 2 m^2 + (zJm) m " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/8239185574291228490-130.png" alt=" mathcal{F} = -T log [2cosh (beta (h + zJm))] + frac {zJ} 2 m^2 " />
+<br /></div><p>Hooray &ndash; we've arrived at our expression for the free energy, and we've got rid of all the <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />'s.</p>
+<ul>
+<li><p>Here I'm writing the free energy <i>density</i> so I don't have to carry around a needless sum over <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />, and I've also dropped the &lsquo;&lsquo;var&rsquo;&rsquo; subscript because I'm lazy.</p>
+</li>
+<li><p>Notice that the last two terms <i>combined</i> when we applied the self-consistency relation. If we didn't have that extra factor of two from avoiding over-counting the bonds, the two terms would have cancelled.</p>
+</li>
+</ul>
+<p>There's one last thing to do: we need to take the <b>Legendre transform</b> to find the free energy as a <i>natural</i> function of the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. Remember, I spent a while on the <a href="week4c.html">probe fields</a> page arguing why we wanted to express everything in terms of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> rather than unphysical probe fields, and why this meant that we needed to take a Legendre Transform from <img class="eq" src="eqs/4328376043707676353-130.png" alt="F(h)" style="vertical-align: -5px" /> to <img class="eq" src="eqs/8692753872034031251-130.png" alt="tilde F(m)" style="vertical-align: -5px" />.</p>
+<p>Well no recourse than to plug into <img class="eq" src="eqs/4502172465181440183-130.png" alt="tilde mathcal{F}(m) = mathcal{F} + hm" style="vertical-align: -5px" />. It turns out that the algebra works out the easiest if we start from a less-simplified form of <img class="eq" src="eqs/1095997943556072278-130.png" alt="mathcal F" style="vertical-align: -1px" />. So here we go:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3039395516152280432-130.png" alt=" tilde mathcal{F}(m) = left(-T log[2 cosh(beta b)] - frac {zJ} 2 m^2 + (b - h) mright) + hm " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/852413161289900614-130.png" alt=" tilde mathcal{F}(m) = -T log[2 cosh(beta b)] - frac {zJ} 2 m^2 + b m " />
+<br /></div><p>Our goal here is to get rid of all the <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />'s and express everything in terms of the one true physical magnetization <img class="eq" src="eqs/3455475434415243626-130.png" alt="m = tanh(beta b)" style="vertical-align: -5px" />. Well, there's two <img class="eq" src="eqs/12544037731-130.png" alt="b" style="vertical-align: -1px" />'s to take care of here. The second term is pretty straight forward; we can invert the formula for magnetization and say that <img class="eq" src="eqs/2544517164765374691-130.png" alt="b = T textrm{arctanh}(m)" style="vertical-align: -5px" />. For the first term, we have to perform a bit of clever hyperbolic trig massaging:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/5380064941168368928-130.png" alt="     cosh^2 - sinh^2 = 1 quad rightarrow quad 1- tanh^2 = frac 1 cosh^2 quad rightarrow quad cosh = (1 - tanh^2)^{-1/2} " />
+<br /></div><p>which means that the first term becomes</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/319792636443151284-130.png" alt=" -T log (2cosh (beta b)) = -T  log[2 (1 - tanh^2(beta b))^{-1/2}] " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/4200391323113868429-130.png" alt=" -T log (2cosh (beta b)) = -T  logleft[left(frac{1 - tanh^2(beta b)}{4} right)^{-1/2}right] " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/8327406719330859954-130.png" alt=" -T log (2cosh (beta b)) =frac T 2  logleft[frac{1 - tanh^2(beta b)}{4}right] " />
+<br /></div>
+<div class="eqwl"><img class="eqwl" src="eqs/4753957055914117515-130.png" alt=" -T log (2cosh (beta b)) =frac T 2  logleft[frac{1 - m^2}{4}right]. " />
+<br /></div><p>Triumphantly, we declare the <b>Landau Free Energy</b> of the mean-field Ising model:</p>
+<div class="infoblock">
+<div class="blockcontent">
+
+<div class="eqwl"><img class="eqwl" src="eqs/1077248994938560565-130.png" alt=" tilde mathcal{F}(m) = frac T 2  logleft[frac{1 - m^2}{4}right] - frac {zJ} 2 m^2 + mT textrm{arctanh}(m) " />
+<br /></div></div></div>
+<p>Let's recap what we've done. We wanted to see how the Ising Model behaved under a variational mean-field treatment. To proceed, we calculated the variational free energy <img class="eq" src="eqs/8823798170818714545-130.png" alt="F_{var}" style="vertical-align: -4px" />, took a Legendre Transform, and then ended up with the (&lsquo;&lsquo;Gibbs&rsquo;&rsquo;) free energy as a natural function of the <b>mean magnetization</b> <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. </p>
+<p>The behavior of the Landau Free Energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> will give us useful physical information. In particular, the most interesting thing about the mean-field Ising model is its phase transition at <img class="eq" src="eqs/7050468102245832371-130.png" alt="T = zJ" style="vertical-align: -1px" />, so let's go ahead and see how the Landau Free Energy behaves around there.</p>
+<p><a name="expanding"></p>
+<h2>Expanding about critical point</h2>
+<p>(Notational note: I'm gonna be sloppy and call this newly derived free energy density <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> rather than <img class="eq" src="eqs/613152723471384581-130.png" alt="tilde mathcal{F}(m)" style="vertical-align: -5px" />. In class, we called this function <img class="eq" src="eqs/6246217798948480067-130.png" alt="tilde V(m)" style="vertical-align: -5px" />. Same concept, different notation.)</p>
+<p>If you stare at the explicit formula for <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, you'll find that it's remarkably unenlightening: I have very little sense of how an inverse hyperbolic tangent behaves, much less this nasty combinations of terms. Thankfully, we can draw upon a little physical insight about the behavior around the phase transition at <img class="eq" src="eqs/7997236616001896467-130.png" alt="T_c = zJ" style="vertical-align: -4px" />.</p>
+<div class="infoblock">
+<div class="blocktitle">Why can we Taylor Expand?</div>
+<div class="blockcontent">
+<p>Thinking back to <a href="lec5e.html">the mean-field solution to the Ising model</a>, you'll remember that something remarkable and surprising happens when we cool the system below <img class="eq" src="eqs/7997236616001896467-130.png" alt="T_c = zJ" style="vertical-align: -4px" />: the equilibrium magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> suddenly goes from <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" /> to <img class="eq" src="eqs/8630905247332564463-130.png" alt="m neq 0" style="vertical-align: -4px" />. And in particular, it went from zero to nonzero <i>continuously</i>, which means that it's pretty close to zero around the critical temperature.</p>
+<p>So we're actually in luck: as long as we're close enough to <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, we can Taylor-expand the free energy in terms of small <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. The resulting polynomial will help us understand all the interesting correlations and relations that happen near the phase transition. Now, of course, once <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> gets too big, there's now reason for us to trust our low-order-expansion, but the crucial point is that <i>near the critical point</i>, the <i>only</i> thing that matters are the lowest-order-terms in <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
+</div></div>
+<p>So if we want to figure out how things behave near the critical point, it's sufficient to expand the Landau Free Energy in small <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />.</p>
+<h3>Expanding the free energy</h3>
+<p>Now&hellip;.I'm a bit too lazy to do the algebra. It's just a Taylor expansion, so it shouldn't be too bad. I'll just quote our answer from class:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/7247110165787367591-130.png" alt=" F(m) = - frac T 2 log 2 + frac 1 2 (T - zJ) m^2 + frac T {12} m^4 + ldots " />
+<br /></div><p>where the dots represent higher order terms in <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />. We can write this a bit more nicely as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3358413370673914619-130.png" alt=" F(m) = F_0 + frac r 2 m^2 + frac u 4 m^4 + ldots " />
+<br /></div><p>where the coefficients have been defined as</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6373607805068219895-130.png" alt=" begin{array}{lll} F_0 &amp;= &amp;- frac T 2 log 2,  r &amp;= &amp;T - zJ, u &amp;= &amp;frac T 4. end{array} " />
+<br /></div><p>There's a number of things we can say about this free energy function:</p>
+<ul>
+<li><p>Remember, we can't trust this expression too far away from the critical point; it's only good for small <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> when we're just near the phase transition. Indeed, it's just a Taylor expansion!</p>
+</li>
+<li><p>We defined <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> and <img class="eq" src="eqs/14976045044-130.png" alt="u" style="vertical-align: -1px" /> the way they were so that we wouldn't have extra numbers floating around when we take derivatives. See below&hellip;</p>
+</li>
+<li><p>Notice that there's only even powers of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> in here. That's because the original Hamiltonian was actually invariant under a spin-flip <img class="eq" src="eqs/2538309541607595013-130.png" alt="m mapsto -m" style="vertical-align: -1px" />, which means that the free energy also stays the same when you flip the spin: <img class="eq" src="eqs/9009186759593795620-130.png" alt="F(-m) = F(m)" style="vertical-align: -5px" />. Only even powers of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> have such a symmetry.</p>
+</li>
+<li><p>Something special happens to the quadratic coefficient <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> when the temperature is at <img class="eq" src="eqs/7050468102245832371-130.png" alt="T = zJ" style="vertical-align: -1px" />! It becomes zero. Indeed, we can think of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> as &lsquo;&lsquo;measuring how far we are from the critical temperature&rsquo;&rsquo;.</p>
+</li>
+<li><p>The constant term <img class="eq" src="eqs/5036909580570843052-130.png" alt="F_0" style="vertical-align: -4px" /> doesn't affect where the minima are &ndash; it's like a constant offset to the energy &ndash; but however, it <i>does</i> carry some temperature dependence, meaning that it contributes to the heat capacity of the system, for instance.</p>
+</li>
+</ul>
+<h3>Looking at the minima</h3>
+<p>The reason we cared about the Landau Free Energy was that its minima tells us the equilibrium value of the magnetization. With our earlier full expression for <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, it was hard to find the minima, because it had ugly functions like inverse hyperbolic tangents, but now that we've expanded it as a low-order polynomial, it's actually remarkably easy to find its minima. I like to think of it as high-school math with a graduate-physics interpretation.</p>
+<p>Before we plug in through the algebra (and trust me, it's very simple algebra!), it's informative to think about how we <i>expect</i> the solutions to behave, from the knowledge that <a href="lec5e.html">we already know</a> about the Ising Model. </p>
+<div class="infoblock">
+<div class="blocktitle">Great Expectations</div>
+<div class="blockcontent">
+<p>We expect that at high temperatures (<img class="eq" src="eqs/537689627556104645-130.png" alt="T &gt; T_c" style="vertical-align: -4px" />), the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> will be zero because the magnet is <i>disordered</i>, and thermal fluctuations are energetic enough to destroy any long-range order. And we expect that below the critical temperature, the magnetization will spontaneously become nonzero &ndash; and in fact, we expect there to be <i>two equivalent solutions</i> at <img class="eq" src="eqs/2509138391351514566-130.png" alt="m = pm m_0" style="vertical-align: -4px" />, because of the spin-flip symmetry <img class="eq" src="eqs/2538309541607595013-130.png" alt="m mapsto -m" style="vertical-align: -1px" /> that we talked about earlier. In terms of the Landau Free energy, the question &lsquo;&lsquo;are we above or below the critical temperature?&rsquo;&rsquo; is answered by &lsquo;&lsquo;is <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> positive or negative?&rsquo;&rsquo;, so we expect that the minima of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> will depend on the sign of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" />.</p>
+</div></div>
+<p>With this physical picture in mind, let us proceed to find the minimia of the Landau Free Energy. Take the derivative, set it equal to zero, and solve for <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" />:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4958317693674590231-130.png" alt=" frac {partial F} {partial m} = rm + um^3 = m(r + um^2) = 0 " />
+<br /></div><p>Either <img class="eq" src="eqs/310183670474442653-130.png" alt="m = 0" style="vertical-align: -1px" />, or <img class="eq" src="eqs/5788445329888528404-130.png" alt="r + um^2 = 0" style="vertical-align: -2px" />, a.k.a <img class="eq" src="eqs/1516567782237100147-130.png" alt="m = pm sqrt{-r / u}" style="vertical-align: -6px" />. The nonzero solution only makes sense if the thing in the square root is positive; i.e., if <img class="eq" src="eqs/4779818670069768859-130.png" alt="r &lt; 0" style="vertical-align: -1px" /> and we're below the critical temperature. So the equilibrium value of magnetization (the one that minimizes <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />) is given by</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6571406680924114624-130.png" alt=" m = left{   begin{array}{ll}       0, &amp;quad T geq T_c        pm sqrt{|r| / u}, &amp;quad T &lt; T_c    end{array}right. " />
+<br /></div><ul>
+<li><p>Notice that <img class="eq" src="eqs/4779816670057768873-130.png" alt="r &gt; 0" style="vertical-align: -1px" /> means the same thing as <img class="eq" src="eqs/537689627556104645-130.png" alt="T &gt; T_c" style="vertical-align: -4px" />, and <img class="eq" src="eqs/4779818670069768859-130.png" alt="r &lt; 0" style="vertical-align: -1px" /> means the same thing as <img class="eq" src="eqs/8348194109533205829-130.png" alt="T &lt; T_c" style="vertical-align: -4px" />.</p>
+</li>
+<li><p>I've written absolute value signs around the <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> in the second case to emphasize the fact that <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> is negative there.</p>
+</li>
+<li><p>Also notice that at <img class="eq" src="eqs/4779819670075768834-130.png" alt="r = 0" style="vertical-align: -1px" />, a.k.a, at <img class="eq" src="eqs/3905236240956550548-130.png" alt="T = T_c" style="vertical-align: -4px" />, both of the expressions agree and equal to each other; i.e., the equilibrium magnetization changes <i>continuously</i> as we lower the temperature. We call this a <b>continuous phase transition</b>. (In contrast, we'll see later that sometimes the order parameter &lsquo;&lsquo;jumps&rsquo;&rsquo; between the two sides of a phase transition; this is known as a first-order or <b>discontinuous</b> phase transition).</p>
+</li>
+<li><p>One more observation: the exact <i>way</i> that <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> grows out of zero is proportional to the <i>square root</i> of how far you are from the critical temperature &ndash; <img class="eq" src="eqs/1884227520602894364-130.png" alt="m sim sqrt{|r|} sim |T - T_c|^{1/2}" style="vertical-align: -6px" />. The funny thing about the square root function is that it has infinite slope at the origin! And also, if you plot out how <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> changes as a function of <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> (or <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" />), you'll find that there's a &lsquo;&lsquo;kink&rsquo;&rsquo; at the critical point <img class="eq" src="eqs/3905236240956550548-130.png" alt="T = T_c" style="vertical-align: -4px" /> (or <img class="eq" src="eqs/4779819670075768834-130.png" alt="r = 0" style="vertical-align: -1px" />). These sorts of funny <b>non-analytic</b> behaviors in the free energy are the hallmarks of a phase transition.</p>
+</li>
+</ul>
+<div class="infoblock">
+<div class="blocktitle">APPLETS! APPLETS!</div>
+<div class="blockcontent">
+<p>In my opinion, the best way to visualize the minima of this quartic is by playing with <a href="fun.html">interactive sliders</a>.</p>
+<p>You can visually see how the unique <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" /> minimum above the critical tempearture starts to &lsquo;&lsquo;flatten out&rsquo;&rsquo; as you approach criticality, and then the two new minima at <img class="eq" src="eqs/5782405421533385647-130.png" alt="m = pm sqrt{|r|/u}" style="vertical-align: -6px" /> appear once you've cooled below the critical point. You can also see the dilemma of &lsquo;&lsquo;spontaneous symmetry breaking&rsquo;&rsquo;: if you're standing on top of the hill at <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" /> below the critical temperature, both sides look &lsquo;&lsquo;the same&rsquo;&rsquo; to you, so how do you know which minimum to pick?</p>
+</div></div>
+<p>To summarize, the Landau Free Energy lets us visualize the phase transition from <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" /> to <img class="eq" src="eqs/8630905247332564463-130.png" alt="m neq 0" style="vertical-align: -4px" /> in an intuitive manner. It recapitulates the behavior we've found earlier, and in addition, it makes the quantitative prediction that the magnetization grows like <img class="eq" src="eqs/4779615013233489374-130.png" alt="m sim sqrt{T_c - T}" style="vertical-align: -4px" /> once we cool below the critical temperature.</p>
+<p>There's other sorts of funny things that happen near the critical point, too. Many of these behaviors have to do with what happens when you poke the system with an <i>external perturbation</i> such as a magnetic field. We'll find that systems near criticality become so sensitive that the tiniest flicks can lead to long-ranging correlations and slow relaxations.</p>
+<p><a name="drawing"></p>
+<h2>External Fields</h2>
+<p>To study what happens when we prod or poke a system, we need to introduce an <b>external field</b> into the Hamiltonian of the system. By enticing the spins with an energetic reward of <img class="eq" src="eqs/4667734158386051619-130.png" alt="-hm" style="vertical-align: -1px" /> (so alluring!), the external field makes the spins &lsquo;&lsquo;want to point&rsquo;&rsquo; in a particular direction. For you thermodynamic nerds out there (like myself), you can think of this field as a conjugate force to the order parameter in the free energy ;)</p>
+<h3>Drawing Phase Diagrams</h3>
+<p>With this external field, we now have a total of <i>two</i> knobs that we can twiddle to mess with the system: there's the quadratic coefficient <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> (which, again, you can think of as the temperature), as well as the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, which makes the spins prefer one direction to the other and &lsquo;&lsquo;breaks the <img class="eq" src="eqs/2538309541607595013-130.png" alt="m mapsto -m" style="vertical-align: -1px" /> symmetry&rsquo;&rsquo;. Since there's two different knobs to twiddle, we can summarize the behavior by drawing an <img class="eq" src="eqs/756880090450066906-130.png" alt="r-h" style="vertical-align: -1px" /> phase diagram. Each point on the phase diagram correponds to a particular combination of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />. An experimental protocol such as &lsquo;&lsquo;heat the system to 400K, then turn on a strong magnetic field of 1T, then cool back to 300K&rsquo;&rsquo; corresponds to a <i>path</i> on a phase diagram.</p>
+<p>In this picture, phase transitions correspond to funny behaviors of the equilibrium magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> as you walk along different paths on the phase diagram. So for instance, if the magnetization suddenly <i>jumps discontinuously</i>, you've walked over a first-order phase transition! Or if it &lsquo;&lsquo;kinks&rsquo;&rsquo; (i.e., its derivative is discontinuous), then you've walked over a second-order phase transition.</p>
+<p>To figure out where phase transitions occur, we'll need to figure out the equilibrium value of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> at each point on the phase diagram. That is, we'll need to minimize <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> for different values of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />. When we plot the value of <img class="eq" src="eqs/6060094780379897706-130.png" alt="m^* = textrm{argmin}_m F(m)" style="vertical-align: -6px" /> on the phase diagram, the discontinuous jumps correspond to first-order transitions, and the places where the derivates jump correspond to second-order transitions.</p>
+<p>Again, the algebra is relatively straightforward, but I always like to gain a qualitative picture of what's going on before diving into any calculations. So <a href="fun.html">go have some fun with the applets</a> before reading on. Trust me, they're pretty addictive&hellip;</p>
+<h3>Features of Phase Diagram</h3>
+<p>The phase diagram is a nice way to visualize what happens as we vary the two parameters of our model (the temperature <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> and the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />). To summarize some of the findings from playing around with the applet:</p>
+<ul>
+<li><p>There is a line of first-order phase transitions along the <img class="eq" src="eqs/5627079964775322312-130.png" alt="h = 0" style="vertical-align: -1px" /> axis when <img class="eq" src="eqs/4779818670069768859-130.png" alt="r &lt; 0" style="vertical-align: -1px" /> (that is, when we're colder than the critical temperature). Remember, earlier we said that when the field is exactly zero below the critical temperature, then the two free energy minima at <img class="eq" src="eqs/5782405421533385647-130.png" alt="m = pm sqrt{|r|/u}" style="vertical-align: -6px" /> were exactly equivalent &ndash; but the smallest external field is sufficient to perturb the energies of the two minima such that one minimum is preferred to the other. When <img class="eq" src="eqs/5627080964717322227-130.png" alt="h &gt; 0" style="vertical-align: -1px" />, the positive solution is lower in energy; when <img class="eq" src="eqs/5627078964769322305-130.png" alt="h &lt; 0" style="vertical-align: -1px" />, the negative solution is. And so when dial the field through zero, there's a discontinuous jump as the system &lsquo;&lsquo;toggles&rsquo;&rsquo; between the two minima.</p>
+<ul>
+<li><p>In a sense, these two minima are <i>discrete</i> and <i>topologically</i> distinct: there's no way to &lsquo;&lsquo;continuously deform&rsquo;&rsquo; from one to the other without passing through the maximum around <img class="eq" src="eqs/310183670474442653-130.png" alt="m = 0" style="vertical-align: -1px" />. Later on in other models, we'll see examples where the broken-symmetry minima <i>are</i> continuously related to each other.</p>
+</li></ul>
+</li>
+<li><p>If we were to dial the field through zero <i>above</i> the critical temperature, nothing too spectacular happens; the magnetization just continuously changes from slightly on one side to slightly on the other.</p>
+</li>
+<li><p>The earlier critical point that we discovered at <img class="eq" src="eqs/8109011967949837160-130.png" alt="h = 0, r = 0" style="vertical-align: -4px" /> is still present at the origin; we say that a line of first-order transitions terminates at a second-order transition.</p>
+<ul>
+<li><p>Indeed, the transition becomes <i>more and more weakly first-order</i> the closer you get to the end of the line. If you fiddle with the applet, we see that the closer we get to the critical point, the smaller the jump in <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> from one side of the line to the other. In a sense, as we warm up to the critical point, this first-order discontinuity fizzles away into a continuous transition.</p>
+</li></ul>
+</li>
+<li><p>If you think back to the <a href="intro2.html">liquid-gas</a> phase transition, you'll realize it's exactly the same shape on the phase diagram! That is, there was a line of discontinuous liquid-gas transitions, but the line terminated at a <i>critical point</i>, above which there was no distinction between the aqueous and gaseous phase.</p>
+<ul>
+<li><p>You can measure some of the critical exponents near the liquid-gas critical point (for instance, how the compressibility depends on the temperature, or something like that). And rather remarkably, you'll find the exact same critical exponents <i>regardless of what gas you measure</i>, and also the exact same exponents as the (exact) 3D Ising model! It's utterly remarkable that despite the <i>completely</i> different microscopic physics of the abstract Ising spins or the poisonous chlorine gas or the noble neon, that the behavior near the critical point stays the same.</p>
+<ul>
+<li><p>This is a clue into the <i>universality</i> of phase transitions, which we alluded to briefly in class, but which unfortunately we won't have time to dive into all the gory details.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<div class="infoblock">
+<div class="blocktitle">Philosophy of Phases</div>
+<div class="blockcontent">
+<p>Are spin-up-ordered and spin-down-ordered different <i>phases</i> of the Ising model? Well&hellip;..nope. You can undergo a phase transition without transitioning between phases (?).</p>
+<p>More precisely, it's possible to continuously twiddle the external knobs on the Ising system, and start from spin-up-ordered, and end with spin-down-ordered, without any sudden discontinuous jumps in the magnetization. All you have to do is to &lsquo;&lsquo;walk around the line of first-order transitions&rsquo;&rsquo; by heating up the magnet, dialing the external field in the other direction, and then cooling the magnet again. So they're really the same phase&hellip;</p>
+<p>By a similar argument, the liquid and gas phases are really the same phases as well, because you can continuously get from one to the other by just walking around the critical point on the phase diagram. Of course, typically in our day-to-day life, we don't reach pressures and temperatures high enough to walk around that point, so we're forced to cross the line of discontinuous density to boil water.</p>
+<p>This begs the natural question, &lsquo;&lsquo;what counts as distinct phases of matter&rsquo;&rsquo;? As we see, it's a pretty subtle question. Well, we can be sure that two points on the phase diagram are in different phases if there's no way to get from one point to the other without passing through a line of discontinuities.</p>
+</div></div>
+<p>I wish I could explain further, but we should move on to explicitly calculating critical exponents.</p>
+<p><a name="finding"></p>
+<h2>Discovering More Critical Exponents</h2>
+<p>So far, we've answered lots of fun qualitative questions about the phase diagram of a mean-field Ising model, but it's time to get a bit more quantitative. Pictures can only get you so far. </p>
+<p>Just by looking at the shape of <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, you can deduce that that the magnetization is zero above <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, but becomes nonzero below <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />. However, to figure out the exact <i>functional</i> dependence of how <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> depends on your distance below <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, you need to do a bit of algebra to find that <img class="eq" src="eqs/4902788432981855487-130.png" alt="m sim |T - T_c|^{1/2}" style="vertical-align: -5px" />. We're about to do the same thing here: now that we have some intuition about what happens in the <img class="eq" src="eqs/6429308858282906610-130.png" alt="h-r" style="vertical-align: -1px" /> phase diagram, it's time for us to do some specific calculations.</p>
+<div class="infoblock">
+<div class="blockcontent">
+<p>Notice that our first critical relation (<img class="eq" src="eqs/4902788432981855487-130.png" alt="m sim |T - T_c|^{1/2}" style="vertical-align: -5px" />) took the form of a <b>power law</b> <img class="eq" src="eqs/6501685945060262522-130.png" alt="y = ax^k" style="vertical-align: -4px" /> &ndash; that is, the quantity we cared about varied as the distance from the critical point raised to some <i>power</i>. We'll find that these other relations will also hold power-law forms.</p>
+</div></div>
+<p>Again, the name of the game is to minimize the free energy for different values of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> on the phase diagram. This time, because we added an external field, the free energy looks like</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/902010330802417404-130.png" alt=" F(m) = F_0 -hm + frac r 2 m^2 + frac u 4 m^4, " />
+<br /></div><p>where the term <img class="eq" src="eqs/4667734158386051619-130.png" alt="-hm" style="vertical-align: -1px" /> breaks the <img class="eq" src="eqs/2538309541607595013-130.png" alt="m mapsto -m" style="vertical-align: -1px" /> symmetry by enticing one of the two states with an energetic reward. Now the derivative becomes</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6077400144532034708-130.png" alt=" {partial F over partial m} = -h + rm + um^3, " />
+<br /></div><p>which unfortunately is a cubic equation! Thankfully, we won't need to explicitly find the roots of this cubic.</p>
+<h3>How magnetization varies with external field</h3>
+<p>Since we introduced an external field, a natural question to ask is how the equilibrium value of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> changes as we twiddle the external field. That is, we want to walk left-right on the <img class="eq" src="eqs/6429308858282906610-130.png" alt="h-r" style="vertical-align: -1px" /> phase diagram, and see what happens to the magnetization.</p>
+<p>Evidently, the <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />-dependence of <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is going to change depending on what the temperature is. To make life the easiest, we'll just consider what happens at the critical temperature <img class="eq" src="eqs/3905236240956550548-130.png" alt="T = T_c" style="vertical-align: -4px" /> (or equivalently, <img class="eq" src="eqs/4779819670075768834-130.png" alt="r = 0" style="vertical-align: -1px" />). This corresponds to walking left-right along the <img class="eq" src="eqs/4779819670075768834-130.png" alt="r = 0" style="vertical-align: -1px" /> axis.</p>
+<p>Thankfully, if we set <img class="eq" src="eqs/4779819670075768834-130.png" alt="r = 0" style="vertical-align: -1px" /> in our cubic formula for <img class="eq" src="eqs/4531970939519733511-130.png" alt="{partial F over partial m} = 0" style="vertical-align: -8px" />, then one of the terms disappears, and the cubic becomes really easy to solve:</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/2239453604168676834-130.png" alt="     0 = -h + um^3 qquad rightarrow qquad m = (h/u)^{1/3} textrm{  (at } T=T_c textrm{)} " />
+<br /></div><div class="infoblock">
+<div class="blockcontent">
+<p>Again, we've uncovered another power-law relation: the magnetization varies as the <i>cube root</i> of the external field as we sit at the critical temperature.</p>
+</div></div>
+<p><img src="img/m_of_h.png"></p>
+<p>Above, I've plotted the behavior of this function in green. As you go left to right along the x-axis, it corresponds to twiddling the knob on the external field. Exactly when <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />, we find that <img class="eq" src="eqs/6387157652988356125-130.png" alt="m=0" style="vertical-align: -1px" />, as expected, and as you make the field stronger and stronger, the magnetization gets bigger and bigger.</p>
+<p>For comparison, I've also plotted the field-dependence of magnetization for two other temperature isotherms, at hotter and cooler temperatures than the critical temperature. (The blue and red curves correspond to walking left-to-right on the phase diagram slightly above or slightly below the <img class="eq" src="eqs/2358011885772878424-130.png" alt="T=T_c" style="vertical-align: -4px" /> axis.) Above the critical temperature, the magnetization doesn't depend quite so strongly on the external field &ndash; it doesn't change quite as much when you change the field a certain amount. And below the critical temperature, the magnetization undergoes a <i>jump</i> when you pass from <img class="eq" src="eqs/5627078964769322305-130.png" alt="h &lt; 0" style="vertical-align: -1px" /> to <img class="eq" src="eqs/5627080964717322227-130.png" alt="h &gt; 0" style="vertical-align: -1px" />. This plot is a different way of visualizing the first-order phase transition from earlier.</p>
+<p>Notice that the <i>slope</i> of the <img class="eq" src="eqs/8321071617245971838-130.png" alt="m(h)" style="vertical-align: -5px" /> graph is <i>vertical</i> at <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> when you sit at the critical temperature! This suggests that the magnetization is <i>extremely</i> sensitive to the external field at the critical point &ndash; the smallest little hint of an external field is sufficient to change the magnetization by a ton. We say that the system is highly susceptibile to external field perturbations near the critical point.</p>
+<h3>Susceptibility</h3>
+<p>To quantify just how sensitive the system is to external fields, we can calculate the <b>zero-field susceptibility</b> <img class="eq" src="eqs/876917086110488586-130.png" alt="chi equiv {partial m over partial h} big|_{h=0}" style="vertical-align: -9px" /> at different temperatures near the critical point. (The susceptibility is just another name for the slope of the <img class="eq" src="eqs/8321071617245971838-130.png" alt="m(h)" style="vertical-align: -5px" /> graph when we pass through <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />.) We want to figure out how this susceptibility changes as we vary the temperature around the critical point. In terms of the phase diagram from earlier, we want to walk on a vertical line at <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> near the critical point <img class="eq" src="eqs/3905236240956550548-130.png" alt="T = T_c" style="vertical-align: -4px" />, and find the susceptibility at different points along this line.</p>
+<p>To find <img class="eq" src="eqs/5161626540597415094-130.png" alt="chi" style="vertical-align: -4px" />, we're going to do a clever trick. Earlier when we set <img class="eq" src="eqs/6008037781441989922-130.png" alt="{partial F over partial m}" style="vertical-align: -8px" /> equal to 0, we ended up with the cubic equation</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4965314919219181433-130.png" alt=" 0 = -h + rm + um^3. " />
+<br /></div><p>Since our quantity of interest <img class="eq" src="eqs/876917086110488586-130.png" alt="chi equiv {partial m over partial h} big|_{h=0}" style="vertical-align: -9px" /> is a derivative with respect to <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, let's take the <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />-derivative of both sides of the equation above. We end up with</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4245499498946703569-130.png" alt=" 0 = -1 + r {partial m over partial h} + 3 u m^2 {partial m over partial h} = -1 + (r + 3u m^2) {partial m over partial h}. " />
+<br /></div><p>Thankfully, we can find the suscpetibility <img class="eq" src="eqs/3556033616923466028-130.png" alt="partial m over partial h" style="vertical-align: -8px" /> without having to solve a cubic equation! If we shuffle terms around, we find that</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/3717292536188311987-130.png" alt=" chi equiv {partial m over partial h} bigg|_{h=0} = frac 1 {r + 3um^2} = left{  begin{array}{ll} 1 /r, quad &amp;(T &gt; T_c), 2 /{|r|}, quad &amp;(T &lt; T_c), end{array} right. " />
+<br /></div><p>where in the final step, I plugged in our results from earlier that <img class="eq" src="eqs/310183670474442653-130.png" alt="m = 0" style="vertical-align: -1px" /> above <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" /> and <img class="eq" src="eqs/5782405421533385647-130.png" alt="m = pm sqrt{|r|/u}" style="vertical-align: -6px" /> below <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />.</p>
+<p>There's a few comments to make:</p>
+<ul>
+<li><p>The algebra really isn't that terrible! It's just a few lines of simple manipulations.</p>
+</li>
+<li><p>Again, I'm using absolute value signs below <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" /> to emphasize the fact that <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> is negative there.</p>
+</li>
+<li><p>We've found another <b>power-law</b> dependence: the susceptibility depends on some <i>power</i> of how far we are from the critical point.</p>
+</li>
+<li><p>Remarkably, we've found that the susceptibility <b>diverges</b> at the critical point! That is, as you get arbitrarily close to the critical temperature, the system becomes more and more sensitive to perturbation by an external field.</p>
+<ul>
+<li><p>Graphically, we can visualize this divergence by plotting <img class="eq" src="eqs/8321071617245971838-130.png" alt="m(h)" style="vertical-align: -5px" /> at different values of <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" />, as I've done above. A diverging susceptibility corresponds to a <i>vertical slope</i> at <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> on the plot. The further away we get from the critical temperature, the flatter the curve gets near there.</p>
+</li></ul>
+</li>
+<li><p>Recall that the susceptibility is related to the second derivative of the free energy. We've just discovered that it <i>blows up</i> at the critical point; i.e., it experiences a singularity or a non-analyticity. This is the reason we've been calling this transition a <b>second-order phase transition</b> all along: it's because the second derivative of the free energy diverges.</p>
+<ul>
+<li><p>In comparison, during a first-order phase transition, the <i>first</i> derivative of the free energy experiences a non-analyticity. For instance, earlier we found that the magnetization <img class="eq" src="eqs/824081722428348141-130.png" alt="m = -{partial F over partial h}" style="vertical-align: -8px" /> experienced a discontinuous jump when we crossed the <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" /> axis below the critical point.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>Moreover, the diverging susceptibility tells us an extremely wacky fact about physics near criticality: the tiniest nudges can cause the hugest changes. Fluctuations can play a very big role in the behaviors of such systems!</p>
+<p><a name="summary"></p>
+<h2>Summarizing our critical exponents</h2>
+<p>Let's step back now to review the big picture:</p>
+<div class="infoblock">
+<div class="blocktitle">Summary</div>
+<div class="blockcontent">
+<p>We want to understand what happens to an mean-field Ising model as we vary the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> and temperature <img class="eq" src="eqs/2929329607364325928-130.png" alt="r = r_0(T - T_c)" style="vertical-align: -5px" />.</p>
+<ul>
+<li><p>The equilibrium value of magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> is given by the minimum of the Landau Free Energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>Zooming in around the critical point allows to perform a small-<img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> Taylor expansion <img class="eq" src="eqs/3641858383864558831-130.png" alt="F(m) = F_0 -hm + rm^2 / 2 + um^4/4" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>A <b>phase diagram</b> allows us to visualize the behavior as we twiddle the knobs to different values of <img class="eq" src="eqs/14592043891-130.png" alt="r" style="vertical-align: -1px" /> and <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />.</p>
+<ul>
+<li><p>Above the critical temperature (<img class="eq" src="eqs/4779816670057768873-130.png" alt="r &gt; 0" style="vertical-align: -1px" />), the magnetization changes continuously everywhere.</p>
+</li>
+<li><p>Below the critical temperature (<img class="eq" src="eqs/4779818670069768859-130.png" alt="r &lt; 0" style="vertical-align: -1px" />), the magnetization jumps discontinously as you cross over the line <img class="eq" src="eqs/5627079964775322312-130.png" alt="h = 0" style="vertical-align: -1px" />.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>The quantitative dependencies near the critical point typically had the form of <b>power laws</b> like <img class="eq" src="eqs/6501685945060262522-130.png" alt="y = ax^k" style="vertical-align: -4px" />. The <b>critical exponents</b> <img class="eq" src="eqs/13696041194-130.png" alt="k" style="vertical-align: -1px" /> are particularly interesting because they don't depend on the microscopic details and because you can measure them in experiments.</p>
+<p>We encountered three different critical exponents:</p>
+<ul>
+<li><p>If we sit at zero-field and cool the system through <img class="eq" src="eqs/2354942681949301303-130.png" alt="T_c" style="vertical-align: -4px" />, it develops a magnetization that grows as</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/6571406680924114624-130.png" alt=" m = left{   begin{array}{ll}       0, &amp;quad T geq T_c        pm sqrt{|r| / u}, &amp;quad T &lt; T_c    end{array}right. " />
+<br /></div>
+<ul>
+<li>
+<ul>
+<li><p>This exponent is conventionally called <img class="eq" src="eqs/4226120147019918905-130.png" alt="beta" style="vertical-align: -4px" />, and here we've found that <img class="eq" src="eqs/4070441734957622319-130.png" alt="m sim |T_c - T|^{-1/2}" style="vertical-align: -5px" /> when <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />; i.e., <img class="eq" src="eqs/6492755770254744386-130.png" alt="beta = 1/2" style="vertical-align: -5px" />.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<ul>
+<li><p>If we sit at the critical tempearture and twiddle the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" />, we find that the magnetization varies as</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/144145942028887637-130.png" alt=" m = (h/u)^{1/3} " />
+<br /></div>
+<ul>
+<li>
+<ul>
+<li><p>This exponent is conventionally called <img class="eq" src="eqs/4438812368860620110-130.png" alt="1/delta" style="vertical-align: -5px" />, and here we've found that <img class="eq" src="eqs/4428599819324551877-130.png" alt="m sim h^{1/3}" style="vertical-align: -1px" /> when <img class="eq" src="eqs/3905236240956550548-130.png" alt="T = T_c" style="vertical-align: -4px" />; i.e., <img class="eq" src="eqs/780525095078110074-130.png" alt="delta = 3" style="vertical-align: -1px" />.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<ul>
+<li><p>As we cool the system through the critical point, we find that the zero-field susceptibility <img class="eq" src="eqs/1658207520658083111-130.png" alt="chi equiv {partial m over partial h}|_{h=0}" style="vertical-align: -8px" /> varies as</p>
+</li>
+</ul>
+
+<div class="eqwl"><img class="eqwl" src="eqs/4909009796236170541-130.png" alt=" chi = frac 1 {r + 3um^2} = left{  begin{array}{ll} 1 /r, quad &amp;(T &gt; T_c), 2 /{|r|}, quad &amp;(T &lt; T_c), end{array} right. " />
+<br /></div>
+<ul>
+<li>
+<ul>
+<li><p>This exponent is conventionally called <img class="eq" src="eqs/7600614853741266981-130.png" alt="-gamma" style="vertical-align: -4px" />, and here we've found that <img class="eq" src="eqs/7229275210363074826-130.png" alt="chi sim |T-T_c|^{-1}" style="vertical-align: -5px" /> at <img class="eq" src="eqs/6429308858298906500-130.png" alt="h=0" style="vertical-align: -1px" />; i.e., <img class="eq" src="eqs/3539106094496519831-130.png" alt="gamma = 1" style="vertical-align: -4px" />.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+</div></div>
+<p>Lots of very interesting physics. Nonetheless, the Landau Theory is still rather restrictive, for a number of reasons. We encountered one of the caveats when we found the susceptibility: we found that as we get closer to the critical point, the system becomes more and more sensitive to little perturbations, which means that thermal fluctuations about equilibrium become more important. In particular, this calls into questions our original assumption that we could treat the entire system as a <i>uniform</i> magnetization everywhere. We've neglected the spatial fluctuations at different sites on the lattice.</p>
+<p>So <a href="week4f.html">in the next section</a>, we're going to learn how to generalize from a <i>uniform</i> magnetization everywhere to a <i>spatially varying</i> magnetization that can have interesting textures and spatial fluctuations.</p>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:19 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week4e.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

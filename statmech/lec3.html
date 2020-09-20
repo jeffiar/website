@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>The Big Picture</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html" class="current">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>The Big Picture</h1>
+</div>
+<p>Today (Mon Week 2), we opened class with a bit more logistics, discussing <i>where</i> we'd hold lectures (Mon and Wed in 60-101, Fri in McCollough 122), as well as what textbooks we'd use:</p>
+<ul>
+<li><p><a href="https://books.google.com/books?id=ObsbAAAAQBAJ">Reif's Fundamentals of Statistical and Thermal Physics</a> &ndash; Main text, for Boltzmann equation and near-equilibrium dynamics.</p>
+</li>
+<li><p><a href="https://books.google.com/books?id=22dadF5p6gYC">Kadanoff's Statistical Physics: Statics, Dynamics and Renormalization</a> &ndash; Suppl. text, for Ising Model and renormalization group.</p>
+</li>
+<li><p><a href="https://books.google.com/books?id=P9YjNjzr9OIC">Chaikin and Lubensky's Principles of Condensed Matter Physics</a> &ndash; Suppl. text, for other stuff.</p>
+</li>
+</ul>
+<p>It sounds like we'll be covering all sorts of topics in this class. I'm curious if we'll manage to tie it all together coherently, or if it's just going to be a &lsquo;&lsquo;taste&rsquo;&rsquo; of many different topics.</p>
+<h2>Quantum Statistical Mechanics</h2>
+<p>Last time in class, we sort of dived right away into solving the 1D Ising Model, but we didn't get talk much about the big picture of what exactly we were doing or why we were doing it. </p>
+<p>To help us understand <i>why</i> we wanted to calculate certain quantities, Prof. Kivelson explained to us the general framework of <b>quantum statistical mechanics</b> &ndash; the way to start with the description of a physical system and end with macroscopic observables that we can measure.</p>
+<p>So, what steps are involved in understanding the thermodynamic behavior of a system?</p>
+<div class="infoblock">
+<div class="blocktitle">Formal Procedure of Quantum Statistical Mechanics</div>
+<div class="blockcontent">
+<p>Say we have a quantum mechanical system with Hamiltonian <img class="eq" src="eqs/4030995361092090317-130.png" alt="hat H" style="vertical-align: -0px" />, and we wish to find its thermodynamic properties in the canonical ensemble.</p>
+<ol>
+<li><p>Diagonalize the Hamiltonian to find a basis of <b>energy eigenstates</b>. Let's label these states as <img class="eq" src="eqs/7475100863312270929-130.png" alt="| alpha rangle" style="vertical-align: -5px" /> and call their corresponding energies <img class="eq" src="eqs/7387220932791258656-130.png" alt="E_alpha" style="vertical-align: -4px" />.</p>
+</li>
+<li><p>Calculate the canonical <b>partition function</b> <img class="eq" src="eqs/6266593637051332845-130.png" alt=" Z = textrm{Tr} left[e^{-beta hat H}right] = sum_alpha e^{-beta E_alpha}" style="vertical-align: -15px" />, where <img class="eq" src="eqs/4226120147019918905-130.png" alt="beta" style="vertical-align: -4px" /> is the inverse temperature <img class="eq" src="eqs/1170699868164695767-130.png" alt="1/k_B T" style="vertical-align: -5px" />. Note that we can write <img class="eq" src="eqs/11520034651-130.png" alt="Z" style="vertical-align: -0px" /> either abstractly as the trace of the thermal density matrix, or explicitly as a sum over the energy eigenstates.</p>
+</li>
+<li><p>Find the <b>free energy</b> <img class="eq" src="eqs/9059263601311376932-130.png" alt="F = - k_B T log Z" style="vertical-align: -4px" />. Remember that the derivatives of the free energy w.r.t. various parameters tells us thermodynamic quantities; for instance, the derivative w.r.t. the external field <img class="eq" src="eqs/13312040041-130.png" alt="h" style="vertical-align: -1px" /> tells us the magnetization <img class="eq" src="eqs/2131917608807603808-130.png" alt="M = -frac {partial F}{partial h}" style="vertical-align: -8px" />.</p>
+</li>
+</ol>
+<p>From these quantities, we can also compute the <b>ensemble averages</b> of any quantum mechanical observable <img class="eq" src="eqs/4030995361092090314-130.png" alt="hat O" style="vertical-align: -1px" /> by computing</p>
+
+<div class="eqwl"><img class="eqwl" src="eqs/8842718241460821886-130.png" alt="     langle hat O rangle = frac 1 Z textrm{Tr} left[ e^{-beta hat H} hat O right] = sum_alpha P(alpha) langle alpha | hat O | alpha rangle, " />
+<br /></div><p>where again we can write <img class="eq" src="eqs/6140368948617126602-130.png" alt="langle hat O rangle" style="vertical-align: -5px" /> either as an abstract trace against the observable or as a concrete sum over energy states.</p>
+<p>Using the same method, we can also calculate <b>correlation functions</b> such as <img class="eq" src="eqs/4263774470665983904-130.png" alt="langle hat O_i hat O_j rangle" style="vertical-align: -6px" />, which could represent a variety of things:</p>
+<ul>
+<li><p>If <img class="eq" src="eqs/3275334880732988348-130.png" alt="O_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/3275334880732988351-130.png" alt="O_j" style="vertical-align: -6px" /> represent local observables at different points in space <img class="eq" src="eqs/756880090336066481-130.png" alt="r_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/756880090336066482-130.png" alt="r_j" style="vertical-align: -6px" />, this would be a <b>spatial correlation function</b> of the form <img class="eq" src="eqs/8445134804204959402-130.png" alt="g(r_i - r_j)" style="vertical-align: -6px" />;</p>
+</li>
+<li><p>If <img class="eq" src="eqs/3275334880732988348-130.png" alt="O_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/3275334880732988351-130.png" alt="O_j" style="vertical-align: -6px" /> represent observables <i>at different times</i> <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" /> and <img class="eq" src="eqs/14848089204134009-130.png" alt="t'" style="vertical-align: -1px" />, this would be a <b>dynamical correlation function</b> of the form <img class="eq" src="eqs/5471810203064755234-130.png" alt="f(t-t')" style="vertical-align: -5px" />;</p>
+</li>
+<li><p>If <img class="eq" src="eqs/3275334880732988348-130.png" alt="O_i" style="vertical-align: -4px" /> and <img class="eq" src="eqs/3275334880732988351-130.png" alt="O_j" style="vertical-align: -6px" /> were the same, then <img class="eq" src="eqs/2142970352136093602-130.png" alt="langle O^2 rangle" style="vertical-align: -5px" /> would tell you about the <b>equilibrium fluctuations</b> of that observable.</p>
+</li>
+</ul>
+</div></div>
+<p>I realize these explanations are pretty dry and unenlightening; if time allows, I'll come back later and elaborate a bit more.</p>
+<h2>Game Plan for Solving Ising Model</h2>
+<p>Now that we knew why we wanted to calculate certain things, we went on to explicitly solve the 1D Ising Model.</p>
+<p>Remember that the first step is to compute the partition function, which requires us to sum over <i>all</i> the energy states. This is a bit of a hassle for us, since for a 1D Ising Model with <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> sites, we need to sum over all the <img class="eq" src="eqs/962543404064237419-130.png" alt="2^N" style="vertical-align: -0px" /> possible states. As we take the thermodynamic limit <img class="eq" src="eqs/6521057346860132603-130.png" alt="N to infty" style="vertical-align: -1px" />, there will just be too many terms to add up, so as Prof. Kivelson says, we'll need to <i>be clever</i>.</p>
+<p>Here is our game plan:</p>
+<div class="infoblock">
+<div class="blocktitle">Solving the 1D Ising Model by Being Clever</div>
+<div class="blockcontent">
+<ol>
+<li><p>Draw a picture to gain some physical intuition (we didn't do this in class!!)</p>
+</li>
+<li><p>Rewrite the Hamiltonian as a sum over <b>bonds</b> (rather than sites AND bonds)</p>
+</li>
+<li><p>Zoom in on a particular site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> and its neighboring bonds</p>
+</li>
+<li><p>Write down a <b>transfer matrix</b> which represents site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" /> (or bond <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />? I haven't fully understood yet&hellip;)</p>
+</li>
+<li><p><i>Key step</i> &ndash; Notice that summing over <img class="eq" src="eqs/159108376246213937-130.png" alt="sigma_j = pm 1" style="vertical-align: -6px" /> looks an awful lot like contracting over a shared index, a.k.a. matrix multiplication.</p>
+</li>
+<li><p>Rewrite the entire sum as the trace of a bunch of transfer matrices multiplied together.</p>
+</li>
+<li><p>Profit!?</p>
+</li>
+</ol>
+</div></div>
+<p>We went through everything again in class on Wednesday. <a href="lec4.html">Here are my detailed notes!</a></p>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:18 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="lec3.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Order Parameter Fields and the Landau-Ginzburg Free Energy</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Stat Mech II</div>
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="contents.html">Table&nbsp;of&nbsp;Contents</a></div>
+<div class="menu-category">First Lecture</div>
+<div class="menu-item"><a href="intro.html">Overview</a></div>
+<div class="menu-item"><a href="intro2.html">Phase&nbsp;Transitions</a></div>
+<div class="menu-item"><a href="intro3.html">Symmetry</a></div>
+<div class="menu-item"><a href="intro4.html">Ising&nbsp;Model&nbsp;Def'n</a></div>
+<div class="menu-item"><a href="intro5.html">Ising&nbsp;Thermo</a></div>
+<div class="menu-category">1D Ising Model</div>
+<div class="menu-item"><a href="lec2.html">Motivation</a></div>
+<div class="menu-item"><a href="lec3.html">The&nbsp;Big&nbsp;Picture</a></div>
+<div class="menu-item"><a href="lec4.html">Exact&nbsp;Solution</a></div>
+<div class="menu-category">Mean Field Theory</div>
+<div class="menu-item"><a href="lec5a.html">Overview</a></div>
+<div class="menu-item"><a href="lec5b.html">Variational&nbsp;Principle</a></div>
+<div class="menu-item"><a href="lec5c.html">Non-interacting&nbsp;Spins</a></div>
+<div class="menu-item"><a href="lec5d.html">Mean-Field&nbsp;Ising&nbsp;Sol'n</a></div>
+<div class="menu-item"><a href="lec5e.html">Summary&nbsp;+&nbsp;Interp'n</a></div>
+<div class="menu-category">Landau-Ginzburg</div>
+<div class="menu-item"><a href="week4a.html">Overview&nbsp;and&nbsp;Outline</a></div>
+<div class="menu-item"><a href="week4c.html">Probe&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4d.html">What&nbsp;is&nbsp;Free&nbsp;Energy?</a></div>
+<div class="menu-item"><a href="week4e.html">Landau&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week4f.html" class="current">Order&nbsp;Param&nbsp;Fields</a></div>
+<div class="menu-item"><a href="week4g.html">Symmetry&nbsp;Arguments</a></div>
+<div class="menu-item"><a href="week4h.html">Spatial&nbsp;Textures</a></div>
+<div class="menu-item"><a href="week4i.html">Gaussian&nbsp;Model</a></div>
+<div class="menu-item"><a href="fun.html">Applets!</a></div>
+<div class="menu-category">Transport</div>
+<div class="menu-item"><a href="week8a.html">Kinetic&nbsp;Theory</a></div>
+<div class="menu-item"><a href="week8b.html">Diffusion&nbsp;and&nbsp;Viscosity</a></div>
+<div class="menu-item"><a href="week8c.html">Boltzmann&nbsp;Equation</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Order Parameter Fields and the Landau-Ginzburg Free Energy</h1>
+</div>
+<p>Now that we understand the Landau Free Energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> for the Ising Model, it's time to extend our results to understand broader phenomena. It's quite remarkable how far-reaching and generalizble this sort of phenomenological-free-energy approach can be: we'll see that with just a few assumptions we can make pretty powerful claims about how phase transitions occur.</p>
+<p>To be specific, we're going to generalize our results in two different ways:</p>
+<ul>
+<li><p>We'll talk about all sorts of <b>new physical systems</b> beyond the Ising Model. There's an incredible variety of phase transitions out there in nature, and amazingly, a lot of them can be captured by a phenomenological free energy like <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" />, like what we did for the Ising model. Just to give a taste of what's coming:</p>
+<ul>
+<li><p>liquid-gas phase transitions, order-disorder transitions in beta-brass, liquid crystals (oooh!), shape-shifting crystals, bacterial vortices (??), superconductors, superfluids, and more&hellip;</p>
+</li>
+<li><p>We'll see that the magnetization in the Ising Model is an example of an <b>order parameter</b> which in general distinguishes the ordered phase from the disordered phase in such materials.</p>
+</li>
+<li><p>It turns out that phase transitions in these different systems often involve <b>broken symmetry</b> as well. We'll discuss these arguments more in detail on the <a href="week4g.html">next page</a></p>
+</li></ul>
+</li>
+<li><p>We'll also discuss the various <b>spatial textures</b> that emerge when we allow the magnetization <img class="eq" src="eqs/13952041964-130.png" alt="m" style="vertical-align: -1px" /> to vary throughout space. For instance, there could be local pockets where all the spins pointed a different way than in other local areas.</p>
+<ul>
+<li><p>Earlier, when we constructed the Landau Free Energy, we assumed that the magnetization was uniform throughout space; i.e., that every site on the lattice had the exact same value. So it seems pretty natural to losen this requirement to explore some more complicated physics.</p>
+</li>
+<li><p>Mathematically, we will implement this change by assigning a magnetization <img class="eq" src="eqs/6387157653018356321-130.png" alt="m_j" style="vertical-align: -6px" /> to each site <img class="eq" src="eqs/13568040811-130.png" alt="j" style="vertical-align: -4px" />. The free energy <img class="eq" src="eqs/4328376043710676380-130.png" alt="F(m)" style="vertical-align: -5px" /> now depends on the magnetization at <i>every</i> site on the lattice, <img class="eq" src="eqs/1844318935802195621-130.png" alt="F({m_j})" style="vertical-align: -6px" />, so it becomes a slightly more complicated function.</p>
+</li>
+<li><p>Finally, we'll take the <b>continuum limit</b> so that the magnetization takes on a value everywhere in space, rather than just at discrete lattice points.</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<p>In a later section, we'll discuss some of the implications of the spatial variations in the order parameter.</p>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+<script> hcb_user = { PAGE: window.location.href.replace("jeffjar.me", "stanford.edu/~jeffjar") }; </script>
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2020-06-24 20:34:17 PDT, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week4f.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
