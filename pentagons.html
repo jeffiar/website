@@ -1,0 +1,111 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Food Pentagons</title>
+    <meta name="description" content="Personal webpage of Jeffrey Chang">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131436916-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-131436916-2');
+    </script>
+</head>
+
+<body style="background: #ebf5fb;">
+
+<h1>Food Pentagons</h1>
+<div style="text-align: right"><i>Apr 28, 2021</i></div>
+
+<p>Five factors to consider when cooking for yourself:</p>
+<div style="text-align: center;">
+    <div style="background: lightyellow; border: 1px black dotted; display: inline-block; padding: 0.5em;">
+        <ul>
+            <li>Cheapness: How much does it cost?</li>
+            <li>Healthiness: Is it good for you?</li>
+            <li>Tastiness: Do you enjoy eating it?</li>
+            <li>Easiness: How much effort to cook and clean up?</li>
+            <li>Fastness: How long does it take?</li>
+        </ul>
+    </div>
+</div>
+
+
+<p>
+There are trade-offs between the factors: a tasty dish may take a long time to prepare. A healthy dish may be expensive (welcome to the USA). But there are ways to win-win-win-win-win! I am a fan of simple, healthy things which are easy to make. I have a rather bland palette and I am not a picky eater so this makes my life very easy. Take your pick!
+</p>
+
+<div style="width: 100%;">
+<div style="display: inline-block;">
+<table style="border: 1px black solid; background: white;">
+    <tr>
+        <td> <label for="a">Cheapness: </label> </td>
+        <td> <input id="a" name="a" type="range" min="1" max="5" step="1" oninput="moveSlider(this, 'a')" autocomplete="off" value="5"> </td>
+        <td> <span id="a-span"> 5/5 </span> </td>
+    </tr>
+    <tr>
+        <td> <label for="b">Healthiness: </label> </td>
+        <td> <input id="b" name="b" type="range" min="1" max="5" step="1" oninput="moveSlider(this, 'b')" autocomplete="off" value="5"> </td>
+        <td> <span id="b-span"> 5/5 </span> </td>
+    </tr>
+    <tr>
+        <td> <label for="c">Tastiness: </label> </td>
+        <td> <input id="c" name="c" type="range" min="1" max="5" step="1" oninput="moveSlider(this, 'c')" autocomplete="off" value="4"> </td>
+        <td> <span id="c-span"> 4/5 </span> </td>
+    </tr>
+    <tr>
+        <td> <label for="d">Easiness: </label> </td>
+        <td> <input id="d" name="d" type="range" min="1" max="5" step="1" oninput="moveSlider(this, 'd')" autocomplete="off" value="5"> </td>
+        <td> <span id="d-span"> 5/5 </span> </td>
+    </tr>
+    <tr>
+        <td> <label for="e">Fastness: </label> </td>
+        <td> <input id="e" name="e" type="range" min="1" max="5" step="1" oninput="moveSlider(this, 'e')" autocomplete="off" value="5"> </td>
+        <td> <span id="e-span"> 5/5 </span> </td>
+    </tr>
+</table>
+</div>
+<div style="display: inline-block; margin-left: 50px;">
+    <svg id="pentagon" version="1.1" xmlns="http://www.w3.org/2000/svg" height="120" width="120"><polygon id="polygon" points="120,60 78.54101966249685,117.06339097770922 21.16718427000253,88.21369211003872 11.458980337503164,24.7328848624516 78.54101966249684,2.9366090222907815 " fill="white" stroke="black" stroke-width="2"/><circle cx="60" cy="60" r="5"></svg>
+</div>
+</div>
+
+<script src="pentagons.js"></script>
+
+<dl>
+    <dt>Microwaved oatmeal: 5 5 3 5 4</dt>
+    <dd>Simple. Add brown sugar on Fridays and weekends.</dd>
+    <dt>Steamed vegetables: 4 5 4 4 4</dt>
+    <dd>When you're feeling lazy, it is a surprising amount of work to wash veggies, cut them up, and put them in the steamer. So sometimes I go for the steamed whole zucchini.</dd>
+    <dt>Steamed rice: 5 5 5 5 3</dt>
+    <dd>Objectively really easy to make: just measure rice, add water, put in rice cooker, hit the button. But it does take like 30 or 40 minutes.
+    <dt><a href="https://youtu.be/PQna_Xg6p-E" target="_blank">Scallion chicken over rice</a>: 4 5 5 3 3</dt>
+    <dd>Exceedingly delicious comfort food. Processing the raw chicken into chunks is a pain, especially the sterilizing afterwards. But there is minimal chopping (of scallions and ginger), and the cooking goes very quickly. Ingredients are cheap, and result is very healthy.</dd>
+    <dt><a href="https://youtu.be/m1ZaBG-RTqs" target="_blank">Cantonese shrimp and egg over rice:</a> 3 4 5 3 3</dt>
+    <dd>Similar to above, but with additional step of beating an egg. Also the shrimp is probably less healthy for you than the chicken!</dd>
+    <dt><a href="https://thewoksoflife.com/easy-five-spice-baked-chicken/" target="_blank">Baked five spice chicken thighs</a>: 5 5 5 4 3</dt>
+    <dd>Extremely easy; just marinate the chicken for a while, pop it into a baking pan, and heat for half an hour. You don't even have to touch the raw meat when you marinate if your chicken came from the freezer in a plastic bag (definitely the move). </dd>
+    <dt>Steamed chicken: 4 5 3 4 2</dt>
+    <dd>Seasoning the meat is always kind of annoying since you have to sterilize everything afterwards. But once you pop things in the steamer, you just wait for like half an hour and everything is juicy and great. If you like the minced-scallion-minced-ginger-salt-oil dipping, it's a good amount of work to make, but it's very tasty.</dd>
+    <dt>Tofu with ground pork (and mushrooms): 4 5 5 3 2</dt>
+    <dd>Good amount of chopping: tofu, scallions, garlic, ginger, and mushrooms. But you can pipeline it and take care of it as the meat is browning. And you can clean up once everything is going.</dd>
+    <dt>Tomato and egg: 4 5 5 3 3</dt>
+    <dd>The classic dish. Chopping the tomatos and garlic/scallions (if you're into those) takes time, and the cooking itself is quite sequential (eggs, then tomatoes, then both). I end up with many dishes to wash as well. </dd>
+    <dt><a href="https://www.seriouseats.com/recipes/2010/06/real-deal-kung-pao-chicken-recipe.html" target="_blank">Kung Pao Chicken</a>: 4 3 5 2 2</dt>
+    <dd>A good amount of effort, sequential: roasting peanuts, toasting peppercorns, sequential chicken frying, chopping the aromatics, mixing the sauce slurry...but the final bit where everything comes together under high heat is very exciting and rewarding. Tasty and fun but probably not the healthiest for you from the oil.</dd>
+</dl>
+</p>
+
+<script src="pentagons.js"></script>
+
+
+<hr>
+
+<p><small>Last updated on Apr 28, 2021</small></p>
+
+</body>
+
+
