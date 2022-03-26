@@ -7,10 +7,19 @@
 
 \newenvironment{myitemize}
 { \vspace{-1.5\topsep} \begin{itemize} \setlength\itemsep{0em}}
-{ \end{itemize} \vspace{-1.0\topsep}}
+{ \end{itemize} \vspace{-0.5\topsep}}
 
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist
+
+\def\entry#1#2#3#4#5
+{
+  \textit{#1}#2 \hfill #4\\ 
+  #3\\
+  \begin{myitemize}
+  \item #5
+  \end{myitemize}
+}
 
 \begin{document}
 
@@ -21,42 +30,62 @@
 
 \section{Education}
 
-Ph.D. student in Physics, Harvard University \hfill 2020--
+Ph.D. student in Physics, Harvard University \hfill 2020--\\
+B.S. in Physics, Stanford University (GPA: 4.03) \hfill 2016--`20
 
-B.S. in Physics, Stanford University \hfill 2016--2020 \\
-GPA: 4.03 (in major: 4.04)
+% GPA: 4.03 (in major: 4.04)
  
 %Lynbrook High School, San Jose, CA \hfill 2016 \\
 %GPA: 4.40, \textit{Valedictorian}
 
 \section{Career}
 
-\textit{Scientific Consultant}, Manifold Biotechnologies, Inc.\hfill 2020--\\
-\begin{myitemize}
-    \item Computational modeling of a novel platform for\\
-        multiplexed quantification of barcoded proteins
-        %Computational and experimental design support for protein barcode technology development
-\end{myitemize}
+\entry{Graduate Researcher}{ in Michael Desai Lab}{Harvard Dept.\ of Organismic and Evolutionary Biology}{2021--}{Using high-throughput measurements of binding affinity \\ to study sequence-to-function landscapes of antibodies}
 
-\textit{Textbook Author}, with Prof.\ Steven A.\ Kivelson and Jack M.\ Jiang  \hfill 2019--\\
-\begin{myitemize}
-    \item Writing an undergraduate-level textbook on the statistical\\
-        mechanics of phase transitions
-\end{myitemize}
+\entry{Rotation Student}{ in Wesley Wong Lab}{Wyss Institute at Harvard University}{2021--}{Single-molecule force spectroscopy and Bayesian inference for \\ characterizing polyclonal antibodies}
 
-\textit{Researcher}, Boxer Lab, Stanford Dept.\ of Chemistry\hfill 2017--2019 \\
-\begin{myitemize}
-    \item X-ray crystallography of fluorescent proteins to probe the\\ photochemistry of biological chromophores
-\end{myitemize}
+\entry{Biophysics / Statistical Modeling Consultant}{}{Manifold Biotechnologies, Inc.}{2020--}{Algorithmic development of a proprietary platform for\\ highly multiplexed quantification of barcoded proteins}
 
-\textit{Software Engineering Intern}, Schr{\"o}dinger, Inc. \hfill 2017 \\
-\begin{myitemize}
-    \item Helped develop a python GUI for protein visualization and \\overhauled a critical part of the software architecture
-\end{myitemize}
+\entry{Textbook Author}{ with Prof.\ Steven A.\ Kivelson and Dr.\ Jack M.\ Jiang}{Stanford Dept.\ of Physics}{2019--}{Writing an undergraduate textbook, ``Statistical Mechanics \\ of Phases and Phase Transitions''}
+
+\entry{Undergrad Researcher}{ in Steve Boxer Lab}{Stanford Dept.\ of Chemistry}{2017--`19}{X-ray crystallography to study photochemical pathways \\ in fluorescent proteins}
+
+\entry{Software Engineering Intern}{}{Schr{\"o}dinger, Inc.}{2017}{Helped develop python GUI for protein structure visualization}
+
+\section{Publications}
+
+% \nobibliography{pubs.bib}
+% \bibliographystyle{plain}
+% \bibentry{chang2019structural}
+
+\begin{changemargin}{0em}{3em}
+    ``Structural Evidence of Photoisomerization Pathways in Fluorescent Proteins'',
+    \underline{J.\ Chang}, M.\ G.\ Romei, S.\ G.\ Boxer,
+    \textit{Journal of the American Chemical Society},
+    \textbf{141},
+    15504-15508
+    (2019).
+    \href{http://dx.doi.org/10.1021/jacs.9b08356}{[link]}
+                 
+                              
+    ``Binding affinity landscapes constrain the evolution of broadly neutralizing anti-influenza antibodies'',
+    A.\ M.\ Phillips, K.\ R.\ Lawrence, A. Moulana, T. Dupic, \underline{J.\ Chang}, M.\ S.\ Johnson, I.\ Cvijovic, T.\ Mora, A.\ M.\ Walczak, M.\ M.\ Desai,
+    \textit{eLife},
+    \textbf{10},
+    e71393
+    (2021).
+    \href{https://doi.org/10.7554/eLife.71393}{[link]}
+\end{changemargin}
+
 
 \section{Teaching}
 
-\textit{Teaching Assistant}, Stanford Dept.\ of Physics \hfill 2019--2020\\
+\textit{Teaching Assistant}, Harvard Dept.\ of Applied Math \hfill 2021\\
+\begin{myitemize}
+\item Applied Math 104: Complex and Fourier Analysis (Aut. 21-22)
+\end{myitemize}
+
+\textit{Teaching Assistant}, Stanford Dept.\ of Physics \hfill 2019--`20\\
 \begin{myitemize}
     \item Physics 216: Back of the Envelope Physics (Aut.\ 19-20)
     \item Physics 63: Electricity, Magnetism, and Waves (Wtr.\ 19-20)
@@ -88,6 +117,7 @@ GPA: 4.03 (in major: 4.04)
 
 \section{Honors}
  
+Harvard Dept. of Physics James Mills Peirce Fellowship\hfill 2020 \\
 National Science Foundation Graduate Research Fellowship\hfill 2020 \\
 Stanford Deans' Award for Academic Achievement\hfill 2020 \\
 % Stanford Humanities and Sciences Undergraduate Prize in Music \hfill 2019\\
@@ -101,21 +131,13 @@ Stanford Bio-X Undergraduate Fellow \hfill 2018
 % Jessica Saal Fellowship Award \hfill 2015
 % Stanford Institutes of Medical Research Summer Research Program \hfill 2015
 
-\section{Publications}
+\section{Skills}
 
-% \nobibliography{pubs.bib}
-% \bibliographystyle{plain}
-% \bibentry{chang2019structural}
-
-\begin{changemargin}{0em}{3em}
-    ``Structural Evidence of Photoisomerization Pathways in Fluorescent Proteins'',
-    \underline{J.\ Chang}, M.\ G.\ Romei, S.\ G.\ Boxer,
-    \textit{Journal of the American Chemical Society},
-    \textbf{141},
-    15504-15508
-    (2019).
-    \href{http://dx.doi.org/10.1021/jacs.9b08356}{[link]}
-\end{changemargin}
+\textit{Next-generation sequencing.} Sample preparation, data analysis \\
+\textit{Molecular biology.} Sequence design, cloning, library generation \\
+\textit{Biochemistry.} Protein production and purification, X-ray crystallography \\
+\textit{Statistics.} Bayesian inference, machine learning \\
+\textit{Programming.} Python, C++, R
 
 \section{Interests}
 
