@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Random Stravinsky Generator</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131436916-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-131436916-2');
+    </script>
+
+    <style>
+    .gallery_image {
+        width: 28%;
+        padding-left: 2%;
+        padding-right: 2%;
+        text-align: center;
+        display: inline-block;
+        padding-bottom: 1em;
+        border: 3px solid white;
+    }
+    .lightboxable {
+        max-height: 100%;
+        max-width: 100%;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body style="max-width: 46em; margin-left: 2em">
+
+<h1>Histidine Protonation States</h1>
+
+<p>It is up to the user to inspect the environment of each histidine and identify the type that is appropriate.</p>
+<p>
+    <label for="check">Crazy mode: </label>
+    <input id="check" type="checkbox">
+</p>
+
+
+<div class="gallery_image">
+     <img class="lightboxable" src="media/hidhiehip/HID.png" id="hid" title="HID" onclick="play(this)" onmouseover="mouseon(this)" onmouseout="mouseout(this)"> 
+</div>
+<div class="gallery_image">
+     <img class="lightboxable" src="media/hidhiehip/HIE.png" id="hie" title="HIE" onclick="play(this)" onmouseover="mouseon(this)" onmouseout="mouseout(this)"> 
+</div>
+<div class="gallery_image">
+     <img class="lightboxable" src="media/hidhiehip/HIP.png" id="hip" title="HIP" onclick="play(this)" onmouseover="mouseon(this)" onmouseout="mouseout(this)"> 
+</div>
+
+<audio>
+    <p><span style="background-color: yellow">Your browser doesn't support HTML5 audio. Too bad...</span></p>
+</audio>
+
+<p><small><a href="http://ambermd.org/Questions/HIS.html">What is this?</a></small></p>
+
+<script>
+var hid = document.getElementById("hid")
+var hie = document.getElementById("hie")
+var hip = document.getElementById("hip")
+
+var slider = document.getElementById("slider")
+var freqSpan = document.getElementById("freq")
+
+audios = {
+    hid : [
+        new Audio('media/hidhiehip/hid1.mp3'), 
+        new Audio('media/hidhiehip/hid2.mp3'), 
+        new Audio('media/hidhiehip/hid3.mp3')
+    ],
+    hie : [
+        new Audio('media/hidhiehip/hie1.mp3'), 
+        new Audio('media/hidhiehip/hie2.mp3'), 
+        new Audio('media/hidhiehip/hie3.mp3')
+    ],
+    hip : [
+        new Audio('media/hidhiehip/hip1.mp3'), 
+        new Audio('media/hidhiehip/hip2.mp3'), 
+        new Audio('media/hidhiehip/hip3.mp3')
+    ]
+}
+
+var crazy = false;
+
+function mouseon(x) {
+    x.style.border = '3px solid black'
+}
+
+function play(x) {
+    if (document.getElementById('check').checked) {
+        i = Math.floor(Math.random()*3)
+    } else {
+        i = 0
+    }
+    audios[x.id][i].play()
+}
+
+function mouseout(x) {
+    x.style.border = '3px solid white'
+}
+
+</script>
+
+<div style="text-align: right;"><i>Jan 25, 2023</i></div>
+
+<!-- <hr> -->
+<!-- <address><a href="https://jeffjar.me"><i>Jeffrey Chang</i></a></address> -->
+
+</body>
+
