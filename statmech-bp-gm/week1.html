@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Session 1: The Boltzmann distribution and temperature</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="week1.html" class="current">Week&nbsp;1</a></div>
+<div class="menu-item"><a href="week2.html">Week&nbsp;2</a></div>
+<div class="menu-item"><a href="week3.html">Week&nbsp;3</a></div>
+<div class="menu-item"><a href="week4.html">Week&nbsp;4</a></div>
+<div class="menu-item"><a href="week5.html">Week&nbsp;5</a></div>
+<div class="menu-item"><a href="week6.html">Week&nbsp;6</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Session 1: The Boltzmann distribution and temperature</h1>
+</div>
+<div class="infoblock">
+<div class="blocktitle">Goal</div>
+<div class="blockcontent">
+<p>See a variety of examples of Boltzmann distributions and gain an intuitive understanding of what the temperature does.</p>
+</div></div>
+<ul>
+<li><p>Intro: language of probability distributions are used to model both biomolecular systems, and data points used in machine learning. Analogies can be drawn between both, especailly when data points are <b>literally</b> biomolecules!</p>
+</li>
+<li><p>Simple enough: let <img class="eq" src="eqs/8482956174182949750-130.png" alt="E(x)" style="vertical-align: -5px" /> be energy, then take <img class="eq" src="eqs/6781112983451498834-130.png" alt="p(x) propto e^{-E(x)/T}" style="vertical-align: -5px" />. Discuss probability <b>weights</b> vs normalized probs</p>
+</li>
+<li><p>Work through simple examples in low <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> / high <img class="eq" src="eqs/10752032341-130.png" alt="T" style="vertical-align: -0px" /> limit to gain intuition:</p>
+<ul>
+<li><p>two-state system (NMR, fold <i> unfold, open </i> close)</p>
+</li>
+<li><p>twenty-state discrete system (AA logits)</p>
+</li>
+<li><p>Quadratic potential of a 1d continuous variable (Optical trap, spring, rod bending)</p>
+<ul>
+<li><p>spend some time with this as it becomes relevant later on! Note the Gaussian distribution in x, and how width depends on temperature and spring constant.</p>
+</li></ul>
+</li>
+<li><p>arbitrary 1d potential, e.g. an asymmetric double well potential</p>
+<ul>
+<li><p>illustrate multiple modes and what delta E between minima tells you (or doesn't) (rxn coordinate picture in chemistry)</p>
+</li>
+<li><p>describing open/close state of a channel, along some suitable &ldquo;reaction coordinate&rdquo;.</p>
+</li>
+<li><p>What changes between low T and high T?</p>
+</li></ul>
+</li>
+<li><p>N-dimensional isotropic / anisotropic Gaussians, quadratic forms, covariances, etc. (Maxwell-Boltzmann, normal modes, PCA)</p>
+</li>
+<li><p>Finally, general <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />-dimensional case (protein conformational dynamics, data points in ML)</p>
+</li></ul>
+</li>
+<li><p>Preview up ahead:</p>
+<ul>
+<li><p>Multiple modes, is there a simpler way to describe? (yes &ndash; free energy)</p>
+</li>
+<li><p>Can we think of <b>dynamics</b> leading to equilibrium? (Langevin dynamics) What is the probability distribution <b>over</b>? (time averages)</p>
+</li>
+<li><p>How is this useful for machine learning and data distributions? (Energy-based models, exponential family models)</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-02-14 09:42:38 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week1.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

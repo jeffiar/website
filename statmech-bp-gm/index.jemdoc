@@ -1,0 +1,24 @@
+# jemdoc: menu{MENU}{index.html}, showsource, analytics{UA-131436916-2}
+= Statistical Mechanics and its connection to protein biophysics and generative models
+
+Welcome! This site contains rough notes for a short seminar/discussion series held in Jan-Mar of 2023.
+
+The sessions start off with reviewing fundamentals of stat mech (with examples drawn from biophysics), and then discuss stochastic processes and diffusion, and finally end up with these recent generative models. The protein biophysics provides a tangible intuition for a lot of the mathematical formalism. It also provides context for ML results.
+
+- [week1.html Week 1:] The Boltzmann distribution and temperature
+- [week2.html Week 2:] Energy, entropy, and the free energy
+- [week3.html Week 3:] Three meanings of probability and the approach to equilibrium
+- [week4.html Week 4:] Diffusion A: random walks
+- [week5.html Week 5:] Diffusion B: differential equations
+- [week6.html Week 6:] Diffusion C: generative models
+
+~~~
+{Guiding Questions}
+
+- What is the tradeoff between entropy and energy? the role and meaning of temperature as a parameter?
+- What does free energy mean? potential of mean force? statistical pseudo-energy? how should we interpret these?
+- What does probability even mean?
+- How does an equilibrium probability distribution arise from stochastic transitions between states? markov chains, stationary distributions, MCMC metropolis sampling.
+- Random walks and diffusion. two viewpoints: a stochastic trajectory, or a changing probability distribution. interpretations. Langevin equation and Fokker-Planck equation.
+- How do score-based diffusion generative models work?
+~~~

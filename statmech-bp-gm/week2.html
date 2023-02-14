@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Session 2: Energy, entropy, and the free energy</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="week1.html">Week&nbsp;1</a></div>
+<div class="menu-item"><a href="week2.html" class="current">Week&nbsp;2</a></div>
+<div class="menu-item"><a href="week3.html">Week&nbsp;3</a></div>
+<div class="menu-item"><a href="week4.html">Week&nbsp;4</a></div>
+<div class="menu-item"><a href="week5.html">Week&nbsp;5</a></div>
+<div class="menu-item"><a href="week6.html">Week&nbsp;6</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Session 2: Energy, entropy, and the free energy</h1>
+</div>
+<div class="infoblock">
+<div class="blocktitle">Goal</div>
+<div class="blockcontent">
+<p>Be able to explain the tradeoff between energy and entropy, its relevance for protein biophysics, and the motivation for defining the free energy as having the two terms.</p>
+</div></div>
+<ul>
+<li><p>Today we discuss the interpretation of entropy and free energy, from a protein biophysics point of view. Why should we care?</p>
+<ul>
+<li><p>fundamental &lsquo;molecular driving force&rsquo; behind protein biophysics: dynamics, multiple states, etc.</p>
+</li>
+<li><p>useful language for describing high dimensional probability distribution</p>
+</li></ul>
+</li>
+<li><p>Simpler &lsquo;collective variables&rsquo; are necessary when describing systems with many, many variables!</p>
+<ul>
+<li><p>e.g. a protein has thousands of atoms, so thousands of xyz coordinates are required for the full microscopic description</p>
+</li>
+<li><p>however, for many things you care about, it's sufficient to use a &lsquo;collective variable&rsquo; that grossly captures the overall features. examples include</p>
+<ul>
+<li><p>an angle of some helix</p>
+</li>
+<li><p>volume withinin an internal cavity</p>
+</li>
+<li><p>activation of a receptor</p>
+</li>
+<li><p>open or close state of an ion channel</p>
+</li>
+<li><p>end-to-end length from the carboxy to amino end of the chain</p>
+</li></ul>
+</li>
+<li><p>the interplay between microscopic picture and these &lsquo;coarse-grained&rsquo; sorts of variables is at the heart of stat mech.</p>
+</li></ul>
+</li>
+<li><p>For simplicity, let's divide our total phase space (i.e. space of all possible microscopic configurations) into two parts, labeled A and B. How do we find the total probability of part A vs of part B?</p>
+<ul>
+<li><p>Case 1: all microstates have the same energy, but <img class="eq" src="eqs/8320025024-130.png" alt="A" style="vertical-align: -0px" /> has <img class="eq" src="eqs/4401390393115845789-130.png" alt="N_A" style="vertical-align: -3px" /> states and <img class="eq" src="eqs/8448025411-130.png" alt="B" style="vertical-align: -0px" /> has <img class="eq" src="eqs/4401390393115845790-130.png" alt="N_B" style="vertical-align: -3px" /> states.</p>
+<ul>
+<li><p>then <img class="eq" src="eqs/3047057922720495404-130.png" alt="P(A) = N_A / N_A + N_B" style="vertical-align: -5px" />, etc., just by counting number of states.</p>
+</li></ul>
+</li>
+<li><p>Case 2: what if all of the &lsquo;A&rsquo; states have energy <img class="eq" src="eqs/3910854067931984846-130.png" alt="E_A" style="vertical-align: -3px" /> and the &lsquo;B&rsquo; states have energy <img class="eq" src="eqs/3910854067931984847-130.png" alt="E_B" style="vertical-align: -3px" />?</p>
+<ul>
+<li><p>then just weight accordingly by Boltzmnn factor: <img class="eq" src="eqs/1536588839741266463-130.png" alt="P(A) = N_A e^{-E_A/T} / (N_A e^{-E_A/T} + N_B e^{-E_B/T})" style="vertical-align: -5px" /></p>
+</li>
+<li><p>Note that this can be rewritten as <img class="eq" src="eqs/8117924910311472639-130.png" alt="P(A) = e^{-F_A/T}" style="vertical-align: -5px" /> where <img class="eq" src="eqs/6179019697945296223-130.png" alt="F_A = E_A - T S_A" style="vertical-align: -3px" /> and <img class="eq" src="eqs/619552708425255412-130.png" alt="S_A = log N_A" style="vertical-align: -4px" />!</p>
+</li></ul>
+</li>
+<li><p>Case 3: group A states have energy <img class="eq" src="eqs/268028006764416185-130.png" alt="E_{A1}, E_{A2}, ldots, E_{A N_A}" style="vertical-align: -5px" /> and group B states have energy <img class="eq" src="eqs/7352201858470057551-130.png" alt="E_{B1}, E_{B2}, ldots, E_{B N_B}" style="vertical-align: -5px" />.</p>
+<ul>
+<li><p>can still in general define <img class="eq" src="eqs/2170535047727236789-130.png" alt="e^{-F_A/T} = e^{-E_{A1}/T} + e^{-E_{A2}/T} + ldots =: Z_A." style="vertical-align: -3px" /></p>
+</li>
+<li><p>Solving for <img class="eq" src="eqs/5036909580570843099-130.png" alt="F_A" style="vertical-align: -3px" /> we get <img class="eq" src="eqs/3969056584293947327-130.png" alt="F_A = -T log Z_A" style="vertical-align: -4px" />.</p>
+</li></ul>
+</li>
+<li><p>Interpretation of this is that <img class="eq" src="eqs/5036909580570843099-130.png" alt="F_A" style="vertical-align: -3px" /> is some sort of &lsquo;effective&rsquo; version of the energy that can describe all of the states in group A! Specifically, if you want to calculate the Boltzmann weight of group A, you use <img class="eq" src="eqs/5036909580570843099-130.png" alt="F_A" style="vertical-align: -3px" /> as the &lsquo;energy&rsquo;. This is called the free energy.</p>
+</li></ul>
+</li>
+<li><p>Interpretation &ndash; a &ldquo;mode&rdquo; can be highly populated for either of two reasons, low <b>energy</b> or high <b>entropy</b>. Since <img class="eq" src="eqs/1291638254472210676-130.png" alt="F = E - TS" style="vertical-align: -1px" />.</p>
+<ul>
+<li><p>Note the temperature dependence of this! Consistent with earlier proposition that low T concentrates prob mass on the lower E ones.</p>
+</li>
+<li><p>Physical example: solids <i> liquids </i> gasses</p>
+</li>
+<li><p>ML example: adjusted temperature sampling in Ingraham paper to disfavor &ldquo;empty&rdquo; regions of space and enhance from modes</p>
+</li>
+<li><p>ML example: sequence generation when sampling from multinomials (the rapgen high factor)</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-02-14 09:42:38 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week2.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

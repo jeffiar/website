@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Session 4: Diffusion part 1, random walks</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="week1.html">Week&nbsp;1</a></div>
+<div class="menu-item"><a href="week2.html">Week&nbsp;2</a></div>
+<div class="menu-item"><a href="week3.html">Week&nbsp;3</a></div>
+<div class="menu-item"><a href="week4.html" class="current">Week&nbsp;4</a></div>
+<div class="menu-item"><a href="week5.html">Week&nbsp;5</a></div>
+<div class="menu-item"><a href="week6.html">Week&nbsp;6</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Session 4: Diffusion part 1, random walks</h1>
+</div>
+<p><img src='../biochem/img/construction.gif'></p>
+<div class="infoblock">
+<div class="blocktitle">Goal</div>
+<div class="blockcontent">
+<p>be able to explain characteristics of Gaussian random walk processes without drift, with constant drift, and with origin-directed drift.</p>
+</div></div>
+<ul>
+<li><p>Preview: again the single molecule force spectroscopy measurement again; this time rather than binning into open/closed, consider the <b>whole</b> continuous reaction coordinate x.</p>
+</li>
+<li><p>Simplest case of diffusion with no &ldquo;potential&rdquo; &ndash; e.g. observation of pollen grains under a microscope, or of microbeads&hellip;</p>
+<ul>
+<li><p>Problem setup: consider the position of a particle, <img class="eq" src="eqs/485565670462933553-130.png" alt="x(t)" style="vertical-align: -5px" />, over multiple discrete timesteps.</p>
+</li>
+<li><p>present simple case of <img class="eq" src="eqs/6794741972637554300-130.png" alt="+1/-1" style="vertical-align: -5px" /> random walk; long times is Gaussian</p>
+</li>
+<li><p>then generalize to <img class="eq" src="eqs/5438194393366201188-130.png" alt="+a/-a" style="vertical-align: -5px" />, time interval <img class="eq" src="eqs/12800076900115546-130.png" alt="dt" style="vertical-align: -1px" />, <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> steps with <img class="eq" src="eqs/6002741593416787141-130.png" alt="T = N dt" style="vertical-align: -1px" />. Notation is <img class="eq" src="eqs/181604198946967922-130.png" alt="x(t + dt) = x(t) + e" style="vertical-align: -5px" /> where <img class="eq" src="eqs/2945249564657726036-130.png" alt="e = a" style="vertical-align: -1px" /> or <img class="eq" src="eqs/5760034605051940-130.png" alt="-a" style="vertical-align: -1px" />.</p>
+</li>
+<li><p>generalize to other step size distributions, note the universality.</p>
+</li>
+<li><p>Draw some example trajectories and histograms. Note that can think of two ways, as stochastic trajectory <img class="eq" src="eqs/485565670462933553-130.png" alt="x(t)" style="vertical-align: -5px" />, or as a probability distribution evolving over time, <img class="eq" src="eqs/383242838040780092-130.png" alt="P_t(x)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>Derive <img class="eq" src="eqs/2001706988643255653-130.png" alt="P_{1 dt}(x) = Normal(0, a)" style="vertical-align: -5px" />; <img class="eq" src="eqs/8654707041375126669-130.png" alt="P_{N dt}(x) = Normal(0, Na^2)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>generalize to higher dimensions.</p>
+</li></ul>
+</li>
+<li><p>Now add a constant drift term: <img class="eq" src="eqs/7823554590527613674-130.png" alt="v dt" style="vertical-align: -1px" />, so that each time step you move as <img class="eq" src="eqs/479738013227286730-130.png" alt="x(t + dt) = x(t) + v dt + e" style="vertical-align: -5px" />. Then <img class="eq" src="eqs/4590929554373618591-130.png" alt="P_{N dt}(x) = Normal(v N dt, N a^2)" style="vertical-align: -5px" />. Plot this, draw some example trajectories.</p>
+</li>
+<li><p>How to keep the variance from exploding? Add a drift term that brings you back to the origin. Call it <img class="eq" src="eqs/5218643314460168226-130.png" alt="- c x dt" style="vertical-align: -1px" />. This is like a spring, or optical trap, or what not. Then <img class="eq" src="eqs/3284241672002516717-130.png" alt="x(t + dt) = x(t) - c x dt + e" style="vertical-align: -5px" />. (note this is the <b>overdamped</b> case where velocity = mobility <img class="eq" src="eqs/6179933649063709984-130.png" alt="times" style="vertical-align: -0px" /> force). Next time we will derive the stationary distribution of this process</p>
+</li>
+<li><p>Final note: an <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" />-dimensional random walk model of a polymer! Doesn't account for self-avoiding effects&hellip;</p>
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-02-14 09:42:38 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week4.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

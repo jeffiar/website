@@ -1,0 +1,36 @@
+# jemdoc: menu{MENU}{week2.html}, showsource, analytics{UA-131436916-2}
+= Session 2: Energy, entropy, and the free energy
+
+~~~
+{Goal}
+Be able to explain the tradeoff between energy and entropy, its relevance for protein biophysics, and the motivation for defining the free energy as having the two terms.
+~~~
+
+- Today we discuss the interpretation of entropy and free energy, from a protein biophysics point of view. Why should we care?
+    -- fundamental `molecular driving force' behind protein biophysics: dynamics, multiple states, etc.
+    -- useful language for describing high dimensional probability distribution
+- Simpler `collective variables' are necessary when describing systems with many, many variables!
+    -- e.g. a protein has thousands of atoms, so thousands of xyz coordinates are required for the full microscopic description
+    -- however, for many things you care about, it's sufficient to use a `collective variable' that grossly captures the overall features. examples include
+        --- an angle of some helix
+        --- volume withinin an internal cavity
+        --- activation of a receptor
+        --- open or close state of an ion channel
+        --- end-to-end length from the carboxy to amino end of the chain
+    -- the interplay between microscopic picture and these `coarse-grained' sorts of variables is at the heart of stat mech.
+- For simplicity, let's divide our total phase space (i.e. space of all possible microscopic configurations) into two parts, labeled A and B. How do we find the total probability of part A vs of part B?
+    -- Case 1: all microstates have the same energy, but $A$ has $N_A$ states and $B$ has $N_B$ states.
+        --- then $P(A) = N_A / N_A + N_B$, etc., just by counting number of states.
+    -- Case 2: what if all of the `A' states have energy $E_A$ and the `B' states have energy $E_B$?
+        --- then just weight accordingly by Boltzmnn factor: $P(A) = N_A e^{-E_A/T} / (N_A e^{-E_A/T} + N_B e^{-E_B/T})$
+        --- Note that this can be rewritten as $P(A) = e^{-F_A/T}$ where $F_A = E_A - T S_A$ and $S_A = \log N_A$!
+    -- Case 3: group A states have energy $E_{A1}, E_{A2}, \ldots, E_{A N_A}$ and group B states have energy $E_{B1}, E_{B2}, \ldots, E_{B N_B}$.
+        --- can still in general define $e^{-F_A/T} = e^{-E_{A1}/T} + e^{-E_{A2}/T} + \ldots =: Z_A.$
+        --- Solving for $F_A$ we get $F_A = -T \log Z_A$.
+    -- Interpretation of this is that $F_A$ is some sort of `effective' version of the energy that can describe all of the states in group A! Specifically, if you want to calculate the Boltzmann weight of group A, you use $F_A$ as the `energy'. This is called the free energy.
+- Interpretation -- a "mode" can be highly populated for either of two reasons, low *energy* or high *entropy*. Since $F = E - TS$.
+    -- Note the temperature dependence of this! Consistent with earlier proposition that low T concentrates prob mass on the lower E ones.
+    -- Physical example: solids / liquids / gasses
+    -- ML example: adjusted temperature sampling in Ingraham paper to disfavor "empty" regions of space and enhance from modes
+    -- ML example: sequence generation when sampling from multinomials (the rapgen high factor)
+

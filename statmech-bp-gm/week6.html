@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Session 7: Diffusion part 3, Score-based generative models</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="week1.html">Week&nbsp;1</a></div>
+<div class="menu-item"><a href="week2.html">Week&nbsp;2</a></div>
+<div class="menu-item"><a href="week3.html">Week&nbsp;3</a></div>
+<div class="menu-item"><a href="week4.html">Week&nbsp;4</a></div>
+<div class="menu-item"><a href="week5.html">Week&nbsp;5</a></div>
+<div class="menu-item"><a href="week6.html" class="current">Week&nbsp;6</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Session 7: Diffusion part 3, Score-based generative models</h1>
+</div>
+<p><img src='../biochem/img/construction.gif'></p>
+<div class="infoblock">
+<div class="blocktitle">Goal</div>
+<div class="blockcontent">
+<p>become less of a fool the next time at a cocktail party when someone asks you about AI-generated art</p>
+</div></div>
+<ul>
+<li><p>Now change pictures; <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" /> represents a data point in some abstract data space now, either pixels of an image, or some representation of a protein structure.</p>
+</li>
+<li><p>Review: a diffusive process can be described two ways, either as a stochastic trajectory of <img class="eq" src="eqs/1755716057954425584-130.png" alt="x(t + dt) = x(t) + (deterministic) + (stochastic)" style="vertical-align: -5px" /> &ndash; or as a diff eq of the probability density, deterministically evolving over time (which also has the corresponding force / diffusion terms). </p>
+<ul>
+<li><p>Discuss the straightforward way to simulate this with Euler integration, step by step.</p>
+</li>
+<li><p>If particle starts at <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" /> at time <img class="eq" src="eqs/1495230934591648944-130.png" alt="t=0" style="vertical-align: -1px" /> and undergoes dynamics with constant drift <img class="eq" src="eqs/15104045431-130.png" alt="v" style="vertical-align: -1px" /> and constant diffusion coefficient, then <img class="eq" src="eqs/9219450086483034455-130.png" alt="p_t(xmid x_0) = Normal(x_0 + vt, Dt)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>If instead force term is <img class="eq" src="eqs/2487910135489793688-130.png" alt="-c x" style="vertical-align: -1px" /> (pull towards origin) then (work this out&hellip;at long times it is a zero-centered Gaussian)</p>
+</li>
+<li><p>Finally introduce the generalization of this: &ldquo;variance-preserving&rdquo; process from Song 2021, with time-dependent schedule at which noise is injected, <img class="eq" src="eqs/2895493325153654136-130.png" alt="beta_t" style="vertical-align: -4px" />. Note how the stationary distribution is indepdendent of <img class="eq" src="eqs/5999452984665080490-130.png" alt="x_0" style="vertical-align: -4px" /> &hellip;</p>
+</li></ul>
+</li>
+<li><p>What if at <img class="eq" src="eqs/1495230934591648944-130.png" alt="t=0" style="vertical-align: -1px" />, the particle were not localized at a single point <img class="eq" src="eqs/6166309861358114385-130.png" alt="p_0(x_0) = delta(x - x_0)" style="vertical-align: -5px" />, but had another arbitrary distribution? Write the convolution expression for <img class="eq" src="eqs/7420291894587147503-130.png" alt="p_t(x) = int p_t(x mid x_0) p_0(x_0) , dx_0" style="vertical-align: -5px" /> and interpret this. And note that for large <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />, this is approximately the stationary dist.</p>
+</li>
+<li><p>Claim the remarkable fact that diffusion equations can have a time-reversed partner with the same (Backward) Kolmogorov equation!</p>
+</li>
+</ul>
+<p>Here is where my understanding gets hazy.</p>
+<ul>
+<li><p>Discuss what the score means, <img class="eq" src="eqs/6181641637322009931-130.png" alt="s(x,t) := nabla log p_t(x)" style="vertical-align: -5px" />, and why knowing it is useful</p>
+</li>
+<li><p>Write down the objective function (score matching, appropriately weighted across <img class="eq" src="eqs/15360046201-130.png" alt="x" style="vertical-align: -1px" /> and <img class="eq" src="eqs/14848044661-130.png" alt="t" style="vertical-align: -1px" />)</p>
+</li>
+<li><p>And what the sampling process looks like (Euler integration of the reverse, denoising process, from the prior distribution.)</p>
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-02-14 09:42:39 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week6.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# jemdoc: menu{MENU}{week6.html}, showsource, analytics{UA-131436916-2}
+== Session 7: Diffusion part 3, Score-based generative models
+
+{{<img src='../biochem/img/construction.gif'>}}
+
+~~~
+{Goal}
+become less of a fool the next time at a cocktail party when someone asks you about AI-generated art
+~~~
+
+- Now change pictures; $x$ represents a data point in some abstract data space now, either pixels of an image, or some representation of a protein structure.
+- Review: a diffusive process can be described two ways, either as a stochastic trajectory of $x(t + dt) = x(t) + (deterministic) + (stochastic)$ -- or as a diff eq of the probability density, deterministically evolving over time (which also has the corresponding force / diffusion terms). 
+    -- Discuss the straightforward way to simulate this with Euler integration, step by step.
+    -- If particle starts at $x_0$ at time $t=0$ and undergoes dynamics with constant drift $v$ and constant diffusion coefficient, then $p_t(x\mid x_0) = Normal(x_0 + vt, Dt)$.
+    -- If instead force term is $-c x$ (pull towards origin) then (work this out...at long times it is a zero-centered Gaussian)
+    -- Finally introduce the generalization of this: "variance-preserving" process from Song 2021, with time-dependent schedule at which noise is injected, $\beta_t$. Note how the stationary distribution is indepdendent of $x_0$ ...
+- What if at $t=0$, the particle were not localized at a single point $p_0(x_0) = \delta(x - x_0)$, but had another arbitrary distribution? Write the convolution expression for $p_t(x) = \int p_t(x \mid x_0) p_0(x_0) \, dx_0$ and interpret this. And note that for large $t$, this is approximately the stationary dist.
+- Claim the remarkable fact that diffusion equations can have a time-reversed partner with the same (Backward) Kolmogorov equation!
+
+Here is where my understanding gets hazy.
+
+- Discuss what the score means, $s(x,t) := \nabla \log p_t(x)$, and why knowing it is useful
+- Write down the objective function (score matching, appropriately weighted across $x$ and $t$)
+- And what the sampling process looks like (Euler integration of the reverse, denoising process, from the prior distribution.)

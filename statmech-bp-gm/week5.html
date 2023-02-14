@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Session 5: Diffusion part 2, differential equations</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="week1.html">Week&nbsp;1</a></div>
+<div class="menu-item"><a href="week2.html">Week&nbsp;2</a></div>
+<div class="menu-item"><a href="week3.html">Week&nbsp;3</a></div>
+<div class="menu-item"><a href="week4.html">Week&nbsp;4</a></div>
+<div class="menu-item"><a href="week5.html" class="current">Week&nbsp;5</a></div>
+<div class="menu-item"><a href="week6.html">Week&nbsp;6</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Session 5: Diffusion part 2, differential equations</h1>
+</div>
+<p><img src='../biochem/img/construction.gif'></p>
+<div class="infoblock">
+<div class="blocktitle">Goal</div>
+<div class="blockcontent">
+<p>convince yourself that the Boltzmann distribution is the stationary distribution of the Fokker-Plank equation.</p>
+</div></div>
+<ul>
+<li><p>Last time: <img class="eq" src="eqs/3284241672002516717-130.png" alt="x(t + dt) = x(t) - c x dt + e" style="vertical-align: -5px" />, or in general <img class="eq" src="eqs/6593984670880003187-130.png" alt="dx/dt = - mu E'(x) + e" style="vertical-align: -5px" />. This time, derivation of partial differential equation (PDE) for <img class="eq" src="eqs/2419437686728248860-130.png" alt="p_t(x)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>Note that PDE's are a funky language of expressing hazy intuitive ideas into a precise mathematical picture. Like with any language, translation / understanding takes repetition. First turn ideas into equation, then manipulate equations, then interpret final result.</p>
+</li>
+<li><p>Let's turn to diffusion from the macroscopic picture: a concentration <img class="eq" src="eqs/6995687727457879994-130.png" alt="c(x,t)" style="vertical-align: -5px" />. Can think of as aggregate result of many individual particles, &ldquo;all at once&rdquo;, superimposing trajectories. And consider current <img class="eq" src="eqs/2847117546465893762-130.png" alt="vec j(x,t)" style="vertical-align: -5px" />.</p>
+<ul>
+<li><p>Fick's law: <img class="eq" src="eqs/3612063746007249957-130.png" alt="vec j = - D nabla n" style="vertical-align: -4px" />. &ldquo;which way to particles move, given some distribution?&rdquo; units of particles, per unit time, per unit area.</p>
+</li>
+<li><p>And continuity equation: <img class="eq" src="eqs/6915207441474443666-130.png" alt="dn/dt = - nabla cdot vec j" style="vertical-align: -5px" />. &ldquo;how does concentration change due to a current?&rdquo;</p>
+</li>
+<li><p>Combining these together give the diffusion equation, <img class="eq" src="eqs/1968838854072189543-130.png" alt="dn/dt = - D nabla^2 n" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>Interpret all of these!</p>
+</li></ul>
+</li>
+<li><p>Now let's add a bias term &#8201;&mdash;&#8201; drift term, due to an external influence. The simplest case is gravity, <img class="eq" src="eqs/5002559422146892637-130.png" alt="vec j = vec v n = -mu m g n hat z" style="vertical-align: -4px" />. But in general it's <img class="eq" src="eqs/6993940227466006422-130.png" alt="- mu nabla E(x) n" style="vertical-align: -5px" />. Then <img class="eq" src="eqs/3031058833601039616-130.png" alt="vec j = vec j_d + vec j_f" style="vertical-align: -6px" /> &#8201;&mdash;&#8201; one from diffusion, one from force. Plugging this in we get</p>
+<ul>
+<li><p><img class="eq" src="eqs/2074614182810835087-130.png" alt="dn/dt = -D nabla ^2 n + mu (nabla^2 E) n + mu (nabla E) cdot (nabla n)" style="vertical-align: -5px" />.</p>
+</li>
+<li><p>means <img class="eq" src="eqs/1225951146002917266-130.png" alt="mu E" style="vertical-align: -4px" /> has same units as <img class="eq" src="eqs/8704026181-130.png" alt="D" style="vertical-align: -0px" />, so temperature scale is <img class="eq" src="eqs/8447086977132926490-130.png" alt="D/mu" style="vertical-align: -5px" />.</p>
+</li></ul>
+</li>
+<li><p>Check that <img class="eq" src="eqs/7290935698098767376-130.png" alt="n propto e^{-E(x)/T}" style="vertical-align: -1px" /> is a steady state solution (<img class="eq" src="eqs/3820834895770528917-130.png" alt="dn/dt = 0" style="vertical-align: -5px" />).</p>
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-02-14 09:42:39 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week5.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

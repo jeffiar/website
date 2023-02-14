@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Session 3: Three meanings of probability and the approach to equilibrium</title>
+</head>
+<body>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-131436916-2");
+    pageTracker._trackPageview();
+} catch(err) {}</script>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-item"><a href="index.html">Home</a></div>
+<div class="menu-item"><a href="week1.html">Week&nbsp;1</a></div>
+<div class="menu-item"><a href="week2.html">Week&nbsp;2</a></div>
+<div class="menu-item"><a href="week3.html" class="current">Week&nbsp;3</a></div>
+<div class="menu-item"><a href="week4.html">Week&nbsp;4</a></div>
+<div class="menu-item"><a href="week5.html">Week&nbsp;5</a></div>
+<div class="menu-item"><a href="week6.html">Week&nbsp;6</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Session 3: Three meanings of probability and the approach to equilibrium</h1>
+</div>
+<div class="infoblock">
+<div class="blocktitle">Goal</div>
+<div class="blockcontent">
+<p>Articulate why it is easy to be misled by the multiple interpretations of probability in statistical mechanics.</p>
+</div></div>
+<p>We've spent the last two weeks discussing the Bolztmann distribution <img class="eq" src="eqs/8787619010613873648-130.png" alt="p(x) = e^{E(x)/T} / Z" style="vertical-align: -5px" /> &ndash; but how does it arise? What does probability even mean?</p>
+<h3>How a nerve fiber conducts electricity</h3>
+<p>A detailed biophysical picture as a concrete example:</p>
+<ul>
+<li><p>Explain how the voltage-current response is measured and what it means. </p>
+</li>
+<li><p>Describe the observation of &lsquo;gating&rsquo;, with low conductivity at low voltage and high conductivity at high voltage. Analogy of a pressure-dependent valve which controls the flow in a pipe.</p>
+</li>
+<li><p>Illustrate the lag time for channels to open following a voltage jump</p>
+</li>
+<li><p>Experimental details of a thin glass capillary isolating a small patch of the membrane. Note how, if the patch of membrane is small enough, you may isolate an individual receptor!</p>
+</li>
+<li><p>Sketch the time trace of current flowing through a <b>single</b> channel &#8201;&mdash;&#8201; and notice how, unlike the macroscopically observed case, there are stochastic, discrete transitions between an open state and a closed state. Surmise on the origin of this random-looking behavior.</p>
+</li>
+<li><p>Draw the full ensemble of thousands of such single-channel traces &#8201;&mdash;&#8201; how ions flow through a large membrane patch containing many many channels!</p>
+<ul>
+<li><p>numbers for reference: million-billion ions per second through one channel (in the picoamp to nanoamp range), and roughly 100-1000 channels per square micron of membrane</p>
+</li>
+</ul>
+
+</li>
+</ul>
+<h3>The three notions of probability</h3>
+<p>From this example we can see different notions of probability:</p>
+<ul>
+<li><p>One is the time average of a single ion channel over a long time</p>
+</li>
+<li><p>Second is the population average over all the channels in the patch</p>
+</li>
+<li><p>Third is the abstract, &lsquo;phase space&rsquo; average we have been discussing in terms of the microscopic states!</p>
+</li>
+</ul>
+<p>Discussion: when are these equivalent? When are they not? Which defintion should we be using and when? What is the justification for the phase space picture?</p>
+<ul>
+<li><p>Link back these discrete transitions to the A / B partition of phase space we have been using, and some notion of a stochastic trajectory&hellip;</p>
+</li>
+<li><p>but point out the absurdity of defining a probability distribution over thousands of variables, if the space is so large that a miniscule portion of it will ever be sampled!</p>
+</li>
+</ul>
+<h3>Basic Markov Chains</h3>
+<p>Time permitting, we can discuss the mathematical description of the situation:</p>
+<ul>
+<li><p>note how the time average picture lends itself to <img class="eq" src="eqs/485565670462933553-130.png" alt="x(t)" style="vertical-align: -5px" /> whereas the population average leads to <img class="eq" src="eqs/2419437686728248860-130.png" alt="p_t(x)" style="vertical-align: -5px" />. Different meaning !!</p>
+</li>
+<li><p>dwell times and transition rates, the memory-less assumption, basic differential equation, steady-state solution as the ratio of rate constants, relation to the equlibrium constant&hellip;</p>
+</li>
+<li><p>Think about &ldquo;initial state&rdquo; as the situation at <img class="eq" src="eqs/1495230934591648944-130.png" alt="t=0" style="vertical-align: -1px" />, and the consequent evolution to steady state at <img class="eq" src="eqs/4708423066408934211-130.png" alt="t=infty" style="vertical-align: -1px" />, with a characteristic &ldquo;relaxation time&rdquo; for the approach to equilibrium.</p>
+</li>
+<li><p>and generalize from <img class="eq" src="eqs/6400019251-130.png" alt="2" style="vertical-align: -0px" /> states to <img class="eq" src="eqs/9984030031-130.png" alt="N" style="vertical-align: -0px" /> states. define a transition matrix and draw the Markov Chain. Give the analogy of probability as an incompressible fluid flowing through the nodes. Steady state is more tricky &ndash; now for <b>each</b> of the states, the mass flowing in has to be equal to the mass flowing out. Stationary distribution is the <img class="eq" src="eqs/6144018481-130.png" alt="0" style="vertical-align: -1px" />-eigenvector, relaxation time is the largest nonzero eigenvalue. Draw out some simple examples of different dynamics, from different starting points!</p>
+</li>
+</ul>
+<hr>
+<h2>Leave a Comment Below!</h2>
+<!-- begin wwww.htmlcommentbox.com -->
+ <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/simple/skin.css" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24SzKUHmoBrUkWOX04Bdn9J1"+"&opts=16862&num=10&ts=1548746886421");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+<!-- end www.htmlcommentbox.com -->
+<div id="footer">
+<div id="footer-text">
+Page generated 2023-02-14 09:53:34 EST, by <a href="http://jemdoc.jaboc.net/">jemdoc</a>.
+(<a href="week3.jemdoc">source</a>)
+</div>
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>
