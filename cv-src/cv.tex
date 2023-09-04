@@ -1,36 +1,53 @@
 % Jeffjar's CV
 % $ latexmk cv.tex -pdf -pvc -interaction=nonstopmode
-\documentclass[margin,11pt]{res}
+\documentclass[line,overlap,10pt]{res}
 
 \usepackage{hyperref}
-% \usepackage{bibentry}
+\usepackage{libertine}
+\usepackage{xcolor}
+
+\renewcommand{\namefont}{\LARGE\textit}
 
 \newenvironment{myitemize}
 { \vspace{-1.5\topsep} \begin{itemize} \setlength\itemsep{0em}}
 { \end{itemize} \vspace{-0.5\topsep}}
 
-\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
-\let\endchangemargin=\endlist
-
 \def\entry#1#2#3#4#5
 {
-  \textit{#1}#2 \hfill #4\\ 
-  #3\\
+  {#1}#2 \hfill #4\\ 
+  \textit{#3}\\
   \begin{myitemize}
   \item #5
   \end{myitemize}
 }
 
+\def\authorlist#1 { {\footnotesize #1} }
+\def\textsb#1 { {\libertineSB #1 }}
+\def\happy {\hspace{-1em} {\color{magenta}{$\star$}}}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist
+\newenvironment{publist}
+{ \begin{changemargin}{0em}{0em}  }
+{ \end{changemargin} }
+
 \begin{document}
 
 \name{Jeffrey Chang}
-\address{jeffrey\_chang@g.harvard.edu --- \url{https://jeffjar.me}}
+\address{
+    \href{mailto:jeffrey_chang@g.harvard.edu}{jeffrey\_chang@g.harvard.edu}
+    \hspace{2em} 
+    \href{https://scholar.google.com/citations?user=INSgKl8AAAAJ}{Google Scholar} 
+    \hspace{2em} 
+    \href{https://jeffjar.me}{Personal Website}
+}
 
 \begin{resume}
 
 \section{Education}
 
-Ph.D. student in Physics, Harvard University \hfill 2020--\\
+Ph.D. candidate in Physics, Harvard University \hfill 2020--
+\\
 B.S. in Physics, Stanford University (GPA: 4.03) \hfill 2016--`20
 
 % GPA: 4.03 (in major: 4.04)
@@ -40,38 +57,19 @@ B.S. in Physics, Stanford University (GPA: 4.03) \hfill 2016--`20
 
 \section{Career}
 
-\entry{Graduate Researcher}{ in Nicholas Polizzi Lab}{Dana Farber Cancer Institute}{2022--}{De novo protein design of ligand-binding proteins}
+\entry{Graduate Researcher}{ in Nicholas Polizzi's lab}{Dana Farber Cancer Institute and Harvard Medical School}{2022--}{De novo protein design of ligand-binding proteins for single-molecule proteomics}
 
-\entry{Graduate Researcher}{ in Michael Desai Lab}{Harvard Dept.\ of Organismic and Evolutionary Biology}{2021--}{Using high-throughput measurements of binding affinity \\ to study sequence-to-function landscapes of antibodies}
+\entry{Graduate Researcher}{ in Wesley Wong's Lab}{Wyss Institute, Boston Children's Hospital, and Harvard Medical School}{2021--`22}{Single-molecule force spectroscopy and Bayesian inference for polyclonal antibodies}
 
-\entry{Rotation Student}{ in Wesley Wong Lab}{Wyss Institute at Harvard University}{2021--`22}{Single-molecule force spectroscopy and Bayesian inference for \\ characterizing polyclonal antibodies}
+\entry{Graduate Researcher}{ in Michael Desai's lab}{Harvard Dept.\ of Organismic and Evolutionary Biology}{2020--`22}{High-throughput measurements of antibody binding affinities with yeast display}
 
-\entry{Biophysics / Statistical Modeling Consultant}{}{Manifold Biotechnologies, Inc.}{2020--}{Algorithmic development of a proprietary platform for\\ highly multiplexed quantification of barcoded proteins}
+\entry{Biophysics / Statistical Modeling Consultant}{}{Manifold Biotechnologies, Inc.}{2020--}{Algorithmic development of a platform for multiplexed quantification of barcoded proteins}
 
-\entry{Textbook Author}{ with Prof.\ Steven A.\ Kivelson and Dr.\ Jack M.\ Jiang}{Stanford Dept.\ of Physics}{2019--}{Writing an undergraduate textbook, ``Statistical Mechanics \\ of Phases and Phase Transitions''}
+% \entry{Textbook Author}{ with Prof.\ Steven Kivelson and Dr.\ Jack Jiang}{Princeton University Press}{2019--`24}{``Statistical Mechanics of Phases and Phase Transitions''}
 
-\entry{Undergrad Researcher}{ in Steve Boxer Lab}{Stanford Dept.\ of Chemistry}{2017--`19}{X-ray crystallography to study photochemical pathways \\ in fluorescent proteins}
+\entry{Undergraduate Researcher}{ in Steven Boxer's lab}{Stanford Dept.\ of Chemistry}{2017--`19}{X-ray crystallography to study photochemical pathways in fluorescent proteins}
 
 \entry{Software Engineering Intern}{}{Schr{\"o}dinger, Inc.}{2017}{Helped develop python GUI for protein structure visualization}
-
-\section{Teaching}
-
-\textit{Teaching Assistant}, Harvard Dept.\ of Applied Math \hfill 2021\\
-\begin{myitemize}
-\item Applied Math 104: Complex and Fourier Analysis (Aut. 21-22)
-\end{myitemize}
-
-\textit{Teaching Assistant}, Stanford Dept.\ of Physics \hfill 2019--`20\\
-\begin{myitemize}
-    \item Physics 216: Back of the Envelope Physics (Aut.\ 19-20)
-    \item Physics 63: Electricity, Magnetism, and Waves (Wtr.\ 19-20)
-\end{myitemize}
-
-\textit{Peer Tutor}, Stanford Center for Teaching and Learning \hfill 2019\\
-\begin{myitemize}
-    \item Tutored Stanford undergraduates in math and physics through\\
-        a free tutoring program
-\end{myitemize}
 
 % \textit{Science Educator}, Springlight Education Institute \hfill 2015--2016\\
 % \begin{myitemize}
@@ -89,7 +87,17 @@ B.S. in Physics, Stanford University (GPA: 4.03) \hfill 2016--`20
 %     \item Sociolinguistic fieldwork to measure the California Vowel Shift \\in Bay Area teenagers
 % \end{myitemize}
 
-% \section{Funding}
+\section{Teaching Assistant}
+
+Harvard Life Sciences 50: Integrated Science \hfill Winter 22-23 \\
+Harvard Applied Math 104: Complex and Fourier Analysis \hfill Autumn 21-22 \\
+Stanford Physics 216: Back of the Envelope Physics \hfill Autumn 19-20 \\
+Stanford Physics 63: Electricity, Magnetism, and Waves \hfill Winter 19-20
+% \textit{Peer Tutor}, Stanford Center for Teaching and Learning \hfill 2019\\
+% \begin{myitemize}
+%     \item Tutored Stanford undergraduates in math and physics through\\
+%         a free tutoring program
+% \end{myitemize}
 
 \section{Honors}
  
@@ -99,7 +107,7 @@ National Science Foundation Graduate Research Fellowship\hfill 2020 \\
 Stanford Deans' Award for Academic Achievement\hfill 2020 \\
 % Stanford Humanities and Sciences Undergraduate Prize in Music \hfill 2019\\
 Stanford Undergraduate Research and Advising Small Grant\hfill 2019 \\
-Stanford Bio-X IIP Symposium Best Poster Award \hfill 2018 \\
+% Stanford Bio-X IIP Symposium Best Poster Award \hfill 2018 \\
 Stanford Bio-X Undergraduate Fellow \hfill 2018
 % US National Science Bowl 2nd place team captain \hfill 2016 \\
 % California State Science Fair 2nd place \hfill 2016 \\
@@ -110,9 +118,9 @@ Stanford Bio-X Undergraduate Fellow \hfill 2018
 
 \section{Skills}
 
-\textit{Next-generation sequencing.} Library preparation, data analysis \\
-\textit{Molecular biology.} Sequence design, cloning, library generation \\
-\textit{Biochemistry.} Protein expression and purification, X-ray crystallography \\
+\textit{Next-generation DNA sequencing.} Library preparation, data analysis \\
+\textit{Yeast display.} Library design, cloning, transformation, flow cytometry \\
+\textit{Biochemistry.} Protein expression and purification, UV-vis spectroscopy, X-ray crystallography \\
 \textit{Statistics.} Bayesian inference, machine learning \\
 \textit{Programming.} Python, C++, R
 
@@ -125,14 +133,27 @@ Stanford Bio-X Undergraduate Fellow \hfill 2018
 % \textit{French.} Fluent speaker with six years of coursework
 
 
-\section{Publications}
+\newpage
 
-\begin{changemargin}{-8.5em}{0em}
-  \bigskip
-  \bigskip
-  \textbf{Resolving Molecular Heterogeneity with Single-Molecule Centrifugation}
+\section{Publications}
+\happy \ = proudest works
+\\
+
+\begin{publist}
+  \textsb{Serial femtosecond crystallography reveals that photoactivation in a fluorescent protein proceeds via the hula twist mechanism}
+  \\
+  \authorlist{A.\ Fadini, C.D.M.\ Hutchison, D.\ Morozov, \underline{J.\ Chang}, K.\ Maghlaoui, S.\  Perrett, F.\ Luo, J.C.X.\ Kho, M.G.\ Romei, R.M.L.\ Morgan, C.M.\ Orr, V.\ Cordon-Preciado, T.\ Fujiwara, N.\ Nuemket, T.\ Tosha, R.\ Tanaka, S.\ Owada, K.\ Tono, S.\ Iwata, S.G.\ Boxer, G.\ Groenhof, E.\ Nango, J.\ van Thor}
+  \\
+  \textit{Journal of the American Chemical Society,}
+  \textbf{145}, 29,
+  15796-15808
+  (2023).
+  \href{https://pubs.acs.org/doi/full/10.1021/jacs.3c02313}{[link]}
+  \\
+
+  \happy \textsb{Resolving Molecular Heterogeneity with Single-Molecule Centrifugation}
     \\
-    Y Luo‡, \underline{J Chang‡}, D Yang‡, J S Bryan IV, M MacIsaac, S Pressé, W P Wong
+    \authorlist{Y.\ Luo‡, \underline{J.\ Chang‡}, D.\ Yang‡, J.\ S.\ Bryan IV, M.\ MacIsaac, S.\ Pressé, W.\ P.\ Wong}
     \\
     \textit{Journal of the American Chemical Society,}
     \textbf{145}, 6, 
@@ -141,26 +162,30 @@ Stanford Bio-X Undergraduate Fellow \hfill 2018
     \href{http://dx.doi.org/10.1021/jacs.2c11450}{[link]}
     \\
 
-    \textbf{The landscape of antibody binding affinity in SARS-CoV-2 Omicron BA.1 evolution}
+    \textsb{The landscape of antibody binding affinity in SARS-CoV-2 Omicron BA.1 evolution}
     \\
-    A Moulana‡, T Dupic‡, A M Phillips‡, \underline{J Chang‡}, A A Roffler, A J Greaney, T N Starr, J D Bloom, M M Desai
+    \authorlist{A.\ Moulana‡, T.\ Dupic‡, A.M.\ Phillips‡, \underline{J.\ Chang‡}, A.A.\ Roffler, A.J.\ Greaney, T.N.\ Starr, J.D.\ Bloom, M.M.\ Desai}
     \\
-    \textit{eLife, in press.}
-    \href{https://www.biorxiv.org/content/10.1101/2022.09.13.507781.abstract}{[bioRxiv]}
-    \\
-
-    \textbf{Torsional Diffusion for Molecular Conformer Generation}
-    \\
-    B Jing‡, G Corso‡, \underline{J Chang}, R Barzilay, T Jaakkola
-    \\
-    \textit{NeurIPS}
-    (2022).
-    \href{https://openreview.net/forum?id=w6fj2r62r_H}{[openreview]}
+    \textit{eLife},
+    \textbf{12},
+    e83442
+    (2023).
+    \href{https://elifesciences.org/articles/83442}{[link]}
     \\
 
-    \textbf{Compensatory epistasis maintains ACE2 affinity in SARS-CoV-2 Omicron BA.1}
+    \textsb{Torsional Diffusion for Molecular Conformer Generation}
     \\
-    A Moulana‡, T Dupic‡, A M Phillips‡, \underline{J Chang‡}, S Nieves, A A Roffler, A J Greaney, T N Starr, J D Bloom, M M Desai
+    \authorlist{B.\ Jing‡, G.\ Corso‡, \underline{J.\ Chang}, R.\ Barzilay, T.\ Jaakkola}
+    \\
+    \textit{Advances in Neural Information Processing Systems},
+    \textbf{35},
+    24240-24258 (2022).
+    \href{https://openreview.net/forum?id=w6fj2r62r_H}{[link]}
+    \\
+
+    \textsb{Compensatory epistasis maintains ACE2 affinity in SARS-CoV-2 Omicron BA.1}
+    \\
+    \authorlist{A.\ Moulana‡, T.\ Dupic‡, A.M.\ Phillips‡, \underline{J.\ Chang‡}, S.\ Nieves, A.A.\ Roffler, A.J.\ Greaney, T.N.\ Starr, J.D.\ Bloom, M.M.\ Desai}
     \\
     \textit{Nature Communications},
     \textbf{13},
@@ -169,9 +194,9 @@ Stanford Bio-X Undergraduate Fellow \hfill 2018
     \href{https://doi.org/10.1038/s41467-022-34506-z}{[link]}
     \\
 
-    \textbf{Binding affinity landscapes constrain the evolution of broadly neutralizing anti-influenza antibodies}
+    \textsb{Binding affinity landscapes constrain the evolution of broadly neutralizing anti-influenza antibodies}
     \\
-    A M Phillips, K R Lawrence, A. Moulana, T. Dupic, \underline{J Chang}, M S Johnson, I Cvijovic, T Mora, A M Walczak, M M Desai
+    \authorlist{A.M.\ Phillips, K.R.\ Lawrence, A.\ Moulana, T.\ Dupic, \underline{J.\ Chang}, M.S.\ Johnson, I.\ Cvijovic, T.\ Mora, A.M.\ Walczak, M.M.\ Desai}
     \\
     \textit{eLife},
     \textbf{10},
@@ -180,16 +205,31 @@ Stanford Bio-X Undergraduate Fellow \hfill 2018
     \href{https://doi.org/10.7554/eLife.71393}{[link]}
     \\
 
-    \textbf{Structural Evidence of Photoisomerization Pathways in Fluorescent Proteins}
+    \happy \textsb{Structural Evidence of Photoisomerization Pathways in Fluorescent Proteins}
     \\
-    \underline{J Chang}, M G Romei, S G Boxer
+    \authorlist{\underline{J.\ Chang}, M.G.\ Romei, S.G.\ Boxer}
     \\
     \textit{Journal of the American Chemical Society},
     \textbf{141}, 39,
     15504-15508
     (2019).
     \href{http://dx.doi.org/10.1021/jacs.9b08356}{[link]}
-\end{changemargin}
+\end{publist}
+
+\section{Books}
+
+\bigskip
+\bigskip
+\begin{publist}
+\happy \textsb{Statistical Mechanics of Phases and Phase Transitions} 
+\\
+{Steven A.\ Kivelson, Jack M.\ Jiang, \underline{Jeffrey Chang}} 
+\\
+(Princeton University Press, 2024)
+\href{https://press.princeton.edu/books/hardcover/9780691249742/statistical-mechanics-of-phases-and-phase-transitions}{[website]}
+\end{publist}
+
+% \section{Patents}
 
 \end{resume}
 
