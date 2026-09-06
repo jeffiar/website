@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calendar Puzzle Solver</title>
+<style>
+body { margin:12px auto; padding:0 12px; max-width:800px; background:white; color:black; font-family:"Times New Roman",serif; }
+a,summary { color:#0000ee; }
+h1 { font-size:24px; margin:0 0 8px; }
+.controls { margin:12px 0; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+button,input:not([type="date"]) { font:14px Arial,sans-serif; max-width:100%; box-sizing:border-box; }
+button { border:2px outset #ddd; border-radius:0; background:#ddd; color:black; padding:3px 9px; cursor:default; }
+button:disabled { color:#777; cursor:default; }
+.board { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); max-width:420px; margin:16px 0; }
+.cell { aspect-ratio:1.15; display:flex; align-items:center; justify-content:center; border:1px solid #999; background:#eee; box-sizing:border-box; }
+.covered { flex-direction:column; }
+.covered small { font-size:12px; }
+.exposed { background:#ffff99; font-weight:bold; border:2px solid black; }
+.empty { visibility:hidden; }
+.chosen { outline:3px dashed #0000ee; outline-offset:-5px; }
+fieldset { min-width:0; margin:16px 0; padding:12px; border:1px solid #888; }
+legend { font-weight:bold; }
+details { border-top:1px solid #aaa; padding:12px 0; }
+summary { cursor:pointer; text-decoration:underline; }
+pre { white-space:pre-wrap; }
+.note { color:#555; }
+#piece-key { display:flex; flex-wrap:wrap; gap:16px; }
+figure { margin:8px 0; min-width:180px; }
+.piece-shape { display:grid; margin-top:8px; }
+.piece-shape span { width:18px; height:18px; box-sizing:border-box; }
+.tree-entry { margin:6px 0; }
+.tree-branch { margin-left:12px; border:0; padding:4px 0; }
+#search-tree { height:540px; overflow:auto; border:1px solid #aaa; padding:0; }
+
+.table-scroll { overflow-x:auto; }
+table { border-collapse:collapse; }
+th,td { border:1px solid #aaa; padding:4px 6px; text-align:right; }
+th:first-child { text-align:left; }
+#heatmap { width:100%; table-layout:fixed; font-size:12px; }
+#heatmap th,#heatmap td { padding:0 2px; line-height:15px; text-align:center; overflow-wrap:anywhere; }
+#heatmap caption { text-align:left; margin-bottom:8px; }
+#heatmap .week-start > * { border-top:2px solid #666; }
+.heat-date { display:inline; margin-right:3px; font-size:10px; }
+.heat-count { display:inline; font-size:12px; font-weight:bold; font-variant-numeric:tabular-nums; }
+.no-date { background:#e7e7e7; }
+.uncounted { background:#fff; color:#666; }
+.heat-legend { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:14px; }
+.heat-gradient { display:inline-block; width:120px; height:12px; background:linear-gradient(to right,#f7fbff,#6baed6,#08306b); }
+details details { margin:8px 0 8px 16px; padding:8px 0 8px 12px; border-top:0; border-left:2px solid #aaa; }
+.summary-table { width:100%; margin:8px 0; }
+@media (pointer:coarse) { button,input:not([type="date"]),summary { min-height:40px; } }
+.game-area { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; }
+.game-column { flex:1 1 300px; max-width:350px; }
+.game-board { width:100%; }
+.game-board svg { display:block; width:100%; touch-action:none; overflow:visible; }
+#tray-panel { flex:1 1 260px; margin:0; }
+#piece-tray { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+.tray-piece { display:flex; flex-direction:column; align-items:center; gap:3px; padding:4px; background:#f5f5f5; touch-action:none; }
+.tray-piece svg { height:55px; width:75px; max-width:100%; }
+.tray-piece span { font-size:12px; }
+.tray-piece.selected-piece { outline:2px solid #0000ee; outline-offset:-2px; }
+.drag-ghost { position:fixed; z-index:100; pointer-events:none; opacity:.95; overflow:visible; }
+[hidden] { display:none !important; }
+#puzzle-status,#move-status { margin:6px 0; font-size:14px; }
+#puzzle-status,#move-status { font-size:18px; }
+#puzzle-status:empty { display:none; }
+#move-status { height:2.5em; line-height:1.25; overflow:auto; }
+#puzzle-date-label { margin-bottom:8px; }
+#tray-panel .controls { margin:0 0 6px; gap:4px; }
+#tray-panel { padding:8px; }
+#solution-nav { margin:8px 0; gap:6px; }
+.game-area { margin:10px 0; }
+.trace-workspace { display:grid; grid-template-columns:320px minmax(360px,1fr); gap:20px; align-items:start; width:min(1180px,calc(100vw - 24px)); position:relative; left:50%; transform:translateX(-50%); }
+#trace-board { margin:0; width:100%; aspect-ratio:7/8; grid-template-rows:repeat(8,minmax(0,1fr)); }
+#trace-board .cell { aspect-ratio:auto; min-height:0; }
+#node-info { height:7em; margin:8px 0 0; overflow:auto; white-space:pre-line; font-size:14px; }
+.trace-right { min-width:0; }
+.trace-right .controls { margin:0 0 8px; }
+#tree-caption { font-size:14px; min-height:2em; margin:8px 0; }
+#search-tree svg { display:block; max-width:none; }
+@media (max-width:720px) { .trace-workspace { grid-template-columns:260px 420px; overflow-x:auto; } }
+.tray-piece { cursor:grab; }
+#game-svg,#piece-tray,body.drag-active,body.drag-active * { user-select:none; -webkit-user-select:none; }
+.tray-piece:active { cursor:grabbing; }
+.date-selection { border-bottom:1px solid #aaa; padding-bottom:4px; }
+.puzzle-actions { margin:10px 0; }
+button:enabled:hover { border-style:inset; background:#d2d2d2; }
+button:enabled:active { border-style:inset; background:#c6c6c6; box-shadow:inset 1px 1px 2px #999; }
+#tree-path { min-width:0; white-space:nowrap; overflow-x:auto; margin:0; }
+#tree-path button { padding:2px 6px; }
+#search-tree g[role="button"]:hover circle { stroke:#0000ee; stroke-width:3; }
+.page-heading,.help-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.page-heading { margin-bottom:8px; }
+.page-heading h1,.help-heading h2 { margin:0; }
+#open-help { white-space:nowrap; }
+#help-dialog { width:calc(100% - 48px); max-width:520px; max-height:80vh; box-sizing:border-box; overflow:auto; padding:18px; border:2px solid #777; background:white; color:black; }
+.board-heat-layout { display:flex; flex-wrap:wrap; align-items:center; gap:20px; }
+#board-heat-range { width:215px; max-width:100%; font-size:13px; }
+.tile-legend { margin:12px 0; }
+.tile-color-bar { height:12px; border:1px solid #888; margin:4px 0; }
+.tile-color-ticks { display:flex; justify-content:space-between; font-size:12px; }
+#board-heatmap { width:315px; max-width:100%; margin:8px 0; }
+#board-heatmap .cell { aspect-ratio:1; flex-direction:column; font-size:13px; }
+#board-heatmap .filter-selected { outline:3px solid #0000ee; outline-offset:-3px; }
+#board-heatmap .cell[role="button"]:hover { box-shadow:inset 0 0 0 2px #555; }
+.filtered-date { background:#eee; }
+#save-note:empty { display:none; }
+#board-heatmap small { font-size:11px; }
+#help-dialog li { margin:6px 0; }
+#help-dialog::backdrop { background:rgba(0,0,0,.35); }
+.tray-piece.drag-origin { opacity:.25; filter:grayscale(1); cursor:not-allowed !important; border-style:inset; background:#ddd; }
+.tree-toolbar { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:8px; align-items:center; min-height:34px; margin:12px 0; }
+.tree-up { white-space:nowrap; }
+.tree-depth { justify-self:end; white-space:nowrap; font-size:14px; }
+.tree-viewport { position:relative; }
+#tree-level-rail { position:absolute; right:1px; top:1px; bottom:1px; width:62px; background:rgba(255,255,255,.96); border-left:1px solid #bbb; overflow:hidden; pointer-events:none; font-size:12px; text-align:center; }
+#tree-level-rail > b { position:absolute; top:0; left:0; right:0; padding:4px 0; background:white; z-index:1; }
+#tree-level-marks { position:absolute; top:0; left:0; right:0; }
+#tree-level-marks span { position:absolute; left:0; right:0; }
+#tree-tooltip { position:fixed; z-index:200; max-width:260px; padding:8px 10px; background:#ffffdf; color:#111; border:1px solid #888; font:13px/1.4 Arial,sans-serif; white-space:pre-line; pointer-events:none; box-shadow:1px 2px 4px #0003; }
+#trace-board .temporary-piece { opacity:.5; outline:2px dashed #0000ee; outline-offset:-3px; }
+.tray-piece:disabled { opacity:.25; filter:grayscale(1); cursor:not-allowed; border-style:inset; background:#ddd; }
+.heat-viewport { max-height:60vh; overflow-y:auto; }
+#heatmap thead th { position:sticky; top:0; background:white; z-index:1; }
+#analysis-status,#analysis-completed { margin:5px 0; font-size:14px; }
+.compact-summary { table-layout:fixed; font-size:12px; }
+.compact-summary th,.compact-summary td { padding:2px 1px; text-align:center; overflow-wrap:anywhere; }
+.compact-summary th:first-child { width:42px; text-align:left; }
+.compact-summary caption { text-align:left; margin:6px 0; }
+.summary-bar-track { height:34px; display:flex; align-items:flex-end; justify-content:center; }
+.summary-bar { display:block; width:8px; background:#3778ac; }
+#tree-level-rail { width:76px; }
+#tree-level-rail > b { font-size:14px; font-weight:normal; }
+#tree-level-marks span { font-size:16px; font-weight:normal; }
+.tree-state-controls { justify-content:center; }
+#tree-caption,#node-info { text-align:center; }
+.tree-color-key { text-align:center; font-size:12px; margin:4px 0; }
+.zero-key { background:#f5d9d9; padding:1px 4px; }
+.positive-key { display:inline-block; width:55px; height:10px; background:linear-gradient(to right,#edf4fb,#2063a5); }
+body.drag-active.drag-valid,body.drag-active.drag-valid * { cursor:grabbing !important; }
+body.drag-active:not(.drag-valid),body.drag-active:not(.drag-valid) * { cursor:not-allowed !important; }
+#game-svg.click-valid,#game-svg.click-valid * { cursor:crosshair !important; }
+#game-svg.click-invalid,#game-svg.click-invalid * { cursor:not-allowed !important; }
+</style>
+</head>
+<body>
+<header class="page-heading"><h1>Calendar Puzzle Solver</h1><button id="open-help" aria-haspopup="dialog" aria-controls="help-dialog"><span aria-hidden="true">ⓘ</span> Help</button></header>
+<noscript><p>This puzzle solver needs JavaScript enabled.</p></noscript>
+<div id="play">
+<div class="date-selection" role="group" aria-label="Date selection"><div class="controls"><label for="puzzle-date">Date</label><input id="puzzle-date" type="date" min="0001-01-01" max="9999-12-31"><button id="puzzle-today" title="Select today's date">Today</button></div><div id="puzzle-date-label" aria-live="polite"></div></div>
+<div class="controls puzzle-actions" role="group" aria-label="Puzzle actions"><button id="puzzle-solve" title="Complete the board, keeping your placed pieces"><b>Solve</b></button><button id="reveal-piece" title="Reveal one more piece, keeping your current placements">Hint</button><button id="undo-move" title="Undo the last game action (Ctrl/Cmd+Z)" disabled><span aria-hidden="true">↶</span> Undo</button><button id="clear-board" title="Return every piece to the tray">Clear</button><button id="stop-solve" disabled hidden>Stop</button></div>
+
+</div>
+<div class="game-area"><div class="game-column">
+<div class="game-board" id="puzzle-board" aria-label="Puzzle board"></div>
+<div class="controls" id="solution-nav" hidden><button id="previous" title="Previous solution" aria-label="Previous solution" disabled>←</button><label for="solution-index">Solution</label><input id="solution-index" type="number" min="1" step="1" style="width:5em" disabled><span id="solution-total"></span><button id="next" title="Next solution" aria-label="Next solution" disabled>→</button></div>
+<p id="puzzle-status" aria-live="polite"></p><p id="move-status" aria-live="polite"></p>
+</div>
+<fieldset id="tray-panel"><legend>Piece tray</legend>
+<div class="controls"><button id="rotate-piece" title="Rotate selected piece clockwise (R)" disabled>Rotate ↻</button><button id="flip-piece" title="Flip selected piece left/right (F)" disabled>Flip ↔</button><button id="return-piece" title="Return selected piece to the tray" disabled>Return</button></div>
+<div id="piece-tray"></div>
+
+</fieldset></div>
+<details id="search"><summary>Explore the search tree</summary>
+<div class="trace-workspace">
+<div class="trace-left"><div class="controls"><label for="trace-date">Date</label><input id="trace-date" type="date" min="0001-01-01" max="9999-12-31"></div><div class="controls"><button id="record-search" title="Record attempted positions; this view can reveal solutions"><b>Solve and record search</b></button><button id="stop-explorer" hidden>Stop</button></div><div class="board" id="trace-board" aria-label="Selected search state"></div><p id="node-info" aria-live="polite"></p></div>
+<div class="trace-right">
+<div class="tree-toolbar"><div id="tree-path" aria-label="Path from root to current node"></div><div class="tree-up"><button id="tree-parent" disabled>↑ Parent</button><button id="tree-root" disabled>Root</button></div><label class="tree-depth" for="tree-levels">Levels to show <select id="tree-levels"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></label></div>
+<div class="tree-viewport"><div id="search-tree" aria-label="Search subtree diagram"></div><div id="tree-level-rail" aria-label="Pieces placed at each tree level"><b># Pieces</b><div id="tree-level-marks"></div></div></div>
+<div class="controls tree-state-controls"><button id="node-previous" disabled title="Previous state in visit order">←</button><label for="node-index">State</label><input id="node-index" type="number" min="1" step="1" style="width:6em" disabled><button id="node-next" disabled title="Next state in visit order">→</button></div><p id="tree-caption"></p><p class="tree-color-key"><span class="zero-key">0</span> no solutions · <span class="positive-key"></span> fewer → more solutions (log scale)</p>
+</div></div>
+<details><summary>Tree help &amp; totals</summary><p>The explorer has its own date and searches an empty board. It is independent of the game above: neither board changes or resets the other.</p>
+<p>Hover over a node for an immediate explanation and temporary board preview; move away to restore the selected board. Click to focus its subtree and board. Letters identify the piece just placed. Labels show pieces placed out of ten and solutions below each node. The blue node is CURRENT; the parent above it is connected by a dotted line. Click that parent or any button in the root-to-current path to go back. Node color reflects the number of solutions below it: darker blue means more solutions. A red node labeled 0 has no solutions, even if it contains further search branches.</p>
+<p>Every visited state is recorded. At every level, including directly below the current node, parents with more than four children initially show the four with the most solutions. A dotted “…” node labeled +N reveals all N other children when clicked. Scroll across wide branches; click a bottom-level node to explore deeper. The path and parent remain visible when focusing a subtree. Only the currently viewed subtree is drawn; every branch remains available to explore. A dashed blue outline on the board marks the next cell to cover. The caption describes the next search decision, not a preference for the piece just placed.</p>
+<p id="search-stats"></p><p id="trace-note"></p>
+<p>The complete search tree is recorded. Counts include all searched descendants. This view can reveal positions even when using hints.</p>
+</details>
+<details><summary>What do the counters mean?</summary>
+<ul><li><b>States:</b> recursive search entries, including the root, solutions, and dead ends.</li><li><b>Placement attempts:</b> edges traversed; equal to states minus one in a completed run.</li><li><b>Dead ends:</b> visited states with a cell or piece requirement that has zero legal candidates. A branch can also have no solutions because all its descendants fail.</li><li><b>Forced choices:</b> nonterminal states whose chosen requirement has exactly one candidate.</li><li><b>Depth:</b> number of pieces placed, including fixed pieces, at most ten.</li><li><b>Subtree totals:</b> exact visited-state and solution counts below a recorded node, including its omitted descendants.</li></ul>
+<p>Counters describe the actual deterministic search; they are not estimates of human puzzle difficulty. Normal runs retain counters but no tree. Recorded runs retain every visited state and exact counters for the entire search. Stopping a run leaves an incomplete count from its last progress update; a tree is available only after completion.</p>
+</details>
+</details>
+<details id="analysis"><summary>Compare number of solutions by date</summary>
+<div class="controls"><label for="analysis-year">Year</label><input id="analysis-year" type="number" min="1" max="9999" step="1" style="width:6em"><button id="analyze-year">Analyze / resume</button><button id="stop-analysis" disabled>Stop analysis</button><label for="analysis-view">View</label><select id="analysis-view"><option value="dates">Dates</option><option value="board">Board tiles</option></select><label id="heat-alignment-label" for="heat-alignment">Align by</label><select id="heat-alignment"><option value="weekday" selected>Weekday</option><option value="date">Day of month</option></select></div>
+<p id="analysis-status" aria-live="polite">Count solutions for each valid date in a year. This may take several minutes.</p>
+<p id="analysis-completed"></p><div class="controls"><span id="analysis-filter-label">All dates</span><button id="clear-analysis-filter" hidden>Clear filter</button></div>
+<div id="date-heat-view"><div class="heat-viewport"><table id="heatmap"><caption id="heat-title">Solution counts · aligned by weekday</caption><thead><tr><th scope="col">Day</th><th scope="col">Jan</th><th scope="col">Feb</th><th scope="col">Mar</th><th scope="col">Apr</th><th scope="col">May</th><th scope="col">Jun</th><th scope="col">Jul</th><th scope="col">Aug</th><th scope="col">Sep</th><th scope="col">Oct</th><th scope="col">Nov</th><th scope="col">Dec</th></tr></thead><tbody id="heat-body"></tbody></table></div><p class="heat-legend"><span class="heat-gradient" aria-hidden="true"></span><span id="heat-range">No counts yet</span></p></div><div id="board-heat-view" hidden><div class="board-heat-layout"><div id="board-heatmap" class="board" aria-label="Mean solutions by exposed board tile"></div><div id="board-heat-range"></div></div><p class="note">Mean solutions when each tile is exposed. Colors are normalized separately for months, days, and weekdays; darker means more solutions within that section. Click a tile to filter; click it again to remove that filter. Combine month, day, and weekday filters. Hover for sample sizes. Partial results update as dates are counted.</p></div><details><summary>Reading the tables</summary><p class="note">Small number: date. Large number: solution count. Ellipsis: not counted. Blank: outside the month. Each block is Sunday–Saturday. Colors use the range of completed counts and update during analysis.</p>
+<p class="note">Your arrangement and completed counts are saved in this browser. Counts are reused across years when month, day, and weekday match. Reopen the same file in the same browser to restore progress. Stopping discards only the unfinished date. Summary statistics use completed dates only and may be biased while a run is incomplete.</p>
+<p>Summary bars show mean solutions on a linear scale from zero, shared across each summary. Means are rounded in the table; hover for decimals. The day-of-month summary is split into two blocks to keep it narrow.</p></details><div id="analysis-summaries"></div>
+<details><summary>Interpreting patterns</summary><p> compare means, not sums, because groups have different numbers of dates. One year's weekday averages mix different month/day positions; they do not isolate a weekday effect. Solution counts measure the number of valid arrangements, not necessarily how easy a date feels. The year only determines the weekday and whether February 29 is valid.</p></details>
+</details>
+<details id="method"><summary>How the solver works</summary>
+<p>This is an <b>exact-cover problem</b>. Each possible piece placement is an option covering several board cells and using one piece. Manually placed pieces are applied as fixed constraints before search. A solution must satisfy all 47 cell requirements and all ten piece requirements exactly once.</p>
+<ol>
+<li>Generate every distinct rotation and reflection of each piece. Normalize coordinates and remove duplicate orientations.</li>
+<li>Generate placements inside the board. Exclude any placement covering one of the three date cells.</li>
+<li>Choose the remaining requirement with the fewest legal placements: either an uncovered cell or an unused piece.</li>
+<li>Try each candidate placement. Remove its satisfied requirements and conflicting placements, recurse, then restore them.</li>
+<li>A requirement with no candidates is a dead end. If every requirement is satisfied, record the solution. Continue searching to get the exact count.</li>
+</ol>
+<pre>search(remaining requirements):
+    count one visited state
+    if no requirements remain:
+        record current placement list
+        return
+
+    q = requirement with fewest available placements
+    if q has zero placements:
+        record dead end and its reason
+        return
+
+    for placement in candidates(q), in fixed order:
+        select placement
+        remove satisfied requirements and conflicts
+        search(remaining requirements)
+        restore requirements and conflicts
+        deselect placement</pre>
+<p>The implementation uses <b>Algorithm X with dancing links</b>: linked lists stored in integer arrays let the search remove and restore conflicting options without copying the whole board. Choosing the smallest constraint is a heuristic for speed, not a guess about the final solution. One candidate means a forced move. Ties use a fixed order, not a learned score.</p>
+<p>Every valid arrangement must use exactly one candidate for the chosen requirement. Exploring every candidate therefore preserves completeness. Duplicate rotations are removed before search; placement order does not produce duplicate solutions because each state has one deterministically chosen requirement.</p>
+</details>
+<details id="implementation"><summary>Implementation notes</summary>
+<p>The first step was to turn the photograph into a grid and a set of piece shapes. The board has 50 squares: 12 months, 31 dates, and seven weekdays. The ten pieces cover 47 squares, which leaves exactly three exposed. The shapes in the tray are the ones used by the solver, with both rotation and flipping allowed.</p>
+<p>This fits an exact-cover search quite naturally. Every square needs to be covered once, and every piece needs to be used once. At each step, the solver looks for the square or piece with the fewest remaining placements. That often exposes a dead end quickly. It tries every available placement before giving up on a branch, so it can count all solutions rather than just find the first one.</p>
+<p>The search uses Algorithm X with dancing links to remove conflicting placements and restore them when it backtracks. Duplicate rotations are removed beforehand, and choices are tried in a fixed order so the results are reproducible. One tempting shortcut would be to reject empty regions whose area is not divisible by five, but that would be wrong here: three of the pieces have four squares. The implemented checks rely on overlaps, board boundaries, and whether each remaining square and piece still has a legal placement.</p>
+<p>The search runs in a background worker so you can keep using the page while it counts. If you stop it, the number shown is only a lower bound. The yearly comparison saves completed counts in browser storage; resuming skips those dates. Everything is contained in this HTML file, so it works locally without a server or external libraries.</p>
+<p>Hints take successive pieces from one valid solution. Pieces you have already placed stay fixed, and each hint also counts how many of the solutions found so far agree with the resulting board. Moving a piece yourself starts a new problem. Dragging, clicking, rotating, and flipping all use the same placement checks.</p>
+<p>The explorer records every visited state in a compact numeric array, using 32 bytes per state plus spare allocation capacity. Each record stores its parent, the piece placement, and the search decision and counts. Boards are reconstructed from the path to a node rather than saved separately. The worker transfers the array to the page without copying it. Child lists are derived when you open a branch, and only the selected few levels are drawn. This keeps the full search available without building hundreds of thousands of screen elements.</p>
+<p id="validation-note">To check the results, every arrangement was validated for three dates: 1,294 solutions for September 5, 2026; 4,594 for February 29, 2024; and 2,485 for December 31, 2026. None reused a piece, overlapped, or covered an exposed date square. A separate backtracking implementation also gave 1,294 for September 5. Fixing three pieces from one arrangement left 12 completions, exactly matching the corresponding subset of the full results.</p>
+<p>Programmatic checks also covered hints, dragging, selection, date alignment, and tree navigation. They do not replace a visual check in a browser, or confirm the original transcription of the physical pieces. If a shape or the flipping rule differs from your puzzle, its solution counts will differ too.</p>
+</details>
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="help-heading"><h2 id="help-title">Help</h2><button id="close-help" autofocus>Close</button></div>
+<ul>
+<li><b>Place:</b> Drag a piece from the tray onto the board, or select it and click a board cell. Clicking positions the piece’s top-left bounding corner. Green means it fits; red means it does not.</li>
+<li><b>Select / deselect:</b> Click a piece to select it. Click it again, click outside, or press Escape to deselect it.</li>
+<li><b>Move:</b> Drag a placed piece to another position, or select it and use the arrow keys.</li>
+<li><b>Rotate / flip:</b> Select a piece, then use Rotate (R) or Flip (F).</li>
+<li><b>Return / clear:</b> Return sends the selected piece back to the tray; Clear empties the board. You can also drag a placed piece back to the tray.</li>
+<li><b>Undo:</b> Click Undo or press Ctrl/Cmd+Z to reverse the last game action.</li>
+<li><b>Solve / hint:</b> Solve completes your current arrangement. Hint reveals one additional piece.</li>
+<li><b>Saved progress:</b> Your arrangement and completed date counts are saved automatically in this browser. Reopen the same file to continue.</li>
+<li><b>Browse solutions:</b> Use the arrows or solution number beneath the board to view other solutions.</li>
+</ul>
+</dialog>
+<div id="tree-tooltip" role="tooltip" hidden></div>
+<footer><p id="save-note" role="status"></p><hr><small>Calendar Puzzle Solver &middot; Plain HTML, CSS &amp; JavaScript</small></footer>
+<script id="puzzle-engine">
+'use strict';
+// Pure puzzle model and Algorithm X engine. Shared by page, Worker and Node checks.
+const Puzzle = (() => {
+ const rows=[['Jan','Feb','Mar','Apr','May','Jun',''],['Jul','Aug','Sep','Oct','Nov','Dec',''],['1','2','3','4','5','6','7'],['8','9','10','11','12','13','14'],['15','16','17','18','19','20','21'],['22','23','24','25','26','27','28'],['29','30','31','Sun','Mon','Tues','Wed'],['','','','','Thur','Fri','Sat']];
+ const months=rows[0].slice(0,6).concat(rows[1].slice(0,6));
+ const weekdays=['Sun','Mon','Tues','Wed','Thur','Fri','Sat'];
+ const definitions=[
+  ['A','U pentomino',['11','10','11'],'#f3b4ae'],
+  ['B','S tetromino',['10','11','01'],'#b7d2f0'],
+  ['C','N pentomino',['01','11','10','10'],'#bfe0b1'],
+  ['D','I tetromino',['1','1','1','1'],'#eed09b'],
+  ['E','V pentomino',['111','001','001'],'#d6bced'],
+  ['F','P pentomino',['011','111'],'#aadbd7'],
+  ['G','T pentomino',['111','010','010'],'#f1bcd4'],
+  ['H','L tetromino',['111','100'],'#d3d7a5'],
+  ['I','Z pentomino',['001','111','100'],'#b9c0eb'],
+  ['J','L pentomino',['1111','0001'],'#edc4a3']
+ ];
+ const cells=[], grid=rows.flat().map((label,pos)=>{if(!label)return -1;cells.push({label,x:pos%7,y:Math.floor(pos/7)});return cells.length-1});
+ function normalized(points){const mx=Math.min(...points.map(p=>p[0])),my=Math.min(...points.map(p=>p[1]));return points.map(([x,y])=>[x-mx,y-my]).sort((a,b)=>a[1]-b[1]||a[0]-b[0]);}
+ const pieces=definitions.map(([id,name,shape,color])=>{
+  const base=[];shape.forEach((r,y)=>[...r].forEach((v,x)=>{if(v==='1')base.push([x,y])}));
+  const seen=new Set(),orientations=[];
+  for(let flip=0;flip<2;flip++)for(let turn=0;turn<4;turn++){
+   const points=normalized(base.map(([x,y])=>{if(flip)x=-x;for(let r=0;r<turn;r++)[x,y]=[-y,x];return [x,y]}));
+   const key=JSON.stringify(points);if(!seen.has(key)){seen.add(key);orientations.push(points)}
+  }
+  return {id,name,shape,color,base,orientations};
+ });
+ const placements=[];
+ pieces.forEach((p,pi)=>p.orientations.forEach((points,oi)=>{
+  for(let y=0;y<8;y++)for(let x=0;x<7;x++){
+   const occupied=points.map(([dx,dy])=>x+dx<7&&y+dy<8?grid[(y+dy)*7+x+dx]:-1);
+   if(occupied.every(c=>c>=0))placements.push({id:placements.length,piece:pi,orientation:oi,cells:occupied.sort((a,b)=>a-b),x,y});
+  }
+ }));
+ function holes(month,day,weekday){return [cells.findIndex(c=>c.label===months[month]),cells.findIndex(c=>c.label===String(day)),cells.findIndex(c=>c.label===weekdays[weekday])];}
+ function solve(blocked,options={}){
+  if(new Set(blocked).size!==3||blocked.some(i=>i<0||i>=50))throw Error('Exactly three valid date cells are required.');
+  const omit=new Set(blocked),mapping=new Int32Array(60);mapping.fill(-1);
+  const labels=['root'];let n=0;
+  for(let i=0;i<60;i++)if(i>=50||!omit.has(i)){mapping[i]=++n;labels.push(i<50?{kind:'cell',index:i,label:cells[i].label}:{kind:'piece',index:i-50,label:pieces[i-50].id});}
+  const capacity=61+placements.length*6;
+  const L=new Int32Array(capacity),R=new Int32Array(capacity),U=new Int32Array(capacity),D=new Int32Array(capacity),C=new Int32Array(capacity),S=new Int32Array(n+1),rowId=new Int32Array(capacity);
+  for(let i=0;i<=n;i++){L[i]=i-1;R[i]=i+1;U[i]=D[i]=i;}L[0]=n;R[n]=0;
+  let z=n+1; const rowStart=new Int32Array(placements.length).fill(-1);
+  for(const p of placements){if(p.cells.some(c=>omit.has(c)))continue;
+   let first=-1; rowStart[p.id]=z;
+   for(const k of [...p.cells,50+p.piece]){
+    const c=mapping[k],j=z++;C[j]=c;rowId[j]=p.id;U[j]=U[c];D[j]=c;D[U[c]]=j;U[c]=j;S[c]++;
+    if(first<0){first=j;L[j]=R[j]=j}else{L[j]=L[first];R[j]=first;R[L[first]]=j;L[first]=j;}
+   }
+  }
+  function cover(c){R[L[c]]=R[c];L[R[c]]=L[c];for(let i=D[c];i!==c;i=D[i])for(let j=R[i];j!==i;j=R[j]){D[U[j]]=D[j];U[D[j]]=U[j];S[C[j]]--;}}
+  function uncover(c){for(let i=U[c];i!==c;i=U[i])for(let j=L[i];j!==i;j=L[j]){S[C[j]]++;D[U[j]]=j;U[D[j]]=j;}R[L[c]]=c;L[R[c]]=c;}
+  const stats={states:0,deadEnds:0,deadCells:0,deadPieces:0,forced:0,branches:0,maxDepth:0,count:0,elapsedMs:0};
+  const fixed=options.fixed||[],usedPieces=new Set(),usedCells=new Set(blocked);
+  for(const id of fixed){const p=placements[id];if(!p||usedPieces.has(p.piece)||p.cells.some(c=>usedCells.has(c)))throw Error('Fixed pieces overlap or cover an exposed date cell.');usedPieces.add(p.piece);p.cells.forEach(c=>usedCells.add(c));}
+  for(const id of fixed){const startRow=rowStart[id];let j=startRow;do{cover(C[j]);j=R[j];}while(j!==startRow);}
+  const trace=[],path=fixed.slice(),solutions=[],start=Date.now();let pending=[],last=Date.now();
+  const compact=Boolean(options.compactTrace),traceLimit=compact?Infinity:options.traceLimit||0, retain=options.retain!==false;
+  let packed=compact?new Int32Array(8192*8):null,traceCount=0;
+  function pulse(force=false){if(force||Date.now()-last>200){stats.elapsedMs=Date.now()-start;if(options.onProgress)options.onProgress({...stats},pending);pending=[];last=Date.now();}}
+  function visit(parent,via){
+   stats.states++;const depth=path.length;stats.maxDepth=Math.max(stats.maxDepth,depth);
+   const id=traceCount<traceLimit?traceCount++:-1;
+   if(compact&&traceCount*8>packed.length){const larger=new Int32Array(packed.length*2);larger.set(packed);packed=larger;}
+   const beforeStates=stats.states,beforeCount=stats.count;
+   const node=id>=0?{id,parent,via,depth,constraint:null,choices:0,outcome:'branch',subtreeStates:0,subtreeSolutions:0}:null;
+   if(node&&!compact)trace.push(node);
+   function finish(){if(node){node.subtreeStates=stats.states-beforeStates+1;node.subtreeSolutions=stats.count-beforeCount;if(compact){const offset=id*8;packed.set([parent,via,depth,node.column||0,node.choices,node.outcome==='solution'?1:node.outcome==='dead'?2:0,node.subtreeStates,node.subtreeSolutions],offset);}}}
+   if(!R[0]){
+    stats.count++;if(retain){const solution=path.slice();solutions.push(solution);pending.push(solution);}
+    if(node)node.outcome='solution';if(stats.count===1)pulse(true);finish();return;
+   }
+   let c=R[0];
+   for(let j=R[c];j!==0;j=R[j])if(S[j]<S[c]){c=j;if(S[c]===0)break;}
+   if(node){node.constraint=labels[c];node.column=c;node.choices=S[c];}
+   if(S[c]===0){stats.deadEnds++;if(labels[c].kind==='cell')stats.deadCells++;else stats.deadPieces++;if(node)node.outcome='dead';finish();return;}
+   if(S[c]===1)stats.forced++;
+   cover(c);
+   for(let r=D[c];r!==c;r=D[r]){
+    stats.branches++;path.push(rowId[r]);for(let j=R[r];j!==r;j=R[j])cover(C[j]);
+    visit(id,rowId[r]);
+    for(let j=L[r];j!==r;j=L[j])uncover(C[j]);path.pop();
+   }
+   uncover(c);finish();if((stats.states&1023)===0||Date.now()-last>250)pulse();
+  }
+  visit(-1,-1);pulse(true);
+  return {stats,solutions,trace:compact?{packed,length:traceCount,labels}:trace,traceTruncated:stats.states>traceCount&&traceLimit>0};
+ }
+ return {rows,months,weekdays,cells,grid,pieces,placements,holes,solve};
+})();
+if(typeof module!=='undefined')module.exports=Puzzle;
+
+</script>
+<script>
+'use strict';
+(() => {
+ const $=id=>document.getElementById(id), fmt=n=>n.toLocaleString();
+ const P=Puzzle;
+ $('open-help').onclick=()=>{$('help-dialog').showModal();};
+ $('close-help').onclick=()=>{$('help-dialog').close();};
+ $('help-dialog').addEventListener('click',e=>{if(e.target!==$('help-dialog'))return;const r=$('help-dialog').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('help-dialog').close();});
+ const workerText=document.getElementById('puzzle-engine').textContent+`\nonmessage = function(event) {
+  const job=event.data;
+  try {
+   if(job.type==='solve') {
+    const r=Puzzle.solve(job.holes,{fixed:job.fixed,retain:job.retain!==false,compactTrace:Boolean(job.trace),onProgress:(stats,solutions)=>postMessage({type:'progress',stats,solutions})});
+    postMessage({type:'done',stats:r.stats,trace:r.trace,traceTruncated:r.traceTruncated},r.trace.packed?[r.trace.packed.buffer]:[]);
+   } else {
+    for(const item of job.items) {
+     const r=Puzzle.solve(item.holes,{retain:false,onProgress:stats=>postMessage({type:'analysis-progress',date:item.date,stats})});
+     postMessage({type:'date-done',date:item.date,key:item.key,count:r.stats.count,stats:r.stats});
+    }
+    postMessage({type:'analysis-done'});
+   }
+  } catch(error) {postMessage({type:'error',message:error.message});}
+ };`;
+ const workerURL=URL.createObjectURL(new Blob([workerText],{type:'text/javascript'}));
+ let solver=null,analysisWorker=null,solutions=[],index=0,revealed=0,autoHint=0,stats=null,complete=false;
+ let traceWorker=null,traceFixed=[],trace=[],traceChildren=[],selectedNode=0,searchHoles=[],current=null,analysisDates=[];
+ let persistenceReady=false;const analysisFilters=[null,null,null],storageKey='calendar-puzzle-v1';
+ const cache=new Map(),summaryViews=new Map(),expandedTreeNodes=new Set();
+ let layout=new Map(),solveFixed=[],selectedPiece=-1,hintMode=false;
+ const pieceOrientation=P.pieces.map(()=>0);
+ let drag=null,suppressClick=false;const undoHistory=[];
+ function dateObject(text){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(text))return null;
+  const [y,m,d]=text.split('-').map(Number);if(y<1||y>9999)return null;
+  const value=new Date(0);value.setHours(12,0,0,0);value.setFullYear(y,m-1,d);
+  if(value.getFullYear()!==y||value.getMonth()!==m-1||value.getDate()!==d)return null;
+  return {date:text,y,m:m-1,d,w:value.getDay(),value,holes:P.holes(m-1,d,value.getDay()),key:[m-1,d,value.getDay()].join('/')};
+ }
+ function today(){const d=new Date();return String(d.getFullYear()).padStart(4,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+ function renderBoard(target,blocked,placementIds=[],chosen=-1){
+  const ownership=new Int32Array(50).fill(-1);
+  placementIds.forEach(id=>P.placements[id].cells.forEach(c=>ownership[c]=P.placements[id].piece));
+  const board=$(target);board.replaceChildren();
+  P.grid.forEach((cell,pos)=>{
+   const el=document.createElement('div');el.className='cell';
+   if(cell<0){el.className+=' empty';board.append(el);return;}
+   const owner=ownership[cell],label=P.cells[cell].label;
+   if(blocked.includes(cell)){el.className+=' exposed';el.textContent=label;el.title=label+' — leave uncovered';}
+   else if(owner>=0){
+    const p=P.pieces[owner];el.style.background=p.color;el.className+=' covered';
+    const b=document.createElement('b');b.textContent=p.id;const small=document.createElement('small');small.textContent=label;el.append(b,small);el.title='Piece '+p.id+' ('+p.name+') on '+label;
+    ['Top','Right','Bottom','Left'].forEach((edge,i)=>{const offset=[-7,1,7,-1][i],other=pos+offset;const wraps=(i===1&&pos%7===6)||(i===3&&pos%7===0);el.style['border'+edge]=!wraps&&other>=0&&other<56&&P.grid[other]>=0&&ownership[P.grid[other]]===owner?'1px solid transparent':'2px solid #333';});
+   }else{el.textContent=label;el.title=label+' — not placed';}
+   if(cell===chosen)el.className+=' chosen';
+   el.setAttribute('aria-label',el.title);board.append(el);
+  });
+ }
+ function setPuzzleStatus(message){$('puzzle-status').textContent=message;$('puzzle-status').style.color=message==='No solutions possible from this position!'?'#b00020':'';}
+ function clearActionStatus(){$('move-status').textContent='';}
+ function clearPlacementPreview(){const preview=$('drop-footprint');if(preview)preview.remove();const board=$('game-svg');if(board){board.classList.toggle('click-valid',false);board.classList.toggle('click-invalid',false);}}
+ function renderSolution(){
+  const solution=solutions[index]||[];
+  if(solutions.length){layout=new Map((hintMode?solution.slice(0,revealed):solution).map(id=>[P.placements[id].piece,id]));}
+  renderGame();$('undo-move').disabled=!undoHistory.length;
+  $('previous').disabled=!solutions.length||index===0;
+  $('next').disabled=!solutions.length||index>=solutions.length-1;
+  $('solution-index').disabled=!solutions.length;$('solution-index').max=Math.max(1,solutions.length);$('solution-index').value=solutions.length?index+1:'';
+  $('solution-total').textContent='of '+fmt(solutions.length)+(solver?' found so far':'');
+  $('reveal-piece').disabled=!current||layout.size===10;
+  $('solution-nav').hidden=!solutions.length||(hintMode&&revealed<10);
+  $('stop-solve').hidden=!solver;
+  if(hintMode&&solutions.length){
+   const shown=Array.from(layout.values());
+   const reachable=solutions.reduce((total,s)=>total+(shown.every(id=>s.includes(id))?1:0),0);
+   setPuzzleStatus((complete?'':'At least ')+fmt(reachable)+' possible solution'+(reachable===1?'':'s')+' from '+layout.size+' placed piece'+(layout.size===1?'':'s')+(complete?'.':solver?' (searching…).':' (search incomplete).'));
+  }
+
+ }
+ function showStats(s){
+  if(!s){$('search-stats').textContent='No search run yet.';return;}
+  $('search-stats').textContent='States: '+fmt(s.states)+' · Placement attempts: '+fmt(s.branches)+' · Dead ends: '+fmt(s.deadEnds)+' ('+fmt(s.deadCells)+' cell, '+fmt(s.deadPieces)+' piece) · Forced choices: '+fmt(s.forced)+' · Maximum depth: '+s.maxDepth+' · Search time: '+(s.elapsedMs/1000).toFixed(2)+' s';
+ }
+ function stopSolver(message){
+  if(solver){solver.terminate();solver=null;complete=false;setPuzzleStatus(message||('Stopped. At least '+fmt(stats?stats.count:0)+' solutions found; count is incomplete.'));}
+  $('puzzle-solve').disabled=!current;$('stop-solve').disabled=true;renderSolution();
+ }
+ function changeDate(){
+  stopSolver();undoHistory.length=0;current=dateObject($('puzzle-date').value);hintMode=false;solutions=[];layout.clear();solveFixed=[];selectedPiece=-1;index=0;revealed=0;stats=null;complete=false;autoHint=0;
+  $('move-status').textContent='';
+  $('puzzle-today').disabled=$('puzzle-date').value===today();
+  $('puzzle-date-label').textContent=current?current.value.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'}):'Enter a valid date (years 0001–9999).';
+  setPuzzleStatus(current?'':'Please select a valid date.');
+  $('puzzle-solve').disabled=!current;renderSolution();
+ }
+ function startSolve(record=false,requestHint=false){
+  if(!current)return;
+  saveUndo();stopSolver();solveFixed=Array.from(layout.values());solutions=[];index=0;revealed=solveFixed.length;complete=false;stats=null;autoHint=requestHint?1:0;
+  const solvedDate=current;
+  let w;try{w=new Worker(workerURL);}catch(e){setPuzzleStatus('Cannot start the background solver: '+e.message);return;}
+  solver=w;$('puzzle-solve').disabled=true;$('stop-solve').disabled=false;
+  setPuzzleStatus('Searching all arrangements…');renderSolution();
+  w.onmessage=event=>{
+   if(solver!==w)return;const m=event.data;
+   if(m.type==='error'){stopSolver('Search failed: '+m.message);return;}
+   if(m.type==='progress'){
+    stats=m.stats;solutions.push(...m.solutions);
+    if(autoHint&&solutions.length){revealed=Math.min(10,solveFixed.length+autoHint);autoHint=0;hintMode=true;}
+    setPuzzleStatus(fmt(stats.count)+' solutions found; still searching…');renderSolution();
+   }else if(m.type==='done'){
+    stats=m.stats;solver=null;w.terminate();complete=true;
+    if(!solveFixed.length)cache.set(solvedDate.key,stats.count);
+    setPuzzleStatus(stats.count===0?'No solutions possible from this position!':fmt(stats.count)+' distinct '+(solveFixed.length?'completions of your '+solveFixed.length+' placed piece'+(solveFixed.length===1?'':'s'):'solutions')+'. Search complete.');
+    if(hintMode&&stats.count===0)setPuzzleStatus('No solutions possible from this position!');
+    $('puzzle-solve').disabled=false;$('stop-solve').disabled=true;
+    renderSolution();if(analysisDates.length)renderAnalysis();
+   }
+  };
+  w.onerror=e=>{if(solver===w)stopSolver('Background search failed: '+e.message);};
+  w.postMessage({type:'solve',holes:solvedDate.holes,fixed:solveFixed,trace:record});
+ }
+ function selectSolution(i){if(!Number.isInteger(i)||i<0||i>=solutions.length){renderSolution();return;}saveUndo();index=i;revealed=solveFixed.length;hintMode=false;renderSolution();}
+ $('puzzle-date').onchange=changeDate;
+ $('puzzle-today').onclick=()=>{$('puzzle-date').value=today();changeDate();};
+ $('puzzle-solve').onclick=()=>{if(solutions.length)saveUndo();hintMode=false;if(solutions.length){setPuzzleStatus(fmt(solutions.length)+' solution'+(solutions.length===1?'':'s')+(complete?'. Search complete.':' found so far; count incomplete.'));renderSolution();}else startSolve();};$('stop-solve').onclick=()=>stopSolver();
+ $('record-search').onclick=recordExplorer;
+ $('previous').onclick=()=>selectSolution(index-1);$('next').onclick=()=>selectSolution(index+1);
+ $('solution-index').onchange=()=>selectSolution(Number($('solution-index').value)-1);
+ $('reveal-piece').onclick=()=>{if(complete&&!solutions.length){setPuzzleStatus('No solutions possible from this position!');return;}if(!solutions.length){hintMode=true;if(solver){autoHint++;}else startSolve(false,true);}else{saveUndo();hintMode=true;revealed=Math.min(10,revealed+1);renderSolution();}};
+ function stopExplorer(message){
+  if(traceWorker){traceWorker.terminate();traceWorker=null;}
+  $('trace-date').disabled=false;$('record-search').disabled=!dateObject($('trace-date').value);$('stop-explorer').hidden=true;
+  if(message)$('node-info').textContent=message;
+ }
+ function resetExplorer(){
+  stopExplorer();expandedTreeNodes.clear();trace=[];traceChildren=[];traceFixed=[];selectedNode=0;
+  $('search-tree').replaceChildren();$('trace-note').textContent='';setTraceControls(false);showStats(null);
+  const d=dateObject($('trace-date').value);searchHoles=d?d.holes:[];
+  renderBoard('trace-board',searchHoles);$('node-info').textContent=d?'Ready to record a search for '+d.date+'.':'Enter a valid explorer date.';
+ }
+ function recordExplorer(){
+  const d=dateObject($('trace-date').value);if(!d)return;
+  resetExplorer();let w;try{w=new Worker(workerURL);}catch(e){$('node-info').textContent='Cannot start search: '+e.message;return;}
+  traceWorker=w;$('record-search').disabled=true;$('trace-date').disabled=true;$('stop-explorer').hidden=false;
+  $('node-info').textContent='Recording search…';
+  w.onmessage=event=>{
+   if(traceWorker!==w)return;const m=event.data;
+   if(m.type==='error'){stopExplorer('Search failed: '+m.message);return;}
+   if(m.type==='progress'){showStats(m.stats);$('node-info').textContent='Recording: '+fmt(m.stats.states)+' states · '+fmt(m.stats.count)+' solutions so far.';}
+   else if(m.type==='done'){
+    stopExplorer();trace=readTrace(m.trace);showStats(m.stats);buildTree();
+    $('trace-note').textContent='Recorded '+fmt(trace.length)+' of '+fmt(m.stats.states)+' states. '+(m.traceTruncated?'Unrecorded descendants are omitted from the diagram. ':'')+'Subtree counts include all descendants.';
+   }
+  };
+  w.onerror=e=>{if(traceWorker===w)stopExplorer('Search failed: '+e.message);};
+  w.postMessage({type:'solve',holes:d.holes,fixed:[],trace:true,retain:false});
+ }
+ $('trace-date').onchange=resetExplorer;
+ $('stop-explorer').onclick=()=>stopExplorer('Stopped. Record again to build a complete trace.');
+ function setTraceControls(enabled){['node-previous','node-next','node-index'].forEach(id=>$(id).disabled=!enabled);$('node-index').value=enabled?1:'';if(!enabled){$('tree-tooltip').hidden=true;$('tree-level-marks').replaceChildren();$('tree-parent').disabled=true;$('tree-root').disabled=true;$('tree-caption').textContent='';$('tree-path').replaceChildren();}}
+ function readTrace(source){
+  if(!source.packed)return source;
+  const data=source.packed;
+  return new Proxy({length:source.length},{get(target,key){
+   if(key==='length')return target.length;
+   const id=Number(key);if(!Number.isInteger(id)||id<0||id>=target.length)return undefined;
+   const o=id*8;
+   return {id,parent:data[o],via:data[o+1],depth:data[o+2],constraint:source.labels[data[o+3]]||null,choices:data[o+4],outcome:['branch','solution','dead'][data[o+5]],subtreeStates:data[o+6],subtreeSolutions:data[o+7]};
+  }});
+ }
+ function buildTree(){
+  // DFS stores each subtree contiguously. Skip whole subtrees to find siblings.
+  // Only derive child lists for nodes the user actually opens.
+  const cache=new Map();
+  traceChildren=new Proxy({}, {get(target,key){
+   const id=Number(key);if(!Number.isInteger(id)||id<0||id>=trace.length)return [];
+   if(!cache.has(id)){const children=[],end=Math.min(trace.length,id+trace[id].subtreeStates);let child=id+1;
+    while(child<end){children.push(child);child+=trace[child].subtreeStates;}
+    cache.set(id,children);
+   }return cache.get(id);
+  }});
+  $('search-tree').replaceChildren();if(!trace.length)return;
+  setTraceControls(true);$('node-index').max=trace.length;selectNode(0);
+ }
+ function drawSubtree(id){
+  const root=trace[id],depthLimit=Number($('tree-levels').value)||2,hasParent=root.parent>=0;
+  const topY=hasParent?158:54,rowGap=112;let leaf=0;
+  const nodes=[],edges=[];
+  function layoutNode(nodeId,depth,parent=null){
+   const n={id:nodeId,depth,x:0,y:topY+depth*rowGap};nodes.push(n);if(parent)edges.push([parent,n]);
+   const children=traceChildren[nodeId]||[];
+   const missing=trace[nodeId].outcome==='branch'?Math.max(0,trace[nodeId].choices-children.length):0;
+   if(depth<depthLimit&&(children.length||missing)){
+    const limit=children.length>4&&!expandedTreeNodes.has(nodeId);
+    const ranked=children.slice().sort((a,b)=>trace[b].subtreeSolutions-trace[a].subtreeSolutions||a-b);
+    const shown=limit?ranked.slice(0,4):ranked,drawn=shown.map(child=>layoutNode(child,depth+1,n));
+    if(limit){const more={more:true,parentId:nodeId,hiddenCount:children.length-4,depth:depth+1,x:28+leaf++*45,y:topY+(depth+1)*rowGap};nodes.push(more);edges.push([n,more]);drawn.push(more);}
+    if(missing){const omitted={unrecorded:true,parentId:nodeId,hiddenCount:missing,solutions:trace[nodeId].subtreeSolutions-children.reduce((sum,c)=>sum+trace[c].subtreeSolutions,0),depth:depth+1,x:28+leaf++*45,y:topY+(depth+1)*rowGap};nodes.push(omitted);edges.push([n,omitted]);drawn.push(omitted);}
+    n.x=(drawn[0].x+drawn[drawn.length-1].x)/2;
+   }else n.x=28+leaf++*45;
+   return n;
+  }
+  const top=layoutNode(id,0),width=Math.max(600,leaf*45+104),height=Math.max(520,topY+depthLimit*rowGap+60);
+  if(hasParent){const parent={id:root.parent,x:top.x,y:48,isParent:true};nodes.push(parent);edges.push([parent,top]);}
+  const diagram=svg('svg',{viewBox:'0 0 '+width+' '+height,width,height,role:'group','aria-label':'Focused subtree, '+root.depth+' of 10 pieces placed'});
+  edges.forEach(([a,b])=>diagram.append(svg('path',{d:'M'+a.x+' '+(a.y+46)+'V'+((a.y+b.y)/2)+'H'+b.x+'V'+(b.y-20),fill:'none',stroke:a.isParent?'#0000ee':'#999','stroke-width':a.isParent?2:1.5,'stroke-dasharray':a.isParent?'3 5':'none'})));
+  nodes.forEach(item=>{
+   if(item.unrecorded){
+    const description=item.hiddenCount+' unrecorded branches · '+fmt(item.solutions)+' solutions. The recording is incomplete; these solutions were counted, but their board states were not saved.';
+    const group=svg('g',{tabindex:0,role:'img','aria-label':description});
+    group.append(svg('rect',{x:item.x-19,y:item.y-19,width:38,height:38,fill:'#eee',stroke:'#777','stroke-dasharray':'3 3'}));
+    const label=svg('text',{x:item.x,y:item.y+4,'text-anchor':'middle','font-size':12});label.textContent='+'+item.hiddenCount;group.append(label);
+    const count=svg('text',{x:item.x,y:item.y+38,'text-anchor':'middle','font-size':12});count.textContent=fmt(item.solutions);group.append(count);
+    const caption=svg('text',{x:item.x,y:item.y+53,'text-anchor':'middle','font-size':10,fill:'#666'});caption.textContent='untraced';group.append(caption);
+    const show=e=>{endNodePreview();$('tree-tooltip').textContent=description;$('tree-tooltip').hidden=false;positionTreeTooltip(e);};
+    group.addEventListener('pointerenter',show);group.addEventListener('pointermove',positionTreeTooltip);group.addEventListener('pointerleave',endNodePreview);group.addEventListener('focus',()=>{const r=group.getBoundingClientRect();show({clientX:r.left,clientY:r.top});});group.addEventListener('blur',endNodePreview);diagram.append(group);return;
+   }
+   if(item.more){
+    const group=svg('g',{tabindex:0,role:'button','aria-label':'Show all '+item.hiddenCount+' other children; four highest-solution branches shown'});
+    group.append(svg('circle',{cx:item.x,cy:item.y,r:18,fill:'#fff',stroke:'#666','stroke-dasharray':'3 3'}));
+    const label=svg('text',{x:item.x,y:item.y+4,'text-anchor':'middle','font-size':18,fill:'#222'});label.textContent='…';group.append(label);
+    const count=svg('text',{x:item.x,y:item.y+38,'text-anchor':'middle','font-size':12,fill:'#333'});count.textContent='+'+item.hiddenCount;group.append(count);
+    const expand=()=>{endNodePreview();expandedTreeNodes.add(item.parentId);drawSubtree(id);};
+    group.addEventListener('click',expand);group.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();expand();}});
+    group.addEventListener('pointerenter',e=>{endNodePreview();$('tree-tooltip').textContent='Show '+item.hiddenCount+' other branches.\nThe four branches with the most solutions are shown first.\nClick to expand all children here.';$('tree-tooltip').hidden=false;positionTreeTooltip(e);});group.addEventListener('pointermove',positionTreeTooltip);group.addEventListener('pointerleave',endNodePreview);diagram.append(group);return;
+   }
+   const n=trace[item.id],group=svg('g',{tabindex:0,role:'button'}),focused=n.id===id;
+   const label=n.via<0?'Root':P.pieces[P.placements[n.via].piece].id;
+   const description=n.depth+' of 10 pieces placed; '+fmt(n.subtreeSolutions)+' solutions; '+(traceChildren[n.id]||[]).length+' recorded children.';
+   group.setAttribute('aria-label',description);
+   group.append(svg('circle',{cx:item.x,cy:item.y,r:20,fill:n.subtreeSolutions===0?'#f5d9d9':'hsl(210 65% '+(96-60*Math.log1p(n.subtreeSolutions)/Math.log1p(Math.max(1,trace[0].subtreeSolutions)))+'%)',stroke:focused?'#0000ee':'#555','stroke-width':focused?3:1}));
+   const text=svg('text',{x:item.x,y:item.y+5,'text-anchor':'middle','font-size':14,fill:n.subtreeSolutions>0&&Math.log1p(n.subtreeSolutions)/Math.log1p(Math.max(1,trace[0].subtreeSolutions))>.82?'#fff':'#111'});text.textContent=label;group.append(text);
+   const count=svg('text',{x:item.x,y:item.y+38,'text-anchor':'middle','font-size':12,fill:'#333'});count.textContent=fmt(n.subtreeSolutions);group.append(count);
+   const state=svg('text',{x:item.x,y:item.y-29,'text-anchor':'middle','font-size':12,fill:focused?'#0000ee':'#555','font-weight':focused?'bold':'normal'});
+   state.textContent=focused?'CURRENT':item.isParent?'PARENT':'';group.append(state);
+   if(n.outcome==='branch'&&!(traceChildren[n.id]||[]).length&&n.subtreeStates>1){const omitted=svg('text',{x:item.x,y:item.y+53,'text-anchor':'middle','font-size':11,fill:'#666'});omitted.textContent='untraced';group.append(omitted);}
+   group.addEventListener('pointerenter',e=>previewNode(n.id,e));
+   group.addEventListener('pointermove',e=>positionTreeTooltip(e));
+   group.addEventListener('pointerleave',()=>endNodePreview());
+   group.addEventListener('focus',()=>previewNode(n.id,null,group));
+   group.addEventListener('blur',()=>endNodePreview());
+   const activate=()=>{endNodePreview();selectNode(n.id);};group.style.cursor='default';group.addEventListener('click',activate);group.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});diagram.append(group);
+  });
+  $('tree-tooltip').hidden=true;
+  const levels=new Map(nodes.filter(n=>!n.more).map(n=>[n.unrecorded?trace[n.parentId].depth+1:trace[n.id].depth,n.y]));$('tree-level-marks').replaceChildren();
+  Array.from(levels.entries()).sort((a,b)=>a[0]-b[0]).forEach(([level,y])=>{const marker=document.createElement('span');marker.textContent=level;marker.style.top=(y-9)+'px';$('tree-level-marks').append(marker);});
+  $('tree-level-marks').style.transform='translateY(0px)';
+  $('search-tree').replaceChildren(diagram);$('search-tree').scrollTop=0;
+  $('search-tree').scrollLeft=Math.max(0,top.x-$('search-tree').getBoundingClientRect().width/2);
+  $('tree-parent').disabled=!hasParent;$('tree-root').disabled=id===0;
+  const siblings=hasParent?traceChildren[root.parent]:[id],position=siblings.indexOf(id)+1;
+  $('tree-caption').textContent=root.depth+'/10 pieces placed · '+fmt(root.subtreeSolutions)+' solutions below · '+(hasParent?'Recorded branch '+position+' of '+siblings.length:'Root')+' · '+(traceChildren[id]||[]).length+' of '+root.choices+' children recorded';
+  const ancestry=[];let ancestor=root;while(ancestor){ancestry.push(ancestor);ancestor=ancestor.parent>=0?trace[ancestor.parent]:null;}ancestry.reverse();
+  $('tree-path').replaceChildren();ancestry.forEach((n,i)=>{if(i){const sep=document.createElement('span');sep.textContent=' › ';$('tree-path').append(sep);}const button=document.createElement('button');button.textContent=n.id===0?'Root':P.pieces[P.placements[n.via].piece].id;button.title=n.depth+'/10 pieces placed';button.disabled=n.id===id;button.onclick=()=>selectNode(n.id);$('tree-path').append(button);});
+ }
+ $('tree-levels').onchange=()=>{if(trace.length)drawSubtree(selectedNode);};
+ function showNodeBoard(id,temporary=false){
+  if(!Number.isInteger(id)||id<0||id>=trace.length)return;
+  const n=trace[id],path=[];let node=n;
+  while(node&&node.via>=0){path.push(node.via);node=trace[node.parent];}path.reverse();
+  const c=n.constraint;
+  const reason=n.outcome==='solution'?'Solved.':n.outcome==='dead'?'Dead end: '+(c.kind==='cell'?'cell ':'piece ')+c.label+' has no legal placement.':(c.kind==='cell'?'Cover ':'Try piece ')+c.label+': '+(n.choices===1?'only legal placement.':'fewest legal placements ('+n.choices+').');
+  const placed=n.via>=0?'Placed '+P.pieces[P.placements[n.via].piece].id+'. ':'Start. ';
+  $('node-info').textContent=(temporary?'Preview · ':'State '+(id+1)+' · ')+n.depth+'/10 pieces. '+placed+'\n'+reason+'\nSubtree: '+fmt(n.subtreeStates)+' states · '+fmt(n.subtreeSolutions)+' solutions.';
+  renderBoard('trace-board',searchHoles,[...traceFixed,...path],c&&c.kind==='cell'?c.index:-1);
+  if(temporary&&n.via>=0){P.placements[n.via].cells.forEach(c=>{const el=$('trace-board').children[P.grid.indexOf(c)];if(el)el.classList.add('temporary-piece');});}
+ }
+ function selectNode(id){
+  if(!Number.isInteger(id)||id<0||id>=trace.length)return;
+  selectedNode=id;showNodeBoard(id);
+  $('node-index').value=id+1;$('node-previous').disabled=id===0;$('node-next').disabled=id===trace.length-1;drawSubtree(id);
+ }
+ function positionTreeTooltip(event){
+  if(!event||$('tree-tooltip').hidden)return;const tip=$('tree-tooltip');
+  tip.style.left=Math.max(8,Math.min(event.clientX+14,(window.innerWidth||1024)-286))+'px';
+  tip.style.top=Math.max(8,Math.min(event.clientY+14,(window.innerHeight||768)-160))+'px';
+ }
+ function previewNode(id,event,element){
+  const n=trace[id];if(!n)return;showNodeBoard(id,true);
+  const placement=n.via>=0?P.placements[n.via]:null;
+  $('tree-tooltip').textContent=(placement?'Place '+P.pieces[placement.piece].id+' on '+placement.cells.map(c=>P.cells[c].label).join(', '):'Root: starting arrangement')+'\n'+n.depth+'/10 pieces · '+fmt(n.subtreeSolutions)+' solutions below\nClick to explore this subtree.';
+  $('tree-tooltip').hidden=false;
+  const r=element?element.getBoundingClientRect():null;positionTreeTooltip(event||(r?{clientX:r.right,clientY:r.top}:null));
+ }
+ function endNodePreview(){ $('tree-tooltip').hidden=true;if(trace[selectedNode])showNodeBoard(selectedNode); }
+ $('search-tree').addEventListener('scroll',()=>{$('tree-level-marks').style.transform='translateY(-'+$('search-tree').scrollTop+'px)';endNodePreview();});
+ $('tree-parent').onclick=()=>{if(trace[selectedNode]&&trace[selectedNode].parent>=0)selectNode(trace[selectedNode].parent);};
+ $('tree-root').onclick=()=>selectNode(0);
+ $('node-previous').onclick=()=>selectNode(selectedNode-1);$('node-next').onclick=()=>selectNode(selectedNode+1);$('node-index').onchange=()=>selectNode(Number($('node-index').value)-1);
+ function makeDates(year){const dates=[];for(let m=1;m<=12;m++)for(let d=1;d<=31;d++){const item=dateObject(String(year).padStart(4,'0')+'-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'));if(item)dates.push(item);}return dates;}
+ function saveProgress(){
+  if(!persistenceReady)return;
+  try{localStorage.setItem(storageKey,JSON.stringify({date:current?current.date:null,layout:Array.from(layout.values()),orientations:pieceOrientation,counts:Array.from(cache),year:Number($('analysis-year').value),view:$('analysis-view').value,alignment:$('heat-alignment').value,filters:analysisFilters}));$('save-note').textContent='';}
+  catch(error){$('save-note').textContent='Progress could not be saved in this browser.';}
+ }
+ function matchesFilters(d){return analysisFilters.every((value,i)=>value===null||[d.m,d.d,d.w][i]===value);}
+ function tileFilter(index){const section=index<12?0:index<43?1:2;return [section,section===0?index:section===1?index-11:index-43];}
+ function toggleTileFilter(index){const [section,value]=tileFilter(index);analysisFilters[section]=analysisFilters[section]===value?null:value;renderAnalysis();}
+ $('clear-analysis-filter').onclick=()=>{analysisFilters.fill(null);renderAnalysis();};
+ function renderBoardHeat(known){
+  const hues=[210,25,280],color=(section,fraction)=>'hsl('+hues[section]+' 65% '+(97-65*fraction)+'%)';
+  const tileStats=P.cells.map((cell,i)=>{const dates=known.filter(d=>d.holes.includes(i)),n=dates.length;return {label:cell.label,n,mean:n?dates.reduce((sum,d)=>sum+cache.get(d.key),0)/n:null,section:i<12?0:i<43?1:2};});
+  const ranges=[0,1,2].map(section=>{const values=tileStats.filter(t=>t.section===section&&t.n).map(t=>t.mean);return values.length?[Math.min(...values),Math.max(...values)]:null;});
+  const board=$('board-heatmap');board.replaceChildren();
+  P.grid.forEach(index=>{
+   const el=document.createElement('div');el.className='cell';
+   if(index<0){el.className+=' empty';board.append(el);return;}
+   const t=tileStats[index],label=document.createElement('span'),value=document.createElement('small');label.textContent=t.label;value.textContent=t.n?fmt(Math.round(t.mean)):'—';el.append(label,value);
+   el.title=t.label+': '+(t.n?t.mean.toFixed(1)+' mean solutions across '+t.n+' counted date'+(t.n===1?'':'s'):'no dates counted');el.setAttribute('aria-label',el.title+'; click to filter');
+   const [section,filterValue]=tileFilter(index),active=analysisFilters[section]===filterValue;el.setAttribute('role','button');el.setAttribute('tabindex','0');el.setAttribute('aria-pressed',String(active));el.classList.toggle('filter-selected',active);el.title+=' · Click to '+(active?'remove filter':'filter');el.addEventListener('click',()=>toggleTileFilter(index));el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleTileFilter(index);}});
+   if(t.n){const [lo,hi]=ranges[t.section],fraction=lo===hi?.5:(t.mean-lo)/(hi-lo);el.style.background=color(t.section,fraction);el.style.color=fraction>.6?'white':'black';}
+   board.append(el);
+  });
+  const legends=$('board-heat-range');legends.replaceChildren();
+  ranges.forEach((range,section)=>{
+   const legend=document.createElement('div'),label=document.createElement('div'),bar=document.createElement('div'),ticks=document.createElement('div');
+   legend.className='tile-legend';label.textContent=['Months','Days of month','Weekdays'][section];bar.className='tile-color-bar';ticks.className='tile-color-ticks';
+   const constant=range&&range[0]===range[1];bar.style.background=constant?color(section,.5):'linear-gradient(to right, '+color(section,0)+', '+color(section,1)+')';
+   if(range){const values=constant?[range[0]]:[range[0],(range[0]+range[1])/2,range[1]];values.forEach(value=>{const tick=document.createElement('span');tick.textContent=value.toLocaleString(undefined,{maximumFractionDigits:1});ticks.append(tick);});if(constant)ticks.style.justifyContent='center';}
+   else ticks.textContent='No dates counted';
+   bar.setAttribute('role','img');bar.setAttribute('aria-label',label.textContent+': '+(range?range[0].toFixed(1)+' to '+range[1].toFixed(1)+' mean solutions':'no dates counted'));
+   legend.append(label,bar,ticks);legends.append(legend);
+  });
+  const units=document.createElement('small');units.textContent='Mean solutions · separate linear scales';legends.append(units);
+ }
+ $('analysis-view').onchange=()=>{const board=$('analysis-view').value==='board';$('date-heat-view').hidden=board;$('board-heat-view').hidden=!board;$('heat-alignment').hidden=board;$('heat-alignment-label').hidden=board;saveProgress();};
+ renderBoardHeat([]);
+ function renderAnalysis(){
+  const matching=analysisDates.filter(matchesFilters),known=matching.filter(d=>cache.has(d.key)),values=known.map(d=>cache.get(d.key));
+  const labels=analysisFilters.map((v,i)=>v===null?'':i===0?P.months[v]:i===1?'Day '+v:P.weekdays[v]).filter(Boolean);$('analysis-filter-label').textContent=labels.length?'Filter: '+labels.join(' · '):'All dates';$('clear-analysis-filter').hidden=!labels.length;
+  renderBoardHeat(known);saveProgress();
+  const min=values.length?Math.min(...values):0,max=values.length?Math.max(...values):0;
+  const months=Array.from({length:12},(_,m)=>analysisDates.filter(d=>d.m===m));
+  const body=$('heat-body');body.replaceChildren();
+  const byWeekday=$('heat-alignment').value!=='date';
+  $('heat-title').textContent='Solution counts · aligned by '+(byWeekday?'weekday':'day of month');
+  for(let slot=0;slot<(byWeekday?42:31);slot++){
+   const row=document.createElement('tr');if(byWeekday&&slot%7===0)row.className='week-start';
+   const head=document.createElement('th');head.scope='row';head.textContent=byWeekday?['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][slot%7]:String(slot+1);head.title=byWeekday?'Week '+(Math.floor(slot/7)+1)+' of month':'Day '+(slot+1);row.append(head);
+   for(let m=0;m<12;m++){
+    const td=document.createElement('td'),day=byWeekday?slot-(months[m][0]?.w||0)+1:slot+1,item=months[m].find(d=>d.d===day);
+    if(item&&!matchesFilters(item)){td.className='filtered-date';td.setAttribute('aria-label',item.date+' excluded by filter');}
+    else if(item){
+     const counted=cache.has(item.key),count=cache.get(item.key);
+     td.title=item.date+' ('+P.weekdays[item.w]+'): '+(counted?fmt(count)+' solutions':'not counted');td.setAttribute('aria-label',td.title);
+     const date=document.createElement('small');date.className='heat-date';date.textContent=byWeekday?item.d:'';
+     const value=document.createElement('span');value.className='heat-count';value.textContent=counted?String(count):'…';td.append(date,value);
+     if(counted){
+      const t=max===min?0.5:(Math.log1p(count)-Math.log1p(min))/(Math.log1p(max)-Math.log1p(min));
+      const stops=[[247,251,255],[107,174,214],[8,48,107]],k=t<.5?0:1,f=t<.5?t*2:(t-.5)*2;
+      const rgb=stops[k].map((v,i)=>Math.round(v+(stops[k+1][i]-v)*f));
+      const linear=rgb.map(v=>{v/=255;return v<=.04045?v/12.92:((v+.055)/1.055)**2.4;});
+      const luminance=.2126*linear[0]+.7152*linear[1]+.0722*linear[2];
+      td.style.background='rgb('+rgb.join(',')+')';td.style.color=luminance>.179?'#000':'#fff';
+     }else td.className='uncounted';
+    }else{td.className='no-date';td.setAttribute('aria-label','No date');}
+    row.append(td);
+   }
+   body.append(row);
+  }
+  $('analysis-completed').textContent=known.length+' / '+matching.length+' matching dates counted · '+analysisDates.filter(d=>cache.has(d.key)).length+' / '+analysisDates.length+' total.';
+  $('heat-range').textContent=values.length?fmt(min)+' → '+fmt(max)+' solutions (logarithmic color scale)':'No counts yet';
+  const groups=[['By month',P.months,d=>d.m],['By weekday',P.weekdays,d=>d.w],['By day of month',Array.from({length:31},(_,i)=>String(i+1)),d=>d.d-1]];
+  groups.forEach(([title,labels,get])=>{
+   let view=summaryViews.get(title);
+   if(!view){const details=document.createElement('details');details.open=title==='By weekday';const summary=document.createElement('summary');summary.textContent=title;const content=document.createElement('div');details.append(summary,content);$('analysis-summaries').append(details);view={details,content};summaryViews.set(title,view);}
+   const stats=labels.map((label,i)=>{const values=known.filter(d=>get(d)===i).map(d=>cache.get(d.key));return {label,n:values.length,mean:values.length?values.reduce((a,b)=>a+b,0)/values.length:null,min:values.length?Math.min(...values):null,max:values.length?Math.max(...values):null};});
+   const maxMean=Math.max(1,...stats.map(s=>s.mean||0));view.content.replaceChildren();
+   // Split the 31-day summary into two compact blocks rather than widening the page.
+   for(let offset=0;offset<stats.length;offset+=16){
+    const subset=stats.slice(offset,offset+16),table=document.createElement('table');table.className='summary-table compact-summary';
+    if(stats.length>16){const caption=document.createElement('caption');caption.textContent='Days '+(offset+1)+'–'+Math.min(offset+16,stats.length);table.append(caption);}
+    const thead=document.createElement('thead'),headers=document.createElement('tr');['',...subset.map(s=>s.label)].forEach(label=>{const th=document.createElement('th');th.textContent=label;th.scope='col';headers.append(th);});thead.append(headers);table.append(thead);
+    const tbody=document.createElement('tbody');
+    const bars=document.createElement('tr'),barLabel=document.createElement('th');barLabel.textContent='Mean';barLabel.scope='row';bars.append(barLabel);
+    subset.forEach(s=>{const td=document.createElement('td');td.title=s.mean===null?'Not counted':s.label+': '+s.mean.toFixed(1)+' mean solutions';const track=document.createElement('span');track.className='summary-bar-track';const bar=document.createElement('span');bar.className='summary-bar';bar.style.height=(s.mean===null?0:100*s.mean/maxMean)+'%';track.append(bar);td.append(track);bars.append(td);});tbody.append(bars);
+    [['Mean','mean'],['Min','min'],['Max','max'],['Dates','n']].forEach(([label,key])=>{const tr=document.createElement('tr'),th=document.createElement('th');th.scope='row';th.textContent=label;tr.append(th);subset.forEach(s=>{const td=document.createElement('td'),value=s[key];td.textContent=value===null?'—':String(Math.round(value));td.title=value===null?'Not counted':key==='mean'?value.toFixed(2)+' mean solutions':String(value);tr.append(td);});tbody.append(tr);});
+    table.append(tbody);view.content.append(table);
+   }
+  });
+ }
+ $('heat-alignment').onchange=()=>{if(analysisDates.length)renderAnalysis();};
+
+ function stopAnalysis(text){if(analysisWorker){analysisWorker.terminate();analysisWorker=null;}$('analyze-year').disabled=false;$('analysis-year').disabled=false;$('stop-analysis').disabled=true;if(text)$('analysis-status').textContent=text;}
+ $('analyze-year').onclick=()=>{
+  const year=Number($('analysis-year').value);if(!Number.isInteger(year)||year<1||year>9999){$('analysis-status').textContent='Enter a year from 1 to 9999.';return;}
+  analysisDates=makeDates(year);renderAnalysis();const pending=analysisDates.filter(d=>!cache.has(d.key));
+  if(!pending.length){$('analysis-status').textContent='Complete. All dates were already counted in this session.';return;}
+  let w;try{w=new Worker(workerURL);}catch(e){$('analysis-status').textContent='Cannot start analysis: '+e.message;return;}
+  analysisWorker=w;$('analyze-year').disabled=true;$('analysis-year').disabled=true;$('stop-analysis').disabled=false;$('analysis-status').textContent='Counting dates. This may take several minutes; you can stop and resume.';
+  w.onmessage=event=>{if(analysisWorker!==w)return;const m=event.data;
+   if(m.type==='analysis-progress')$('analysis-status').textContent='Counting '+m.date+': '+fmt(m.stats.count)+' solutions so far, '+fmt(m.stats.states)+' states. Current date is incomplete.';
+   else if(m.type==='date-done'){cache.set(m.key,m.count);renderAnalysis();}
+   else if(m.type==='analysis-done')stopAnalysis('Complete. All counts for this year are exact.');
+   else if(m.type==='error')stopAnalysis('Analysis failed: '+m.message+' Completed dates are retained.');
+  };
+  w.onerror=e=>{if(analysisWorker===w)stopAnalysis('Analysis failed: '+e.message);};
+  w.postMessage({type:'analysis',items:pending.map(({date,key,holes})=>({date,key,holes}))});
+ };
+ $('stop-analysis').onclick=()=>stopAnalysis('Stopped. Completed dates are retained in this session; click Analyze / resume to continue.');
+ // Interactive board. Pointer operations and click/keyboard placement share validation.
+ const ns='http://www.w3.org/2000/svg';
+ function svg(tag,attrs={}){const e=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,v);return e;}
+ function pointsFor(pi){return P.pieces[pi].orientations[pieceOrientation[pi]];}
+ function pieceGraphic(pi,points){
+  const group=svg('g'),set=new Set(points.map(([x,y])=>x+','+y));let boundary='';
+  points.forEach(([x,y])=>{
+   group.append(svg('rect',{x:x*50,y:y*50,width:50,height:50,fill:P.pieces[pi].color}));
+   const t=svg('text',{x:x*50+25,y:y*50+32,'text-anchor':'middle','font-size':20,fill:'#222'});t.textContent=P.pieces[pi].id;group.append(t);
+   [[0,-1,x*50,y*50,(x+1)*50,y*50],[1,0,(x+1)*50,y*50,(x+1)*50,(y+1)*50],[0,1,(x+1)*50,(y+1)*50,x*50,(y+1)*50],[-1,0,x*50,(y+1)*50,x*50,y*50]].forEach(([dx,dy,x1,y1,x2,y2])=>{if(!set.has((x+dx)+','+(y+dy)))boundary+='M'+x1+' '+y1+'L'+x2+' '+y2;});
+  });
+  const outline=svg('path',{d:boundary,fill:'none',stroke:pi===selectedPiece?'#0000ee':'#333','stroke-width':pi===selectedPiece?4:2});outline.dataset.pieceOutline='true';group.append(outline);return group;
+ }
+ function validPlacement(pi,x,y){
+  const candidate=P.placements.find(p=>p.piece===pi&&p.orientation===pieceOrientation[pi]&&p.x===x&&p.y===y);
+  if(!candidate||!current||candidate.cells.some(c=>current.holes.includes(c)))return null;
+  for(const [other,id]of layout)if(other!==pi&&P.placements[id].cells.some(c=>candidate.cells.includes(c)))return null;
+  return candidate;
+ }
+ function selectPiece(pi){
+  clearPlacementPreview();selectedPiece=pi;updatePieceControls();
+  document.querySelectorAll('[data-piece]').forEach(e=>{
+   const active=Number(e.dataset.piece)===pi&&!e.disabled;
+   e.classList.toggle('selected-piece',active);
+   if(e.tagName.toLowerCase()==='button')e.setAttribute('aria-pressed',String(active));
+   function updateOutline(node){if(node.dataset&&node.dataset.pieceOutline){node.setAttribute('stroke',active?'#0000ee':'#333');node.setAttribute('stroke-width',active?4:2);}Array.from(node.children).forEach(updateOutline);}
+   updateOutline(e);
+  });
+  const board=$('game-svg');if(board){const chosen=Array.from(board.children).find(e=>e.dataset.piece!==undefined&&Number(e.dataset.piece)===pi);if(chosen)board.append(chosen);} 
+ }
+ function updatePieceControls(){
+  const p=P.pieces[selectedPiece];
+  ['rotate-piece','flip-piece','return-piece'].forEach(id=>$(id).disabled=!p||(id==='return-piece'&&!layout.has(selectedPiece)));
+ }
+ function invalidateForEdit(){
+  // Do not call renderSolution until the new layout is committed.
+  if(solver){solver.terminate();solver=null;}
+  solutions=[];stats=null;complete=false;autoHint=0;solveFixed=[];revealed=0;index=0;
+  $('puzzle-solve').disabled=!current;$('stop-solve').disabled=true;
+ }
+ function saveUndo(){
+  undoHistory.push({layout:Array.from(layout),orientations:pieceOrientation.slice(),selectedPiece,solutions:solutions.slice(),index,revealed,hintMode,solveFixed:solveFixed.slice(),stats:stats?{...stats}:null,complete,status:$('puzzle-status').textContent});
+  if(undoHistory.length>100)undoHistory.shift();$('undo-move').disabled=false;
+ }
+ function undoMove(){
+  if(!undoHistory.length)return;if(drag)endDrag(true);if(solver){solver.terminate();solver=null;}
+  const previous=undoHistory.pop();layout=new Map(previous.layout);previous.orientations.forEach((o,i)=>pieceOrientation[i]=o);
+  selectedPiece=previous.selectedPiece;solutions=previous.solutions;index=previous.index;revealed=previous.revealed;hintMode=previous.hintMode;solveFixed=previous.solveFixed;stats=previous.stats;complete=previous.complete;autoHint=0;
+  setPuzzleStatus(previous.status);$('move-status').textContent='Undone.';$('puzzle-solve').disabled=!current;$('stop-solve').disabled=true;renderSolution();
+ }
+ $('undo-move').onclick=undoMove;
+ function commitPlacement(pi,p,recordUndo=true){
+  if(recordUndo&&layout.get(pi)!==p.id)saveUndo();invalidateForEdit();layout.set(pi,p.id);pieceOrientation[pi]=p.orientation;selectedPiece=pi;
+  setPuzzleStatus(layout.size===10?'All ten pieces fit. Puzzle solved!':layout.size+' of 10 pieces placed.');
+  $('move-status').textContent='Placed piece '+P.pieces[pi].id+'.';renderSolution();
+ }
+ function returnPiece(pi){
+  if(!layout.has(pi))return;saveUndo();invalidateForEdit();layout.delete(pi);$('move-status').textContent='Returned piece '+P.pieces[pi].id+' to the tray.';setPuzzleStatus(layout.size+' of 10 pieces placed.');renderSolution();
+ }
+ function transformPiece(flip){
+  if(drag){$('move-status').textContent='Release the piece before rotating or flipping it.';return;}
+  if(selectedPiece<0)return;saveUndo();const pi=selectedPiece,old=pieceOrientation[pi];
+  let points=pointsFor(pi).map(([x,y])=>flip?[-x,y]:[-y,x]);const mx=Math.min(...points.map(p=>p[0])),my=Math.min(...points.map(p=>p[1]));points=points.map(([x,y])=>[x-mx,y-my]).sort((a,b)=>a[1]-b[1]||a[0]-b[0]);
+  pieceOrientation[pi]=P.pieces[pi].orientations.findIndex(o=>JSON.stringify(o)===JSON.stringify(points));
+  if(layout.has(pi)){
+   const p=P.placements[layout.get(pi)],candidate=validPlacement(pi,p.x,p.y);
+   if(!candidate){undoHistory.pop();$('undo-move').disabled=!undoHistory.length;pieceOrientation[pi]=old;$('move-status').textContent='That '+(flip?'flip':'rotation')+' would overlap a piece, exposed cell, or board edge. Move it first or return it to the tray.';return;}
+   commitPlacement(pi,candidate,false);
+  }else renderGame();
+  $('move-status').textContent=(flip?'Flipped':'Rotated')+' piece '+P.pieces[pi].id+'.';
+ }
+ function renderGame(){
+  const board=svg('svg',{viewBox:'0 0 350 400',role:'group','aria-label':'Interactive calendar puzzle board'});board.id='game-svg';
+  P.cells.forEach((c,i)=>{const blocked=current&&current.holes.includes(i);board.append(svg('rect',{x:c.x*50,y:c.y*50,width:50,height:50,fill:blocked?'#ffff99':'#eee',stroke:'#999'}));const text=svg('text',{x:c.x*50+25,y:c.y*50+31,'text-anchor':'middle','font-size':18,fill:'#222','font-weight':blocked?'bold':'normal'});text.textContent=c.label;board.append(text);});
+  for(const [pi,id]of layout){
+   const p=P.placements[id];pieceOrientation[pi]=p.orientation;const group=pieceGraphic(pi,pointsFor(pi));group.setAttribute('transform','translate('+(p.x*50)+' '+(p.y*50)+')');group.dataset.piece=pi;group.setAttribute('tabindex','0');group.setAttribute('role','button');group.setAttribute('aria-label','Piece '+P.pieces[pi].id+' on board. Drag to move, or click to select or deselect. Use R to rotate, F to flip, or arrow keys to move.');group.style.cursor='grab';
+   group.addEventListener('pointerdown',e=>beginDrag(e,pi,true));group.addEventListener('click',e=>{e.stopPropagation();if(!suppressClick){clearActionStatus();selectPiece(selectedPiece===pi?-1:pi);}});group.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();clearActionStatus();selectPiece(selectedPiece===pi?-1:pi);}});board.append(group);
+  }
+  board.addEventListener('click',e=>{
+   if(suppressClick||selectedPiece<0||layout.has(selectedPiece))return;clearActionStatus();const box=board.getBoundingClientRect(),x=Math.floor((e.clientX-box.left)*350/box.width),y=Math.floor((e.clientY-box.top)*400/box.height);
+   const p=validPlacement(selectedPiece,Math.floor(x/50),Math.floor(y/50));if(p)commitPlacement(selectedPiece,p);else $('move-status').textContent='That position does not fit. Try another cell or rotate / flip the piece.';
+  });
+  board.addEventListener('pointermove',e=>{
+   if(drag)return;if(solver||selectedPiece<0||layout.has(selectedPiece)||!current){clearPlacementPreview();return;}
+   const box=board.getBoundingClientRect(),x=Math.floor((e.clientX-box.left)*7/box.width),y=Math.floor((e.clientY-box.top)*8/box.height),candidate=validPlacement(selectedPiece,x,y);
+   drawPlacementPreview(selectedPiece,x,y,candidate);board.classList.toggle('click-valid',Boolean(candidate));board.classList.toggle('click-invalid',!candidate);
+  });
+  board.addEventListener('pointerleave',()=>{if(drag)return;const preview=$('drop-footprint');if(preview)preview.remove();board.classList.toggle('click-valid',false);board.classList.toggle('click-invalid',false);});
+  $('puzzle-board').replaceChildren(board);const tray=$('piece-tray');tray.replaceChildren();
+  P.pieces.forEach((p,pi)=>{
+   const onBoard=layout.has(pi);
+   const button=document.createElement('button');button.className='tray-piece';button.dataset.piece=pi;button.disabled=onBoard;button.setAttribute('aria-disabled',String(onBoard));button.setAttribute('aria-label',(onBoard?'On board: ':'Select or drag piece ')+p.id+', '+p.name);button.setAttribute('aria-pressed',String(pi===selectedPiece));button.classList.toggle('selected-piece',pi===selectedPiece);
+   const label=document.createElement('span');label.textContent=p.id;button.title=p.id+' — '+p.name+(onBoard?' (on board; return it to use this tray piece)':'');button.append(label);
+   const points=pointsFor(pi),w=(Math.max(...points.map(p=>p[0]))+1)*50,h=(Math.max(...points.map(p=>p[1]))+1)*50;
+   const preview=svg('svg',{viewBox:'-3 -3 '+(w+6)+' '+(h+6),'aria-hidden':'true'});preview.append(pieceGraphic(pi,points));button.append(preview);
+   button.onclick=()=>{if(!button.disabled&&!suppressClick){clearActionStatus();selectPiece(selectedPiece===pi?-1:pi);}};button.addEventListener('pointerdown',e=>beginDrag(e,pi,false));tray.append(button);
+  });
+  selectPiece(selectedPiece);saveProgress();
+ }
+ function drawPlacementPreview(pi,x,y,candidate){
+  const old=$('drop-footprint');if(old)old.remove();
+  const footprint=svg('g',{id:'drop-footprint','pointer-events':'none','aria-hidden':'true'});
+   const points=pointsFor(pi),occupied=new Set(points.map(([dx,dy])=>dx+','+dy));let perimeter='';
+   points.forEach(([dx,dy])=>{
+    const left=(x+dx)*50,top=(y+dy)*50;
+    footprint.append(svg('rect',{x:left,y:top,width:50,height:50,fill:candidate?'#008a55':'#d32f2f','fill-opacity':.28,stroke:'none'}));
+    [[0,-1,left,top,left+50,top],[1,0,left+50,top,left+50,top+50],[0,1,left+50,top+50,left,top+50],[-1,0,left,top+50,left,top]].forEach(([nx,ny,x1,y1,x2,y2])=>{if(!occupied.has((dx+nx)+','+(dy+ny)))perimeter+='M'+x1+' '+y1+'L'+x2+' '+y2;});
+   });
+   footprint.append(svg('path',{d:perimeter,fill:'none',stroke:candidate?'#008000':'#b00020','stroke-width':2,'stroke-dasharray':'3 3'}));
+   $('game-svg').append(footprint);
+ }
+ function beginDrag(e,pi,onBoard){
+  if(e.button!==0||!current||e.currentTarget.disabled)return;
+  if(e.cancelable)e.preventDefault(); // Prevent native text selection while dragging.
+  if(solver){$('move-status').textContent='Stop the search before dragging pieces.';return;}
+  const oldPreview=$('drop-footprint');if(oldPreview)oldPreview.remove();$('game-svg').classList.toggle('click-valid',false);$('game-svg').classList.toggle('click-invalid',false);
+  clearActionStatus();const board=$('game-svg'),box=board.getBoundingClientRect(),scale=box.width/350,points=pointsFor(pi);
+  const width=(Math.max(...points.map(p=>p[0]))+1)*50,height=(Math.max(...points.map(p=>p[1]))+1)*50;
+  const p=onBoard?P.placements[layout.get(pi)]:null;
+  e.currentTarget.style.cursor='grabbing';
+  drag={source:e.currentTarget,ghostScale:Math.min(75/(width+6),55/(height+6)),pi,startX:e.clientX,startY:e.clientY,x:e.clientX,y:e.clientY,scale,width,height,offsetX:p?(e.clientX-box.left)/scale-p.x*50:width/2,offsetY:p?(e.clientY-box.top)/scale-p.y*50:height/2,ghost:null,candidate:null,overTray:false};
+  e.currentTarget.setPointerCapture(e.pointerId);
+ }
+ document.addEventListener('pointermove',e=>{
+  if(!drag)return;const d=drag;d.x=e.clientX;d.y=e.clientY;
+  if(!d.ghost&&Math.hypot(d.x-d.startX,d.y-d.startY)<5)return;
+  e.preventDefault();
+  if(!d.ghost){selectPiece(d.pi);document.body.classList.toggle('drag-active',true);d.ghost=svg('svg',{viewBox:'-3 -3 '+(d.width+6)+' '+(d.height+6)});d.ghost.classList.add('drag-ghost');d.ghost.style.width=(d.width+6)*d.ghostScale+'px';d.ghost.style.height=(d.height+6)*d.ghostScale+'px';d.ghost.append(pieceGraphic(d.pi,pointsFor(d.pi)));document.body.append(d.ghost);if(d.source.tagName.toLowerCase()==='button'){d.source.disabled=true;d.source.setAttribute('aria-disabled','true');d.source.classList.toggle('drag-origin',true);d.source.style.cursor='not-allowed';}}
+  d.ghost.style.left=(d.x-(d.offsetX+3)*d.ghostScale)+'px';d.ghost.style.top=(d.y-(d.offsetY+3)*d.ghostScale)+'px';
+  const b=$('game-svg').getBoundingClientRect(),x=Math.round(((d.x-b.left)/d.scale-d.offsetX)/50),y=Math.round(((d.y-b.top)/d.scale-d.offsetY)/50);
+  d.candidate=validPlacement(d.pi,x,y);
+  const oldFootprint=$('drop-footprint');if(oldFootprint)oldFootprint.remove();
+  if(d.x>=b.left&&d.x<=b.right&&d.y>=b.top&&d.y<=b.bottom)drawPlacementPreview(d.pi,x,y,d.candidate);
+  const t=$('tray-panel').getBoundingClientRect();d.overTray=d.x>=t.left&&d.x<=t.right&&d.y>=t.top&&d.y<=t.bottom;
+  document.body.classList.toggle('drag-valid',Boolean(d.candidate||d.overTray));
+  $('move-status').textContent=d.overTray?'Release to return to the tray.':d.candidate?'Fits — release to place.':'Does not fit here. Release to leave the piece where it was.';
+ },{passive:false});
+ function endDrag(cancelled){
+  if(!drag)return;const d=drag;drag=null;document.body.classList.toggle('drag-active',false);document.body.classList.toggle('drag-valid',false);d.source.style.cursor='grab';if(d.source.tagName.toLowerCase()==='button'){d.source.disabled=false;d.source.setAttribute('aria-disabled','false');d.source.classList.toggle('drag-origin',false);}const footprint=$('drop-footprint');if(footprint)footprint.remove();if(!d.ghost)return;
+  d.ghost.remove();suppressClick=true;setTimeout(()=>suppressClick=false,0);
+  if(cancelled)return;
+  if(d.overTray){if(layout.has(d.pi))returnPiece(d.pi);else $('move-status').textContent='Piece stays in the tray.';}
+  else if(d.candidate)commitPlacement(d.pi,d.candidate);
+  else $('move-status').textContent='Invalid drop — piece returned to its previous position.';
+ }
+ document.addEventListener('pointerup',()=>endDrag(false));document.addEventListener('pointercancel',()=>endDrag(true));
+ $('rotate-piece').onclick=()=>transformPiece(false);$('flip-piece').onclick=()=>transformPiece(true);$('return-piece').onclick=()=>returnPiece(selectedPiece);
+ $('clear-board').onclick=()=>{if(layout.size)saveUndo();invalidateForEdit();layout.clear();selectedPiece=-1;setPuzzleStatus('Board cleared.');$('move-status').textContent='';renderSolution();};
+ ['puzzle-solve','reveal-piece','stop-solve','previous','next','undo-move','rotate-piece','flip-piece','return-piece','clear-board','puzzle-today'].forEach(id=>{const el=$(id);if(el&&el.onclick){const action=el.onclick;el.onclick=e=>{clearActionStatus();return action(e);};}});
+ document.addEventListener('click',e=>{
+  if(selectedPiece<0||drag||suppressClick)return;
+  const path=e.composedPath?e.composedPath():[];
+  if(!path.length){for(let node=e.target;node;node=node.parentNode)path.push(node);}
+  if(path.some(node=>node.dataset&&node.dataset.piece!==undefined&&!node.disabled))return;
+  if(path.some(node=>['rotate-piece','flip-piece','return-piece'].includes(node.id)))return;
+  // Let a board click place a selected tray piece before clearing anything.
+  if(!layout.has(selectedPiece)&&path.some(node=>node.id==='game-svg'))return;
+  clearActionStatus();selectPiece(-1);
+ },true);
+ document.addEventListener('keydown',e=>{
+  if($('help-dialog').open)return;
+  if(!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)&&['r','f','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Delete','Backspace','z'].includes(e.key))clearActionStatus();
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){e.preventDefault();undoMove();return;}
+  if(e.key==='Escape'&&drag){endDrag(true);return;}
+  if(drag)return;
+  if(selectedPiece<0||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.ctrlKey||e.altKey||e.metaKey)return;
+  if(e.key.toLowerCase()==='r'){e.preventDefault();transformPiece(false);}else if(e.key.toLowerCase()==='f'){e.preventDefault();transformPiece(true);}
+  else if(e.key==='Escape'){clearActionStatus();selectPiece(-1);}
+  else if(layout.has(selectedPiece)&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){
+   e.preventDefault();const p=P.placements[layout.get(selectedPiece)],dx=e.key==='ArrowLeft'?-1:e.key==='ArrowRight'?1:0,dy=e.key==='ArrowUp'?-1:e.key==='ArrowDown'?1:0;
+   const candidate=validPlacement(selectedPiece,p.x+dx,p.y+dy);if(candidate)commitPlacement(selectedPiece,candidate);else $('move-status').textContent='That move is blocked.';
+  }
+ });
+
+ window.addEventListener('focus',()=>{$('puzzle-today').disabled=$('puzzle-date').value===today();});
+ let saved=null;try{saved=JSON.parse(localStorage.getItem(storageKey));}catch(error){}
+ $('puzzle-date').value=saved&&dateObject(saved.date)?saved.date:today();$('analysis-year').value=saved&&Number.isInteger(saved.year)&&saved.year>=1&&saved.year<=9999?saved.year:new Date().getFullYear();changeDate();$('trace-date').value=today();resetExplorer();
+ if(saved){
+  if(Array.isArray(saved.counts))saved.counts.forEach(entry=>{if(Array.isArray(entry)&&/^([0-9]|1[01])\/([1-9]|[12][0-9]|3[01])\/[0-6]$/.test(entry[0])&&Number.isSafeInteger(entry[1])&&entry[1]>=0)cache.set(entry[0],entry[1]);});
+  if(Array.isArray(saved.orientations))saved.orientations.forEach((o,i)=>{if(P.pieces[i]&&Number.isInteger(o)&&P.pieces[i].orientations[o])pieceOrientation[i]=o;});
+  if(Array.isArray(saved.layout)){const used=new Set(current.holes);for(const id of saved.layout){const p=P.placements[id];if(p&&!layout.has(p.piece)&&p.cells.every(c=>!used.has(c))){layout.set(p.piece,id);p.cells.forEach(c=>used.add(c));}}}
+  if(Array.isArray(saved.filters))saved.filters.slice(0,3).forEach((v,i)=>{if(Number.isInteger(v)&&v>=(i===1?1:0)&&v<=[11,31,6][i])analysisFilters[i]=v;});
+  $('analysis-view').value=saved.view==='board'?'board':'dates';$('heat-alignment').value=saved.alignment==='date'?'date':'weekday';
+  if(layout.size)setPuzzleStatus(layout.size+' of 10 pieces placed.');renderGame();
+ }
+ analysisDates=makeDates(Number($('analysis-year').value));renderAnalysis();$('analysis-view').onchange();persistenceReady=true;saveProgress();
+
+ window.addEventListener('pagehide',()=>{if(solver)stopSolver();if(traceWorker)stopExplorer('Search stopped when leaving the page.');if(analysisWorker)stopAnalysis('Stopped when leaving the page. Completed dates are retained; resume to continue.');});
+})();
+
+</script>
+</body>
+</html>
