@@ -1,0 +1,134 @@
+h1,h2,h3,h4,h5,h6 {
+  line-height: 1;
+}
+h1 { margin: 0 0; }
+body { 
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  background: aliceblue; 
+}
+div.box { 
+  max-width: 600px; 
+  margin: 1.5em auto; 
+  padding: 0 1em; 
+  border: 1px solid #8b9ca7; 
+  box-shadow: 4px 4px 0 #d5e1e9; 
+  background: whitesmoke;
+}
+header { text-align: center; margin: 0 0 1em 0 }
+dl dd { margin-bottom: 1rem; margin-left: 0; }
+dl dt { font-weight: bold; color: #334D5C}
+ul li { margin-bottom: 0.3rem; }
+ul { list-style-type: "❄  ";}
+ul.quotes { list-style: none; padding: 0;}
+
+dl.faq dt { margin-bottom: 0.35em; }
+dl.faq dd {
+  border-left: 2px solid #b7ccd8;
+  padding-left: 0.8em;
+  margin-left: 0.2em;
+  margin-bottom: 1.3em;
+}
+
+div.datebox {
+  background: lightyellow;
+  border: 1px solid #a39e79;
+  box-shadow: 4px 4px 0 #e5dfb5;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 1em auto;
+  padding: 0.5em 0.8em;
+}
+
+ul.quotes {
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 1.2em auto 1.4em;
+  padding: 0.8em 1em !important;
+  text-align: left;
+
+  background: #edf3f7;
+  border: 1px solid #8b9ca7;
+  box-shadow: 4px 4px 0 #d5e1e9;
+}
+
+img.lizard {
+  float: right;
+  margin-top: 0.6em;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: fallback;
+  src: local('Open Sans'), local('Open Sans Regular'), local('OpenSans-Regular'), url(fonts/opensans.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: fallback;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(fonts/opensansbold.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: italic;
+  font-weight: 400;
+  font-display: fallback;
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(fonts/opensansitalic.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* thanks chatgpt for the code for this easteregg */
+img.lizard {
+  cursor: pointer;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  img.lizard:hover {
+    outline: 1px solid #b7ccd8;
+    outline-offset: 0;
+    background-color: rgb(183 204 216 / 20%);
+  }
+}
+
+img.lizard.spinning {
+  animation: lizard-spin 700ms ease-in-out;
+}
+
+@keyframes lizard-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img.lizard.spinning {
+    animation-duration: 1ms;
+  }
+}
+img.lizard.escaping {
+  animation: lizard-escape 1.8s ease-in-out;
+}
+
+@keyframes lizard-escape {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  10% { transform: translate(-12px, 5px) rotate(-15deg); }
+  22% { transform: translate(35px, -20px) rotate(20deg); }
+  34% { transform: translate(70px, 10px) rotate(-10deg); }
+  46% { transform: translate(40px, -35px) rotate(-30deg); }
+  58% { transform: translate(-45px, -15px) rotate(15deg); }
+  70% { transform: translate(-65px, 20px) rotate(-20deg); }
+  82% { transform: translate(20px, -10px) rotate(25deg); }
+  92% { transform: translate(-8px, 5px) rotate(-10deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  img.lizard.escaping {
+    animation: none;
+  }
+}
